@@ -18,4 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/event', [EventController::class, "index"]);
+//admin events routes
+Route::controller(EventController::class)->group(function () {
+    Route::get('/admin/event',  "index");
+
+    Route::get('/admin/event/form/{eventId}', "details");
+    Route::get('/admin/event/form', "details");
+
+    Route::post('/admin/event/form/{eventId}', "save");
+    Route::post('/admin/event/form', "save");
+
+});

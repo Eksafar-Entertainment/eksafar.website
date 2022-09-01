@@ -32,8 +32,8 @@
                     <td>{{$event->end_data}}</td>
                     <td>{{$event->occurrence}}</td>
                     <td class="text-end">
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                        <a type="button" class="btn btn-danger btn-sm">Delete</a>
+                        <a type="button" class="btn btn-primary btn-sm" href="{{url('/admin/event/form/'.$event->id)}}">Edit</a>
                     </td>
                 </tr>
                 @endforeach
