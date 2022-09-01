@@ -14,7 +14,7 @@ class EventController extends Controller
     }
 
     function details($eventId=0){
-        $event = Event::where(["id"=> $eventId])->get();
+        $event = Event::where(["id"=> $eventId])->first();
         return view("admin/event/details", ["event"=>$event]);
     }
 
