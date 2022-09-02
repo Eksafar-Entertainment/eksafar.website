@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\FormBuilder;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
@@ -17,6 +18,15 @@ class EventController extends Controller
     function details($eventId = 0)
     {
         $event = Event::where(["id" => $eventId])->first();
+        //
+        //$form = new FormBuilder("event-form", "");
+        //$form->addText("name", "Name", "rgfdhfhfghfghfgh", true);
+
+        //$form->render();
+
+
+
+
         return view("admin/event/details", ["event" => $event, "eventId"=>$eventId]);
     }
 
