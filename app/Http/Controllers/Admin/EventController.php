@@ -51,4 +51,11 @@ class EventController extends Controller
 
         return view("admin/event/details", ["event"=>$event]);
     }
+    function delete($eventId){
+        $event = Event::find($eventId);
+        if($event->delete($eventId)){
+            return redirect('/admin/event');
+        }
+        return redirect('/admin/event');
+    }
 }

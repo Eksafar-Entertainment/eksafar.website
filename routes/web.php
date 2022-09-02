@@ -23,6 +23,8 @@ Route::view("/admin","admin/home");
 Route::controller(EventController::class)->group(function () {
     Route::get('/admin/event',  "index");
 
+    Route::get('/admin/event/delete/{id}', "delete");
+
     Route::get('/admin/event/form/{eventId}', "details");
     Route::get('/admin/event/form', "details");
 
