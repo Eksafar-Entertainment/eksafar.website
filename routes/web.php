@@ -19,8 +19,10 @@ Route::get('/', function () {
 });
 
 //admin events routes
-Route::view("/admin","admin/home");
-Route::controller(EventController::class)->group(function () {
+Route::middleware('auth:sanctum')->get("/admin",function(){
+    return view("admin.home");
+});
+Route::middleware('auth:sanctum')->controller(EventController::class)->group(function () {
     Route::get('/admin/event',  "index");
 
     Route::get('/admin/event/delete/{id}', "delete");
