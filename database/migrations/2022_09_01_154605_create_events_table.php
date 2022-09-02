@@ -22,7 +22,7 @@ class CreateEventsTable extends Migration
             $table->string('address');
             $table->date('start_date');
             $table->date('end_date');
-            $table->integer('occurrence');
+            $table->string('occurrence');
             $table->longText('description');
             $table->string('cover_image');
             $table->string('video_link');

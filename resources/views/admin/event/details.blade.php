@@ -88,7 +88,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" class="form-control summernote" placeholder='Enter Description here' name="description" required="">{{$event ? $event->description:''}}</textarea>
+                                <textarea id="description" class="form-control" placeholder='Enter Description here' name="description" required="">{{$event ? $event->description:''}}</textarea>
                             </div>
                         </div>
 
