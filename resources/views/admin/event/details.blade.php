@@ -147,7 +147,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Price</th>
+                                    <th style="width: 100px;">Price</th>
                                     <th>Description</th>
                                 </tr>
                             </thead>
@@ -163,7 +163,12 @@
                                         <input type="hidden" name="event_tickets[{{$count}}][id]" value="{{$event_ticket->id}}" />
                                     </td>
                                     <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][name]" placeholder="Name" value="{{$event_ticket->name}}" /></th>
-                                    <th><input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][price]" placeholder="Price" value="{{$event_ticket->price}}"></th>
+                                    <th>
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text" id="basic-addon1">₹</span>
+                                            <input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][price]" placeholder="Price" value="{{$event_ticket->price}}">
+                                        </div>
+                                    </th>
                                     <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][description]" placeholder="Description" value="{{$event_ticket->description}}"></th>
                                 </tr>
                                 @php
@@ -171,30 +176,34 @@
                                 @endphp
                                 @endforeach
                                 @endif
-                                @for($count=$count; $count < 10; $count++)
-                                <tr>
+                                @for($count=$count; $count < 10; $count++) <tr>
                                     <td>
                                         {{$count}}
                                         <input type="hidden" name="event_tickets[{{$count}}][id]" value="0" />
                                     </td>
                                     <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][name]" placeholder="Name" /></th>
-                                    <th><input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][price]" placeholder="Price"></th>
+                                    <th>
+                                        <div class="input-group input-group-sm">
+                                            <span class="input-group-text" id="basic-addon1">₹</span>
+                                            <input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][price]" placeholder="Price">
+                                        </div>
+                                    </th>
                                     <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][description]" placeholder="Description"></th>
-                                </tr>
-                                @endfor
+                                    </tr>
+                                    @endfor
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="row mb-0">
-                    <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            Save
-                        </button>
-                    </div>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">
+                        Save Event
+                    </button>
+                    <a type="submit" class="btn btn-danger" href="{{url('admin/event')}}">
+                        Cancel
+                    </a>
                 </div>
-
             </form>
         </div>
     </div>
