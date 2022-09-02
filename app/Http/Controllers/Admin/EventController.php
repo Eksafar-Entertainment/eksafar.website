@@ -6,6 +6,7 @@ use App\Helpers\FormBuilder;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\EventTicket;
 
 class EventController extends Controller
 {
@@ -18,52 +19,65 @@ class EventController extends Controller
     function details($eventId = 0)
     {
         $event = Event::where(["id" => $eventId])->first();
-        //
-        //$form = new FormBuilder("event-form", "");
-        //$form->addText("name", "Name", "rgfdhfhfghfghfgh", true);
-
-        //$form->render();
+        $event_tickets = $eventId  > 0 ? EventTicket::where(["event_id" => $eventId])->get() : null;
 
 
-
-
-        return view("admin/event/details", ["event" => $event, "eventId"=>$eventId]);
+        return view("admin/event/details", [
+            "event" => $event,
+            "event_tickets" => $event_tickets
+        ]);
     }
 
     function save($eventId = 0, Request $request)
     {
-        $event = $eventId  > 0? Event::where(["id" => $eventId])->first() : new Event();
-        
-        $event->name= $request->name;
-        $event->entry_type= $request->entry_type;
-        $event->venue= $request->venue;
-        $event->city= $request->city;
-        $event->address= $request->address;
-        $event->start_date= $request->start_date;
-        $event->end_date= $request->end_date;
-        $event->occurrence= $request->occurrence;
-        $event->description= $request->description;
+        $event = $eventId  > 0 ? Event::where(["id" => $eventId])->first() : new Event();
 
-        if($request->file('cover_image')){
-            $file= $request->file('cover_image');
-            $filename= date('YmdHi').$file->getClientOriginalName();
+        $event->name = $request->name;
+        $event->entry_type = $request->entry_type;
+        $event->venue = $request->venue;
+        $event->city = $request->city;
+        $event->address = $request->address;
+        $event->start_date = $request->start_date;
+        $event->end_date = $request->end_date;
+        $event->occurrence = $request->occurrence;
+        $event->description = $request->description;
+
+        if ($request->file('cover_image')) {
+            $file = $request->file('cover_image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('storage/uploads'), $filename);
             $event->cover_image = $filename;
         }
-        $event->video_link= $request->video_link;
-        $event->event_type= $request->event_type;
-        $event->artist= $request->artist;
-        $event->abilities= $request->abilities;
-        
-        if($event->save()){
-            return redirect('/admin/event');
-        }
+        $event->video_link = $request->video_link;
+        $event->event_type = $request->event_type;
+        $event->artist = $request->artist;
+        $event->abilities = $request->abilities;
 
-        return view("admin/event/details", ["event"=>$event]);
+        $event->save();
+        //save event details
+        foreach($request->event_tickets as $ticket){
+            
+
+            if($ticket["name"] == "" && $ticket["price"]==""){
+                if($ticket["id"] > 0){
+                    EventTicket::find($ticket["id"])->delete();
+                }
+                continue;
+            }
+            //continue;
+            $event_ticket = $ticket["id"] > 0? EventTicket::find($ticket["id"]) : new EventTicket();
+            $event_ticket->name = $ticket["name"]??"jfghkcjhjk";
+            $event_ticket->price = $ticket["price"];
+            $event_ticket->description = $ticket["description"];
+            $event_ticket->event_id = $event->id;
+            $event_ticket->save();
+        }
+        return redirect('/admin/event/form/'.$event->id);
     }
-    function delete($eventId){
+    function delete($eventId)
+    {
         $event = Event::find($eventId);
-        if($event->delete($eventId)){
+        if ($event->delete($eventId)) {
             return redirect('/admin/event');
         }
         return redirect('/admin/event');

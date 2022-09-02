@@ -4,17 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Event Details</div>
 
-                <div class="card-body">
+            <form enctype="multipart/form-data" method="post">
+                @csrf
+                <!-- {{ csrf_field() }} -->
+                <div class="card">
+                    <div class="card-header">Event Details</div>
 
-                    <form enctype="multipart/form-data" method="post">
-                        @csrf
-                        <!-- {{ csrf_field() }} -->
-
-            
-
+                    <div class="card-body">
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
@@ -80,7 +77,7 @@
                             <label for="occurrence" class="col-md-4 col-form-label text-md-end">Occurrence</label>
 
                             <div class="col-md-6">
-                                <select id="occurrence" type="text" class="form-select" name="occurrence"  required="">
+                                <select id="occurrence" type="text" class="form-select" name="occurrence" required="">
                                     <option value="1">Once</option>
                                     <option value="2">Multiple</option>
                                 </select>
@@ -135,17 +132,70 @@
                             </div>
                         </div>
 
-                    
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Save
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+
+
+
+                    </div>
                 </div>
-            </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">Event Tickets</div>
+
+                    <div class="card-body">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $count = 1;
+                                @endphp
+                                @if(isset($event_tickets) && $event_tickets != null)
+                                @foreach($event_tickets as $event_ticket)
+                                <tr>
+                                    <td>
+                                        {{$count}}
+                                        <input type="hidden" name="event_tickets[{{$count}}][id]" value="{{$event_ticket->id}}" />
+                                    </td>
+                                    <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][name]" placeholder="Name" value="{{$event_ticket->name}}" /></th>
+                                    <th><input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][price]" placeholder="Price" value="{{$event_ticket->price}}"></th>
+                                    <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][description]" placeholder="Description" value="{{$event_ticket->description}}"></th>
+                                </tr>
+                                @php
+                                $count++;
+                                @endphp
+                                @endforeach
+                                @endif
+                                @for($count=$count; $count < 10; $count++)
+                                <tr>
+                                    <td>
+                                        {{$count}}
+                                        <input type="hidden" name="event_tickets[{{$count}}][id]" value="0" />
+                                    </td>
+                                    <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][name]" placeholder="Name" /></th>
+                                    <th><input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][price]" placeholder="Price"></th>
+                                    <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][description]" placeholder="Description"></th>
+                                </tr>
+                                @endfor
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row mb-0">
+                    <div class="col-md-8 offset-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
