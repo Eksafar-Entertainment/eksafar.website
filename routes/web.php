@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,12 @@ Route::middleware('auth:sanctum')->controller(EventController::class)->group(fun
     Route::post('/admin/event/form', "save");
 
 });
+
+Route::middleware('auth:sanctum')->controller(OrderController::class)->group(function () {
+    Route::get('/admin/order',  "index");
+    Route::get('/admin/order/{eventId}', "details");
+});
+
 
 Auth::routes();
 

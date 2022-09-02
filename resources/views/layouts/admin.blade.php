@@ -44,6 +44,7 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('admin/event') }}">{{ __('Events') }}</a>
+                            <a class="nav-link" href="{{ url('admin/order') }}">{{ __('Orders') }}</a>
                         </li>
                     </ul>
 
