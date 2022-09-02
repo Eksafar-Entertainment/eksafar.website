@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 //admin events routes
+Route::view("/admin","admin/home");
 Route::controller(EventController::class)->group(function () {
     Route::get('/admin/event',  "index");
 
@@ -29,3 +30,7 @@ Route::controller(EventController::class)->group(function () {
     Route::post('/admin/event/form', "save");
 
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
