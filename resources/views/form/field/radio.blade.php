@@ -2,6 +2,8 @@
     <label for="name" class="col-md-4 col-form-label text-md-end">{{$field->label}}</label>
 
     <div class="col-md-6">
-        <input id="{{$field->name}}" type="{{$field->input_type}}" class="form-control" placeholder='{{$field->placeholder}}' name="name" value="{{$field->value}}" required="">
+        @foreach($field->options as $value=>$label)
+        <radio name="{{$field->name}}" value="{{$value}}" {{$field->value==$value?"selected":""}} {{$field->required?"required":""}} /> {{$label}}
+        @endforeach
     </div>
 </div>
