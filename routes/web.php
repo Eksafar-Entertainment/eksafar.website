@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\FrontController::class, 'index']);
+Route::get('/my{id}', [App\Http\Controllers\FrontController::class, 'route']);
 
 //admin events routes
 Route::middleware('auth:sanctum')->get("/admin",function(){
