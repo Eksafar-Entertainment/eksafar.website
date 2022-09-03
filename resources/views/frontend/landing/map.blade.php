@@ -40,20 +40,20 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap">
         </script>
         <div class="location_information black_bg wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-            <h3>Concert 2020</h3>
+            <h3>Dandiya 2022</h3>
             <div class="info_wrap">
                 <div class="single_info">
-                    <span>Vanue:</span>
-                    <p>26/A, Coontum Avenu
-                        New York-2783</p>
+                    <span>Venue:</span>
+                    <p>Catch Up
+                        Bangalore-560102</p>
                 </div>
                 <div class="single_info">
                     <span>Phone:</span>
-                    <p>+10 (88) 267 368 283</p>
+                    <p>+91 6364 594 648</p>
                 </div>
                 <div class="single_info">
                     <span>Email:</span>
-                    <p>contact@concert20.com</p>
+                    <p>info@eksafar.club</p>
                 </div>
             </div>
         </div>
