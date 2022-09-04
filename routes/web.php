@@ -18,7 +18,7 @@ use App\Http\Controllers\RazorpayController;
 */
 
 Route::get('/', [App\Http\Controllers\FrontController::class, 'index']);
-Route::get('/my{id}', [App\Http\Controllers\FrontController::class, 'route']);
+
 
 Route::get('/product', [RazorpayController::class, 'index']);
 Route::post('/paysuccess', [RazorpayController::class, 'razorPaySuccess']);
@@ -50,3 +50,4 @@ Route::middleware('auth:sanctum')->controller(OrderController::class)->group(fun
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/{id}', [App\Http\Controllers\FrontController::class, 'route']);

@@ -18,23 +18,16 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="/">Home</a></li>
-                                            <li><a href="myperformer">Performer</a></li>
-                                            
-                                            <li><a href="#">Pages <i class="ti-angle-down"></i></a>
+                                            <li><a href="performer">Performer</a></li>
+                                            <!-- <li><a href="#">Events <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
-                                                    <li><a href="myabout">about</a></li>
-                                                    <li><a href="myprogram">Program</a></li>
-                                                    <li><a href="myvenue">Venue</a></li>
-                                                    <li><a href="myelements">elements</a></li>
+                                                    <li><a href="upcomming">Upcoming</a></li>
+                                                    <li><a href="current">Current</a></li>
                                                 </ul>
-                                            </li>
-                                            <li><a href="#">Events <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="myupcomming">Upcoming</a></li>
-                                                    <li><a href="mycurrent">Current</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="mycontact">Contact</a></li>
+                                            </li> -->
+                                            <li><a href="about">About</a></li>
+                                            <li><a href="contact">Contact</a></li>
+
                                         </ul>
                                     </nav>
                                 </div>
