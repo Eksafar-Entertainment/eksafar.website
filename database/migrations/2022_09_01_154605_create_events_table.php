@@ -29,6 +29,7 @@ class CreateEventsTable extends Migration
             $table->string('event_type');
             $table->string('artist');
             $table->text('abilities')->nullable();
+            $table->text('slug');
             $table->timestamps();
         });
     }

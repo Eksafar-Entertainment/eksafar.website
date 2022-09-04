@@ -20,11 +20,6 @@ class OrderController extends Controller
     {
         $order = Order::where(["id" => $orderId])->first();
         $order_tickets = $orderId  > 0 ? OrderDetail::where(["order_id" => $orderId])->get() : null;
-
-        // $form = new FormBuilder("order-form");
-        // $form->addCheckBox(["name"=>"checkbox", "label"=>"label", "value"=>"OK","checked"=>false]);
-        // $form->render();
-
         return view("admin/order/details", [
             "order" => $order,
             "order_tickets" => $order_tickets

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventTicket;
-
+use Illuminate\Support\Str;
 class EventController extends Controller
 {
     function index()
@@ -33,6 +33,7 @@ class EventController extends Controller
         $event = $eventId  > 0 ? Event::where(["id" => $eventId])->first() : new Event();
 
         $event->name = $request->name;
+        $event->slug = Str::slug($request->name);
         $event->entry_type = $request->entry_type;
         $event->venue = $request->venue;
         $event->city = $request->city;
@@ -69,6 +70,7 @@ class EventController extends Controller
             $event_ticket->name = $ticket["name"]??"jfghkcjhjk";
             $event_ticket->price = $ticket["price"];
             $event_ticket->description = $ticket["description"];
+            $event_ticket->persons = $ticket["persons"];
             $event_ticket->event_id = $event->id;
             $event_ticket->save();
         }
