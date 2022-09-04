@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
+use App\Models\EventTicket;
 
 class FrontController extends Controller
 {
