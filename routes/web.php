@@ -5,6 +5,10 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RazorpayController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +22,16 @@ use App\Http\Controllers\RazorpayController;
 */
 
 Route::get('/', [App\Http\Controllers\FrontController::class, 'index']);
+
+Auth::routes();
+  
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+  
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RolesController::class);
+    Route::resource('users', UsersController::class);
+    Route::resource('posts', PostsController::class);
+});
 
 
 Route::get('/product', [RazorpayController::class, 'index']);
@@ -47,5 +61,4 @@ Route::middleware('auth:sanctum')->controller(OrderController::class)->group(fun
 });
 
 
-Auth::routes();
 Route::get('/{id}', [App\Http\Controllers\FrontController::class, 'route']);
