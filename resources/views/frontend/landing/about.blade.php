@@ -24,7 +24,7 @@
                     <div class="about_info pl-68">
                         <h4 class=" wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">It’s time to book your seat</h4>
                         <p  class=" wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".6s">The event regularly attracts a diverse range of attendees from around the india, across different professions, and with different levels of ethnicity.</p>
-                        <a href="#" class="boxed-btn3  wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".7s">Buy Tickets</a>
+                        <a href="#" class="boxed-btn3  wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".7s" data-toggle="modal" data-target="#ticketModal">Buy Tickets</a>
                     </div>
                 </div>
             </div>

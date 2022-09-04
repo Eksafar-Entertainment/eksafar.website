@@ -9,7 +9,7 @@
                                 <h4 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">03 Oct, 2022</h4>
                                 <h3 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">Catch Up, Bangalore</h3>
                                 <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">The event regularly attracts a diverse range of attendees from around the India.</p>
-                                <a href="#" class="boxed-btn3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">Buy Tickets</a>
+                                <a href="#" class="boxed-btn3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s" data-toggle="modal" data-target="#ticketModal">Buy Tickets</a>
                             </div>
                         </div>
                     </div>

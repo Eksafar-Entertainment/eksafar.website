@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RazorpayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\FrontController::class, 'index']);
 Route::get('/my{id}', [App\Http\Controllers\FrontController::class, 'route']);
+
+Route::get('/product', [RazorpayController::class, 'index']);
+Route::post('/paysuccess', [RazorpayController::class, 'razorPaySuccess']);
+Route::get('/payment-thank-you{id}', [RazorpayController::class, 'paymentSuccess']);
 
 //admin events routes
 Route::middleware('auth:sanctum')->get("/admin",function(){
