@@ -48,6 +48,4 @@ Route::middleware('auth:sanctum')->controller(OrderController::class)->group(fun
 
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/{id}', [App\Http\Controllers\FrontController::class, 'route']);
