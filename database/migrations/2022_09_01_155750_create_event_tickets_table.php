@@ -18,8 +18,8 @@ class CreateEventTicketsTable extends Migration
             $table->integer('event_id');
             $table->string('name');
             $table->integer('price');
-            $table->integer('persons');
-            $table->longText('description');
+            $table->integer('persons')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

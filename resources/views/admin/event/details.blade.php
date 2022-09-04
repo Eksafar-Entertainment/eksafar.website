@@ -148,6 +148,7 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th style="width: 100px;">Price</th>
+                                    <th style="width: 100px;">Persons</th>
                                     <th>Description</th>
                                 </tr>
                             </thead>
@@ -169,6 +170,9 @@
                                             <input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][price]" placeholder="Price" value="{{$event_ticket->price}}">
                                         </div>
                                     </th>
+                                    <th>
+                                        <input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][persons]" placeholder="Persons" value="{{$event_ticket->persons}}">
+                                    </th>
                                     <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][description]" placeholder="Description" value="{{$event_ticket->description}}"></th>
                                 </tr>
                                 @php
@@ -187,6 +191,9 @@
                                             <span class="input-group-text" id="basic-addon1">₹</span>
                                             <input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][price]" placeholder="Price">
                                         </div>
+                                    </th>
+                                    <th>
+                                        <input type="number" class="form-control form-control-sm" name="event_tickets[{{$count}}][persons]" placeholder="Persons">
                                     </th>
                                     <th><input type="text" class="form-control form-control-sm" name="event_tickets[{{$count}}][description]" placeholder="Description"></th>
                                     </tr>
