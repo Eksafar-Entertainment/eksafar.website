@@ -54,6 +54,7 @@ Route::group([
 
 
 Route::get('/product', [RazorpayController::class, 'index']);
+Route::post('/payStarted', [RazorpayController::class, 'razorPayStarted']);
 Route::post('/paysuccess', [RazorpayController::class, 'razorPaySuccess']);
 Route::get('/payment-thank-you{id}', [RazorpayController::class, 'paymentSuccess']);
 

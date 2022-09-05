@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use App\Models\EventTicket;
+use App\Http\Controllers\Controller;
 
 use App\Http\Controllers\Controller;
 

@@ -229,8 +229,22 @@ $.ajaxSetup({
 
   $('body').on('click', '.buy_now', function(e) {
     var product_id = $(this).attr('type-field');
-    console.log('the values sent for payment is ', totalAmount, product_id);
-    var options = {
+    console.log('the values sent for payment is ', totalAmount);
+    
+    $.ajax({
+      url: '{{ url("payStarted") }}',
+      method: 'post',
+      data: {
+        razorpay_id: response.razorpay_payment_id,
+        amount: totalAmount,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        name: document.getElementById("name").value,
+        product_id: document.querySelector('input[name="type"]:checked').id,
+      },
+      success: (paymentRes) => {
+      console.log('the payment res is', paymentRes);
+      var options = {
       "key": "rzp_test_XxOiyvlaMUm4Vz",
       "amount": (totalAmount * 100), // 2000 paise = INR 20
       "name": "Eksafar",
@@ -252,6 +266,8 @@ $.ajaxSetup({
               phone: document.getElementById("phone").value,
               name: document.getElementById("name").value,
               product_id: document.querySelector('input[name="type"]:checked').id,
+              order_details_id: paymentRes.order_details_id,
+              order_id: paymentRes.order_id,
             },
             success: (res) => {
               window.location.href = '/payment-thank-you' + response.razorpay_payment_id;
@@ -271,6 +287,10 @@ $.ajaxSetup({
         "color": "#528FF0"
       }
     };
+
+    }});
+
+
     var rzp1 = new Razorpay(options);
     rzp1.open();
     e.preventDefault();
