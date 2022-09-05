@@ -11,7 +11,7 @@ class FrontController extends Controller
     public function index()
     {
         $agent = new Agent();
-        $ticket_type = EventTicket::all();
+        $ticket_type = EventTicket::where(["event_id"=>1])->get();
         $type = '/';
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
@@ -25,7 +25,7 @@ class FrontController extends Controller
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
         $tablet = $agent->isTablet();
-        $ticket_type = EventTicket::all();
+        $ticket_type = EventTicket::where(["event_id"=>1])->get();
 
         switch($type){
             case "performer" : {
