@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use App\Models\EventTicket;
+
+use App\Http\Controllers\Controller;
 
 class FrontController extends Controller
 {

@@ -27,9 +27,22 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
   
 Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles', RolesController::class);
-    Route::resource('users', UsersController::class);
-    Route::resource('posts', PostsController::class);
+    Route::resource('admin/roles', RolesController::class);
+    Route::resource('admin/users', UsersController::class);
+    Route::resource('admin/posts', PostsController::class);
+
+    Route::controller(EventController::class)->group(function () {
+        Route::get('/admin/event',  "index");
+    
+        Route::get('/admin/event/delete/{id}', "delete");
+    
+        Route::get('/admin/event/form/{eventId}', "details");
+        Route::get('/admin/event/form', "details");
+    
+        Route::post('/admin/event/form/{eventId}', "save");
+        Route::post('/admin/event/form', "save");
+    
+    });
 });
 
 
@@ -41,18 +54,7 @@ Route::get('/payment-thank-you{id}', [RazorpayController::class, 'paymentSuccess
 Route::middleware('auth:sanctum')->get("/admin",function(){
     return view("admin.home");
 });
-Route::middleware('auth:sanctum')->controller(EventController::class)->group(function () {
-    Route::get('/admin/event',  "index");
 
-    Route::get('/admin/event/delete/{id}', "delete");
-
-    Route::get('/admin/event/form/{eventId}', "details");
-    Route::get('/admin/event/form', "details");
-
-    Route::post('/admin/event/form/{eventId}', "save");
-    Route::post('/admin/event/form', "save");
-
-});
 
 Route::middleware('auth:sanctum')->controller(OrderController::class)->group(function () {
     Route::get('/admin/order',  "index");
