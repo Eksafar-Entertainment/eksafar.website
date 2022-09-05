@@ -11,11 +11,12 @@ class FrontController extends Controller
     public function index()
     {
         $agent = new Agent();
+        $ticket_type = EventTicket::all();
         $type = '/';
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
         $tablet = $agent->isTablet();   
-        return view('welcome', compact('desktop', 'mobile', 'tablet', 'type'));
+        return view('welcome', compact('desktop', 'mobile', 'tablet', 'type', 'ticket_type'));
     }
 
     public function route($type)

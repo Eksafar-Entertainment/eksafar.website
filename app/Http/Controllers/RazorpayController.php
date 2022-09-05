@@ -20,7 +20,6 @@ class RazorpayController extends Controller
                   'user' => $request->name,
                   'email' => $request->email,
                   'phone' => $request->phone,
-                  'persons' => $request->persons,
                   'product_id' => $request->product_id,
                   'r_payment_id' => $request->razorpay_id,
                   'amount' => $request->amount,
