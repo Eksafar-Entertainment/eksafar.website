@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderDetail;
 
 class OrderController extends Controller
 {
@@ -29,8 +30,10 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        $order_details = OrderDetail::where(["order_id"=> $order->id])->get();
         return view('admin.order.show', [
-            'order' => $order
+            'order' => $order,
+            'order_details'=>$order_details
         ]);
     }
 
