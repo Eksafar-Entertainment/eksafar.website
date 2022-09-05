@@ -19,7 +19,6 @@ class RazorpayController extends Controller
     }
 
     public function razorPayStarted(Request $request){
-      dd($request);
          
         $order = new Order;
         $order->name = $request->name;
@@ -36,7 +35,8 @@ class RazorpayController extends Controller
         $oderDetail->order_id = "pending";
         $oderDetail->event_ticket_id = $order->id;
         $oderDetail->quantity = $request->name;
-        $oderDetail->price = $request->amount;
+        $oderDetail->details = json_encode($request->details);
+        $oderDetail->amount = $request->amount;
 
         $oderDetail->save();
 

@@ -18,6 +18,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer("order_id");
             $table->integer("event_ticket_id");
             $table->integer("quantity");
+            $table->integer("rate");
             $table->integer("price");
             $table->timestamps();
         });

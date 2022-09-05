@@ -142,6 +142,8 @@ $.ajaxSetup({
 });
 
   var totalAmount = 0;
+  var totalCount = 0;
+  var tickets_details=[];
   $('.btn-number').click(function(e) {
     e.preventDefault();
     fieldName = $(this).attr('data-field');
@@ -186,13 +188,16 @@ $.ajaxSetup({
     let rowTotal = valueCurrent * priceValue;
     document.getElementById("row-total"+typeValue).textContent = "( " + (rowTotal) + " )";
     console.log(previousTotal, rowTotal);
+    tickets_details.push({'type':typeValue, 'value':valueCurrent, 'price': priceValue});
     if(previousTotal < rowTotal)
     {
       console.log('the add amount is ', totalAmount, (rowTotal-previousTotal));
       totalAmount = totalAmount + (rowTotal - previousTotal);
+      totalCount = totalCount + valueCurrent;
     }else{
       console.log('the subtract amount is ', totalAmount, (previousTotal-rowTotal));
       totalAmount = totalAmount - (previousTotal - rowTotal);
+      totalCount = totalCount - valueCurrent;
     }
     console.log('the total amount is', totalAmount);
     name = $(this).attr('name');
@@ -230,65 +235,68 @@ $.ajaxSetup({
   $('body').on('click', '.buy_now', function(e) {
     var product_id = $(this).attr('type-field');
     console.log('the values sent for payment is ', totalAmount);
-    
+
     $.ajax({
       url: '{{ url("payStarted") }}',
       method: 'post',
       data: {
-        razorpay_id: response.razorpay_payment_id,
         amount: totalAmount,
         email: document.getElementById("email").value,
         phone: document.getElementById("phone").value,
         name: document.getElementById("name").value,
-        product_id: document.querySelector('input[name="type"]:checked').id,
+        totalCount: totalCount,
+        details: tickets_details,
       },
       success: (paymentRes) => {
       console.log('the payment res is', paymentRes);
-      var options = {
-      "key": "rzp_test_XxOiyvlaMUm4Vz",
-      "amount": (totalAmount * 100), // 2000 paise = INR 20
-      "name": "Eksafar",
-      "description": "Dandiya 2022",
-      "image": "img/ek-logo.jpg",
-      // callback_url: 'http://127.0.0.1:8000/cart'+product_id,
-      // redirect: true,
-      "handler": function(response) {
-        console.log('the payemnt response is ', response);
-        console.log('callback ', SITEURL + '/' + 'paysuccess?payment_id=' + response.razorpay_payment_id + '&product_id=' + product_id + '&amount=' + totalAmount);
-        if (response.razorpay_payment_id) {
-          $.ajax({
-            url: '{{ url("paysuccess") }}',
-            method: 'post',
-            data: {
-              razorpay_id: response.razorpay_payment_id,
-              amount: totalAmount,
-              email: document.getElementById("email").value,
-              phone: document.getElementById("phone").value,
-              name: document.getElementById("name").value,
-              product_id: document.querySelector('input[name="type"]:checked').id,
-              order_details_id: paymentRes.order_details_id,
-              order_id: paymentRes.order_id,
-            },
-            success: (res) => {
-              window.location.href = '/payment-thank-you' + response.razorpay_payment_id;
-            },
-            error: (error) => {
-              console.log(error);
-            }
-          });
+        var options = {
+        "key": "rzp_test_XxOiyvlaMUm4Vz",
+        "amount": (totalAmount * 100), // 2000 paise = INR 20
+        "name": "Eksafar",
+        "description": "Dandiya 2022",
+        "image": "img/ek-logo.jpg",
+        // callback_url: 'http://127.0.0.1:8000/cart'+product_id,
+        // redirect: true,
+        "handler": function(response) {
+          console.log('the payemnt response is ', response);
+          console.log('callback ', SITEURL + '/' + 'paysuccess?payment_id=' + response.razorpay_payment_id + '&product_id=' + product_id + '&amount=' + totalAmount);
+          if (response.razorpay_payment_id) {
+            $.ajax({
+              url: '{{ url("paysuccess") }}',
+              method: 'post',
+              data: {
+                razorpay_id: response.razorpay_payment_id,
+                amount: totalAmount,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                name: document.getElementById("name").value,
+                order_details_id: paymentRes.order_details_id,
+                order_id: paymentRes.order_id,
+              },
+              success: (res) => {
+                window.location.href = '/payment-thank-you' + response.razorpay_payment_id;
+              },
+              error: (error) => {
+                console.log(error);
+              }
+            });
+          }
+          // existing options
+        },
+        "prefill": {
+          "contact": document.getElementById("phone").value,
+          "email": document.getElementById("email").value,
+        },
+        "theme": {
+          "color": "#528FF0"
         }
-        // existing options
-      },
-      "prefill": {
-        "contact": document.getElementById("phone").value,
-        "email": document.getElementById("email").value,
-      },
-      "theme": {
-        "color": "#528FF0"
-      }
-    };
+      };
 
-    }});
+    },
+    error: (error) => {
+        console.log(error);
+    }
+  });
 
 
     var rzp1 = new Razorpay(options);
