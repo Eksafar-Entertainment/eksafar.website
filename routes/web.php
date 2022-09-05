@@ -54,9 +54,12 @@ Route::group([
 
 
 Route::get('/product', [RazorpayController::class, 'index']);
-Route::post('/payStarted', [RazorpayController::class, 'razorPayStarted']);
-Route::post('/paysuccess', [RazorpayController::class, 'razorPaySuccess']);
+
+Route::post('/payment/checkout', [RazorpayController::class, 'checkout']);
+Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutComplete'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+
 Route::get('/payment-thank-you{id}', [RazorpayController::class, 'paymentSuccess']);
+
 
 //admin events routes
 Route::middleware('auth:sanctum')->get("/admin", function () {
