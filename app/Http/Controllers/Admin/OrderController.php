@@ -2,27 +2,67 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Helpers\FormBuilder;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Models\OrderDetail;
 
 class OrderController extends Controller
 {
-    function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $orders =  Order::paginate(20);
-        return view("admin/order/listing", ["orders" => $orders]);
+        $orders = Order::latest()->paginate(10);
+
+        return view('admin.order.index', compact('orders'));
     }
 
-    function details($orderId = 0)
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Order $order)
     {
-        $order = Order::where(["id" => $orderId])->first();
-        $order_tickets = $orderId  > 0 ? OrderDetail::where(["order_id" => $orderId])->get() : null;
-        return view("admin/order/details", [
-            "order" => $order,
-            "order_tickets" => $order_tickets
+        return view('admin.order.show', [
+            'order' => $order
         ]);
     }
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Order $order)
+    {
+        $order->update($request->only('title', 'description', 'body'));
+
+        return redirect()->route('orders.index')
+            ->withSuccess(__('Order updated successfully.'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Order $order)
+    {
+        $order->delete();
+
+        return redirect()->route('orders.index')
+            ->withSuccess(__('Order deleted successfully.'));
+    }
+
 }

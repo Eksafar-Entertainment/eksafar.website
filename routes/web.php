@@ -35,6 +35,8 @@ Route::group([
     Route::resource('roles', RolesController::class);
     Route::resource('users', UsersController::class);
     Route::resource('posts', PostsController::class);
+    Route::resource('order', OrderController::class);
+
 
     Route::controller(EventController::class)->group(function () {
         Route::get('/event',  "index");
@@ -46,11 +48,6 @@ Route::group([
 
         Route::post('/event/form/{eventId}', "save");
         Route::post('/event/form', "save");
-    });
-
-    Route::controller(OrderController::class)->group(function () {
-        Route::get('/order', "index");
-        Route::get('/order/{eventId}', "details");
     });
 });
 
