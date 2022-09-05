@@ -19,8 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('mobile');
             $table->string('email');
             $table->string('event_id');
-            $table->string('payment_ref_id');
-            $table->enum('payment_gateway', ['Razorpay',]);
+            $table->string('payment_id');
             $table->integer('total_price');
             $table->string('payment_status');
             $table->boolean('is_checked_in')->nullable();

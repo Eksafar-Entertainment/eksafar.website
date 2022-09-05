@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
-use App\Models\Payment;
 use Redirect,Response;
 use Jenssegers\Agent\Agent;
 use Razorpay\Api\Api;
+use App\Models\Payment;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Http\Controllers\Controller;
 
 class RazorpayController extends Controller
 {
@@ -15,15 +18,66 @@ class RazorpayController extends Controller
       return view('payment.razorpay.index');
     }
 
+    public function razorPayStarted(Request $request){
+      dd($request);
+         
+        $order = new Order;
+        $order->name = $request->name;
+        $order->mobile = $request->mobile;
+        $order->email = $request->email;
+        $order->event_id = '1';
+        $order->payment_id = 'pending';
+        $order->total_price = $request->amount;
+        $order->payment_status= 'pending';
+
+        $order->save();
+
+        $oderDetail = new OrderDetail;
+        $oderDetail->order_id = "pending";
+        $oderDetail->event_ticket_id = $order->id;
+        $oderDetail->quantity = $request->name;
+        $oderDetail->price = $request->amount;
+
+        $oderDetail->save();
+
+        $getId = Payment::insertGetId($data);  
+        $getId->save();
+
+        $arr = array('msg' => 'Payment successfully credited', 'status' => true, 'order_id' => $order->id, 'order_details_id' => $oderDetail->id);
+
+        return Response()->json($arr);  
+    }
+
     public function razorPaySuccess(Request $request){
+
         $data = [
-                  'user' => $request->name,
-                  'email' => $request->email,
-                  'phone' => $request->phone,
-                  'product_id' => $request->product_id,
-                  'r_payment_id' => $request->razorpay_id,
-                  'amount' => $request->amount,
-               ];
+          'user' => $request->name,
+          'email' => $request->email,
+          'phone' => $request->phone,
+          'product_id' => $request->product_id,
+          'r_payment_id' => $request->razorpay_id,
+          'amount' => $request->amount,
+          'payemt_method'=> 'razorpay',
+        ];
+
+        $order = Order::where('id', $request->order_id)->get();
+        $order->name = $request->name;
+        $order->mobile = $request->mobile;
+        $order->email = $request->email;
+        $order->event_id = '1';
+        $order->payment_id = $request->razorpay_id;
+        $order->total_price = $request->amount;
+        $order->payment_status= 'success';
+
+        $order->save();
+
+        $oderDetail = OrderDetail::where('id', $request->order_details_id)->get();
+        $oderDetail->order_id = "success";
+        $oderDetail->event_ticket_id = $order->id;
+        $oderDetail->quantity = $request->name;
+        $oderDetail->price = $request->amount;
+
+        $oderDetail->save();
 
         $getId = Payment::insertGetId($data);  
         $getId->save();
