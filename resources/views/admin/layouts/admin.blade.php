@@ -28,7 +28,7 @@
 </head>
 <body>
 
-    @include('layouts.partials.navbar')
+    @include('admin.layouts.partials.navbar')
 
     <main class="container mt-5">
         @yield('content')
