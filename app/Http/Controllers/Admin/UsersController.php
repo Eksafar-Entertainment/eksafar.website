@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
     
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,7 +20,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
+        return view('admin.users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
     
@@ -32,7 +32,7 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        return view('admin.users.create',compact('roles'));
     }
     
     /**
@@ -69,7 +69,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show',compact('user'));
+        return view('admin.users.show',compact('user'));
     }
     
     /**
@@ -84,7 +84,7 @@ class UsersController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
     
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('admin.users.edit',compact('user','roles','userRole'));
     }
     
     /**

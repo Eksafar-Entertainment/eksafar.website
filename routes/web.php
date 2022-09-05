@@ -1,14 +1,13 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\FrontController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RazorpayController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RolesController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\RazorpayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +20,7 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\FrontController::class, 'index']);
+Route::get('/', [FrontController::class, 'index']);
 
 Auth::routes();
   
@@ -61,4 +60,4 @@ Route::middleware('auth:sanctum')->controller(OrderController::class)->group(fun
 });
 
 
-Route::get('/{id}', [App\Http\Controllers\FrontController::class, 'route']);
+Route::get('/{id}', [FrontController::class, 'route']);

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 
 class PostsController extends Controller
@@ -16,7 +17,7 @@ class PostsController extends Controller
     {
         $posts = Post::latest()->paginate(10);
 
-        return view('posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -26,7 +27,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('admin.posts.create');
     }
 
     /**
@@ -53,7 +54,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show', [
+        return view('admin.posts.show', [
             'post' => $post
         ]);
     }
@@ -66,7 +67,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', [
+        return view('admin.posts.edit', [
             'post' => $post
         ]);
     }
