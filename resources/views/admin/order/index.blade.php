@@ -34,7 +34,7 @@
                 <td>{{ $order->mobile }}</td>
                 <td>{{ $order->email }}</td>
                 <td>₹{{ $order->total_price }}</td>
-                <td>{{ $order->payment_status }}</td>
+                <td>{{ $order->status }}</td>
                 <td>{{ $order->is_checked_in?"Yes": "No" }}</td>
 
                 <td>
