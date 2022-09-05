@@ -7,6 +7,8 @@ use Jenssegers\Agent\Agent;
 use App\Models\EventTicket;
 use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
+
 class FrontController extends Controller
 {
     public function index()

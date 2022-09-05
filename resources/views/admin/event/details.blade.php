@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.layouts.admin')
 
 @section('content')
 <div class="container">
@@ -215,9 +215,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('.summernote').summernote();
-    });
-</script>
 @endsection
