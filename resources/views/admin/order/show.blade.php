@@ -1,27 +1,22 @@
 @extends('admin.layouts.admin')
 
 @section('content')
-    <div class="bg-light p-4 rounded">
-        <h2>Show post</h2>
-        <div class="lead">
-
-        </div>
-
-        <div class="container mt-4">
+    <div class="rounded">
+        <h3>Order Details</h3>
+        <div class="mt-4">
             <div>
-                Title: {{ $post->title }}
+                Title: {{ $order->title }}
             </div>
             <div>
-                Description: {{ $post->description }}
+                Description: {{ $order->description }}
             </div>
             <div>
-                Body: {{ $post->body }}
+                Body: {{ $order->body }}
             </div>
         </div>
 
     </div>
-    <div class="mt-4">
-        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info">Edit</a>
-        <a href="{{ route('posts.index') }}" class="btn btn-default">Back</a>
+    <div>
+        <a href="{{ route('order.index') }}" class="btn btn-primary">Back</a>
     </div>
 @endsection
