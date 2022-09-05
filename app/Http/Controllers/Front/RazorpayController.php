@@ -105,21 +105,17 @@ class RazorpayController extends Controller
     $error = "Payment Failed";
     if ($request->exists('razorpay_payment_id') != false) {
       $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
+      $payment = Payment::where(["rzp_order_id"=>$request->razorpay_order_id])->first();
+    $order = Order::where(["payment_id"=>$payment->id])->first();
       try {
-        $attributes = array(
-          'razorpay_order_id' => $request->razorpay_payment_id,
-          'razorpay_payment_id' => $request->razorpay_payment_id,
-          'razorpay_signature' => $request->razorpay_signature
-        );
-        $api->utility->verifyPaymentSignature($attributes);
+        $api->utility->verifyPaymentSignature($request);
       } catch (SignatureVerificationError $e) {
         $success = false;
         $error = 'Razorpay Error : ' . $e->getMessage();
       }
     }
 
-    $payment = Payment::where(["rzp_order_id"=>$request->razorpay_order_id])->first();
-    $order = Order::where(["payment_id"=>$payment->id])->first();
+    
     $payment->rzp_payment_id = $request->razorpay_payment_id;
     if ($success === true) {
       $payment->status = "SUCCESS";
