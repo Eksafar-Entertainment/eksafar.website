@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->enum('payment_gateway', ['Razorpay',]);
             $table->integer('total_price');
             $table->string('payment_status');
+            $table->boolean('is_checked_in')->nullable();
             $table->timestamps();
         });
     }
