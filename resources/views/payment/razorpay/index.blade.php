@@ -64,7 +64,7 @@
             </div>
           </div> -->
 
-
+          @if(isset($ticket_type))
           @forelse($ticket_type as $ticket)
           <formgroup onchange="calculateNoOfPersion(event)" id="quantity_selector">
             <div class="row">
@@ -104,6 +104,7 @@
           @empty
           <p>No users</p>
           @endforelse
+          @endif
           <!-- <div class="input-group-icon mt-10">
 						<div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
 						<div class="form-select" id="default-select">

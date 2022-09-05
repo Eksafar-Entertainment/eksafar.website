@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="/privacy"> Privacy Policy </a> | <a href="/payment_policy">Payment Policy</a>
                         </p>
                     </div>
                 </div>
