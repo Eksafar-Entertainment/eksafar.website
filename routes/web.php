@@ -47,6 +47,11 @@ Route::group([
         Route::post('/event/form/{eventId}', "save");
         Route::post('/event/form', "save");
     });
+
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/order', "index");
+        Route::get('/order/{eventId}', "details");
+    });
 });
 
 
@@ -61,10 +66,7 @@ Route::middleware('auth:sanctum')->get("/admin", function () {
 });
 
 
-Route::middleware('auth:sanctum')->controller(OrderController::class)->group(function () {
-    Route::get('/admin/order',  "index");
-    Route::get('/admin/order/{eventId}', "details");
-});
+
 
 
 Route::get('/{id}', [FrontController::class, 'route']);
