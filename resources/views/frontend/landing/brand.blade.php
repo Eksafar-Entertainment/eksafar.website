@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section_title text-center mb-80">
-                        <h4 class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">Sponsor Logos</h4>
+                        <h4 class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">Ticketing Partners</h4>
                     </div>
                 </div>
             </div>

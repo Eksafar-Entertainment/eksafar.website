@@ -4,8 +4,12 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section_title text-center mb-80">
-                        <h3 class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s" >About Program</h3>
-                        <p class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".4s" >The event regularly attracts a diverse range of attendees from around the india, across different professions, and with different level of ethnicity.</p>
+                        <h3 class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s" >Disco Dandiya Night</h3>
+                        <p class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".4s" >
+                        Navratri is coming and so are we with DISCO DANDIYA NIGHT season 1 to celebrate this festive season with enthusiasm, excitement and more energy. Groove to dandiya beats.
+Enjoy your evening with dance performances, live performance, hit the dance floor with the best DJ in town and much more excitement to celebrate with friends and family.
+So choose your colourful attire and dandiya sticks to soak in the joy this festive season.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -23,7 +27,7 @@
                 <div class="col-lg-5 col-md-6">
                     <div class="about_info pl-68">
                         <h4 class=" wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">It’s time to book your seat</h4>
-                        <p  class=" wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".6s">The event regularly attracts a diverse range of attendees from around the india, across different professions, and with different levels of ethnicity.</p>
+                        <p  class=" wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".6s">Come join us along with the attendees from around the india, across different professions, and with different levels of ethnicity.</p>
                         <a href="#" class="boxed-btn3  wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".7s" data-toggle="modal" data-target="#ticketModal">Buy Tickets</a>
                     </div>
                 </div>
