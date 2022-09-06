@@ -40,9 +40,6 @@ class RazorpayController extends Controller
 
         $oderDetail->save();
 
-        $getId = Payment::insertGetId($data);  
-        $getId->save();
-
         $arr = array('msg' => 'Payment successfully credited', 'status' => true, 'order_id' => $order->id, 'order_details_id' => $oderDetail->id);
 
         return Response()->json($arr);  

@@ -8,8 +8,8 @@
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
                                     <a href="/">
-                                        <!-- <img src="img/logo.png" alt=""> -->
-                                        <h1><span style="color: white">Eksafar</span><span style="color: red">.</span></h1>
+                                        <img src="img/logo.png" alt="">
+                                        <!-- <h1><span style="color: white">Eksafar</span><span style="color: red">.</span></h1> -->
                                     </a>
                                 </div>
                             </div>
