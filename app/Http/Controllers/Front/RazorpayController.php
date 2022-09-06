@@ -11,15 +11,11 @@ use App\Models\Payment;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
+use App\Mails\TicketMail;
 use App\Models\EventTicket;
-
+use Illuminate\Support\Facades\Mail;
 class RazorpayController extends Controller
 {
-  public function index()
-  {
-    return view('payment.razorpay.index');
-  }
-
   function checkout(Request $request)
   {
     $key = $_ENV["RAZORPAY_KEY_ID"];
@@ -107,13 +103,18 @@ class RazorpayController extends Controller
       abort(404);
     }
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
-    $payment = Payment::where(["rzp_order_id" => $request->razorpay_order_id, "status" => "CREATED"])->first();
-    if(!$payment){
+    $payment = Payment::where(["rzp_order_id" => $request->razorpay_order_id])->first();
+    if (!$payment) {
       abort(404);
     }
     $order = Order::where(["payment_id" => $payment->id])->first();
     try {
-      $api->utility->verifyPaymentSignature($request);
+      $attributes = array(
+        'razorpay_order_id' => $payment->rzp_order_id,
+        'razorpay_payment_id' => $_POST['razorpay_payment_id'],
+        'razorpay_signature' => $_POST['razorpay_signature']
+      );
+      $api->utility->verifyPaymentSignature($attributes);
     } catch (SignatureVerificationError $e) {
       $success = false;
       $error = 'Razorpay Error : ' . $e->getMessage();
@@ -125,6 +126,8 @@ class RazorpayController extends Controller
       $payment->status = "SUCCESS";
       $order->status = "SUCCESS";
       $html = "Your payment was successful";
+      $dd = Mail::to("nafish.ahmed.dev@gmail.com")->send(new TicketMail($order));
+   
     } else {
       $payment->status = "FAILED";
       $order->status = "FAILED";
@@ -139,7 +142,7 @@ class RazorpayController extends Controller
       "payment_id" => $payment->id,
       "content" => $success ? $html : $error,
       "success" => $success,
-      "order"=>$order
+      "order" => $order
     ]);
   }
 }
