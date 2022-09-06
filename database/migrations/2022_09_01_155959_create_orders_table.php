@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateOrdersTable extends Migration
 {
@@ -26,6 +27,8 @@ class CreateOrdersTable extends Migration
             $table->integer("promoter_id")->nullable()->reference("id")->on("promoters");
             $table->timestamps();
         });
+
+        DB::update("ALTER TABLE orders AUTO_INCREMENT = 1000;");
     }
 
     /**
