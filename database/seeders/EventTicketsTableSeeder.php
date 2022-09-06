@@ -32,7 +32,7 @@ class EventTicketsTableSeeder extends Seeder
                 'event_type'=>"",
                 'artist'=>"",
                 'abilities'=>"",
-                'slug'=>""
+                'slug'=>"disco-dandiya-night"
             ],
         ]);
         DB::table('event_tickets')->insert([
