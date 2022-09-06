@@ -11,15 +11,11 @@ use App\Models\Payment;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
+use App\Mails\TicketMail;
 use App\Models\EventTicket;
-
+use Illuminate\Support\Facades\Mail;
 class RazorpayController extends Controller
 {
-  public function index()
-  {
-    return view('payment.razorpay.index');
-  }
-
   function checkout(Request $request)
   {
     $key = $_ENV["RAZORPAY_KEY_ID"];
@@ -130,6 +126,8 @@ class RazorpayController extends Controller
       $payment->status = "SUCCESS";
       $order->status = "SUCCESS";
       $html = "Your payment was successful";
+      $dd = Mail::to("nafish.ahmed.dev@gmail.com")->send(new TicketMail($order));
+   
     } else {
       $payment->status = "FAILED";
       $order->status = "FAILED";
