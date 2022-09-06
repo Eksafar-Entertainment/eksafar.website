@@ -107,13 +107,18 @@ class RazorpayController extends Controller
       abort(404);
     }
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
-    $payment = Payment::where(["rzp_order_id" => $request->razorpay_order_id, "status" => "CREATED"])->first();
-    if(!$payment){
+    $payment = Payment::where(["rzp_order_id" => $request->razorpay_order_id])->first();
+    if (!$payment) {
       abort(404);
     }
     $order = Order::where(["payment_id" => $payment->id])->first();
     try {
-      $api->utility->verifyPaymentSignature($request);
+      $attributes = array(
+        'razorpay_order_id' => $payment->rzp_order_id,
+        'razorpay_payment_id' => $_POST['razorpay_payment_id'],
+        'razorpay_signature' => $_POST['razorpay_signature']
+      );
+      $api->utility->verifyPaymentSignature($attributes);
     } catch (SignatureVerificationError $e) {
       $success = false;
       $error = 'Razorpay Error : ' . $e->getMessage();
@@ -139,7 +144,7 @@ class RazorpayController extends Controller
       "payment_id" => $payment->id,
       "content" => $success ? $html : $error,
       "success" => $success,
-      "order"=>$order
+      "order" => $order
     ]);
   }
 }
