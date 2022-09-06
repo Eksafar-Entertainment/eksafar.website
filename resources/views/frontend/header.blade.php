@@ -18,7 +18,7 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="/">Home</a></li>
-                                            <li><a href="performer">Performer</a></li>
+                                            <!-- <li><a href="performer">Performer</a></li> -->
                                             <!-- <li><a href="#">Events <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="upcomming">Upcoming</a></li>
