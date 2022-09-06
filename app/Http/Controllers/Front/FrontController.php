@@ -69,6 +69,10 @@ class FrontController extends Controller
                 return view('frontend.extra.payment', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
             }
 
+            case "terms":{
+                return view('frontend.extra.terms', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+            }
+
             default: return abort(404);
         }
         
