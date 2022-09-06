@@ -4,9 +4,9 @@
 
     @include('frontend.header')
     @include('frontend.brandcam')
-    <div  class="container" style="margin: 5%; text-align: center">
+    <div  class="container" style="margin-top: 5%; text-align: center">
    <h1> Terms and Condition </h1>
-   Terms and Condition
+</br>
 <p>Eksafar, a website, mobile site and mobile app (www.eksafar.club), is a trademark of Highesta Services Pvt. Ltd., 
     a company having its registered office at No. 610, 3rd Floor, 80 Feet Road, 6th Block, Koramangala, Bangalore - 
     560095 has endeavoured to ensure that all the information on the website is correct, but Eksafar neither warrants nor 
@@ -37,8 +37,8 @@
     of that particular payment gateway. Eksafar, in best of its efforts, will provide the terms and conditions on the payment page where such offers 
     are displayed, but will not take any guarantee of such offers. The liability of such offers will be on the payment gateway itself, and all 
     queries regarding such offers (including but not limited to getting full list of terms and conditions, cashback not credited query etc.) will 
-    be addressed by the payment gateway. Eksafar will not entertain any refund/cancellation request in case of any issues related to payment</p>
-     gateway/method offer.
+    be addressed by the payment gateway. Eksafar will not entertain any refund/cancellation request in case of any issues related to payment
+     gateway/method offer.</p>
 
 <p>In rare cases, payment may be deducted from your bank account but the tickets won't be issued to you if your bank has kept the payment in pending 
     status and hasn't released it to us. In such cases, if your bank approves the payment, tickets will be issued to you, or else your bank will refund
