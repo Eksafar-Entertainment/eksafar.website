@@ -89,7 +89,7 @@ class RazorpayController extends Controller
       $order_detail->save();
     }
 
-    return view("payment.checkout",  [
+    return view("payment.razorpay.checkout",  [
       "order_details" => $razorpay_order,
       "key" => $key,
       "customer_details" => [
@@ -103,35 +103,43 @@ class RazorpayController extends Controller
   {
     $success = true;
     $error = "Payment Failed";
-    if ($request->exists('razorpay_payment_id') != false) {
-      $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
-      $payment = Payment::where(["rzp_order_id"=>$request->razorpay_order_id])->first();
-    $order = Order::where(["payment_id"=>$payment->id])->first();
-      try {
-        $api->utility->verifyPaymentSignature($request);
-      } catch (SignatureVerificationError $e) {
-        $success = false;
-        $error = 'Razorpay Error : ' . $e->getMessage();
-      }
+    if ($request->exists('razorpay_payment_id') === false) {
+      abort(404);
+    }
+    $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
+    $payment = Payment::where(["rzp_order_id" => $request->razorpay_order_id, "status" => "CREATED"])->first();
+    if(!$payment){
+      abort(404);
+    }
+    $order = Order::where(["payment_id" => $payment->id])->first();
+    try {
+      $api->utility->verifyPaymentSignature($request);
+    } catch (SignatureVerificationError $e) {
+      $success = false;
+      $error = 'Razorpay Error : ' . $e->getMessage();
     }
 
-    
     $payment->rzp_payment_id = $request->razorpay_payment_id;
+
     if ($success === true) {
       $payment->status = "SUCCESS";
       $order->status = "SUCCESS";
-      $html = "<p>Your payment was successful</p>
-             <p>Payment ID: {$_POST['razorpay_payment_id']}</p>";
+      $html = "Your payment was successful";
     } else {
       $payment->status = "FAILED";
       $order->status = "FAILED";
-      $html = "<p>Your payment failed</p>
-             <p>{$error}</p>";
+      $html = "Your payment failed";
     }
 
     $payment->save();
     $order->save();
 
-    echo $html;
+    return view("payment.razorpay.success",  [
+      "type" => $success ? "Order Placed" : "Payment Failed",
+      "payment_id" => $payment->id,
+      "content" => $success ? $html : $error,
+      "success" => $success,
+      "order"=>$order
+    ]);
   }
 }
