@@ -4,7 +4,7 @@
 
     @include('frontend.header')
     @include('frontend.brandcam')
-    <div  class="container" style="margin-top: 5%; text-align: center">
+    <div  class="container" style="margin-top: 5%; margin-bottom: 5%; text-align: center">
    <h1> Terms and Condition </h1>
 </br>
 <p>Eksafar, a website, mobile site and mobile app (www.eksafar.club), is a trademark of Highesta Services Pvt. Ltd., 

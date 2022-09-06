@@ -4,7 +4,7 @@
 
     @include('frontend.header')
     @include('frontend.brandcam')
-    <div  class="container" style="margin: 5%; text-align: center">
+    <div  class="container" style="margin-top: 5%; margin-bottom: 5%; text-align: center">
    <h1> Refund </h1>
 <p>Tickets once successfully purchased for an event listed on Eksafar cannot be cancelled, and that amount will not be refunded. Eksafar does not support cancellation of registration/ticket purchase on the website/App right now.</p>
 
