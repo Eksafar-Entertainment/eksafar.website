@@ -13,6 +13,7 @@ use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
 use App\Mail\TicketMail;
 use App\Models\EventTicket;
+use App\Models\Promoter;
 use Illuminate\Support\Facades\Mail;
 class RazorpayController extends Controller
 {
@@ -21,6 +22,8 @@ class RazorpayController extends Controller
     $key = $_ENV["RAZORPAY_KEY_ID"];
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
     $event_id = $request->event_id;
+    $promoter_id = $request->promoter_id;
+    $promoter = Promoter::where(["id"=>$promoter_id])->first();
     $items = $request->items;
 
     $order_details = [];
@@ -54,6 +57,7 @@ class RazorpayController extends Controller
     //create order
     $order = new Order();
     $order->event_id = $request->event_id;
+    $order->promoter_id = $promoter?$promoter->id:null;
     $order->name = $request->name;
     $order->email = $request->email;
     $order->mobile = $request->mobile;

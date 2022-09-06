@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Admin\PromotersController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\RazorpayController;
 
@@ -36,6 +37,7 @@ Route::group([
     Route::resource('users', UsersController::class);
     Route::resource('posts', PostsController::class);
     Route::resource('order', OrderController::class);
+    Route::resource('promoters', PromotersController::class);
 
 
     Route::controller(EventController::class)->group(function () {

@@ -12,6 +12,7 @@
         <form action="/payment/checkout" method="post">
           @csrf
           <input type="hidden" name="event_id" value="1"/>
+          <input type="hidden" name="promoter_id" value="{{ app('request')->input('promoter') }}"/>
           <div class="input-group-icon mt-10">
             <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
             <input type="text" name="name" placeholder="Name" id="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required class="single-input">
