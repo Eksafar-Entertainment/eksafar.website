@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('event_id');
             $table->string('payment_id');
             $table->integer('total_price');
-            $table->string('payment_status');
+            $table->string('status');
             $table->boolean('is_checked_in')->nullable();
             $table->timestamps();
         });

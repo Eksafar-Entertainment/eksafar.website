@@ -15,13 +15,15 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id(); 
-            $table->string('r_payment_id');
-            $table->string('payemt_method');
+            $table->string('rzp_payment_id')->nullable();
+            $table->string('rzp_order_id');
+            $table->string('payment_method');
             $table->string('order_id');
             $table->string('user');
             $table->string('phone');
             $table->string('email');
             $table->string('amount');
+            $table->string('status');
             $table->timestamps();
         });
     }
