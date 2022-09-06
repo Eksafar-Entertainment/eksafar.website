@@ -123,7 +123,7 @@ class RazorpayController extends Controller
         "event_tickets.persons as event_ticket_persons"
       )
       ->get();
-    $event = Event::where(["id", $order->event_id])->first();
+    $event = Event::where(["id"=> $order->event_id])->first();
 
     try {
       $attributes = array(
