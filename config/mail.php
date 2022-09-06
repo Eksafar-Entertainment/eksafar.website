@@ -36,7 +36,7 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'host' => env('MAIL_HOST'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
@@ -44,26 +44,16 @@ return [
             'timeout' => null,
             'auth_mode' => null,
         ],
-
-        'ses' => [
-            'transport' => 'ses',
+        'sendgrid' =>[
+            'transport' => 'smtp',
+            'host' => env('SENDGRID_MAIL_HOST'),
+            'port' => env('SENDGRID_MAIL_PORT', 587),
+            'encryption' => env('SENDGRID_MAIL_ENCRYPTION', 'tls'),
+            'username' => env('SENDGRID_MAIL_USERNAME'),
+            'password' => env('SENDGRID_MAIL_PASSWORD'),
+            'timeout' => null,
+            'auth_mode' => null,
         ],
-
-        'mailgun' => [
-            'transport' => 'mailgun',
-            'domain' => env('MAILGUN_DOMAIN'),
-            'secret' => env('MAILGUN_SECRET'),
-        ],
-
-        'postmark' => [
-            'transport' => 'postmark',
-        ],
-
-        'sendmail' => [
-            'transport' => 'sendmail',
-            'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -t -i'),
-        ],
-
         'log' => [
             'transport' => 'log',
             'channel' => env('MAIL_LOG_CHANNEL'),
@@ -76,7 +66,7 @@ return [
         'failover' => [
             'transport' => 'failover',
             'mailers' => [
-                'mailgun',
+                'sendgrid',
                 'log',
             ],
         ],

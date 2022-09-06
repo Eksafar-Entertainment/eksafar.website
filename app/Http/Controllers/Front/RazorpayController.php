@@ -11,7 +11,7 @@ use App\Models\Payment;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
-use App\Mails\TicketMail;
+use App\Mail\TicketMail;
 use App\Models\EventTicket;
 use Illuminate\Support\Facades\Mail;
 class RazorpayController extends Controller
