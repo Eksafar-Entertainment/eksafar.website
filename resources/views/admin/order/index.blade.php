@@ -38,7 +38,7 @@
                 <td>₹{{ $order->total_price }}</td>
                 <td>{{ $order->promoter }}</td>
                 <td>₹{{ $order->promoter_commission }}</td>
-                <td>{{ $order->status }}</td>
+                <td><span class="badge bg-{{$colors[$order->status]}}">{{ $order->status }}</span></td>
                 <td>{{ $order->is_checked_in?"Yes": "No" }}</td>
 
                 <td>

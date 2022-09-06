@@ -17,6 +17,11 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $colors = [
+            "SUCCESS" => "success",
+            "PENDING" => "warning",
+            "FAILED" => "danger"
+        ];
         $orders = Order::latest()
             ->leftJoin('promoters', function ($join) {
                 $join->on('promoters.id', '=', 'orders.promoter_id');
@@ -28,7 +33,7 @@ class OrderController extends Controller
                 DB::raw("(orders.total_price * (promoters.commission/100)) as promoter_commission")
             )
             ->paginate(10);
-        return view('admin.order.index', compact('orders'));
+        return view('admin.order.index', compact('orders', "colors"));
     }
 
 
@@ -40,7 +45,15 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order_details = OrderDetail::where(["order_id" => $order->id])->get();
+        $order_details = OrderDetail::where(["order_id" => $order->id])
+            ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+            ->groupBy("order_details.id")
+            ->select(
+                "order_details.*",
+                "event_tickets.name as event_ticket_name",
+                "event_tickets.persons as event_ticket_persons"
+            )
+            ->get();
         return view('admin.order.show', [
             'order' => $order,
             'order_details' => $order_details
