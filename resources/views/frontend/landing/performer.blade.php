@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section_title mb-80">
-                        <h3 class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">Performer</h3>
+                        <h3 class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">Artist Lign-up</h3>
                     </div>
                 </div>
             </div>
