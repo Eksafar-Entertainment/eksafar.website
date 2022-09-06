@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->integer('total_price');
             $table->string('status');
             $table->boolean('is_checked_in')->nullable();
-            $table->integer("promoter_id")->nullable();
+            $table->integer("promoter_id")->nullable()->reference("id")->on("promoters");
             $table->timestamps();
         });
     }

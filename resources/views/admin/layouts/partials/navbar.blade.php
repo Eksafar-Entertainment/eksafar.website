@@ -15,6 +15,7 @@
         <li><a href="{{ route('posts.index') }}" class="nav-link px-2 text-white">Posts</a></li>
         <li><a href="/admin/event" class="nav-link px-2 text-white">Events</a></li>
         <li><a href="/admin/order" class="nav-link px-2 text-white">Orders</a></li>
+        <li><a href="/admin/promoters" class="nav-link px-2 text-white">Promoters</a></li>
         @endauth
       </ul>
       <ul class="navbar-nav ms-auto">
