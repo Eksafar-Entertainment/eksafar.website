@@ -26,7 +26,7 @@ class OrderController extends Controller
             ->leftJoin('promoters', function ($join) {
                 $join->on('promoters.id', '=', 'orders.promoter_id');
             })
-            ->groupBy('orders.id')
+            //->groupBy('orders.id')
             ->select(
                 "orders.*",
                 "promoters.name as promoter",
