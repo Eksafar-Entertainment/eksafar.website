@@ -97,8 +97,5 @@
             @endif
         </div> -->
         @yield('content')
-
-        @include('payment.razorpay.index')
-
     </body>
 </html>

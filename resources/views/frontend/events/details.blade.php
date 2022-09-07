@@ -45,7 +45,7 @@
                             </div>
                             <div class="mt-4">
                                 @if (isset($event_tickets))
-                                    <table class="table-divider table table-sm">
+                                    <table class="table table-sm">
                                         @forelse($event_tickets as $ticket)
                                             <tr class="event-ticket-row" event-ticket-id="{{ $ticket->id }}">
                                                 <td>
@@ -64,7 +64,7 @@
                                                     <input type="hidden" class="form-control rate"
                                                         value="{{ $ticket->price }}">
                                                 </td>
-                                                <td width="1%" nowrap class="text-right"
+                                                <td width="1%" nowrap class="text-right d-none"
                                                     style="vertical-align:middle;min-width:100px">
                                                     ₹<span class="price"></span>
                                                 </td>
@@ -80,12 +80,8 @@
                            
                             </div>
                         </div>
-
-
-
-
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-block">Book Now</button>
+                            <button type="submit" class="btn btn-primary btn-block">Pay <span id="button-price">₹0</span></button>
                         </div>
                     </form>
                 </div>
@@ -100,9 +96,12 @@
 
                 quantity_field.addEventListener("keyup", () => {
                     price.innerHTML = parseInt(quantity_field.value) * parseInt(rate_field.value);
+
+
+                    let total_price = 0;
+                    document.querySelectorAll(".price").forEach((el)=>total_price+=parseInt(el.innerText)>0?parseInt(el.innerText):0);
+                    document.querySelector("#button-price").innerText = "₹"+total_price;
                 })
-
-
             });
         </script>
         @include('frontend.footer')
