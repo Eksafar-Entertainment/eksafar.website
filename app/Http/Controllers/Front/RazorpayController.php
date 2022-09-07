@@ -143,7 +143,7 @@ class RazorpayController extends Controller
       $payment->status = "SUCCESS";
       $order->status = "SUCCESS";
       $html = "Your payment was successful";
-      Mail::to("nafish.ahmed.dev@gmail.com")->send(new TicketMail($event, $order, $order_details));
+      Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
     } else {
       $payment->status = "FAILED";
       $order->status = "FAILED";
