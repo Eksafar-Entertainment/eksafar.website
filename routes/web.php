@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\PromotersController;
+use App\Http\Controllers\Front\EventController as FrontEventController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\RazorpayController;
 
@@ -71,5 +72,5 @@ Route::middleware('auth:sanctum')->get("/admin", function () {
 
 
 
-
+Route::get("/event/{slug}", [FrontEventController::class, 'details']);
 Route::get('/{id}', [FrontController::class, 'route']);

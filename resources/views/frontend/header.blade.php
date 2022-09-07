@@ -25,8 +25,8 @@
                                                     <li><a href="current">Current</a></li>
                                                 </ul>
                                             </li> -->
-                                            <li><a href="about">About</a></li>
-                                            <li><a href="contact">Contact</a></li>
+                                            <li><a href="/about">About</a></li>
+                                            <li><a href="/contact">Contact</a></li>
 
                                         </ul>
                                     </nav>
@@ -34,8 +34,8 @@
                             </div>
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="buy_tkt">
-                                    <div class="book_btn d-none d-lg-block" data-toggle="modal" data-target="#ticketModal">
-                                        <a href="#">Buy Tickets</a>
+                                    <div class="book_btn d-none d-lg-block">
+                                        <a href="{{url('/event/disco-dandiya-night')}}">Buy Tickets</a>
                                     </div>
                                 </div>
                             </div>
