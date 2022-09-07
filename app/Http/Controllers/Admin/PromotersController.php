@@ -13,9 +13,14 @@ class PromotersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $promoters = Promoter::latest()->paginate(10);
+        $where = [];
+        $promoters = Promoter::select(["*"]);
+        if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
+            $promoters->orWhere("name","like", "%{$request->query()["keyword"]}%");
+        }
+        $promoters = $promoters->latest()->paginate(10)->appends($request->query());
 
         return view('admin.promoters.index', compact('promoters'));
     }

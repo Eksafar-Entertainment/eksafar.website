@@ -1,8 +1,8 @@
 <header class="p-3 bg-dark text-white">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/admin" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <img height="30px" src="https://cdn.svgporn.com/logos/descript-icon.svg?response-content-disposition=attachment%3Bfilename%3Ddescript-icon.svg"/>
+      <a href="/admin" class="d-flex align-items-center text-white text-decoration-none">
+        <img height="35px" src="{{url('img/logo.png')}}"/>
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
