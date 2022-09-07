@@ -11,6 +11,8 @@ class TicketMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $order;
+    public $order_details;
+    public $event;
 
     /**
      * Create a new message instance.
@@ -18,9 +20,11 @@ class TicketMail extends Mailable
      * @return void
      */
     
-    public function __construct($order)
+    public function __construct($event, $order, $order_details)
     {
         $this->order = $order;
+        $this->event = $event;
+        $this->order_details = $order_details;
     }
 
     /**
@@ -31,7 +35,7 @@ class TicketMail extends Mailable
     public function build()
     {
         return $this
-            ->subject('Thank you for subscribing to our newsletter')
+            ->subject('Please collect your ticket.')
             ->markdown('mail.ticket');
     }
 

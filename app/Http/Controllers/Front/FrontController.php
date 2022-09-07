@@ -12,12 +12,11 @@ class FrontController extends Controller
     public function index()
     {
         $agent = new Agent();
-        $ticket_type = EventTicket::where(["event_id"=>1])->get();
         $type = '/';
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
         $tablet = $agent->isTablet();   
-        return view('welcome', compact('desktop', 'mobile', 'tablet', 'type', 'ticket_type'));
+        return view('welcome', compact('desktop', 'mobile', 'tablet', 'type'));
     }
 
     public function route($type)
@@ -26,15 +25,14 @@ class FrontController extends Controller
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
         $tablet = $agent->isTablet();
-        $ticket_type = EventTicket::where(["event_id"=>1])->get();
 
         switch($type){
             case "performer" : {
-                return view('frontend.performer.index', compact('desktop', 'mobile', 'tablet', 'type', 'ticket_type'));
+                return view('frontend.performer.index', compact('desktop', 'mobile', 'tablet', 'type'));
             }
             
             case "about":{
-                return view('frontend.about.index', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.about.index', compact('desktop', 'mobile', 'tablet','type'));
             }
             
             case "gallery":{
@@ -46,31 +44,31 @@ class FrontController extends Controller
             }
         
             case "elements":{
-                return view('frontend.elements.index', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.elements.index', compact('desktop', 'mobile', 'tablet','type'));
             }
             
             case "upcomming":{
-                return view('frontend.events.index', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.events.index', compact('desktop', 'mobile', 'tablet','type'));
             }
             
             case "current":{
-                return view('frontend.events.event.index', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.events.event.index', compact('desktop', 'mobile', 'tablet','type'));
             }
     
             case "contact":{
-                return view('frontend.contact.index', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.contact.index', compact('desktop', 'mobile', 'tablet','type'));
             }
 
             case "privacy":{
-                return view('frontend.extra.privacy', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.extra.privacy', compact('desktop', 'mobile', 'tablet','type'));
             }
 
             case "payment_policy":{
-                return view('frontend.extra.payment', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.extra.payment', compact('desktop', 'mobile', 'tablet','type'));
             }
 
             case "terms":{
-                return view('frontend.extra.terms', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.extra.terms', compact('desktop', 'mobile', 'tablet','type'));
             }
 
             default: return abort(404);

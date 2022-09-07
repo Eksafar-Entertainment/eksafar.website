@@ -20,6 +20,8 @@
                 <th>Mobile</th>
                 <th>Email</th>
                 <th>Amount</th>
+                <th>Promoter</th>
+                <th>Commission</th>
                 <th>Status</th>
                 <th>Checked In</th>
                 <th width="3%">Action</th>
@@ -34,7 +36,9 @@
                 <td>{{ $order->mobile }}</td>
                 <td>{{ $order->email }}</td>
                 <td>₹{{ $order->total_price }}</td>
-                <td>{{ $order->status }}</td>
+                <td>{{ $order->promoter }}</td>
+                <td>₹{{ $order->promoter_commission }}</td>
+                <td><span class="badge bg-{{$colors[$order->status]}}">{{ $order->status }}</span></td>
                 <td>{{ $order->is_checked_in?"Yes": "No" }}</td>
 
                 <td>

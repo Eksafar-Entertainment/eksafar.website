@@ -12,8 +12,11 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
 use App\Mail\TicketMail;
+use App\Models\Event;
 use App\Models\EventTicket;
+use App\Models\Promoter;
 use Illuminate\Support\Facades\Mail;
+
 class RazorpayController extends Controller
 {
   function checkout(Request $request)
@@ -21,6 +24,8 @@ class RazorpayController extends Controller
     $key = $_ENV["RAZORPAY_KEY_ID"];
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
     $event_id = $request->event_id;
+    $promoter_id = $request->promoter_id;
+    $promoter = Promoter::where(["id" => $promoter_id])->first();
     $items = $request->items;
 
     $order_details = [];
@@ -54,6 +59,7 @@ class RazorpayController extends Controller
     //create order
     $order = new Order();
     $order->event_id = $request->event_id;
+    $order->promoter_id = $promoter ? $promoter->id : null;
     $order->name = $request->name;
     $order->email = $request->email;
     $order->mobile = $request->mobile;
@@ -108,6 +114,17 @@ class RazorpayController extends Controller
       abort(404);
     }
     $order = Order::where(["payment_id" => $payment->id])->first();
+    $order_details = OrderDetail::where(["order_details.order_id"=> $order->id])
+      ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+      //->groupBy("order_details.id")
+      ->select(
+        "order_details.*",
+        "event_tickets.name as event_ticket_name",
+        "event_tickets.persons as event_ticket_persons"
+      )
+      ->get();
+    $event = Event::where(["id"=> $order->event_id])->first();
+
     try {
       $attributes = array(
         'razorpay_order_id' => $payment->rzp_order_id,
@@ -126,8 +143,7 @@ class RazorpayController extends Controller
       $payment->status = "SUCCESS";
       $order->status = "SUCCESS";
       $html = "Your payment was successful";
-      $dd = Mail::to("nafish.ahmed.dev@gmail.com")->send(new TicketMail($order));
-   
+      Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
     } else {
       $payment->status = "FAILED";
       $order->status = "FAILED";

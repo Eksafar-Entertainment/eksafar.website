@@ -91,6 +91,5 @@
 	</div>
 	<!-- END fh5co-wrapper -->
         @include('payment.razorpay.index')
-
     </body>
 </html>
