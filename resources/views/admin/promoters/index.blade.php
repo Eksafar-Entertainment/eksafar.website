@@ -49,7 +49,7 @@
             <tr>
                 <td>{{ $promoter->id }}</td>
                 <td>{{ $promoter->name }}</td>
-                <td>{{ $promoter->commission }}</td>
+                <td>{{ $promoter->commission }}%</td>
                 <td>
                     <div class="dropdown">
                         <a type="button" id="dropdownMenuButton{{$promoter->id}}" data-bs-toggle="dropdown" aria-expanded="false">
