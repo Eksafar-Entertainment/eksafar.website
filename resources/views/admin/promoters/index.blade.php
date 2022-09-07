@@ -75,12 +75,14 @@
             <p class="mb-0"><i class="fas fa-circle-info"></i> No data found</p>
         </div>
         @endif
+
+        <div class="d-flex mt-4">
+            @include('admin.common.pagination', ["paginator"=>$promoters])
+        </div>
+
     </div>
 </div>
 
-<div class="d-flex mt-4">
-    @include('admin.common.pagination', ["paginator"=>$promoters])
-</div>
 
 
 @endsection
