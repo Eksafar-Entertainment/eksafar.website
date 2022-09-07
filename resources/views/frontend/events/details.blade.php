@@ -74,7 +74,7 @@
                   <td class="sm-inline-block" style="font-weight: 600; padding-bottom: 10px;" width="100%">
                   <input class="form-control form-control-sm quantity"
                                                         style="min-width: 100px; color: #a0aec0;" type="text"
-                                                        name="Name" placeholder="Name" id="name"
+                                                        name="name" placeholder="Name" id="name"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required>
                 </td>
                 </tr>
