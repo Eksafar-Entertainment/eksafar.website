@@ -2,10 +2,10 @@
 
 @section('content')
 
+    @include('frontend.top-bar')
     @include('frontend.header')
-    @include('frontend.brandcam')
     @include('frontend.events.types')
-    @include('frontend.landing.brand')
+    @include('frontend.newsletter')
     @include('frontend.footer')
 
 @endsection
