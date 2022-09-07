@@ -1,4 +1,7 @@
 @if ($paginator->lastPage() > 1)
+@php
+$queries = 
+@endphp
 <ul class="pagination">
     <li class="page-item {{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}">
         <a class="page-link" href="{{ $paginator->url($paginator->currentPage()-1) }}">Previous</a>
