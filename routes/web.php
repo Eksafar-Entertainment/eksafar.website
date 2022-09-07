@@ -72,5 +72,9 @@ Route::middleware('auth:sanctum')->get("/admin", function () {
 
 
 
-Route::get("/event/{slug}", [FrontEventController::class, 'details']);
+Route::get("/event-{slug}", [FrontEventController::class, 'details']);
 Route::get('/{id}', [FrontController::class, 'route']);
+
+Route::get('/mail', function() {
+    return view("mail.ticket");
+});

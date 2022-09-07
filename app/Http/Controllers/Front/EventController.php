@@ -10,7 +10,7 @@ use Jenssegers\Agent\Agent;
 
 class EventController extends Controller
 {
-    function details($eventSlug, Request $request){
+    function details($eventSlug){
         $type = "Event Details";
         $agent = new Agent();
         $desktop = $agent->isDesktop();
