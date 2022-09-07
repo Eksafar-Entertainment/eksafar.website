@@ -37,20 +37,19 @@
     <div class="card-body">
         @if(count($promoters)>0)
         <table class="table table-divider table-hover">
-            <tr>
-                <th width="1%">No</th>
-                <th>Name</th>
-                <th>Commission</th>
-                <th width="3%" colspan="3">Action</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th scope="col" width="1%">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Commission</th>
+                    <th scope="col" width="3%"></th>
+                </tr>
+            </thead>
             @foreach ($promoters as $key => $promoter)
             <tr>
                 <td>{{ $promoter->id }}</td>
                 <td>{{ $promoter->name }}</td>
                 <td>{{ $promoter->commission }}</td>
-                <td>
-
-
                 <td>
                     <div class="dropdown">
                         <a type="button" id="dropdownMenuButton{{$promoter->id}}" data-bs-toggle="dropdown" aria-expanded="false">
