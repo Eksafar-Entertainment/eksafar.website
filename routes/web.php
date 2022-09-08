@@ -37,7 +37,12 @@ Route::group([
     Route::resource('roles', RolesController::class);
     Route::resource('users', UsersController::class);
     Route::resource('posts', PostsController::class);
+    //order
     Route::resource('order', OrderController::class);
+    Route::post('/order/check-in-details', [OrderController::class, "checkInDetails"]);
+    Route::post('/order/check-in', [OrderController::class, "checkIn"]);
+
+    //
     Route::resource('promoters', PromotersController::class);
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -89,5 +90,39 @@ class OrderController extends Controller
 
         return redirect()->route('orders.index')
             ->withSuccess(__('Order deleted successfully.'));
+    }
+
+    public function checkInDetails(Request $request)
+    {
+        $order_id = $request->order_id;
+        $order = Order::where("id", $order_id)->first();
+        $order_details = OrderDetail::where(["order_id" => $order->id])
+        ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+        ->groupBy("order_details.id")
+        ->select(
+            "order_details.*",
+            "event_tickets.name as event_ticket_name",
+            "event_tickets.persons as event_ticket_persons"
+        )
+        ->get();
+        return response()->json([
+            "status" => 200,
+            'message'=>'Successfully fetched data',
+            'html'=>view("admin.order.check-in-details", [
+                'order' => $order,
+                'order_details' => $order_details
+            ])->render()
+        ]);
+    }
+
+    public function checkIn(Request $request){
+        $order_id = $request->order_id;
+        $order = Order::where("id", $order_id)->first();
+        $order->is_checked_in = true;
+        $order->save();
+        return response()->json([
+            "status" => 200,
+            'message'=>'Data updated successful',
+        ]);
     }
 }

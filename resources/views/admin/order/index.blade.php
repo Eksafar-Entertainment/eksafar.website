@@ -29,7 +29,7 @@
         </thead>
         <tbody>
             @foreach ($orders as $key => $order)
-            <tr>
+            <tr class="data-row" data-row-id="{{$order->id}}">
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $order->id }}</td>
                 <td>{{ $order->name }}</td>
@@ -39,10 +39,11 @@
                 <td>{{ $order->promoter }}</td>
                 <td>₹{{ $order->promoter_commission }}</td>
                 <td><span class="badge bg-{{$colors[$order->status]}}">{{ $order->status }}</span></td>
-                <td>{{ $order->is_checked_in?"Yes": "No" }}</td>
+                <td class="checked-in"><span class="text-{{ $order->is_checked_in?'success': 'danger' }}">{{ $order->is_checked_in?"Yes": "No" }}</span></td>
 
                 <td>
-                    <a class="btn btn-info btn-sm" href="{{ route('order.show', $order->id) }}">Show</a>
+                    <!--<a class="btn btn-info btn-sm" href="{{ route('order.show', $order->id) }}">Show</a>-->
+                    <a class="btn btn-info btn-sm" onclick="openCheckInDetails('{{$order->id}}')">Show</a>
                 </td>
             </tr>
             @endforeach
@@ -52,6 +53,44 @@
     <div class="d-flex">
         {!! $orders->links() !!}
     </div>
+
+
+    <div class="modal fade" tabindex="-1" id="details-modal">
+        <div class="modal-dialog">
+
+        </div>
+    </div>
+
+    <script>
+        var checkInDetailsModal = new bootstrap.Modal(document.getElementById('details-modal'), {})
+        function openCheckInDetails(order_id) {
+            jQuery.ajax({
+                url: "{{ url('/admin/order/check-in-details') }}",
+                method: 'post',
+                data: {
+                    order_id: order_id
+                },
+                success: function(result) {
+                    $("#details-modal .modal-dialog").html(result.html);
+                    checkInDetailsModal.show();
+                }
+            });
+        }
+
+        function checkIn(order_id) {
+            jQuery.ajax({
+                url: "{{ url('/admin/order/check-in') }}",
+                method: 'post',
+                data: {
+                    order_id: order_id
+                },
+                success: function(result) {
+                    $(`tr.data-row[data-row-id=${order_id}] .checked-in`).html("<span class='text-success'>Yes</span>");
+                    checkInDetailsModal.hide();
+                }
+            });
+        }
+    </script>
 
 </div>
 @endsection
