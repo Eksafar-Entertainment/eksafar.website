@@ -18,14 +18,14 @@
             <div class="col-auto">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                    <input class="form-control" placeholder="Search promoter" name="keyword" value="{{app('request')->input('keyword')}}" />
+                    <input class="form-control" placeholder="Search order" name="keyword" value="{{app('request')->input('keyword')}}" />
                 </div>
             </div>
 
             <div class="col-auto">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">ID</span>
-                    <input class="form-control" placeholder="Search promoter" name="id" value="{{app('request')->input('id')}}" />
+                    <input class="form-control" placeholder="Order ID" name="id" value="{{app('request')->input('id')}}" />
                 </div>
             </div>
             <div class="col-auto">
