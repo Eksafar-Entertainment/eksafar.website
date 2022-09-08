@@ -36,11 +36,11 @@ class FrontController extends Controller
             }
             
             case "gallery":{
-                return view('frontend.gallery.index', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.gallery.index', compact('desktop', 'mobile', 'tablet','type'));
             }
             
             case "guest":{
-                return view('frontend.guest.index', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.guest.index', compact('desktop', 'mobile', 'tablet','type',));
             }
         
             case "elements":{
