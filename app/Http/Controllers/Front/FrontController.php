@@ -63,8 +63,8 @@ class FrontController extends Controller
                 return view('frontend.extra.privacy', compact('desktop', 'mobile', 'tablet','type'));
             }
 
-            case "payment_policy":{
-                return view('frontend.extra.payment', compact('desktop', 'mobile', 'tablet','type'));
+            case "payment-policy":{
+                return view('frontend.extra.payment-policy', compact('desktop', 'mobile', 'tablet','type'));
             }
 
             case "terms":{
