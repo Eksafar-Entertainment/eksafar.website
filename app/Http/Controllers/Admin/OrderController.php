@@ -16,24 +16,37 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $colors = [
             "SUCCESS" => "success",
             "PENDING" => "warning",
             "FAILED" => "danger"
         ];
-        $orders = Order::latest()
-            ->leftJoin('promoters', function ($join) {
-                $join->on('promoters.id', '=', 'orders.promoter_id');
-            })
+        $where = [];
+        $orders = Order::leftJoin('promoters', function ($join) {
+            $join->on('promoters.id', '=', 'orders.promoter_id');
+        });
+        
+        if(isset($request->query()["id"]) && $request->query()["id"]!=""){
+            $orders->where("orders.id", $request->query()["id"]);
+        }
+
+        if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
+            $orders->where(function ($query) {
+                global $request;
+                $query->orWhere("orders.name","like", "%{$request->query()["keyword"]}%");
+            });
+        }
+        $orders = $orders
             //->groupBy('orders.id')
             ->select(
                 "orders.*",
                 "promoters.name as promoter",
                 DB::raw("(orders.total_price * (promoters.commission/100)) as promoter_commission")
             )
-            ->paginate(10);
+            ->latest()
+            ->paginate(10)->appends($request->query());
         return view('admin.order.index', compact('orders', "colors"));
     }
 
