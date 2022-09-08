@@ -31,6 +31,7 @@ class RazorpayController extends Controller
     $order_details = [];
     $total_price = 0;
     foreach ($items as $item) {
+      if($item["quantity"] > 0 == false) continue;
       $event_ticket = EventTicket::where(["id" => $item["event_ticket_id"]])->first();
       $amount = $event_ticket->price * $item["quantity"];
       $total_price += $amount;
