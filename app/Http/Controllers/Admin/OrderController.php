@@ -48,7 +48,7 @@ class OrderController extends Controller
     {
         $order_details = OrderDetail::where(["order_id" => $order->id])
             ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
-            ->groupBy("order_details.id")
+            //->groupBy("order_details.id")
             ->select(
                 "order_details.*",
                 "event_tickets.name as event_ticket_name",
@@ -98,7 +98,7 @@ class OrderController extends Controller
         $order = Order::where("id", $order_id)->first();
         $order_details = OrderDetail::where(["order_id" => $order->id])
         ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
-        ->groupBy("order_details.id")
+        //->groupBy("order_details.id")
         ->select(
             "order_details.*",
             "event_tickets.name as event_ticket_name",
