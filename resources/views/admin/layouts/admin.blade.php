@@ -26,7 +26,7 @@
 </head>
 
 <body class="">
-    <div id="preloader" class="position-fixed align-items-center justify-content-center p-2 rounded" style="background-color: yellow;  backdrop-filter: blur(20px); z-index: 999999999; top: 60px; left: 50%; transform:translateX(-50%); display: none">
+    <div id="preloader" class="position-fixed align-items-center justify-content-center py-1 px-3 rounded shadow-sm" style="background-color: #f8facf;  backdrop-filter: blur(20px); z-index: 999999999; top: 80px; left: 50%; transform:translateX(-50%); display: none">
 
         Please wait while loading...
 
