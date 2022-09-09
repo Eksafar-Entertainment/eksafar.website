@@ -6,13 +6,13 @@
 <div id="fh5co-couple" class="fh5co-section-gray">
   <div class="container">
 
-  <div class="row animate-box">
+    <div class="row animate-box">
       <div class="col-md-8 col-md-offset-2">
         <div class="col-md-12 text-center heading-section">
-        <h2>Dandiya Disco Night</h2>
-</div>
-</div>
-</div>
+          <h2>Dandiya Disco Night</h2>
+        </div>
+      </div>
+    </div>
     <div class="row row-bottom-padded-md animate-box">
       <div class="col-md-6 col-md-offset-3 text-center">
         <div class="col-md-5 col-sm-5 col-xs-5 nopadding">
@@ -149,7 +149,7 @@
     const rate_field = el.querySelector("input.rate");
 
     quantity_field.addEventListener("keyup", () => {
-      price.innerHTML = parseInt(quantity_field.value) * parseInt(rate_field.value);
+      price.innerHTML = parseInt(quantity_field.value) > 0?parseInt(quantity_field.value) * parseInt(rate_field.value): 0;
 
 
       let total_price = 0;
@@ -161,36 +161,36 @@
 
 <script>
   // set the date we're counting down to
-var target_date = new Date('October, 2, 2022').getTime();
- 
- // variables for time units
- var days, hours, minutes, seconds;
-  
- // get tag element
- var countdown = document.getElementById('countdown');
-  
- // update the tag with id "countdown" every 1 second
- setInterval(function () {
-  
-     // find the amount of "seconds" between now and target
-     var current_date = new Date().getTime();
-     var seconds_left = (target_date - current_date) / 1000;
-  
-     // do some time calculations
-     days = parseInt(seconds_left / 86400);
-     seconds_left = seconds_left % 86400;
-      
-     hours = parseInt(seconds_left / 3600);
-     seconds_left = seconds_left % 3600;
-      
-     minutes = parseInt(seconds_left / 60);
-     seconds = parseInt(seconds_left % 60);
-      
-     // format countdown string + set tag value
-     countdown.innerHTML = '<span id="days">' + days +  ' <small>Days</small></span> <span id="hours">' + hours + ' <small>Hours</small></span> <span id="minutes">'
-     + minutes + ' <small>Minutes</small></span> <span id="seconds">' + seconds + ' <small>Seconds</small></span>';  
-  
- }, 1000);
+  var target_date = new Date('October, 2, 2022').getTime();
+
+  // variables for time units
+  var days, hours, minutes, seconds;
+
+  // get tag element
+  var countdown = document.getElementById('countdown');
+
+  // update the tag with id "countdown" every 1 second
+  setInterval(function() {
+
+    // find the amount of "seconds" between now and target
+    var current_date = new Date().getTime();
+    var seconds_left = (target_date - current_date) / 1000;
+
+    // do some time calculations
+    days = parseInt(seconds_left / 86400);
+    seconds_left = seconds_left % 86400;
+
+    hours = parseInt(seconds_left / 3600);
+    seconds_left = seconds_left % 3600;
+
+    minutes = parseInt(seconds_left / 60);
+    seconds = parseInt(seconds_left % 60);
+
+    // format countdown string + set tag value
+    countdown.innerHTML = '<span id="days">' + days + ' <small>Days</small></span> <span id="hours">' + hours + ' <small>Hours</small></span> <span id="minutes">' +
+      minutes + ' <small>Minutes</small></span> <span id="seconds">' + seconds + ' <small>Seconds</small></span>';
+
+  }, 1000);
 </script>
 
 @endsection
