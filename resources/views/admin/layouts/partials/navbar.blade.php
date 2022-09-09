@@ -1,54 +1,64 @@
-<header class="p-3 bg-dark text-white">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/admin" class="d-flex align-items-center text-white text-decoration-none">
-        <img height="35px" src="{{url('img/logo.png')}}"/>
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url('/admin') }}">
+        <!--{{ config('app.name', 'Laravel') }}-->
+        <img height="35px" src="{{url('img/logo.png')}}" />
       </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/admin" class="nav-link px-2 text-white">Home</a></li>
-        @auth
-        @role('Admin')
-        <li><a href="{{ route('users.index') }}" class="nav-link px-2 text-white">Users</a></li>
-        <li><a href="{{ route('roles.index') }}" class="nav-link px-2 text-white">Roles</a></li>
-        @endrole
-        <li><a href="{{ route('posts.index') }}" class="nav-link px-2 text-white">Posts</a></li>
-        <li><a href="/admin/event" class="nav-link px-2 text-white">Events</a></li>
-        <li><a href="/admin/order" class="nav-link px-2 text-white">Orders</a></li>
-        <li><a href="/admin/promoters" class="nav-link px-2 text-white">Promoters</a></li>
-        @endauth
-      </ul>
-      <ul class="navbar-nav ms-auto">
-        @guest
-        @if (Route::has('login'))
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-        </li>
-        @endif
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Left Side Of Navbar -->
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a href="/admin" class="nav-link">Home</a></li>
+          @auth
+          @role('Admin')
+          <li class="nav-item"><a href="{{ route('users.index') }}" class="nav-link">Users</a></li>
+          <li class="nav-item"><a href="{{ route('roles.index') }}" class="nav-link">Roles</a></li>
+          @endrole
+          <li class="nav-item"><a href="{{ route('posts.index') }}" class="nav-link">Posts</a></li>
+          <li class="nav-item"><a href="/admin/event" class="nav-link">Events</a></li>
+          <li class="nav-item"><a href="/admin/order" class="nav-link">Orders</a></li>
+          <li class="nav-item"><a href="/admin/promoters" class="nav-link">Promoters</a></li>
+          @endauth
+        </ul>
 
-        @if (Route::has('register'))
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-        </li>
-        @endif
-        @else
-        <li class="nav-item dropdown">
-          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }}
-          </a>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-              {{ __('Logout') }}
+        <!-- Right Side Of Navbar -->
+        <ul class="navbar-nav ms-auto">
+          <!-- Authentication Links -->
+          @guest
+          @if (Route::has('login'))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+          </li>
+          @endif
+
+          @if (Route::has('register'))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+          </li>
+          @endif
+          @else
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              {{ Auth::user()->name }}
             </a>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
-            </form>
-          </div>
-        </li>
-        @endguest
-      </ul>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+            </div>
+          </li>
+          @endguest
+        </ul>
+      </div>
     </div>
-  </div>
+  </nav>
 </header>

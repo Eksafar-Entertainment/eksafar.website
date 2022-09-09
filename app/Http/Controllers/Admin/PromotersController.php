@@ -18,7 +18,10 @@ class PromotersController extends Controller
         $where = [];
         $promoters = Promoter::select(["*"]);
         if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
-            $promoters->orWhere("name","like", "%{$request->query()["keyword"]}%");
+            $promoters->where(function ($query) {
+                global $request;
+                $query->orWhere("promoters.name","like", "%{$request->query()["keyword"]}%");
+            });
         }
         $promoters = $promoters->latest()->paginate(10)->appends($request->query());
 
