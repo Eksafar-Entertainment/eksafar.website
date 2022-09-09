@@ -1,6 +1,6 @@
 @extends('frontend.index')
 @section('content')
-@include('frontend.booking-bar')
+@include('frontend.events.top-bar')
 @include('frontend.header')
 
 <div id="fh5co-couple" class="fh5co-section-gray">
@@ -50,11 +50,6 @@
         <tr>
           <td align="center" style="padding: 24px;" width="100%">
             <table class="sm-w-full" width="600" cellpadding="0" cellspacing="0" role="presentation">
-              <tr>
-                <td colspan="2" class="sm-inline-block" style="display: none;">
-                  <img src="https://images.unsplash.com/photo-1505577058444-a3dab90d4253?ixlib=rb-0.3.5&s=fed02ccbe457c9b8fc1f2cf76f30d755&w=600&h=400&q=80&fit=crop" alt="Double Room" style="border: 0; line-height: 100%; vertical-align: middle; border-top-left-radius: 4px; border-top-right-radius: 4px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);">
-                </td>
-              </tr>
               <tr>
                 <td class="sm-hidden" style="padding-top: 40px; padding-bottom: 40px;" width="160">
                   <img src="images/ticket.png" alt="Double room" style="border: 0; line-height: 100%; vertical-align: middle; border-top-left-radius: 4px; border-bottom-left-radius: 4px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);" width="160">
@@ -162,6 +157,40 @@
       document.querySelector("#button-price").innerText = "₹" + total_price;
     })
   });
+</script>
+
+<script>
+  // set the date we're counting down to
+var target_date = new Date('October, 2, 2022').getTime();
+ 
+ // variables for time units
+ var days, hours, minutes, seconds;
+  
+ // get tag element
+ var countdown = document.getElementById('countdown');
+  
+ // update the tag with id "countdown" every 1 second
+ setInterval(function () {
+  
+     // find the amount of "seconds" between now and target
+     var current_date = new Date().getTime();
+     var seconds_left = (target_date - current_date) / 1000;
+  
+     // do some time calculations
+     days = parseInt(seconds_left / 86400);
+     seconds_left = seconds_left % 86400;
+      
+     hours = parseInt(seconds_left / 3600);
+     seconds_left = seconds_left % 3600;
+      
+     minutes = parseInt(seconds_left / 60);
+     seconds = parseInt(seconds_left % 60);
+      
+     // format countdown string + set tag value
+     countdown.innerHTML = '<span id="days">' + days +  ' <small>Days</small></span> <span id="hours">' + hours + ' <small>Hours</small></span> <span id="minutes">'
+     + minutes + ' <small>Minutes</small></span> <span id="seconds">' + seconds + ' <small>Seconds</small></span>';  
+  
+ }, 1000);
 </script>
 
 @endsection

@@ -31,6 +31,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
 	<!-- jQuery -->
 	<script src="/dist/scripts.min.js"></script>
+	
 
 	@yield('page_js')
 

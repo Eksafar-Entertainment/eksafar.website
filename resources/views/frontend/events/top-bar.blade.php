@@ -13,7 +13,9 @@
 									<h2>Disco Dandiya</h2>
 									<h1>@ Catch Up</h1>
 									<p><span>03 Oct 2022</span></p>
-                                    <a href="/event-disco-dandiya-night" class="book_btn btn btn-primary">Book Now</a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#book-ticket-modal">
+            							Book Now
+          							</button>
 								</div>
 							</div>
 						</div>
