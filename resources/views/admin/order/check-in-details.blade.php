@@ -70,6 +70,8 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        @if($order->status == "SUCCESS" && !$order->is_checked_in)
         <button type="button" class="btn btn-primary" onclick="checkIn('{{$order->id}}')">Check In</button>
+        @endif
     </div>
 </div>

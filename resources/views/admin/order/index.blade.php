@@ -29,6 +29,15 @@
                 </div>
             </div>
             <div class="col-auto">
+                <select class="form-select" name="status">
+                    <option value="">--STATUS--</option>
+                    <option {{app('request')->input('status')=="PENDING"?"selected":""}}>PENDING</option>
+                    <option {{app('request')->input('status')=="SUCCESS"?"selected":""}}>SUCCESS</option>
+                    <option {{app('request')->input('status')=="FAILED"?"selected":""}}>FAILED</option>
+                </select>
+
+            </div>
+            <div class="col-auto">
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </div>

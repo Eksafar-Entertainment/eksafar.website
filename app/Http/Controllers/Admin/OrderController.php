@@ -32,6 +32,10 @@ class OrderController extends Controller
             $orders->where("orders.id", $request->query()["id"]);
         }
 
+        if(isset($request->query()["status"]) && $request->query()["status"]!=""){
+            $orders->where("orders.status", $request->query()["status"]);
+        }
+
         if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
             $orders->where(function ($query) {
                 global $request;
