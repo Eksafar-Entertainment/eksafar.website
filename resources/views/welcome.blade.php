@@ -5,7 +5,6 @@
     @include('frontend.top-bar')
     @include('frontend.header')
     @include('frontend.landing.slider')
-    @include('frontend.landing.countdown')
     @include('frontend.newsletter')
     @include('frontend.footer')
 

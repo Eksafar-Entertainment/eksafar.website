@@ -36,11 +36,11 @@ class FrontController extends Controller
             }
             
             case "gallery":{
-                return view('frontend.gallery.index', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.gallery.index', compact('desktop', 'mobile', 'tablet','type'));
             }
             
             case "guest":{
-                return view('frontend.guest.index', compact('desktop', 'mobile', 'tablet','type', 'ticket_type'));
+                return view('frontend.guest.index', compact('desktop', 'mobile', 'tablet','type',));
             }
         
             case "elements":{
@@ -63,8 +63,8 @@ class FrontController extends Controller
                 return view('frontend.extra.privacy', compact('desktop', 'mobile', 'tablet','type'));
             }
 
-            case "payment_policy":{
-                return view('frontend.extra.payment', compact('desktop', 'mobile', 'tablet','type'));
+            case "payment-policy":{
+                return view('frontend.extra.payment-policy', compact('desktop', 'mobile', 'tablet','type'));
             }
 
             case "terms":{

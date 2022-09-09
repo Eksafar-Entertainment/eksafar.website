@@ -20,7 +20,7 @@
 					<div class="col-md-8 col-md-offset-2">
 						<div class="col-md-12 text-center heading-section">
 							<h2>Our Events </h2>
-							<p><strong>on Oct 3rd, 2022 &mdash; Catch up, Bangalore</strong></p>
+							<p><strong>You don't want ot miss &mdash; This</strong></p>
 						</div>
 					</div>
 				</div>
@@ -34,10 +34,10 @@
          <div class="card">
              <div class="front">
                  <div class="cover">
-                     <img src="images/rotating_card_thumb3.png"/>
+                     <img src="images/rotating_card_profile.jpg"/>
                  </div>
                  <div class="user">
-                     <img class="img-circle" src="images/rotating_card_profile.png"/>
+                     <img class="img-circle" src="images/rotating_card_thumb.jpg"/>
                  </div>
                  <div class="content">
                      <div class="main">
@@ -104,10 +104,10 @@
 		 <div class="card">
              <div class="front">
                  <div class="cover">
-                     <img src="images/rotating_card_thumb3.png"/>
+                     <img src="images/rotating_card_profile2.jpg"/>
                  </div>
                  <div class="user">
-                     <img class="img-circle" src="images/rotating_card_profile.png"/>
+                     <img class="img-circle" src="images/rotating_card_thumb2.jpg"/>
                  </div>
                  <div class="content">
                      <div class="main">
@@ -175,17 +175,17 @@
 		 <div class="card">
              <div class="front">
                  <div class="cover">
-                     <img src="images/rotating_card_thumb3.png"/>
+                     <img src="images/rotating_card_profile3.jpg"/>
                  </div>
                  <div class="user">
-                     <img class="img-circle" src="images/rotating_card_profile.png"/>
+                     <img  src="images/rotating_card_thumb3.jpg"/>
                  </div>
                  <div class="content">
                      <div class="main">
-                         <h3 class="name">Inna Corman</h3>
-                         <p class="profession">Product Manager</p>
+                         <h3 class="name">Halloween</h3>
+                         <p class="profession">Comming Soon</p>
 
-                         <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
+                         <p class="text-center">"Get ready for the scariest season of this time, yeah, don't try to blink your eye"</p>
                      </div>
                      <div class="footer">
                          <div class="rating">
@@ -200,7 +200,7 @@
                  </div>
                  <div class="content">
                      <div class="main">
-                         <h4 class="text-center">Job Description</h4>
+                         <h4 class="text-center">The scary One</h4>
                          <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>
 
                          <div class="stats-container">

@@ -1,23 +1,14 @@
 @extends('frontend.index')
-
 @section('content')
-
 @include('frontend.header')
-@include('frontend.brandcam')
-<article class="bg-secondary">
-  <div class="card-body text-center">
-    <h4>{{$content}}</h4>
-    <table class="m-auto">
-      <tr>
-        <td>Order Id</td>
-        <td>{{$order->id}}</td>
-      </tr>
-      <tr>
-        <td>Payment Id</td>
-        <td>{{$order->payment_id}}</td>
-      </tr>
-    </table>
-  </div>
-</article>
+<div class="container" style="margin-top: 50px; margin-bottom:50px">
+  <article class="text-center">
+    <img src="{{url('/images/check-mark-verified.gif')}}" style="width: 120px" />
+    <h3 style="margin: 10px 0;">Booking Successful</h3>
+    <p>Your ticket booking is successful. The ticket has been sent to {{$order->email}}.</p>
+    <div style="width:300px; border-radius: 8px; background-color:#e5e5e5;padding: 10px 15px; margin: auto">
+      <small>Order Id: <span class="text-success">{{$order->id}}</span>, Payment Id: <span class="text-success">{{$order->payment_id}}</span></small>
+    </div>
+  </article>
+</div>
 @include('frontend.footer')
-@endsection
