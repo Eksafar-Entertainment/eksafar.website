@@ -75,10 +75,9 @@
     </tbody>
 </table>
 
-<div class="d-flex">
-    {!! $orders->links() !!}
+<div class="d-flex mt-4">
+    @include('admin.common.pagination', ["paginator"=>$orders])
 </div>
-
 
 <div class="modal fade" tabindex="-1" id="details-modal">
     <div class="modal-dialog">
@@ -87,8 +86,6 @@
 </div>
 
 <script>
-    var checkInDetailsModal = new bootstrap.Modal(document.getElementById('details-modal'), {})
-
     function openCheckInDetails(order_id) {
         jQuery.ajax({
             url: "{{ url('/admin/order/check-in-details') }}",
@@ -98,7 +95,8 @@
             },
             success: function(result) {
                 $("#details-modal .modal-dialog").html(result.html);
-                checkInDetailsModal.show();
+                new bootstrap.Modal(document.getElementById('details-modal'), {}).show();
+                //checkInDetailsModal.show();
             }
         });
     }
@@ -112,7 +110,7 @@
             },
             success: function(result) {
                 $(`tr.data-row[data-row-id=${order_id}] .checked-in`).html("<span class='text-success'>Yes</span>");
-                checkInDetailsModal.hide();
+                new bootstrap.Modal(document.getElementById('details-modal'), {}).hide();
             }
         });
     }

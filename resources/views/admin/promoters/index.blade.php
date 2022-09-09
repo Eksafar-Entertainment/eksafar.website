@@ -33,55 +33,52 @@
 <div class="mt-2">
     @include('layouts.partials.messages')
 </div>
-<div class="card mt-4">
-    <div class="card-body">
-        @if(count($promoters)>0)
-        <table class="table table-divider table-hover">
-            <thead>
-                <tr>
-                    <th scope="col" width="1%">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Commission</th>
-                    <th scope="col" width="3%"></th>
-                </tr>
-            </thead>
-            @foreach ($promoters as $key => $promoter)
-            <tr>
-                <td>{{ $promoter->id }}</td>
-                <td>{{ $promoter->name }}</td>
-                <td>{{ $promoter->commission }}%</td>
-                <td>
-                    <div class="dropdown">
-                        <a type="button" id="dropdownMenuButton{{$promoter->id}}" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{$promoter->id}}">
-                            <li> <a class="dropdown-item" href="{{ route('promoters.show', $promoter->id) }}">Show</a></li>
-                            <li> <a class="dropdown-item" href="{{ route('promoters.edit', $promoter->id) }}">Edit</a></li>
-                            <li>
-                                {!! Form::open(['method' => 'DELETE','route' => ['promoters.destroy', $promoter->id],'style'=>'display:inline']) !!}
-                                {!! Form::submit('Delete', ['class' => 'dropdown-item']) !!}
-                                {!! Form::close() !!}
-                            </li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-        </table>
-        @else
-        <div class="text-center">
 
-            <p class="mb-0"><i class="fas fa-circle-info"></i> No data found</p>
-        </div>
-        @endif
-
-        <div class="d-flex mt-4">
-            @include('admin.common.pagination', ["paginator"=>$promoters])
-        </div>
-
-    </div>
+@if(count($promoters)>0)
+<table class="table table-bordered table-striped mt-4 bg-white">
+    <thead>
+        <tr>
+            <th scope="col" width="1%">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Commission</th>
+            <th scope="col" width="3%"></th>
+        </tr>
+    </thead>
+    @foreach ($promoters as $key => $promoter)
+    <tr>
+        <td>{{ $promoter->id }}</td>
+        <td>{{ $promoter->name }}</td>
+        <td>{{ $promoter->commission }}%</td>
+        <td>
+            <div class="dropdown">
+                <a type="button" id="dropdownMenuButton{{$promoter->id}}" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{$promoter->id}}">
+                    <li> <a class="dropdown-item" href="{{ route('promoters.show', $promoter->id) }}">Show</a></li>
+                    <li> <a class="dropdown-item" href="{{ route('promoters.edit', $promoter->id) }}">Edit</a></li>
+                    <li>
+                        {!! Form::open(['method' => 'DELETE','route' => ['promoters.destroy', $promoter->id],'style'=>'display:inline']) !!}
+                        {!! Form::submit('Delete', ['class' => 'dropdown-item']) !!}
+                        {!! Form::close() !!}
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    @endforeach
+</table>
+@else
+<div class="text-center mt-4">
+    <p class="mb-0"><i class="fas fa-circle-info"></i> No data found</p>
 </div>
+@endif
+
+<div class="d-flex mt-4">
+    @include('admin.common.pagination', ["paginator"=>$promoters])
+</div>
+
+
 
 
 
