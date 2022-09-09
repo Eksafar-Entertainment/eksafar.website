@@ -35,7 +35,7 @@
     </form>
 </div>
 
-<table class="table table-bordered table-striped mt-4">
+<table class="table table-bordered table-striped mt-4 bg-white">
     <thead>
         <tr>
             <th width="1%">#</th>
