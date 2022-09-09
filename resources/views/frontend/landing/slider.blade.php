@@ -201,25 +201,25 @@
                  <div class="content">
                      <div class="main">
                          <h4 class="text-center">The scary One</h4>
-                         <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>
+                         <p class="text-center">Scary Night, Ghosts, Trick or treat, Monsters, Deadly and many others...</p>
 
                          <div class="stats-container">
                              <div class="stats">
-                                 <h4>235</h4>
+                                 <h4>1</h4>
                                  <p>
-                                     Followers
+                                     Night
                                  </p>
                              </div>
                              <div class="stats">
-                                 <h4>114</h4>
+                                 <h4>15</h4>
                                  <p>
-                                     Following
+                                     Ghosts
                                  </p>
                              </div>
                              <div class="stats">
-                                 <h4>35</h4>
+                                 <h4>16</h4>
                                  <p>
-                                     Projects
+                                     Hours
                                  </p>
                              </div>
                          </div>

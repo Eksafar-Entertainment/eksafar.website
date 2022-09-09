@@ -6,7 +6,6 @@
 						<div class="container">
 							<div class="col-md-10 col-md-offset-1">
 								<div class="animate-box">
-									<h1>Up-comminG</h1>
 									<h2>Disco Dandiya</h2>
 									<h1>@ Catch Up</h1>
 									<p><span>03 Oct 2022</span></p>
