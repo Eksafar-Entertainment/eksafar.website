@@ -48,7 +48,7 @@
                      </div>
                      <div class="footer">
                          <div class="rating">
-                             <i class="fa fa-mail-forward"></i> More Info
+                             <i class="fa fa-mail-forward"></i> Heaven in the Forest
                          </div>
                      </div>
                  </div>
@@ -89,9 +89,9 @@
                  </div>
                  <div class="footer">
                      <div class="social-links text-center">
-                         <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook"></i></a>
-                         <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus"></i></a>
-                         <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter"></i></a>
+                         <a href="https://facebook.com/eksafar.club" class="facebook"><i class="icon-facebook3"></i></a>
+                         <a href="https://instagram.com/eksafar.club" class="google"><i class="icon-instagram2"></i></a>
+                         <a href="https://twitter.com/eksafarclub" class="twitter"><i class="icon-twitter3"></i></a>
                      </div>
                  </div>
              </div> <!-- end back panel -->
@@ -118,7 +118,7 @@
                      </div>
                      <div class="footer">
                          <div class="rating">
-                             <i class="fa fa-mail-forward"></i> More Info
+                             <i class="fa fa-mail-forward"></i> Musical Night
                          </div>
                      </div>
                  </div>
@@ -159,9 +159,9 @@
                  </div>
                  <div class="footer">
                      <div class="social-links text-center">
-                         <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook"></i></a>
-                         <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus"></i></a>
-                         <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter"></i></a>
+                         <a href="https://facebook.com/eksafar.club" class="facebook"><i class="icon-facebook3"></i></a>
+                         <a href="https://instagram.com/eksafar.club" class="google"><i class="icon-instagram2"></i></a>
+                         <a href="https://twitter.com/eksafarclub" class="twitter"><i class="icon-twitter3"></i></a>
                      </div>
                  </div>
              </div> <!-- end back panel -->
@@ -189,7 +189,7 @@
                      </div>
                      <div class="footer">
                          <div class="rating">
-                             <i class="fa fa-mail-forward"></i> Auto Rotation
+                             <i class="fa fa-mail-forward"></i> Scary Night
                          </div>
                      </div>
                  </div>
@@ -228,9 +228,9 @@
                  </div>
                  <div class="footer">
                      <div class="social-links text-center">
-                         <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-                         <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-                         <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                         <a href="https://facebook.com/eksafar.club" class="facebook"><i class="icon-facebook3"></i></a>
+                         <a href="https://instagram.com/eksafar.club" class="google"><i class="icon-instagram2"></i></a>
+                         <a href="https://twitter.com/eksafarclub" class="twitter"><i class="icon-twitter3"></i></a>
                      </div>
                  </div>
             	 </div> <!-- end back panel -->

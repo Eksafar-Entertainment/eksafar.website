@@ -57,6 +57,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/ticket.css">
 	<link rel="stylesheet" href="css/rotating-card.css">
+	<link rel="stylesheet" href="css/video.css">
 
 
 	<!-- Modernizr JS -->

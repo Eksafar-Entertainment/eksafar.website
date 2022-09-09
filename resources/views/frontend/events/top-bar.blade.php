@@ -1,6 +1,10 @@
-<div class="fh5co-hero" data-section="home">
-			<div class="fh5co-overlay"></div>
-			<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">
+
+<div class="video-container">
+    <video autoplay muted loop>
+        <source src="videos/header.mp4" type="video/mp4" />
+    </video>
+    <div class="caption">
+	<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-color: rgba(0,0,0,0.7);">
 				<div class="display-t">
 					<div class="display-tc">
 						<div class="container">
@@ -17,3 +21,4 @@
 				</div>
 			</div>
 		</div>
+</div>
