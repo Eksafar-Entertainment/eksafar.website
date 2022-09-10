@@ -73,9 +73,9 @@ class GalleryController extends Controller
      * @param  \App\Models\GalleryImage  $gallery_image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GalleryImage $gallery_image)
+    public function destroy( $id)
     {
-        $gallery_image->delete();
+        GalleryImage::destroy($id);
 
         return redirect()->route('gallery.index')
             ->withSuccess(__('GalleryImage deleted successfully.'));
