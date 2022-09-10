@@ -100,7 +100,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card-container" onclick="window.location.href=`{{url('/event-disco-dandiya-night')}}`">
+            <div class="card-container" onclick="window.location.href=`{{url('/event-disco-dandiya-night')}}`" style="transform: scale(1.12);">
                 <div class="card">
                     <div class="front">
                         <div class="cover">
