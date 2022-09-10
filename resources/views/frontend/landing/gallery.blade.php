@@ -1,3 +1,4 @@
+@if(count($gallery) > 0)
 <div id="fh5co-couple" style="background-color: white;">
     <div class="container">
         <div class="row animate-box">
@@ -24,3 +25,4 @@
 
     </div>
 </div>
+@endif
