@@ -61,8 +61,8 @@ class GalleryController extends Controller
      * @param  \App\Models\GalleryImage  $gallery_image
      * @return \Illuminate\Http\Response
      */
-    public function show(GalleryImage $gallery_image)
-    {
+    public function show($id)
+    {    $gallery_image = GalleryImage::find($id)->first();
         return view('admin.gallery.show', [
             'gallery_image' => $gallery_image
         ]);
