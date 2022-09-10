@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\RolesController;
@@ -37,6 +38,7 @@ Route::group([
     Route::resource('roles', RolesController::class);
     Route::resource('users', UsersController::class);
     Route::resource('posts', PostsController::class);
+    Route::resource('gallery', GalleryController::class);
     //order
     Route::resource('order', OrderController::class);
     Route::post('/order/check-in-details', [OrderController::class, "checkInDetails"]);
