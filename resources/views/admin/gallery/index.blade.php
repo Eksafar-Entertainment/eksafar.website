@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ $gallery_image->id }}</td>
                 <td>
-                    <img src="{{url('/storage/uploads/'.$gallery_image->path)}}" width="70px"/>
+                    <img src="{{url('/storage/uploads/'.$gallery_image->path)}}" width="60px" height="60px" style="object-fit:cover; background-size:cover; background-position:cover"/>
                 </td>
                 <td>{{ $gallery_image->title }}</td>
                 <td>
