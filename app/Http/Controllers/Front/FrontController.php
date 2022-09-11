@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use App\Models\EventTicket;
 use App\Http\Controllers\Controller;
+use App\Models\GalleryImage;
+use Illuminate\Support\Facades\DB;
 
 class FrontController extends Controller
 {
@@ -15,8 +17,9 @@ class FrontController extends Controller
         $type = '/';
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
-        $tablet = $agent->isTablet();   
-        return view('welcome', compact('desktop', 'mobile', 'tablet', 'type'));
+        $tablet = $agent->isTablet();  
+        $gallery = GalleryImage::latest()->select(["*", DB::raw('CONCAT("'.url("/storage/uploads").'/", path) as url')])->get(); 
+        return view('welcome', compact('desktop', 'mobile', 'tablet', 'type', 'gallery'));
     }
 
     public function route($type)
