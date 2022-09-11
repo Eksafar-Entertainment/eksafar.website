@@ -53,12 +53,12 @@
 	<link rel="stylesheet" href="/css/superfish.css">
 	<!-- Magnific Popup -->
 
-	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="/css/magnific-popup.css">
 	
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/ticket.css">
-	<link rel="stylesheet" href="css/rotating-card.css">
-	<link rel="stylesheet" href="css/video.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/ticket.css">
+	<link rel="stylesheet" href="/css/rotating-card.css">
+	<link rel="stylesheet" href="/css/video.css">
 
 
 	<!-- Modernizr JS -->
