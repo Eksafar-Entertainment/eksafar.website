@@ -1,7 +1,6 @@
 .video-container {
     height: 100%;
     width: 100%;
-    position: relative;
 }
 
 .video-container video {
@@ -9,7 +8,7 @@
   height: 100%;
   position: absolute;
   object-fit: cover;
-  z-index: 0;
+  z-index: -1;
 }
 
 /* Just styling the content of the div, the *magic* in the previous rules */
@@ -18,4 +17,12 @@
   position: relative;
   text-align: center;
   color: #dc0000;
+}
+
+.newsletter {
+  padding-top: 4em;
+}
+
+.newsletter-box {
+  padding-bottom: 4em;
 }

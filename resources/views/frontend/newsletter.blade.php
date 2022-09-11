@@ -1,13 +1,17 @@
-<div id="fh5co-started" style="background-image:url(images/cover_bg_2.jpg);">
+<!-- <div id="fh5co-started" style="background-image:url(images/cover_bg_2.jpg);" class="video-container"> -->
+<div id="fh5co-started">
 		<div class="overlay"></div>
-			<div class="container">
-				<div class="row animate-box">
+			<div class="video-container">
+					<video autoplay muted loop>
+        				<source src="videos/header.mp4" type="video/mp4" />
+    				</video>
+				<div class="row animate-box newsletter">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section">
 						<h2>Are You Attending?</h2>
 						<p>Please Fill-up the form to notify you that you're attending. Thanks.
 					</div>
 				</div>
-				<div class="row animate-box">
+				<div class="row animate-box newsletter-box">
 					<div class="col-md-10 col-md-offset-1">
 						<form class="form-inline">
 							<div class="col-md-4 col-sm-4">

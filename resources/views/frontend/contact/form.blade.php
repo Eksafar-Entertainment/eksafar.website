@@ -35,13 +35,13 @@
                         </form>
                     </div>
                     <div class="col-lg-3 offset-lg-1">
-                        <!-- <div class="media contact-info">
+                        <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-home"></i></span>
                             <div class="media-body">
-                                <h3>Buttonwood, California.</h3>
-                                <p>Rosemead, CA 91770</p>
+                                <h3>Address.</h3>
+                                <p>House no 1182, 6th cross, Ananth Nagar Main Road, Kammasandra Village, Electronic City Post, Anekal Taluk, Bangalore South - 560100</p>
                             </div> 
-                        </div> -->
+                        </div>
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                             <div class="media-body">
