@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PromotersController;
 use App\Http\Controllers\Front\EventController as FrontEventController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\RazorpayController;
+use App\Http\Controllers\Admin\FileManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ Route::group([
     Route::resource('users', UsersController::class);
     Route::resource('posts', PostsController::class);
     Route::resource('gallery', GalleryController::class);
+    Route::get('files', [FileManagerController::class, "index"]);
+    Route::post('files/listing', [FileManagerController::class, "listing"]);
+
     //order
     Route::resource('order', OrderController::class);
     Route::post('/order/check-in-details', [OrderController::class, "checkInDetails"]);
