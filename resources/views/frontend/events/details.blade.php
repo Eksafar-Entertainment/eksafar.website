@@ -108,6 +108,9 @@
                           <input type="hidden" name="items[{{ $ticket->id }}][event_ticket_id]" value="{{ $ticket->id }}">
                           <input type="hidden" class="form-control rate" value="{{ $ticket->price }}">
                         </td>
+                        <td>
+                          <i class="icon-person"></i>{{$ticket->persons}}
+                        </td>
                         <td width="1%" nowrap class="text-right d-none" style="vertical-align:middle;min-width:100px; color: #68d391">
                           ₹<span class="price"></span>
                         </td>
