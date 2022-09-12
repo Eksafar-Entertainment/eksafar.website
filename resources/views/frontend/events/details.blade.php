@@ -1,6 +1,6 @@
 @extends('frontend.index')
 @section('content')
-@include('frontend.events.top-bar')
+@include('frontend.top-bar')
 @include('frontend.header')
 
 <div id="fh5co-couple" class="fh5co-section-gray">
@@ -137,7 +137,7 @@
 
 
 @include('frontend.landing.countdown')
-@include('frontend.newsletter')
+@include('frontend.landing.slider')
 @include('frontend.footer')
 
 
