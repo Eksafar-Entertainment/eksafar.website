@@ -75,9 +75,16 @@
 
                     <table class="sm-leading-32" style="line-height: 28px; font-size: 14px;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                       <tr>
-                        <td class="sm-inline-block" style="font-weight: 600; padding-bottom: 10px;" width="100%">
-                          <input class="form-control form-control-sm quantity" style="min-width: 100px; color: #a0aec0;" type="text" name="name" placeholder="Name" id="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required>
+                        <td class="sm-inline-block" style="font-weight: 600; padding-bottom: 10px;" width="50%">
+                          <input class="form-control form-control-sm quantity" style="min-width: 50px; color: #a0aec0;" type="text" name="name" placeholder="Name" id="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required>
                         </td>
+
+
+                        <td class="sm-inline-block" style="font-weight: 600; padding-bottom: 10px;" width="50%">
+                          <input class="form-control form-control-sm quantity" style="min-width: 50px; color: #a0aec0;" type="email" name="email" placeholder="Email address." id="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required>
+                        </td>
+
+
                       </tr>
                       <tr>
                         <td class="sm-inline-block" style="font-weight: 600; padding-bottom: 10px;" width="100%">
