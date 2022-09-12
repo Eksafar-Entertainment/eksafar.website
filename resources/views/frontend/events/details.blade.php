@@ -51,9 +51,9 @@
           <td align="center" style="padding: 24px;" width="100%">
             <table class="sm-w-full" width="600" cellpadding="0" cellspacing="0" role="presentation">
               <tr>
-                <td class="sm-hidden" style="padding-top: 40px; padding-bottom: 40px;" width="160">
+                <!-- <td class="sm-hidden" style="padding-top: 40px; padding-bottom: 40px;" width="160">
                   <img src="images/ticket.png" alt="Double room" style="border: 0; line-height: 100%; vertical-align: middle; border-top-left-radius: 4px; border-bottom-left-radius: 4px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);" width="160">
-                </td>
+                </td> -->
                 <td align="left" class="sm-p-20 sm-dui17-b-t" style="border-radius: 2px; padding: 40px; position: relative; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05); vertical-align: top; z-index: 50;" bgcolor="#ffffff" valign="top">
                   <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
                     <tr>
@@ -114,6 +114,9 @@
                           <input class="form-control form-control-sm quantity" style="min-width: 100px; color: #a0aec0;" type="number" name="items[{{ $ticket->id }}][quantity]" value="" min="0" max="20">
                           <input type="hidden" name="items[{{ $ticket->id }}][event_ticket_id]" value="{{ $ticket->id }}">
                           <input type="hidden" class="form-control rate" value="{{ $ticket->price }}">
+                        </td>
+                        <td style="vertical-align: middle">
+                           {{$ticket->persons}} <i class="icon-user2 text-primary"></i>
                         </td>
                         <td width="1%" nowrap class="text-right d-none" style="vertical-align:middle;min-width:100px; color: #68d391">
                           ₹<span class="price"></span>
