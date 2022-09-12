@@ -40,8 +40,9 @@ Route::group([
     Route::resource('users', UsersController::class);
     Route::resource('posts', PostsController::class);
     Route::resource('gallery', GalleryController::class);
-    Route::get('files', [FileManagerController::class, "index"]);
-    Route::post('files/listing', [FileManagerController::class, "listing"]);
+    Route::get('files', [FileManagerController::class, "index"])->name("admin.files");
+    Route::post('files/folder', [FileManagerController::class, "newFolder"]);
+    Route::post('files/file', [FileManagerController::class, "newFile"]);
 
     //order
     Route::resource('order', OrderController::class);
