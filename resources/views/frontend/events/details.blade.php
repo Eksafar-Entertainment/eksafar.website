@@ -1,6 +1,6 @@
 @extends('frontend.index')
 @section('content')
-@include('frontend.top-bar')
+@include('frontend.events.top-bar')
 @include('frontend.header')
 
 <div id="fh5co-couple" class="fh5co-section-gray">
