@@ -1,0 +1,119 @@
+
+label {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover {
+    cursor: pointer !important;
+}
+
+.btn:active {
+    box-shadow: 0 1px #666 !important;
+    transform: translateY(2px) !important;
+}
+
+.btn-sık {
+    transition: all 0.2s ease;
+    background-color: white ;
+    border: 2px solid #063765 !important;
+    box-shadow: 0 3px #063765 !important;
+    min-width: 50px;
+    border-radius: 20px;
+}
+
+
+    btn-sık::selection{
+        background: green;
+    }
+
+input[type="radio"] {
+     position: absolute;
+  visibility: hidden;
+}
+input[type="radio"] + div {
+    position: relative;
+}
+input[type="radio"]:checked + div {
+  background-color: #063765;
+}
+input[type="radio"]:checked + div>span {
+  color: white;
+}
+input[type="radio"] + div>span {
+position: relative;
+top: 25%;}
+
+input[type="checkbox"] {
+     position: absolute;
+  visibility: hidden;
+}
+
+input[type="checkbox"] + div {
+    position: relative;
+}
+input[type="checkbox"]:checked + div {
+  background-color: #063765;
+}
+input[type="checkbox"]:checked + div>span {
+  color: white;
+}
+input[type="checkbox"] + div>span {
+position: relative;
+top: 25%;}
+
+input[type="checkbox"]:checked + div::before {
+        content:"✔";
+    position: absolute;
+    bottom: 18px;
+    right: 0px;
+    font-size: 21px;
+    color: white;
+}
+
+input[type="radio"]:checked + div::before {
+    font-family: FontAwesome;
+    content: "📍";
+    position: absolute;
+    bottom: 31px;
+    font-size: 21px;
+    color: white;
+    right: -5px;
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+    animation: fall 0.5s forwards;
+}
+
+@keyframes fall {
+    100% {
+        -webkit-transform: translate(-5px,5px) rotate(30deg);
+        -moz-transform: translate(-5px,5px) rotate(30deg);
+        -o-transform: translate(-5px,5px) rotate(30deg);
+        -ms-transform: translate(-5px,5px) rotate(30deg);
+        transform: translate(-5px,5px) rotate(30deg);
+    }
+}
+
+@-moz-keyframes fall {
+    100% {
+        -webkit-transform: translate(-5px,5px) rotate(30deg);
+        -moz-transform: translate(-5px,5px) rotate(30deg);
+        -o-transform: translate(-5px,5px) rotate(30deg);
+        -ms-transform: translate(-5px,5px) rotate(30deg);
+        transform: translate(-5px,5px) rotate(30deg);
+    }
+}
+
+@-webkit-keyframes fall {
+     100% {
+        -webkit-transform: translate(-5px,5px) rotate(30deg);
+        -moz-transform: translate(-5px,5px) rotate(30deg);
+        -o-transform: translate(-5px,5px) rotate(30deg);
+        -ms-transform: translate(-5px,5px) rotate(30deg);
+        transform: translate(-5px,5px) rotate(30deg);
+    }
+}

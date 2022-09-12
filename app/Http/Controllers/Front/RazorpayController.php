@@ -16,11 +16,20 @@ use App\Models\Event;
 use App\Models\EventTicket;
 use App\Models\Promoter;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class RazorpayController extends Controller
 {
   function checkout(Request $request)
   {
+    
+    $date = "";
+    if($request->date == '3'){
+      $date = Carbon::create(2022, 10, 3, 0, 0, 0, 'Asia/Kolkata');
+    }
+    if($request->date == '4'){
+      $date = Carbon::create(2022, 10, 4, 0, 0, 0, 'Asia/Kolkata'); 
+    }
     $key = $_ENV["RAZORPAY_KEY_ID"];
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
     $event_id = $request->event_id;
@@ -62,6 +71,7 @@ class RazorpayController extends Controller
     $order->event_id = $request->event_id;
     $order->promoter_id = $promoter ? $promoter->id : null;
     $order->name = $request->name;
+    $order->date = $date;
     $order->email = $request->email;
     $order->mobile = $request->mobile;
     $order->status = "PENDING";
