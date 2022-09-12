@@ -1,4 +1,7 @@
 @extends('frontend.index')
+@section('page_css')
+<link rel="stylesheet" href="/css/date-cal.css">
+@endsection
 @section('content')
 @include('frontend.events.top-bar')
 @include('frontend.header')
@@ -43,19 +46,16 @@
 
 
 <div class="modal fade text-light" tabindex="-1" role="dialog" id="book-ticket-modal">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" role="document" @if($mobile)style="margin: 5px;"@endif>
     <div class="modal-content" style="background-color: rgba(0,0,0,0);">
 
-      <table class="wrapper all-font-sans" width="100%" height="100%" cellpadding="0" cellspacing="0" role="presentation">
-        <tr>
-          <td align="center" style="padding: 24px;" width="100%">
-            <table class="sm-w-full" width="600" cellpadding="0" cellspacing="0" role="presentation">
-              <tr>
-                <!-- <td class="sm-hidden" style="padding-top: 40px; padding-bottom: 40px;" width="160">
-                  <img src="images/ticket.png" alt="Double room" style="border: 0; line-height: 100%; vertical-align: middle; border-top-left-radius: 4px; border-bottom-left-radius: 4px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05);" width="160">
-                </td> -->
-                <td align="left" class="sm-p-20 sm-dui17-b-t" style="border-radius: 2px; padding: 40px; position: relative; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05); vertical-align: top; z-index: 50;" bgcolor="#ffffff" valign="top">
-                  <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <table @if($mobile) style="margin-top: 15%;" @endif >
+        
+                <td align="left" 
+                @if($desktop) style="padding: 15px; border-radius: 2px; position: relative; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05); vertical-align: top; z-index: 50;" @endif
+                @if($mobile) style="border-radius: 2px; position: relative; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05); vertical-align: top; z-index: 50;" @endif
+                bgcolor="#ffffff" valign="top">
+                  <table width="100%"  style="margin-top: 25px; margin-left: 25px;">
                     <tr>
                       <td width="80%">
                         <h1 class="sm-text-lg all-font-roboto" style="font-weight: 700; line-height: 100%; margin: 0; margin-bottom: 4px; font-size: 24px;">Booking Details</h1>
@@ -68,31 +68,46 @@
                   </table>
                   <div style="line-height: 32px;">&zwnj;</div>
 
-                  <form action="/payment/checkout" method="post">
+                  <form action="/payment/checkout" method="post" class="form-inline">
                     @csrf
                     <input type="hidden" name="event_id" value="1" />
                     <input type="hidden" name="promoter_id" value="{{ app('request')->input('promoter') }}" />
 
-                    <table class="sm-leading-32" style="line-height: 28px; font-size: 14px;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                      <tr>
-                        <td class="sm-inline-block" style="font-weight: 600; padding-bottom: 10px;" width="100%">
-                          <input class="form-control form-control-sm quantity" style="min-width: 100px; color: #a0aec0;" type="text" name="name" placeholder="Name" id="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="sm-inline-block" style="font-weight: 600; padding-bottom: 10px;" width="100%">
-                          <input class="form-control form-control-sm quantity" style="min-width: 100px; color: #a0aec0;" type="email" name="email" placeholder="Email address." id="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="sm-w-3-4 sm-inline-block" style="font-weight: 600;" width="100%">
-                          <input class="form-control form-control-sm quantity" style="min-width: 100px; color: #a0aec0;" type="number" name="mobile" placeholder="Mobile No." id="mobile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone no'" required>
-                        </td>
-                      </tr>
-                    </table>
+                        <div class="row col-md-12 col-sm-12">
+                        <div class="col-md-6 col-xs-6" style="font-weight: 600; padding-bottom: 10px;">
+                          <input class="form-control form-control-sm quantity" style="color: #a0aec0; width:100%;" type="text" name="name" placeholder="Name" id="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required>
+                        </div>
+                        <div class="col-md-6 col-xs-6" style="font-weight: 600;">
+                            <input class="form-control form-control-sm quantity" style="color: #a0aec0; width:100%;" type="number" name="mobile" placeholder="Mobile No." id="mobile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone no'" required>
+                          </div>
+                        </div>
+                        <div class="form-group row col-md-12 col-sm-12">
+                          <div class="col-md-6 col-xs-6" style="font-weight: 600; padding-bottom: 10px;">
+                            <input class="form-control form-control-sm quantity" style="color: #a0aec0; width:100%;" type="email" name="email" placeholder="Email address." id="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required>
+                          </div>
+                          <div class="col-md-6 col-xs-6" style="font-weight: 600; padding-bottom: 10px;">
+
+                          <div class="row">
+                            <!-- <div class="col-md-4 col-xs-4"><label style="font-size: 12px;font-weight: bold;padding:10px;">For Date</label></div> -->
+                            <div class="col-md-6 col-xs-12">
+                            <label>
+                              <input type="radio" checked name="date" value="3"> 
+                              <div class="btn btn-sık"><span>3rd Oct</span></div> 
+                            </label>
+                            </div>
+                            <div class="col-md-6 col-xs-12">
+                            <label >
+                                <input  type="radio"  name="date" value="4"> 
+                                <div class="btn btn-sık"><span>4th Oct</span></div>
+                            </label>
+                            </div>
+                          </div>
+
+                        </div>
+                        </div>
 
                     @if (isset($event_tickets))
-                    <table class="table table-sm" style="font-size: 14px; margin-top: 20px;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                    <table class="table table-sm" style="font-size: 14px; margin-top: 20px;">
                       @forelse($event_tickets as $ticket)
                       <tr class="event-ticket-row" event-ticket-id="{{ $ticket->id }}">
                         <td>
@@ -126,12 +141,10 @@
                     <div class="modal-footer">
                       <button type="submit" class="btn btn-primary btn-block">Pay <span id="button-price">₹0</span></button>
                     </div>
+
+                    
                   </form>
                 </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
       </table>
 
     </div>
