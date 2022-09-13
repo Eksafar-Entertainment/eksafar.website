@@ -42,7 +42,7 @@
                         <div class="content">
                             <div class="main">
                                 <h3 class="name">Dandeli Weekend Trip</h3>
-                                <p class="profession">05th Sept 2022</p>
+                                <p class="profession">05<sup>th</sup> Sept 2022</p>
 
                                 <p class="text-center">"The past event organized for a weekend in the Dandeli"</p>
                             </div>
@@ -112,7 +112,7 @@
                         <div class="content">
                             <div class="main">
                                 <h3 class="name">Disco Dandiya 2022</h3>
-                                <p class="profession">03 Oct 2022</p>
+                                <p class="profession">03<sup>rd</sup> & 04<sup>th</sup> Oct 2022</p>
 
                                 <p class="text-center">"Best event in Oct, In Bangalore that you won't want to miss, yeah, you will love it"</p>
                             </div>
@@ -125,7 +125,7 @@
                     </div> <!-- end front panel -->
                     <div class="back">
                         <div class="header">
-                            <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                            <h5 class="motto">"Best musical night of 2022!"</h5>
                         </div>
                         <div class="content">
                             <div class="main">
@@ -134,9 +134,9 @@
 
                                 <div class="stats-container">
                                     <div class="stats">
-                                        <h4>1</h4>
+                                        <h4>2</h4>
                                         <p>
-                                            Night
+                                            Nights
                                         </p>
                                     </div>
                                     <div class="stats">
@@ -146,7 +146,7 @@
                                         </p>
                                     </div>
                                     <div class="stats">
-                                        <h4>6</h4>
+                                        <h4>12</h4>
                                         <p>
                                             Hours
                                         </p>
@@ -196,7 +196,7 @@
                     </div> <!-- end front panel -->
                     <div class="back">
                         <div class="header">
-                            <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                            <h5 class="motto">"Just because I cannot see it, doesn't mean I can't believe it!"</h5>
                         </div>
                         <div class="content">
                             <div class="main">

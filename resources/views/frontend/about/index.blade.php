@@ -17,7 +17,7 @@
 							<div class="ceremony-bg" style="background-image: url(/images/wed-ceremony.jpg);"></div>
 							<div class="desc">
 								<h3>Event Organisers</h3>
-								<p><strong>Music is the way to life</strong></p>
+								<p><strong>Music is the way to live</strong></p>
 								<p>Our vision is to chart the roads of informative & entertaining events. We work on 
 									established systems and processes which ensure a seamless flow of work from beginning to end. 
 									We break barriers when we need to and go that extra mile.</p>
