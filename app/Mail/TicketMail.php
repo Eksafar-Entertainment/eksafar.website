@@ -34,16 +34,16 @@ class TicketMail extends Mailable
      */
     public function build()
     {
-        return $this
-            ->subject('Please collect your ticket.')
-            ->markdown('mail.ticket');
-        // return $this->view('mail.ticket')
-        //     //->text('mail.ticket.plain')
-        //     ->subject("Please collect your ticket.")
-        //     ->with([
-        //         "order"=>$this->order,
-        //         "event"=>$this->event,
-        //         "order_details"=> $this->order_details
-        //     ]);;
+        // return $this
+        //     ->subject('Please collect your ticket.')
+        //     ->markdown('mail.ticket');
+        return $this->view('mail.ticket')
+            //->text('mail.ticket.plain')
+            ->subject("Please collect your ticket.")
+            ->with([
+                "order"=>$this->order,
+                "event"=>$this->event,
+                "order_details"=> $this->order_details
+            ]);
     }
 }
