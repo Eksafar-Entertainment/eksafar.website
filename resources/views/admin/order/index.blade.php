@@ -56,6 +56,7 @@
             <th>Amount</th>
             <th>Promoter</th>
             <th>Commission</th>
+            <th>Date</th>
             <th>Status</th>
             <th>Checked In</th>
             <th width="3%">Action</th>
@@ -71,7 +72,8 @@
             <td>{{ $order->email }}</td>
             <td>₹{{ $order->total_price }}</td>
             <td>{{ $order->promoter }}</td>
-            <td>₹{{ $order->promoter_commission }}</td>
+            <td>₹{{ $order->promoter_commission?$order->promoter_commission:0 }}</td>
+            <td>₹{{ $order->date?date('d-m-Y', strtotime($order->date)):""}}</td>
             <td><span class="badge bg-{{$colors[$order->status]}}">{{ $order->status }}</span></td>
             <td class="checked-in"><span class="text-{{ $order->is_checked_in?'success': 'danger' }}">{{ $order->is_checked_in?"Yes": "No" }}</span></td>
 
