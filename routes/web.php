@@ -68,14 +68,9 @@ Route::group([
     });
 });
 
-
-
-Route::get('/product', [RazorpayController::class, 'index']);
-
 Route::post('/payment/checkout', [RazorpayController::class, 'checkout']);
 Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutComplete'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
-Route::get('/payment-thank-you{id}', [RazorpayController::class, 'paymentSuccess']);
 
 Route::get("/event-{slug}", [FrontEventController::class, 'details']);
 Route::get("/event/{slug}", [FrontEventController::class, 'details']);

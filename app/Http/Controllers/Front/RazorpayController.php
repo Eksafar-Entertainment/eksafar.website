@@ -87,7 +87,10 @@ class RazorpayController extends Controller
     $orderData = [
       'receipt'         => $order->id,
       'amount'          => $total_price * 100,
-      'currency'        => 'INR'
+      'currency'        => 'INR',
+      'notes'           => [
+        "order_id"=>$order->id
+      ]
     ];
     $razorpay_order = $api->order->create($orderData);
 
