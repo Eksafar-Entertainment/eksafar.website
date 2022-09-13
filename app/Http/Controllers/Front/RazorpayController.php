@@ -172,4 +172,22 @@ class RazorpayController extends Controller
       "order" => $order
     ]);
   }
+
+
+
+  public function testMail() {
+        
+    $order = Order::where(["id" => '1000'])->first();
+    
+    $order_details = OrderDetail::where(["order_details.order_id"=> $order->id])
+      ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+      //->groupBy("order_details.id")
+      ->select(
+        "order_details.*",
+        "event_tickets.name as event_ticket_name",
+        "event_tickets.persons as event_ticket_persons"
+      )
+      ->get();
+      return view("mail.ticket", compact('order', 'order_details'));
+  }
 }
