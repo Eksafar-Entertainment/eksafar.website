@@ -78,7 +78,7 @@ Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutC
 Route::get('/payment-thank-you{id}', [RazorpayController::class, 'paymentSuccess']);
 
 Route::get("/event-{slug}", [FrontEventController::class, 'details']);
-// Route::get("/event/{slug}", [FrontEventController::class, 'details'])->name("event-details");
+Route::get("/event/{slug}", [FrontEventController::class, 'details']);
 // Route::get('/event-{slug}', function($slug) {
 //     return Redirect::to("/event/$slug");
 // });
