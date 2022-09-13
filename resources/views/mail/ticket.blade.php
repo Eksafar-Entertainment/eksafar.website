@@ -81,7 +81,6 @@
         <table class="order-details-table">
             <tr>
                 <th>Item</th>
-                <th>Person</th>
                 <th>Price</th>
             </tr>
             @foreach($order_details as $order_detail)
