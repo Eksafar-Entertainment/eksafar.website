@@ -7,7 +7,10 @@
     <h3 style="margin: 10px 0;">Booking Successful</h3>
     <p>Your ticket booking is successful. The ticket has been sent to {{$order->email}}.</p>
     <div style="width:300px; border-radius: 8px; background-color:#e5e5e5;padding: 10px 15px; margin: auto">
-      <small>Order Id: <span class="text-success">{{$order->id}}</span>, Payment Id: <span class="text-success">{{$order->payment_id}}</span></small>
+      <small>
+        Order Id: <span class="text-success">{{$order->id}}</span>
+       <!-- Payment Id: <span class="text-success">{{$order->payment_id}}</span> -->
+      </small>
     </div>
   </article>
 </div>
