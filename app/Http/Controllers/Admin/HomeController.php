@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,7 +26,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // return view('home');
-        return redirect('/roles');
+        $orders = Order::select([
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('count(*) as orders'),
+            DB::raw('sum(total_price) as amount')
+        ])->groupBy(DB::raw('DATE(created_at)'))->get();
+        $data = [];
+        $amounts = [];
+        $labels = [];
+        $backgroundColors = [];
+        foreach($orders as $order){
+            $data[] = $order->orders;
+            $amounts[] = $order->amount;
+            $labels[] = $order->date;
+            $backgroundColors[] = "#dead1b";
+        }
+        return view('admin.home', compact("data", "amounts" ,"labels", "backgroundColors"));
     }
 }
