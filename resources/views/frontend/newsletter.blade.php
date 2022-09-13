@@ -1,4 +1,4 @@
-<!-- <div id="fh5co-started" style="background-image:url(images/cover_bg_2.jpg);" class="video-container"> -->
+<!-- <div id="fh5co-started" style="background-image:url(/images/cover_bg_2.jpg);" class="video-container"> -->
 <div id="fh5co-started">
 		<div class="overlay"></div>
 			<div class="video-container">

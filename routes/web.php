@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\OrderController;
@@ -77,6 +78,8 @@ Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutC
 Route::get('/payment-thank-you{id}', [RazorpayController::class, 'paymentSuccess']);
 
 Route::get("/event-{slug}", [FrontEventController::class, 'details']);
+// Route::get("/event/{slug}", [FrontEventController::class, 'details'])->name("event-details");
+// Route::get('/event-{slug}', function($slug) {
+//     return Redirect::to("/event/$slug");
+// });
 Route::get('/{id}', [FrontController::class, 'route']);
-
-Route::get('/testMail', [RazorpayController::class, 'testMail']);

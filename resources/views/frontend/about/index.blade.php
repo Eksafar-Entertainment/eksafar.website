@@ -14,7 +14,7 @@
 				<div class="row row-bottom-padded-md">
 					<div class="col-md-6 text-center animate-box">
 						<div class="wedding-events">
-							<div class="ceremony-bg" style="background-image: url(images/wed-ceremony.jpg);"></div>
+							<div class="ceremony-bg" style="background-image: url(/images/wed-ceremony.jpg);"></div>
 							<div class="desc">
 								<h3>Event Organisers</h3>
 								<p><strong>Music is the way to life</strong></p>
@@ -26,7 +26,7 @@
 					</div>
 					<div class="col-md-6 text-center animate-box">
 						<div class="wedding-events">
-							<div class="ceremony-bg" style="background-image: url(images/wed-party.jpg);"></div>
+							<div class="ceremony-bg" style="background-image: url(/images/wed-party.jpg);"></div>
 							<div class="desc">
 								<h3>Vacation and Tour Planners</h3>
 								<p><strong>Travel to find yourself</strong></p>

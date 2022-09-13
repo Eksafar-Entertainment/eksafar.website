@@ -14,7 +14,7 @@
 				<div class="row padding">
 					<div class="couple-wrap">
 						<div class="col-md-6 nopadding animate-box">
-							<img src="images/groom.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+							<img src="/images/groom.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
 						</div>
 						<div class="col-md-6 nopadding animate-box">
 							<div class="couple-desc">
@@ -34,7 +34,7 @@
 				<div class="row padding">
 					<div class="couple-wrap">
 						<div class="col-md-6 col-md-push-6 nopadding animate-box">
-							<img src="images/bride.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+							<img src="/images/bride.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
 						</div>
 						<div class="col-md-6 col-md-pull-6 nopadding animate-box">
 							<div class="couple-desc">

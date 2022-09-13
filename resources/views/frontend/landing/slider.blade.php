@@ -5,12 +5,12 @@
         <!-- <div class="row row-bottom-padded-md animate-box">
 					<div class="col-md-6 col-md-offset-3 text-center">
 						<div class="col-md-5 col-sm-5 col-xs-5 nopadding">
-							<img src="images/groom.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+							<img src="/images/groom.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
 							<h3>Jack Wood</h3>
 						</div>
 						<div class="col-md-2 col-sm-2 col-xs-2 nopadding"><h2 class="amp-center"><i class="icon-heart"></i></h2></div>
 						<div class="col-md-5 col-sm-5 col-xs-5 nopadding">
-							<img src="images/bride.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+							<img src="/images/bride.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
 							<h3>Rose Thomas</h3>
 						</div>
 					</div>
@@ -34,10 +34,10 @@
                 <div class="card">
                     <div class="front">
                         <div class="cover">
-                            <img src="images/rotating_card_profile.jpg" />
+                            <img src="/images/rotating_card_profile.jpg" />
                         </div>
                         <div class="user">
-                            <img class="img-circle" src="images/rotating_card_thumb.jpg" />
+                            <img class="img-circle" src="/images/rotating_card_thumb.jpg" />
                         </div>
                         <div class="content">
                             <div class="main">
@@ -104,10 +104,10 @@
                 <div class="card">
                     <div class="front">
                         <div class="cover">
-                            <img src="images/rotating_card_profile2.jpg" />
+                            <img src="/images/rotating_card_profile2.jpg" />
                         </div>
                         <div class="user">
-                            <img class="img-circle" src="images/rotating_card_thumb2.jpg" />
+                            <img class="img-circle" src="/images/rotating_card_thumb2.jpg" />
                         </div>
                         <div class="content">
                             <div class="main">
@@ -175,10 +175,10 @@
                 <div class="card">
                     <div class="front">
                         <div class="cover">
-                            <img src="images/rotating_card_profile3.jpg" />
+                            <img src="/images/rotating_card_profile3.jpg" />
                         </div>
                         <div class="user">
-                            <img src="images/rotating_card_thumb3.jpg" />
+                            <img src="/images/rotating_card_thumb3.jpg" />
                         </div>
                         <div class="content">
                             <div class="main">

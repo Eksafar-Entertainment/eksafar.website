@@ -19,14 +19,14 @@
     <div class="row row-bottom-padded-md animate-box">
       <div class="col-md-6 col-md-offset-3 text-center">
         <div class="col-md-5 col-sm-5 col-xs-5 nopadding">
-          <img src="images/groom.jpg" class="img-responsive" alt="event">
+          <img src="/images/groom.jpg" class="img-responsive" alt="event">
           <h3>Dandiya</h3>
         </div>
         <div class="col-md-2 col-sm-2 col-xs-2 nopadding">
           <h2 class="amp-center"><i class="icon-music2"></i></h2>
         </div>
         <div class="col-md-5 col-sm-5 col-xs-5 nopadding">
-          <img src="images/bride.png" class="img-responsive" alt="live music">
+          <img src="/images/bride.png" class="img-responsive" alt="live music">
           <h3>Live Music</h3>
         </div>
       </div>
