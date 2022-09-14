@@ -1,6 +1,6 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand" href="{{ url('/admin') }}">
         <!--{{ config('app.name', 'Laravel') }}-->
         <img height="35px" src="{{url('img/logo.png')}}" />
