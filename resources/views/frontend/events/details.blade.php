@@ -119,7 +119,7 @@
                         <td width="2%" nowrap class="text-right" style="vertical-align:middle; font-family: Menlo, Consolas, monospace; font-weight: 600; color: #cbd5e0; letter-spacing: -1px;">
                           ₹{{ $ticket->price }} x </td>
                         <td width="3%" nowrap style="vertical-align:middle">
-                          <input class="form-control form-control-sm quantity" style="min-width: 100px; color: #a0aec0;" type="number" name="items[{{ $ticket->id }}][quantity]" value="" min="0" max="20">
+                          <input class="form-control form-control-sm quantity" style="min-width: 100px; color: #a0aec0;" type="number" name="items[{{ $ticket->id }}][quantity]" value="" min="0" max="20" maxlength="2">
                           <input type="hidden" name="items[{{ $ticket->id }}][event_ticket_id]" value="{{ $ticket->id }}">
                           <input type="hidden" class="form-control rate" value="{{ $ticket->price }}">
                         </td>
