@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventTicket;
+use App\Models\Order;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 class EventController extends Controller
 {
     function index()
@@ -83,5 +85,50 @@ class EventController extends Controller
             return redirect('/admin/event');
         }
         return redirect('/admin/event');
+    }
+
+    public function dashboard($event_id){
+        $event = Event::where("id",$event_id)->first();
+
+        $orders = Order::select([
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('count(*) as orders'),
+            DB::raw('sum(total_price) as amount')
+        ])->where("status","SUCCESS")->groupBy(DB::raw('DATE(created_at)'))->get();
+
+        $revenue = 0;
+        $total_orders = 0;
+        $total_ticket_sold = 0;
+        
+        $tickets_sold_chart = [
+            "data"=>[],
+            "labels"=>[],
+            "total"=>0
+        ];
+
+        $tickets_sales_volume_chart = [
+            "data"=>[],
+            "labels"=>[],
+            "total"=>0
+        ];
+        foreach($orders as $order){
+            $tickets_sold_chart["data"][] = $order->orders;
+            $tickets_sales_volume_chart["data"][] = $order->amount;
+
+            $tickets_sold_chart["labels"][] = $order->date;
+            $tickets_sales_volume_chart["labels"][] = $order->date;
+
+            $tickets_sold_chart["total"] += $order->orders;
+            $tickets_sales_volume_chart["total"] += $order->amount;
+
+            $revenue +=$order->amount;
+            $total_orders +=$order->orders;
+        }
+
+
+        return view("admin.event.show", compact(
+            "event", "orders",
+            'revenue', 'total_orders', 'total_ticket_sold', "tickets_sales_volume_chart", "tickets_sold_chart"
+        ));
     }
 }

@@ -57,6 +57,7 @@ Route::group([
     //events
     Route::controller(EventController::class)->group(function () {
         Route::get('/event',  "index");
+        Route::get('/event/{event_id}/dashboard', [EventController::class, 'dashboard']);
 
         Route::get('/event/delete/{id}', "delete");
 

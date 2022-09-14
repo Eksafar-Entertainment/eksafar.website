@@ -23,6 +23,8 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
 </head>
 
 <body class="">
@@ -37,7 +39,7 @@
         </div>
     <main>
        
-        <div class="container-fluid mt-3">
+        <div class="container-fluid pt-4">
             @yield('content')
         </div>
     </main>
