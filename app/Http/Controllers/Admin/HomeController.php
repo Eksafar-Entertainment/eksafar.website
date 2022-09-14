@@ -30,7 +30,7 @@ class HomeController extends Controller
             DB::raw('DATE(created_at) as date'),
             DB::raw('count(*) as orders'),
             DB::raw('sum(total_price) as amount')
-        ])->groupBy(DB::raw('DATE(created_at)'))->get();
+        ])->where("status","SUCCESS")->groupBy(DB::raw('DATE(created_at)'))->get();
         $data = [];
         $amounts = [];
         $labels = [];
