@@ -195,7 +195,7 @@ class EventController extends Controller
     public function getTicketForm($event_id, Request $request){
         $event = Event::where("id", $event_id)->first();
         
-        $event_ticket = EventTicket::where("id", $request->event_ticket_id)->first();
+        $event_ticket = EventTicket::where("id", $request->event_ticket_id)->first()?? new EventTicket();
         return response()->json([
             "status" => 200,
             'message'=>'Successfully fetched data',
@@ -205,8 +205,9 @@ class EventController extends Controller
             ])->render()
         ]);
     }
-    public  function saveTicket($event_id, Request $request){
+    public function saveTicket($event_id, Request $request){
         $event_ticket = EventTicket::where("id", $request->event_ticket_id)->first()??new EventTicket();
+        $event_ticket->event_id= $event_id;
         $event_ticket->name = $request->name;
         $event_ticket->persons = $request->persons;
         $event_ticket->price = $request->price;

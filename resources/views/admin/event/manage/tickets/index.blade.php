@@ -26,42 +26,45 @@
                 <div class="col-auto">
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
+                <div class="col-auto">
+                    <button type="button" onclick="openForm('')" class="btn btn-primary">New Ticket</button>
+                </div>
             </div>
         </form>
     </div>
 
     <div class="overflow-auto">
-    <table class="table table-bordered table-striped mt-4 bg-white">
-        <thead>
-            <tr>
-                <th width="1%">#</th>
-                <th width="1%">ID</th>
+        <table class="table table-bordered table-striped mt-4 bg-white">
+            <thead>
+                <tr>
+                    <th width="1%">#</th>
+                    <th width="1%">ID</th>
 
-                <th>Name</th>
-                <th>Description</th>
-                <th>Persons</th>
-                <th>Price</th>
-                <th width="3%"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($event_tickets as $key => $event_ticket)
-                <tr class="data-row" data-row-id="{{ $event_ticket->id }}">
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $event_ticket->id }}</td>
-                    <td>{{ $event_ticket->name }}</td>
-                    <td>{{ $event_ticket->description }}</td>
-                    <td>{{ $event_ticket->persons }}</td>
-                    <td>₹{{ $event_ticket->price }}</td>
-                    <td>
-                        <a href="javascript:void()" onclick="openForm('{{ $event_ticket->id }}')">
-                            <i class="fas fa-pencil"></i>
-                        </a>
-                    </td>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Persons</th>
+                    <th>Price</th>
+                    <th width="3%"></th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($event_tickets as $key => $event_ticket)
+                    <tr class="data-row" data-row-id="{{ $event_ticket->id }}">
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ $event_ticket->id }}</td>
+                        <td>{{ $event_ticket->name }}</td>
+                        <td>{{ $event_ticket->description }}</td>
+                        <td>{{ $event_ticket->persons }}</td>
+                        <td>₹{{ $event_ticket->price }}</td>
+                        <td>
+                            <a href="javascript:void()" onclick="openForm('{{ $event_ticket->id }}')">
+                                <i class="fas fa-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <div class="d-flex mt-4">
@@ -102,6 +105,8 @@
                 processData: false,
                 data: new FormData(event.target),
                 success: function(result) {
+                    alert(result.message);
+                    window.location.reload();
                     formModal.hide();
                 }
             });
