@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-3 col-sm-6">
             <div class="card card-body text-center">
-                <h3 class="fw-light text-primary">{{ $event->views }}</h3>
+                <h3 class="fw-light text-primary">{{ $views }}</h3>
                 <small>EVENT VIEWS</small>
             </div>
         </div>
@@ -58,7 +58,17 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-12 mt-4">
+        <div class="col-12 col-md-6 mt-4">
+            <div class="card card-body">
+                <div class="d-flex align-items-center mb-2">
+                    <h6 class="flex-grow-1 fw-bold">Event Views</h6>
+                    <span class="text-success">{{$event_views_chart['total']}} total</span>
+                </div>
+                <canvas id="eventViewsChart" style="width: 100%; height: 220px;"></canvas>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mt-4">
             <div class="card card-body">
                 <div class="d-flex align-items-center mb-2">
                     <h6 class="flex-grow-1 fw-bold">Tickets Sales Details</h6>
@@ -146,8 +156,30 @@
                 }
             });
 
-            const ctx3 = document.getElementById('ticketDetailsChart').getContext('2d');
+            const ctx3 = document.getElementById('eventViewsChart').getContext('2d');
             const myChart3 = new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: JSON.parse(`{!! json_encode($event_views_chart['labels']) !!}`),
+                    datasets: [{
+                        data: JSON.parse(`{!! json_encode($event_views_chart['data']) !!}`),
+                        fill: false,
+                        borderColor: '#006699',
+                        backgroundColor: "#006699",
+                        tension: 0,
+                        pointStyle: 'circle',
+                        pointRadius: 5,
+                        pointBorderColor: '#006699'
+                    }],
+
+                },
+                options: options
+
+            });
+
+
+            const ctx4 = document.getElementById('ticketDetailsChart').getContext('2d');
+            const myChart4 = new Chart(ctx4, {
                 type: 'line',
                 data: JSON.parse('{!! json_encode($tickets_sold_details_chart) !!}'),
                 options: {

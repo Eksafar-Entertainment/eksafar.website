@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\FormBuilder;
 use App\Http\Controllers\Controller;
+use App\Models\AccessLog;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventTicket;
@@ -95,6 +96,12 @@ class EventController extends Controller
     {
         $event = Event::where("id", $event_id)->first();
         $event_tickets = EventTicket::where("event_id", $event_id)->get();
+        $event_views = AccessLog::select([
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('count(*) as count'),
+        ])
+            ->where("uri", "/event-" . $event->slug)
+            ->groupBy(DB::raw('DATE(created_at)'))->get();
 
         $orders = Order::select([
             DB::raw("GROUP_CONCAT(id) as ids"),
@@ -124,6 +131,7 @@ class EventController extends Controller
             ->get();
 
         $revenue = 0;
+        $views = 0;
         $total_orders = 0;
         $total_ticket_sold = 0;
 
@@ -132,34 +140,39 @@ class EventController extends Controller
             "labels" => [],
             "total" => 0
         ];
-
-
         $tickets_sales_volume_chart = [
             "data" => [],
             "labels" => [],
             "total" => 0
         ];
 
-        $tickets_sold_details_chart = [
-            "labels" =>[],
-            "datasets"=>[]
+        $event_views_chart = [
+            "data" => [],
+            "labels" => [],
+            "total" => 0
         ];
-        function rand_color() {
+
+        $tickets_sold_details_chart = [
+            "labels" => [],
+            "datasets" => []
+        ];
+        function rand_color()
+        {
             return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
         }
         $colors = ["red", "green", "blue", "yellow", "orange", "indigo", "purple", "brown"];
-        foreach ($event_tickets as $i=>$event_ticket) {
+        foreach ($event_tickets as $i => $event_ticket) {
             $color = $colors[$i];
             $tickets_sold_details_chart["datasets"][$event_ticket->id] = [
                 "data" => [],
                 "label" => $event_ticket->name,
                 "fill" => false,
-                "borderColor" => $color ,
-                "backgroundColor" => $color ,
+                "borderColor" => $color,
+                "backgroundColor" => $color,
                 "tension" => 0,
                 "pointStyle" => 'circle',
                 "pointRadius" => 5,
-                "pointBorderColor" => $color 
+                "pointBorderColor" => $color
             ];
         }
 
@@ -168,10 +181,12 @@ class EventController extends Controller
         foreach ($period as $date) {
             $key = $date->format("Y-m-d");
             $tickets_sold_chart["data"][$key] = 0;
-            $tickets_sold_chart["labels"][$key] = $date->format("d M,y");;
-
             $tickets_sales_volume_chart["data"][$key] = 0;
+            $event_views_chart["data"][$key] = 0;
+
+            $tickets_sold_chart["labels"][$key] = $date->format("d M,y");;
             $tickets_sales_volume_chart["labels"][$key] = $date->format("d M,y");
+            $event_views_chart["labels"][$key] = $date->format("d M,y");
 
             //details chart
             $tickets_sold_details_chart["labels"][$key] = $date->format("d M,y");;
@@ -191,6 +206,12 @@ class EventController extends Controller
             $total_orders += $order->orders;
         }
 
+        foreach($event_views as $event_view){
+            $event_views_chart["data"][$event_view->date] = $event_view->count;
+            $event_views_chart["total"] += $event_view->count;
+            $views += $order->count;
+        }
+
         foreach ($order_details as $order_detail) {
             $tickets_sold_details_chart["datasets"][$order_detail->event_ticket_id]["data"][$order_detail->date] = $order_detail->orders;
             $total_ticket_sold += $order_detail->orders;
@@ -204,11 +225,16 @@ class EventController extends Controller
         $tickets_sales_volume_chart["data"] = array_values($tickets_sales_volume_chart["data"]);
         $tickets_sales_volume_chart["labels"] = array_values($tickets_sales_volume_chart["labels"]);
 
+        $event_views_chart["data"] = array_values($event_views_chart["data"]);
+        $event_views_chart["labels"] = array_values($event_views_chart["labels"]);
+
         foreach ($tickets_sold_details_chart["datasets"] as $k => $tickets_sold_details_chart_row) {
             $tickets_sold_details_chart["datasets"][$k]["data"] = array_values($tickets_sold_details_chart["datasets"][$k]["data"]);
         }
         $tickets_sold_details_chart["labels"] = array_values($tickets_sold_details_chart["labels"]);
         $tickets_sold_details_chart["datasets"] = array_values($tickets_sold_details_chart["datasets"]);
+
+
 
         return view("admin.event.manage.dashboard", compact(
             "event",
@@ -218,7 +244,9 @@ class EventController extends Controller
             'total_ticket_sold',
             "tickets_sales_volume_chart",
             "tickets_sold_chart",
-            "tickets_sold_details_chart"
+            "tickets_sold_details_chart",
+            "views",
+            "event_views_chart"
         ));
     }
 

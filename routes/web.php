@@ -27,13 +27,8 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 |
 */
 
-Route::get('/', [FrontController::class, 'index']);
 
 Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-
 Route::group([
     'middleware' => ['auth'],
     'prefix' => "/admin"
@@ -76,10 +71,15 @@ Route::group([
 Route::post('/payment/checkout', [RazorpayController::class, 'checkout']);
 Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutComplete'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
-
-Route::get("/event-{slug}", [FrontEventController::class, 'details']);
-Route::get("/event/{slug}", [FrontEventController::class, 'details']);
-// Route::get('/event-{slug}', function($slug) {
-//     return Redirect::to("/event/$slug");
-// });
-Route::get('/{id}', [FrontController::class, 'route']);
+Route::group([
+    "middleware" => ["access_log"],
+    "prefix"=>"/"
+], function () {
+    Route::get('/', [FrontController::class, 'index']);
+    Route::get("/event-{slug}", [FrontEventController::class, 'details']);
+    Route::get("/event/{slug}", [FrontEventController::class, 'details']);
+    // Route::get('/event-{slug}', function($slug) {
+    //     return Redirect::to("/event/$slug");
+    // });
+    Route::get('/{id}', [FrontController::class, 'route']);
+});
