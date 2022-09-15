@@ -144,7 +144,7 @@ class EventController extends Controller
         $where = [];
         $orders = Order::leftJoin('promoters', function ($join) {
             $join->on('promoters.id', '=', 'orders.promoter_id');
-        });
+        })->where("orders.event_id", $event_id);
         
         if(isset($request->query()["id"]) && $request->query()["id"]!=""){
             $orders->where("orders.id", $request->query()["id"]);
