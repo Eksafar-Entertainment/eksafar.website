@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-3 col-sm-4">
                 <div class="card card-body text-center">
-                    <h3 class="fw-light text-primary">₹{{ $total_orders }}</h3>
+                    <h3 class="fw-light text-primary">{{ $total_orders }}</h3>
                     <small>ORDERS</small>
                 </div>
             </div>
@@ -46,28 +46,22 @@
                     <canvas id="amountChart" width="400" height="150"></canvas>
                 </div>
             </div>
+
+            <div class="col col-md-6 mt-4">
+                <div class="card card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <h6 class="flex-grow-1 fw-bold">Tickets Sales Details</h6>
+                        <span class="text-success">{{ $total_ticket_sold }} total</span>
+                    </div>
+                    <canvas id="ticketDetailsChart" width="400" height="150"></canvas>
+                </div>
+            </div>
         </div>
 
 
         <script>
             window.onload = () => {
-                const ctx = document.getElementById('ordersChart').getContext('2d');
-                const myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: JSON.parse('{!! json_encode($tickets_sold_chart['labels']) !!}'),
-                        datasets: [{
-                            data: JSON.parse('{!! json_encode($tickets_sold_chart['data']) !!}'),
-                            fill: false,
-                            borderColor: '#006699',
-                            backgroundColor: "#006699",
-                            tension: 0,
-                            pointStyle: 'circle',
-                            pointRadius: 5,
-                            pointBorderColor: '#006699'
-                        }]
-                    },
-                    options: {
+                const options =  {
                         plugins: {
                             legend: {
                                 display: false,
@@ -79,7 +73,6 @@
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                //grace: 10,
                                 ticks: {
                                     callback: function(label, index, labels) {
                                         return label;
@@ -87,16 +80,34 @@
                                 },
                             },
                         }
-                    }
+                    };
+                const ctx = document.getElementById('ordersChart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: JSON.parse(`{!! json_encode($tickets_sold_chart['labels']) !!}`),
+                        datasets: [{
+                            data: JSON.parse(`{!! json_encode($tickets_sold_chart['data']) !!}`),
+                            fill: false,
+                            borderColor: '#006699',
+                            backgroundColor: "#006699",
+                            tension: 0,
+                            pointStyle: 'circle',
+                            pointRadius: 5,
+                            pointBorderColor: '#006699'
+                        }],
+                        options: options
+                    },
+                    
                 });
 
                 const ctx2 = document.getElementById('amountChart').getContext('2d');
                 const myChart2 = new Chart(ctx2, {
                     type: 'line',
                     data: {
-                        labels: JSON.parse('{!! json_encode($tickets_sales_volume_chart['labels']) !!}'),
+                        labels: JSON.parse(`{!! json_encode($tickets_sales_volume_chart['labels']) !!}`),
                         datasets: [{
-                            data: JSON.parse('{!! json_encode($tickets_sales_volume_chart['data']) !!}'),
+                            data: JSON.parse(`{!! json_encode($tickets_sales_volume_chart['data']) !!}`),
                             fill: false,
                             borderColor: '#006699',
                             backgroundColor: "#006699",
@@ -106,25 +117,23 @@
                             pointBorderColor: '#006699'
                         }]
                     },
+                    options: options
+                });
+
+                const ctx3 = document.getElementById('ticketDetailsChart').getContext('2d');
+                const myChart3 = new Chart(ctx3, {
+                    type: 'line',
+                    data: JSON.parse('{!! json_encode($tickets_sold_details_chart) !!}'),
                     options: {
+                        ...options,
                         plugins: {
                             legend: {
-                                display: false,
+                                display: true,
                                 labels: {
                                     usePointStyle: true,
                                 },
                             }
                         },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(label, index, labels) {
-                                        return '₹' + label;
-                                    }
-                                },
-                            },
-                        }
                     }
                 });
             }

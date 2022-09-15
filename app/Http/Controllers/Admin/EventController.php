@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventTicket;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Carbon;
+
 class EventController extends Controller
 {
     function index()
@@ -58,25 +62,25 @@ class EventController extends Controller
 
         $event->save();
         //save event details
-        foreach($request->event_tickets as $ticket){
-            
+        foreach ($request->event_tickets as $ticket) {
 
-            if($ticket["name"] == "" && $ticket["price"]==""){
-                if($ticket["id"] > 0){
+
+            if ($ticket["name"] == "" && $ticket["price"] == "") {
+                if ($ticket["id"] > 0) {
                     EventTicket::find($ticket["id"])->delete();
                 }
                 continue;
             }
             //continue;
-            $event_ticket = $ticket["id"] > 0? EventTicket::find($ticket["id"]) : new EventTicket();
-            $event_ticket->name = $ticket["name"]??"jfghkcjhjk";
+            $event_ticket = $ticket["id"] > 0 ? EventTicket::find($ticket["id"]) : new EventTicket();
+            $event_ticket->name = $ticket["name"] ?? "jfghkcjhjk";
             $event_ticket->price = $ticket["price"];
             $event_ticket->description = $ticket["description"];
             $event_ticket->persons = $ticket["persons"];
             $event_ticket->event_id = $event->id;
             $event_ticket->save();
         }
-        return redirect('/admin/event/form/'.$event->id);
+        return redirect('/admin/event/form/' . $event->id);
     }
     function delete($eventId)
     {
@@ -87,54 +91,140 @@ class EventController extends Controller
         return redirect('/admin/event');
     }
 
-    public function dashboard($event_id){
-        $event = Event::where("id",$event_id)->first();
+    public function dashboard($event_id)
+    {
+        $event = Event::where("id", $event_id)->first();
+        $event_tickets = EventTicket::where("event_id", $event_id)->get();
 
         $orders = Order::select([
+            DB::raw("GROUP_CONCAT(id) as ids"),
             DB::raw('DATE(created_at) as date'),
             DB::raw('count(*) as orders'),
             DB::raw('sum(total_price) as amount')
-        ])->where("status","SUCCESS")->groupBy(DB::raw('DATE(created_at)'))->get();
+        ])
+            ->where("status", "SUCCESS")
+            ->where("event_id", $event_id)
+            ->groupBy(DB::raw('DATE(created_at)'))->get();
+
+
+
+        $order_ids = array_reduce($orders->all(), function ($ids, $order) {
+            return array_merge($ids, explode(",", $order->ids));
+        }, []);
+
+        $order_details = OrderDetail::select([
+            "event_ticket_id",
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('sum(quantity) as orders'),
+            DB::raw('sum(price) as amount')
+        ])
+            ->groupBy("event_ticket_id")
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->whereIn("order_id", $order_ids)
+            ->get();
 
         $revenue = 0;
         $total_orders = 0;
         $total_ticket_sold = 0;
-        
+
         $tickets_sold_chart = [
-            "data"=>[],
-            "labels"=>[],
-            "total"=>0
+            "data" => [],
+            "labels" => [],
+            "total" => 0
         ];
+
 
         $tickets_sales_volume_chart = [
-            "data"=>[],
-            "labels"=>[],
-            "total"=>0
+            "data" => [],
+            "labels" => [],
+            "total" => 0
         ];
-        foreach($orders as $order){
-            $tickets_sold_chart["data"][] = $order->orders;
-            $tickets_sales_volume_chart["data"][] = $order->amount;
 
-            $tickets_sold_chart["labels"][] = $order->date;
-            $tickets_sales_volume_chart["labels"][] = $order->date;
+        $tickets_sold_details_chart = [
+            "labels" =>[],
+            "datasets"=>[]
+        ];
+        function rand_color() {
+            return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+        }
+        $colors = ["red", "green", "blue", "yellow", "orange", "indigo", "purple", "brown"];
+        foreach ($event_tickets as $i=>$event_ticket) {
+            $color = $colors[$i];
+            $tickets_sold_details_chart["datasets"][$event_ticket->id] = [
+                "data" => [],
+                "label" => $event_ticket->name,
+                "fill" => false,
+                "borderColor" => $color ,
+                "backgroundColor" => $color ,
+                "tension" => 0,
+                "pointStyle" => 'circle',
+                "pointRadius" => 5,
+                "pointBorderColor" => $color 
+            ];
+        }
+
+
+        $period = CarbonPeriod::create(Carbon::parse($event->created_at)->format("Y-m-d"), date("Y-m-d"));
+        foreach ($period as $date) {
+            $key = $date->format("Y-m-d");
+            $tickets_sold_chart["data"][$key] = 0;
+            $tickets_sold_chart["labels"][$key] = $date->format("d M,y");;
+
+            $tickets_sales_volume_chart["data"][$key] = 0;
+            $tickets_sales_volume_chart["labels"][$key] = $date->format("d M,y");
+
+            //details chart
+            $tickets_sold_details_chart["labels"][$key] = $date->format("d M,y");;
+            foreach ($tickets_sold_details_chart["datasets"] as $k => $tickets_sold_details_chart_row) {
+                $tickets_sold_details_chart["datasets"][$k]["data"][$key] = 0;
+            }
+        }
+        foreach ($orders as $order) {
+            $tickets_sold_chart["data"][$order->date] = $order->orders;
+
+            $tickets_sales_volume_chart["data"][$order->date] = $order->amount;
 
             $tickets_sold_chart["total"] += $order->orders;
             $tickets_sales_volume_chart["total"] += $order->amount;
 
-            $revenue +=$order->amount;
-            $total_orders +=$order->orders;
+            $revenue += $order->amount;
+            $total_orders += $order->orders;
+        }
+
+        foreach ($order_details as $order_detail) {
+            $tickets_sold_details_chart["datasets"][$order_detail->event_ticket_id]["data"][$order_detail->date] = $order_detail->orders;
+            $total_ticket_sold += $order_detail->orders;
         }
 
 
+
+        $tickets_sold_chart["data"] = array_values($tickets_sold_chart["data"]);
+        $tickets_sold_chart["labels"] = array_values($tickets_sold_chart["labels"]);
+
+        $tickets_sales_volume_chart["data"] = array_values($tickets_sales_volume_chart["data"]);
+        $tickets_sales_volume_chart["labels"] = array_values($tickets_sales_volume_chart["labels"]);
+
+        foreach ($tickets_sold_details_chart["datasets"] as $k => $tickets_sold_details_chart_row) {
+            $tickets_sold_details_chart["datasets"][$k]["data"] = array_values($tickets_sold_details_chart["datasets"][$k]["data"]);
+        }
+        $tickets_sold_details_chart["labels"] = array_values($tickets_sold_details_chart["labels"]);
+        $tickets_sold_details_chart["datasets"] = array_values($tickets_sold_details_chart["datasets"]);
+
         return view("admin.event.manage.dashboard", compact(
-            "event", "orders",
-            'revenue', 'total_orders', 'total_ticket_sold', "tickets_sales_volume_chart", "tickets_sold_chart"
+            "event",
+            "orders",
+            'revenue',
+            'total_orders',
+            'total_ticket_sold',
+            "tickets_sales_volume_chart",
+            "tickets_sold_chart",
+            "tickets_sold_details_chart"
         ));
     }
 
     public function orders($event_id, Request $request)
     {
-        $event = Event::where("id",$event_id)->first();
+        $event = Event::where("id", $event_id)->first();
 
         $colors = [
             "SUCCESS" => "success",
@@ -145,19 +235,19 @@ class EventController extends Controller
         $orders = Order::leftJoin('promoters', function ($join) {
             $join->on('promoters.id', '=', 'orders.promoter_id');
         })->where("orders.event_id", $event_id);
-        
-        if(isset($request->query()["id"]) && $request->query()["id"]!=""){
+
+        if (isset($request->query()["id"]) && $request->query()["id"] != "") {
             $orders->where("orders.id", $request->query()["id"]);
         }
 
-        if(isset($request->query()["status"]) && $request->query()["status"]!=""){
+        if (isset($request->query()["status"]) && $request->query()["status"] != "") {
             $orders->where("orders.status", $request->query()["status"]);
         }
 
-        if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
+        if (isset($request->query()["keyword"]) && $request->query()["keyword"] != "") {
             $orders->where(function ($query) {
                 global $request;
-                $query->orWhere("orders.name","like", "%{$request->query()["keyword"]}%");
+                $query->orWhere("orders.name", "like", "%{$request->query()["keyword"]}%");
             });
         }
         $orders = $orders
@@ -175,15 +265,15 @@ class EventController extends Controller
     //Ticket related things
     public function tickets($event_id, Request $request)
     {
-        $event = Event::where("id",$event_id)->first();
+        $event = Event::where("id", $event_id)->first();
         $where = [];
         $event_tickets = EventTicket::where("event_id", $event_id);
-        
-        if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
+
+        if (isset($request->query()["keyword"]) && $request->query()["keyword"] != "") {
             $event_tickets->where(function ($query) {
                 global $request;
-                $query->orWhere("name","like", "%{$request->query()["keyword"]}%");
-                $query->orWhere("description","like", "%{$request->query()["keyword"]}%");
+                $query->orWhere("name", "like", "%{$request->query()["keyword"]}%");
+                $query->orWhere("description", "like", "%{$request->query()["keyword"]}%");
             });
         }
         $event_tickets = $event_tickets
@@ -192,22 +282,24 @@ class EventController extends Controller
         return view("admin.event.manage.tickets.index", compact('event', 'event_tickets'));
     }
 
-    public function getTicketForm($event_id, Request $request){
+    public function getTicketForm($event_id, Request $request)
+    {
         $event = Event::where("id", $event_id)->first();
-        
-        $event_ticket = EventTicket::where("id", $request->event_ticket_id)->first()?? new EventTicket();
+
+        $event_ticket = EventTicket::where("id", $request->event_ticket_id)->first() ?? new EventTicket();
         return response()->json([
             "status" => 200,
-            'message'=>'Successfully fetched data',
-            'html'=>view("admin.event.manage.tickets.form", [
+            'message' => 'Successfully fetched data',
+            'html' => view("admin.event.manage.tickets.form", [
                 'event_ticket' => $event_ticket,
                 'event' => $event,
             ])->render()
         ]);
     }
-    public function saveTicket($event_id, Request $request){
-        $event_ticket = EventTicket::where("id", $request->event_ticket_id)->first()??new EventTicket();
-        $event_ticket->event_id= $event_id;
+    public function saveTicket($event_id, Request $request)
+    {
+        $event_ticket = EventTicket::where("id", $request->event_ticket_id)->first() ?? new EventTicket();
+        $event_ticket->event_id = $event_id;
         $event_ticket->name = $request->name;
         $event_ticket->persons = $request->persons;
         $event_ticket->price = $request->price;
@@ -215,8 +307,7 @@ class EventController extends Controller
         $event_ticket->save();
         return response()->json([
             "status" => 200,
-            'message'=>'Successfully updated ticket',
+            'message' => 'Successfully updated ticket',
         ]);
     }
-
 }
