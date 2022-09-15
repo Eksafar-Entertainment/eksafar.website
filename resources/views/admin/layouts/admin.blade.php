@@ -39,7 +39,7 @@
         </div>
     <main>
        
-        <div class="container-fluid pt-4">
+        <div class="container-lg pt-4">
             @yield('content')
         </div>
     </main>

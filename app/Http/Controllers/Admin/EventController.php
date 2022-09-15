@@ -126,7 +126,7 @@ class EventController extends Controller
         }
 
 
-        return view("admin.event.show", compact(
+        return view("admin.event.dashboard", compact(
             "event", "orders",
             'revenue', 'total_orders', 'total_ticket_sold', "tickets_sales_volume_chart", "tickets_sold_chart"
         ));
