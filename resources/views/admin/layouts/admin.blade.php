@@ -39,8 +39,11 @@
     </div>
     <main>
 
-        <div class="container-lg pt-4">
+        <div class="container-lg py-4">
             @yield('content')
+        </div>
+        <div class="text-center p-2">
+            <small>Made by <a href="">Xpeed Technologies</a></small>
         </div>
     </main>
 
