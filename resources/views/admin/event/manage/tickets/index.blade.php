@@ -30,7 +30,7 @@
         </form>
     </div>
 
-    <div class="over"
+    <div class="overflow-auto">
     <table class="table table-bordered table-striped mt-4 bg-white">
         <thead>
             <tr>
@@ -62,6 +62,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
     <div class="d-flex mt-4">
         @include('admin.common.pagination', ['paginator' => $event_tickets])
