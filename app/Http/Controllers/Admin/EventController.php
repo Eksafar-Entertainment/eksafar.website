@@ -40,7 +40,7 @@ class EventController extends Controller
         $event = $eventId  > 0 ? Event::where(["id" => $eventId])->first() : new Event();
 
         $event->name = $request->name;
-        $event->slug = Str::slug($request->name);
+        $event->slug = $event->slug==null || $event->slug==""? Str::slug($request->name):$event->slug;
         $event->entry_type = $request->entry_type;
         $event->venue = $request->venue;
         $event->city = $request->city;
