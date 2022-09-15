@@ -30,16 +30,16 @@
     </div>
     <div class="row">
 
-        <div class="col col-md-6 mt-4">
+        <div class="col-12 col-md-6 mt-4">
             <div class="card card-body">
                 <div class="d-flex align-items-center mb-2">
                     <h6 class="flex-grow-1 fw-bold">Tickets Sold</h6>
                     <span class="text-success">{{ $tickets_sold_chart['total'] }} total</span>
                 </div>
-                <canvas id="ordersChart" width="400" height="150"></canvas>
+                <canvas id="ordersChart" style="width: 100%; height: 220px;"></canvas>
             </div>
         </div>
-        <div class="col col-md-6 mt-4">
+        <div class="col-12 col-md-6 mt-4">
             <div class="card card-body">
                 <div class="d-flex align-items-center mb-2">
                     <h6 class="flex-grow-1 fw-bold">Tickets Sales Volume</h6>
@@ -48,17 +48,17 @@
                         total
                     </span>
                 </div>
-                <canvas id="amountChart" width="400" height="150"></canvas>
+                <canvas id="amountChart" style="width: 100%; height: 220px;"></canvas>
             </div>
         </div>
 
-        <div class="col col-md-6 mt-4">
+        <div class="col-12 col-md-12 mt-4">
             <div class="card card-body">
                 <div class="d-flex align-items-center mb-2">
                     <h6 class="flex-grow-1 fw-bold">Tickets Sales Details</h6>
                     <span class="text-success">{{ $total_ticket_sold }} total</span>
                 </div>
-                <canvas id="ticketDetailsChart" width="400" height="150"></canvas>
+                <canvas id="ticketDetailsChart"  style="width: 100%; height: 220px;"></canvas>
             </div>
         </div>
     </div>
