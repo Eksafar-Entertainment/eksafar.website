@@ -101,8 +101,9 @@
                         pointRadius: 5,
                         pointBorderColor: '#006699'
                     }],
-                    options: options
+                   
                 },
+                options: options
 
             });
 
