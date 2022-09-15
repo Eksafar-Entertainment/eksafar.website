@@ -6,7 +6,7 @@
 <div>
     <h4>Event Dashboard</h4>
     <div class="row mt-4">
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6 mb-4">
             <div class="card card-body text-center">
                 <h3 class="fw-light text-primary">
                     @money($revenue)
@@ -14,19 +14,19 @@
                 <small>REVENUE</small>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6 mb-4">
             <div class="card card-body text-center">
                 <h3 class="fw-light text-primary">{{ $total_orders }}</h3>
                 <small>ORDERS</small>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6 mb-4">
             <div class="card card-body text-center">
                 <h3 class="fw-light text-primary">{{ $total_ticket_sold }}</h3>
                 <small>TICKETS SOLD</small>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6 mb-4">
             <div class="card card-body text-center">
                 <h3 class="fw-light text-primary">{{ $event_views_chart['total'] }}</h3>
                 <small>EVENT VIEWS</small>
@@ -36,7 +36,7 @@
     </div>
     <div class="row">
 
-        <div class="col-12 col-md-6 mt-4">
+        <div class="col-12 col-md-6 mb-4">
             <div class="card card-body">
                 <div class="d-flex align-items-center mb-2">
                     <h6 class="flex-grow-1 fw-bold">Tickets Sold</h6>
@@ -45,7 +45,7 @@
                 <canvas id="ordersChart" style="width: 100%; height: 220px;"></canvas>
             </div>
         </div>
-        <div class="col-12 col-md-6 mt-4">
+        <div class="col-12 col-md-6 mb-4">
             <div class="card card-body">
                 <div class="d-flex align-items-center mb-2">
                     <h6 class="flex-grow-1 fw-bold">Tickets Sales Volume</h6>
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-6 mt-4">
+        <div class="col-12 col-md-6 mb-4">
             <div class="card card-body">
                 <div class="d-flex align-items-center mb-2">
                     <h6 class="flex-grow-1 fw-bold">Event Views</h6>
@@ -68,7 +68,7 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-6 mt-4">
+        <div class="col-12 col-md-6 mb-4">
             <div class="card card-body">
                 <div class="d-flex align-items-center mb-2">
                     <h6 class="flex-grow-1 fw-bold">Tickets Sales Details</h6>
