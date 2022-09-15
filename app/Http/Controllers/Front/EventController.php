@@ -18,8 +18,6 @@ class EventController extends Controller
         $tablet = $agent->isTablet();
 
         $event = Event::where(["slug"=>$eventSlug])->first();
-        $event->views +=1;
-        $event->save();
         if(!$event) return abort(404);
         $event_tickets= EventTicket::where(["event_id"=>$event->id])->get();
         return view("frontend.events.details", compact('desktop', 'mobile', 'tablet', 'type','event_tickets','event'));
