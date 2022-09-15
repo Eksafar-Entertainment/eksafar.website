@@ -206,29 +206,15 @@ class EventController extends Controller
         ]);
     }
     public  function saveTicket($event_id, Request $request){
-        foreach($request->event_tickets as $ticket){
-            if($ticket["name"] == "" && $ticket["price"]==""){
-                if($ticket["id"] > 0){
-                    EventTicket::find($ticket["id"])->delete();
-                }
-                continue;
-            }
-            $event_ticket = $ticket["id"] > 0? EventTicket::find($ticket["id"]) : new EventTicket();
-            $event_ticket->name = $ticket["name"]??"jfghkcjhjk";
-            $event_ticket->price = $ticket["price"];
-            $event_ticket->description = $ticket["description"];
-            $event_ticket->persons = $ticket["persons"];
-            $event_ticket->event_id = $event_id;
-            $event_ticket->save();
-        }
-
+        $event_ticket = EventTicket::where("id", $request->event_ticket_id)->first()??new EventTicket();
+        $event_ticket->name = $request->name;
+        $event_ticket->persons = $request->persons;
+        $event_ticket->price = $request->price;
+        $event_ticket->description = $request->description;
+        $event_ticket->save();
         return response()->json([
             "status" => 200,
-            'message'=>'Successfully fetched data',
-            'html'=>view("admin.order.check-in-details", [
-                'order' => $order,
-                'order_details' => $order_details
-            ])->render()
+            'message'=>'Successfully updated ticket',
         ]);
     }
 

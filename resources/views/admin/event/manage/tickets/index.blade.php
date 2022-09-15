@@ -30,6 +30,7 @@
         </form>
     </div>
 
+    <div class="over"
     <table class="table table-bordered table-striped mt-4 bg-white">
         <thead>
             <tr>
@@ -40,7 +41,7 @@
                 <th>Description</th>
                 <th>Persons</th>
                 <th>Price</th>
-                <th width="3%">Action</th>
+                <th width="3%"></th>
             </tr>
         </thead>
         <tbody>
@@ -52,7 +53,11 @@
                     <td>{{ $event_ticket->description }}</td>
                     <td>{{ $event_ticket->persons }}</td>
                     <td>₹{{ $event_ticket->price }}</td>
-                    <td><a class="btn btn-small btn-default" onclick="openForm('{{$event_ticket->id}}')">F</a></td>
+                    <td>
+                        <a href="javascript:void()" onclick="openForm('{{ $event_ticket->id }}')">
+                            <i class="fas fa-pencil"></i>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -65,31 +70,38 @@
 
     <div class="modal fade" tabindex="-1" id="form-modal">
         <div class="modal-dialog">
-    
+
         </div>
     </div>
     <script>
+        let formModal = null;
+
         function openForm(event_ticket_id) {
             jQuery.ajax({
-                url: "{{ url('/admin/event/'.$event->id.'/tickets/form') }}",
+                url: "{{ url('/admin/event/' . $event->id . '/tickets/form') }}",
                 method: 'post',
                 data: {
                     event_ticket_id: event_ticket_id
                 },
                 success: function(result) {
                     $("#form-modal .modal-dialog").html(result.html);
-                    new bootstrap.Modal(document.getElementById('form-modal'), {}).show();
+                    formModal = new bootstrap.Modal(document.getElementById('form-modal'), {});
+                    formModal.show();
                 }
             });
         }
 
         function handleOnSubmitTicketForm(event) {
+            event.preventDefault();
             jQuery.ajax({
-                url: "{{ url('/admin/event/'.$event->id.'/tickets/') }}",
+                url: "{{ url('/admin/event/' . $event->id . '/tickets') }}",
                 method: 'post',
-                data: $(event.target).serialize(),
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: new FormData(event.target),
                 success: function(result) {
-                    new bootstrap.Modal(document.getElementById('form-modal'), {}).hide();
+                    formModal.hide();
                 }
             });
         }
