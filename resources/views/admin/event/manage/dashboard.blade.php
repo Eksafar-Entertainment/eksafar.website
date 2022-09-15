@@ -79,7 +79,7 @@
                         scales: {
                             y: {
                                 beginAtZero: true,
-                                grace: 10,
+                                //grace: 10,
                                 ticks: {
                                     callback: function(label, index, labels) {
                                         return label;
