@@ -1,26 +1,6 @@
 @extends('admin.layouts.admin')
 @section('subnav')
-    <div class="sub-nav">
-        <div class="container-lg px-0">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Tickets</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Customize</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Check-In</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    @include('admin.event.manage.partials.subnav', ["active"=>"dashboard"])
 @endsection
 @section('content')
     <div>

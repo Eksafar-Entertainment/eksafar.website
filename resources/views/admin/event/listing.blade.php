@@ -40,6 +40,7 @@
                             <td class="text-end">
                                 <a type="button" class="btn btn-sm btn-danger" onclick="if(confirm('Are you sure')){window.location.href=`{{url('admin/event/delete/'.$event->id)}}`}">Delete</a>
                                 <a type="button" class="btn btn-sm btn-primary" href="{{url('/admin/event/form/'.$event->id)}}">Edit</a>
+                                <a class="btn btn-sm btn-deafult" href="{{url('/admin/event/'.$event->id."/dashboard")}}">Manage</a>
                             </td>
                         </tr>
                         @endforeach
