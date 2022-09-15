@@ -6,7 +6,7 @@
 <div>
     <h4>Event Dashboard</h4>
     <div class="row mt-4">
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-3 col-sm-6">
             <div class="card card-body text-center">
                 <h3 class="fw-light text-primary">
                     @money($revenue)
@@ -14,16 +14,22 @@
                 <small>REVENUE</small>
             </div>
         </div>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-3 col-sm-6">
             <div class="card card-body text-center">
                 <h3 class="fw-light text-primary">{{ $total_orders }}</h3>
                 <small>ORDERS</small>
             </div>
         </div>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-3 col-sm-6">
             <div class="card card-body text-center">
                 <h3 class="fw-light text-primary">{{ $total_ticket_sold }}</h3>
                 <small>TICKETS SOLD</small>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card card-body text-center">
+                <h3 class="fw-light text-primary">{{ $event->views }}</h3>
+                <small>EVENT VIEWS</small>
             </div>
         </div>
 
