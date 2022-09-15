@@ -58,7 +58,7 @@
                     <h6 class="flex-grow-1 fw-bold">Tickets Sales Details</h6>
                     <span class="text-success">{{ $total_ticket_sold }} total</span>
                 </div>
-                <canvas id="ticketDetailsChart"  style="width: 100%; height: 220px;"></canvas>
+                <canvas id="ticketDetailsChart" style="width: 100%; height: 220px;"></canvas>
             </div>
         </div>
     </div>
@@ -79,7 +79,7 @@
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            stepSize: 50,
+                            stepSize: 1,
                             callback: function(label, index, labels) {
                                 return label;
                             }
@@ -102,7 +102,7 @@
                         pointRadius: 5,
                         pointBorderColor: '#006699'
                     }],
-                   
+
                 },
                 options: options
 
@@ -124,7 +124,20 @@
                         pointBorderColor: '#006699'
                     }]
                 },
-                options: options
+                options: {
+                    ...options,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 50,
+                                callback: function(label, index, labels) {
+                                    return "₹" + label;
+                                }
+                            },
+                        },
+                    }
+                }
             });
 
             const ctx3 = document.getElementById('ticketDetailsChart').getContext('2d');
