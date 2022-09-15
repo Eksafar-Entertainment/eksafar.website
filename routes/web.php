@@ -59,6 +59,9 @@ Route::group([
         Route::get('/event',  "index");
         Route::get('/event/{event_id}/dashboard', [EventController::class, 'dashboard']);
         Route::get('/event/{event_id}/orders', [EventController::class, 'orders']);
+        Route::get('/event/{event_id}/tickets', [EventController::class, 'tickets']);
+        Route::post('/event/{event_id}/tickets/form', [EventController::class, 'getTicketForm']);
+        Route::post('/event/{event_id}/tickets', [EventController::class, 'saveTicket']);
 
         Route::get('/event/delete/{id}', "delete");
 

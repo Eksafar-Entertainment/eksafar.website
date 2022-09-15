@@ -2021,7 +2021,7 @@ progress {
   background-color: #f8fafc;
   border-color: #8299ae;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(5, 51, 92, 0.25);
+  box-shadow: none;
 }
 .form-control::-webkit-date-and-time-value {
   height: 1.6em;
@@ -2273,7 +2273,7 @@ textarea.form-control-lg {
 .form-check-input:focus {
   border-color: #8299ae;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(5, 51, 92, 0.25);
+  box-shadow: none;
 }
 .form-check-input:checked {
   background-color: #05335c;
@@ -2360,10 +2360,10 @@ textarea.form-control-lg {
   outline: 0;
 }
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.25rem rgba(5, 51, 92, 0.25);
+  box-shadow: 0 0 0 1px #f8fafc, none;
 }
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #f8fafc, 0 0 0 0.25rem rgba(5, 51, 92, 0.25);
+  box-shadow: 0 0 0 1px #f8fafc, none;
 }
 .form-range::-moz-focus-outer {
   border: 0;
@@ -4250,7 +4250,7 @@ textarea.form-control-lg {
   --bs-accordion-btn-icon-transition: transform 0.2s ease-in-out;
   --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23052e53'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   --bs-accordion-btn-focus-border-color: #8299ae;
-  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(5, 51, 92, 0.25);
+  --bs-accordion-btn-focus-box-shadow: none;
   --bs-accordion-body-padding-x: 1.25rem;
   --bs-accordion-body-padding-y: 1rem;
   --bs-accordion-active-color: #052e53;
@@ -4385,7 +4385,7 @@ textarea.form-control-lg {
   --bs-pagination-hover-border-color: #dee2e6;
   --bs-pagination-focus-color: var(--bs-link-hover-color);
   --bs-pagination-focus-bg: #e9ecef;
-  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(5, 51, 92, 0.25);
+  --bs-pagination-focus-box-shadow: none;
   --bs-pagination-active-color: #fff;
   --bs-pagination-active-bg: #05335c;
   --bs-pagination-active-border-color: #05335c;
@@ -4958,7 +4958,7 @@ textarea.form-control-lg {
 }
 .btn-close:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(5, 51, 92, 0.25);
+  box-shadow: none;
   opacity: 1;
 }
 .btn-close:disabled, .btn-close.disabled {

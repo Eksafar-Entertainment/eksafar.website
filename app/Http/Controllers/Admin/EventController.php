@@ -172,4 +172,64 @@ class EventController extends Controller
         return view("admin.event.manage.orders", compact('event', 'orders', "colors"));
     }
 
+    //Ticket related things
+    public function tickets($event_id, Request $request)
+    {
+        $event = Event::where("id",$event_id)->first();
+        $where = [];
+        $event_tickets = EventTicket::where("event_id", $event_id);
+        
+        if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
+            $event_tickets->where(function ($query) {
+                global $request;
+                $query->orWhere("name","like", "%{$request->query()["keyword"]}%");
+                $query->orWhere("description","like", "%{$request->query()["keyword"]}%");
+            });
+        }
+        $event_tickets = $event_tickets
+            ->latest()
+            ->paginate(10)->appends($request->query());
+        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets'));
+    }
+
+    public function getTicketForm($event_id, Request $request){
+        $event = Event::where("id", $event_id)->first();
+        
+        $event_ticket = EventTicket::where("id", $request->event_ticket_id)->first();
+        return response()->json([
+            "status" => 200,
+            'message'=>'Successfully fetched data',
+            'html'=>view("admin.event.manage.tickets.form", [
+                'event_ticket' => $event_ticket,
+                'event' => $event,
+            ])->render()
+        ]);
+    }
+    public  function saveTicket($event_id, Request $request){
+        foreach($request->event_tickets as $ticket){
+            if($ticket["name"] == "" && $ticket["price"]==""){
+                if($ticket["id"] > 0){
+                    EventTicket::find($ticket["id"])->delete();
+                }
+                continue;
+            }
+            $event_ticket = $ticket["id"] > 0? EventTicket::find($ticket["id"]) : new EventTicket();
+            $event_ticket->name = $ticket["name"]??"jfghkcjhjk";
+            $event_ticket->price = $ticket["price"];
+            $event_ticket->description = $ticket["description"];
+            $event_ticket->persons = $ticket["persons"];
+            $event_ticket->event_id = $event_id;
+            $event_ticket->save();
+        }
+
+        return response()->json([
+            "status" => 200,
+            'message'=>'Successfully fetched data',
+            'html'=>view("admin.order.check-in-details", [
+                'order' => $order,
+                'order_details' => $order_details
+            ])->render()
+        ]);
+    }
+
 }
