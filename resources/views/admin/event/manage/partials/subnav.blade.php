@@ -10,11 +10,12 @@
             <li class="nav-item">
                 <a class="nav-link {{$active == "orders"? "active":""}}" href="{{url('/admin/event/'.$event->id."/orders")}}">Orders</a>
             </li>
-           
-            {{-- 
             <li class="nav-item">
                 <a class="nav-link {{$active == "customize"? "active":""}}" href="{{url('/admin/event/'.$event->id."/customize")}}">Customize</a>
             </li>
+            
+            {{-- 
+           
             <li class="nav-item">
                 <a class="nav-link {{$active == "check-in"? "active":""}}" href="{{url('/admin/event/'.$event->id."/check-in")}}">Check-In</a>
             </li> --}}

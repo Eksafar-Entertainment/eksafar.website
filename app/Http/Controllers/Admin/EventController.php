@@ -338,4 +338,39 @@ class EventController extends Controller
             'message' => 'Successfully updated ticket',
         ]);
     }
+    //customize
+    public function customize($event_id, Request $request){
+        $event = Event::where("id", $event_id)->first();
+        return view("admin.event.manage.customize.index", compact('event'));
+    }
+
+    function saveEvent($eventId = 0, Request $request)
+    {
+        $event = $eventId  > 0 ? Event::where(["id" => $eventId])->first() : new Event();
+
+        $event->name = $request->name;
+        $event->slug = $event->slug==null || $event->slug==""? Str::slug($request->name):$event->slug;
+        $event->entry_type = $request->entry_type;
+        $event->venue = $request->venue;
+        $event->city = $request->city;
+        $event->address = $request->address;
+        $event->start_date = $request->start_date;
+        $event->end_date = $request->end_date;
+        $event->occurrence = $request->occurrence;
+        $event->description = $request->description;
+
+        if ($request->file('cover_image')) {
+            $file = $request->file('cover_image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('storage/uploads'), $filename);
+            $event->cover_image = $filename;
+        }
+        $event->video_link = $request->video_link;
+        $event->event_type = $request->event_type;
+        $event->artist = $request->artist;
+        $event->abilities = $request->abilities;
+
+        $event->save();
+        return redirect('/admin/event/'.$event->id.'/customize/');
+    }
 }

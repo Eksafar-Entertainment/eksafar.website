@@ -25,6 +25,9 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 </head>
 
 <body class="">
@@ -64,10 +67,21 @@
         $("#preloader").fadeOut();
     });
 
-    document.onload = () => {
+    $(document).ready(() => {
+        console.log("cool");
         //axios
         axios.defaults.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
-    }
+
+        document.querySelectorAll("textarea.rich-text").forEach(_elem => {
+            var sMDE = new SimpleMDE({
+                element: _elem
+            });
+            sMDE.codemirror.on("change", function() {
+                _elem.innerHTML = sMDE.value();
+                _elem.value = sMDE.value();
+            });
+        });
+    });
 </script>
 
 </html>
