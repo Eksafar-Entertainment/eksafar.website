@@ -160,7 +160,7 @@ class EventController extends Controller
         {
             return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
         }
-        $colors = ["red", "green", "blue", "yellow", "orange", "indigo", "purple", "brown"];
+        $colors = ["red", "green", "blue", "orange", "indigo", "purple", "brown"];
         foreach ($event_tickets as $i => $event_ticket) {
             $color = $colors[$i];
             $tickets_sold_details_chart["datasets"][$event_ticket->id] = [
