@@ -131,4 +131,45 @@ class EventController extends Controller
             'revenue', 'total_orders', 'total_ticket_sold', "tickets_sales_volume_chart", "tickets_sold_chart"
         ));
     }
+
+    public function orders($event_id, Request $request)
+    {
+        $event = Event::where("id",$event_id)->first();
+
+        $colors = [
+            "SUCCESS" => "success",
+            "PENDING" => "warning",
+            "FAILED" => "danger"
+        ];
+        $where = [];
+        $orders = Order::leftJoin('promoters', function ($join) {
+            $join->on('promoters.id', '=', 'orders.promoter_id');
+        });
+        
+        if(isset($request->query()["id"]) && $request->query()["id"]!=""){
+            $orders->where("orders.id", $request->query()["id"]);
+        }
+
+        if(isset($request->query()["status"]) && $request->query()["status"]!=""){
+            $orders->where("orders.status", $request->query()["status"]);
+        }
+
+        if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
+            $orders->where(function ($query) {
+                global $request;
+                $query->orWhere("orders.name","like", "%{$request->query()["keyword"]}%");
+            });
+        }
+        $orders = $orders
+            //->groupBy('orders.id')
+            ->select(
+                "orders.*",
+                "promoters.name as promoter",
+                DB::raw("(orders.total_price * (promoters.commission/100)) as promoter_commission")
+            )
+            ->latest()
+            ->paginate(10)->appends($request->query());
+        return view("admin.event.manage.orders", compact('event', 'orders', "colors"));
+    }
+
 }
