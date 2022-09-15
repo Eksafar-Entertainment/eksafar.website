@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-3 col-sm-6">
             <div class="card card-body text-center">
-                <h3 class="fw-light text-primary">{{ $views }}</h3>
+                <h3 class="fw-light text-primary">{{ $event_views_chart['total'] }}</h3>
                 <small>EVENT VIEWS</small>
             </div>
         </div>
