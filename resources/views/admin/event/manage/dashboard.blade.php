@@ -87,7 +87,7 @@
         <div class="card mb-4">
                 <div class="card-header bg-primary text-light"><i class="fa-solid fa-link"></i> Event Url</div>
                 <div class="card-body">
-                    <input class="form-control" type="text" readonly value="{{url('/event-'.$event->slug)}}"/>
+                    <input class="form-control" type="text" readonly value="{{url('/event-'.$event->slug)}}" style="cursor:pointer" onclick="event.target.select();document.execCommand('copy')"/>
                 </div>
             </div>
 
