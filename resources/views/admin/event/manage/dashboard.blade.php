@@ -35,46 +35,85 @@
 
     </div>
     <div class="row">
+        <div class="col-md-9">
+            <div class="row">
 
-        <div class="col-12 col-md-6 mb-4">
-            <div class="card card-body">
-                <div class="d-flex align-items-center mb-2">
-                    <h6 class="flex-grow-1 fw-bold">Tickets Sold</h6>
-                    <span class="text-success">{{ $tickets_sold_chart['total'] }} total</span>
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <h6 class="flex-grow-1 fw-bold">Tickets Sold</h6>
+                            <span class="text-success">{{ $tickets_sold_chart['total'] }} total</span>
+                        </div>
+                        <canvas id="ordersChart" style="width: 100%; height: 220px;"></canvas>
+                    </div>
                 </div>
-                <canvas id="ordersChart" style="width: 100%; height: 220px;"></canvas>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 mb-4">
-            <div class="card card-body">
-                <div class="d-flex align-items-center mb-2">
-                    <h6 class="flex-grow-1 fw-bold">Tickets Sales Volume</h6>
-                    <span class="text-success">
-                        @money($tickets_sales_volume_chart['total'])
-                        total
-                    </span>
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <h6 class="flex-grow-1 fw-bold">Tickets Sales Volume</h6>
+                            <span class="text-success">
+                                @money($tickets_sales_volume_chart['total'])
+                                total
+                            </span>
+                        </div>
+                        <canvas id="amountChart" style="width: 100%; height: 220px;"></canvas>
+                    </div>
                 </div>
-                <canvas id="amountChart" style="width: 100%; height: 220px;"></canvas>
+
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <h6 class="flex-grow-1 fw-bold">Event Views</h6>
+                            <span class="text-success">{{$event_views_chart['total']}} total</span>
+                        </div>
+                        <canvas id="eventViewsChart" style="width: 100%; height: 220px;"></canvas>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <h6 class="flex-grow-1 fw-bold">Tickets Sales Details</h6>
+                            <span class="text-success">{{ $total_ticket_sold }} total</span>
+                        </div>
+                        <canvas id="ticketDetailsChart" style="width: 100%; height: 220px;"></canvas>
+                    </div>
+                </div>
             </div>
+
         </div>
 
-        <div class="col-12 col-md-6 mb-4">
-            <div class="card card-body">
-                <div class="d-flex align-items-center mb-2">
-                    <h6 class="flex-grow-1 fw-bold">Event Views</h6>
-                    <span class="text-success">{{$event_views_chart['total']}} total</span>
+        <div class="col-md-3">
+        <div class="card mb-4">
+                <div class="card-header bg-primary text-light"><i class="fa-solid fa-link"></i> Event Url</div>
+                <div class="card-body">
+                    <input class="form-control" type="text" readonly value="{{url('/event-'.$event->slug)}}"/>
                 </div>
-                <canvas id="eventViewsChart" style="width: 100%; height: 220px;"></canvas>
             </div>
-        </div>
 
-        <div class="col-12 col-md-6 mb-4">
-            <div class="card card-body">
-                <div class="d-flex align-items-center mb-2">
-                    <h6 class="flex-grow-1 fw-bold">Tickets Sales Details</h6>
-                    <span class="text-success">{{ $total_ticket_sold }} total</span>
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-light"><i class="fa-solid fa-link"></i> Share Event</div>
+                <div class="card-body">
+                <a class="btn btn-sm btn-primary" style="display: inline-block !important;" target="blank"
+                    href="https://www.facebook.com/sharer/sharer.php?u={{url('/event-'.$event->slug)}}?utm_source=fb">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+
+                    <a class="btn btn-sm btn-primary" style="display: inline-block !important;" target="blank"
+                    href="http://www.linkedin.com/shareArticle?mini=true&url={{url('/event-'.$event->slug)}}?utm_source=linkedin&title=Disco+Dandia+Night&summary=Description">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+
+                    <a class="btn btn-sm btn-primary" style="display: inline-block !important;" target="blank"
+                    href="http://twitter.com/intent/tweet?text=Check%20out:%20{{url('/event-'.$event->slug)}}?utm_source=twitter%20Description">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <a class="btn btn-sm btn-primary" style="display: inline-block !important;" target="blank"
+                    href="mailto:?subject=Check This Out&body={{url('/event-'.$event->slug)}}?utm_source=email">
+                    <i class="fa-solid fa-envelope"></i>
+                    </a>
                 </div>
-                <canvas id="ticketDetailsChart" style="width: 100%; height: 220px;"></canvas>
             </div>
         </div>
     </div>
