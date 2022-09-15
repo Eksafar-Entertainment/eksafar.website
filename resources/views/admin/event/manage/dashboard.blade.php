@@ -92,7 +92,7 @@
             </div>
 
             <div class="card mb-4">
-                <div class="card-header bg-primary text-light"><i class="fa-solid fa-link"></i> Share Event</div>
+                <div class="card-header bg-primary text-light"><i class="fa-solid fa-share-from-square"></i> Share Event</div>
                 <div class="card-body">
                 <a class="btn btn-sm btn-primary" style="display: inline-block !important;" target="blank"
                     href="https://www.facebook.com/sharer/sharer.php?u={{url('/event-'.$event->slug)}}?utm_source=fb">
