@@ -26,21 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $orders = Order::select([
-            DB::raw('DATE(created_at) as date'),
-            DB::raw('count(*) as orders'),
-            DB::raw('sum(total_price) as amount')
-        ])->where("status","SUCCESS")->groupBy(DB::raw('DATE(created_at)'))->get();
-        $data = [];
-        $amounts = [];
-        $labels = [];
-        $backgroundColors = [];
-        foreach($orders as $order){
-            $data[] = $order->orders;
-            $amounts[] = $order->amount;
-            $labels[] = $order->date;
-            $backgroundColors[] = "#dead1b";
-        }
-        return view('admin.home', compact("data", "amounts" ,"labels", "backgroundColors"));
+        return view('admin.home');
     }
 }
