@@ -40,7 +40,7 @@ class EventController extends Controller
         $event = $eventId  > 0 ? Event::where(["id" => $eventId])->first() : new Event();
 
         $event->name = $request->name;
-        $event->slug = $event->slug==null || $event->slug==""? Str::slug($request->name):$event->slug;
+        $event->slug = $event->slug == null || $event->slug == "" ? Str::slug($request->name) : $event->slug;
         $event->entry_type = $request->entry_type;
         $event->venue = $request->venue;
         $event->city = $request->city;
@@ -206,7 +206,7 @@ class EventController extends Controller
             $total_orders += $order->orders;
         }
 
-        foreach($event_views as $event_view){
+        foreach ($event_views as $event_view) {
             $event_views_chart["data"][$event_view->date] = $event_view->count;
             $event_views_chart["total"] += $event_view->count;
             $views += $order->count;
@@ -295,15 +295,16 @@ class EventController extends Controller
     {
         $event = Event::where("id", $event_id)->first();
         $where = [];
-        $event_tickets = EventTicket::where("event_id", $event_id);
-
-        if (isset($request->query()["keyword"]) && $request->query()["keyword"] != "") {
-            $event_tickets->where(function ($query) {
-                global $request;
-                $query->orWhere("name", "like", "%{$request->query()["keyword"]}%");
-                $query->orWhere("description", "like", "%{$request->query()["keyword"]}%");
-            });
-        }
+        $event_tickets = EventTicket::select([
+            "event_tickets.*",
+            DB::raw("SUM(order_details.price) as total_sale_amount"),
+            DB::raw("COUNT(order_details.id) as total_sale_count"),
+        ])
+            ->where("event_id", $event_id)
+            ->leftJoin('order_details', function ($join) {
+                $join->on('order_details.event_ticket_id', '=', 'event_tickets.id');
+            })
+            ->groupBy("event_tickets.id");
         $event_tickets = $event_tickets
             ->latest()
             ->paginate(10)->appends($request->query());
@@ -339,7 +340,8 @@ class EventController extends Controller
         ]);
     }
     //customize
-    public function customize($event_id, Request $request){
+    public function customize($event_id, Request $request)
+    {
         $event = Event::where("id", $event_id)->first();
         return view("admin.event.manage.customize.index", compact('event'));
     }
@@ -349,7 +351,7 @@ class EventController extends Controller
         $event = $eventId  > 0 ? Event::where(["id" => $eventId])->first() : new Event();
 
         $event->name = $request->name;
-        $event->slug = $event->slug==null || $event->slug==""? Str::slug($request->name):$event->slug;
+        $event->slug = $event->slug == null || $event->slug == "" ? Str::slug($request->name) : $event->slug;
         $event->entry_type = $request->entry_type;
         $event->venue = $request->venue;
         $event->city = $request->city;
@@ -371,6 +373,6 @@ class EventController extends Controller
         $event->abilities = $request->abilities;
 
         $event->save();
-        return redirect('/admin/event/'.$event->id.'/customize/');
+        return redirect('/admin/event/' . $event->id . '/customize/');
     }
 }
