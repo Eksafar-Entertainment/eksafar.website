@@ -31,7 +31,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
 	<!-- jQuery -->
 	<script src="/dist/scripts.min.js"></script>
-	
+
 
 	@yield('page_js')
 
@@ -54,7 +54,7 @@
 	<!-- Magnific Popup -->
 
 	<link rel="stylesheet" href="/css/magnific-popup.css">
-	
+
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/ticket.css">
 	<link rel="stylesheet" href="/css/rotating-card.css">
@@ -67,6 +67,28 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+	<!-- Facebook Pixel Code -->
+	<script>
+		! function(f, b, e, v, n, t, s) {
+			if (f.fbq) return;
+			n = f.fbq = function() {
+				n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+			};
+			if (!f._fbq) f._fbq = n;
+			n.push = n;
+			n.loaded = !0;
+			n.version = '2.0';
+			n.queue = [];
+			t = b.createElement(e);
+			t.async = !0;
+			t.src = v;
+			s = b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t, s)
+		}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '853548426018512');
+		fbq('track', 'PageView');
+	</script><noscript> <img height="1" width="1" src="https://www.facebook.com/tr?id=853548426018512&ev=PageView&noscript=1" /></noscript><!-- End Facebook Pixel Code -->
 	@yield('page_css')
 </head>
 
