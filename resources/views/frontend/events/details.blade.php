@@ -215,7 +215,7 @@
 
 <script>
     $(document).ready(function() {
-        $("##book-ticket-modal").modal('show');
+        $("#book-ticket-modal").modal('show');
     });
 </script>
 
