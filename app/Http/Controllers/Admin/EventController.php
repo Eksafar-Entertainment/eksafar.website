@@ -297,14 +297,27 @@ class EventController extends Controller
         $where = [];
         $event_tickets = EventTicket::select([
             "event_tickets.*",
-            DB::raw("SUM(order_details.price) as total_sale_amount"),
-            DB::raw("COUNT(order_details.id) as total_sale_count"),
+            DB::raw('SUM(IF(orders.status="SUCCESS",order_details.price,0)) as total_sale_amount'),
+            DB::raw('SUM(IF(orders.status="SUCCESS",order_details.quantity,0)) as total_sale_count'),
         ])
-            ->where("event_id", $event_id)
+            ->where("event_tickets.event_id", $event_id)
             ->leftJoin('order_details', function ($join) {
                 $join->on('order_details.event_ticket_id', '=', 'event_tickets.id');
+    
+            })
+            ->leftJoin("orders", function($join){
+                $join->on('order_details.order_id', '=', 'orders.id');
             })
             ->groupBy("event_tickets.id");
+
+        if (isset($request->query()["keyword"]) && $request->query()["keyword"] != "") {
+            $event_tickets->where(function ($query) {
+                global $request;
+                $query->orWhere("event_tickets.name", "like", "%{$request->query()["keyword"]}%");
+                $query->orWhere("event_tickets.description", "like", "%{$request->query()["keyword"]}%");
+            });
+        }
+
         $event_tickets = $event_tickets
             ->latest()
             ->paginate(10)->appends($request->query());
