@@ -28,15 +28,20 @@ class EventController extends Controller
             "orders.event_id as id",
             DB::raw("SUM(order_details.quantity) as quantity"),
             DB::raw("SUM(order_details.price) as revenue"),
-        ])->join("orders", function ($join) {
-            $join->on("orders.id", "=", "order_details.order_id");
-        })->groupBy("orders.event_id")->whereIn("orders.event_id", $event_ids)->get()->toArray();
+        ])
+            ->join("orders", function ($join) {
+                $join->on("orders.id", "=", "order_details.order_id");
+            })
+            ->groupBy("orders.event_id")
+            ->whereIn("orders.event_id", $event_ids)
+            ->where("orders.status", "SUCCESS")
+            ->get()->toArray();
 
-        $sales = array_reduce($sales, function($all, $current){
-            $all[$current["id"]]= $current;
+        $sales = array_reduce($sales, function ($all, $current) {
+            $all[$current["id"]] = $current;
             return $all;
         }, []);
-        return view("admin/event/listing", ["events" => $events, "sales"=>$sales]);
+        return view("admin/event/listing", ["events" => $events, "sales" => $sales]);
     }
 
     function details($eventId = 0)
