@@ -13,8 +13,11 @@
     <li class="nav-item" role="presentation">
         <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="true">General</button>
     </li>
-    <li class="nav-item d-none" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="design-tab" data-bs-toggle="tab" data-bs-target="#design" type="button" role="tab" aria-controls="design" aria-selected="false">Design</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="ticket-design-tab" data-bs-toggle="tab" data-bs-target="#ticket-design" type="button" role="tab" aria-controls="ticket-design" aria-selected="false">Ticket Design</button>
     </li>
 </ul>
 
@@ -169,6 +172,18 @@
             </form>
         </div>
     </div>
-    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+    <div class="tab-pane" id="design" role="tabpanel" aria-labelledby="design-tab">
+
+        <div class="card card-body border-top-0">
+            Coming Soon
+        </div>
+    </div>
+
+    <div class="tab-pane" id="ticket-design" role="tabpanel" aria-labelledby="ticket-design-tab">
+
+        <div class="card card-body border-top-0">
+            Coming Soon
+        </div>
+    </div>
 </div>
 @endsection
