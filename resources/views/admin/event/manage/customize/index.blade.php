@@ -97,7 +97,7 @@
                     <label for="description">Description</label>
 
                     <div>
-                        <textarea id="description" class="form-control rich-text" placeholder='Enter Description here' name="description" required="">{{$event ? $event->description:''}}</textarea>
+                        <textarea id="description" class="form-control rich-text" placeholder='Enter Description here' name="description" required="">{!!$event ? html_entity_decode($event->description):''!!}</textarea>
                     </div>
                 </div>
 

@@ -25,10 +25,6 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 
 <body class="">
@@ -55,42 +51,47 @@
 
     @show
 </body>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
+<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).ajaxStart(() => {
-        $("#preloader").fadeIn();
-    })
-    $(document).ajaxComplete(() => {
-        $("#preloader").fadeOut();
-    });
-
     $(document).ready(() => {
-        console.log("cool");
+        //jquery 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ajaxStart(() => {
+            $("#preloader").fadeIn();
+        })
+        $(document).ajaxComplete(() => {
+            $("#preloader").fadeOut();
+        });
+
         //axios
         axios.defaults.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
 
+        //ckeditor
         document.querySelectorAll(".rich-text").forEach(_elem => {
-            var _editor = document.createElement("div");
-            _elem.parentNode.insertBefore(_editor, _elem.nextSibling);
-            var quill = new Quill(_editor, {
-                theme: 'snow'
-            });
-            quill.root.innerHTML = _elem.innerHTML;
-            quill.on('text-change', function(delta, oldDelta, source) {
-                _elem.innerHTML = quill.root.innerHTML;
-                if (source == 'api') {
-                    console.log("An API call triggered this change.");
-                } else if (source == 'user') {
-                    console.log("A user action triggered this change.");
-                }
-            });
-            _elem.style.display="none"
+            _elem.style.display = "none";
+            const _node = document.createElement("div");
+            const _editor = ClassicEditor
+                .create(_node)
+                .then(editor => {
+                    function htmlDecode(input) {
+                        var doc = new DOMParser().parseFromString(input, "text/html");
+                        return doc.documentElement.textContent;
+                    }
+                    editor.setData(htmlDecode(_elem.innerHTML));
+                    editor.model.document.on('change:data', () => {
+                        const data = editor.getData();
+                        _elem.innerHTML = data;
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                    _elem.style.display = null;
+                });
+            _elem.parentNode.insertBefore(_node, _elem.nextSibling);
         });
     });
 </script>
