@@ -20,7 +20,23 @@ class EventController extends Controller
     function index()
     {
         $events =  Event::paginate(20);
-        return view("admin/event/listing", ["events" => $events]);
+        $event_ids = array_map(function ($event) {
+            return $event["id"];
+        }, $events->toArray()["data"]);
+
+        $sales = OrderDetail::select([
+            "orders.event_id as id",
+            DB::raw("SUM(order_details.quantity) as quantity"),
+            DB::raw("SUM(order_details.price) as revenue"),
+        ])->join("orders", function ($join) {
+            $join->on("orders.id", "=", "order_details.order_id");
+        })->groupBy("orders.event_id")->whereIn("orders.event_id", $event_ids)->get()->toArray();
+
+        $sales = array_reduce($sales, function($all, $current){
+            $all[$current["id"]]= $current;
+            return $all;
+        }, []);
+        return view("admin/event/listing", ["events" => $events, "sales"=>$sales]);
     }
 
     function details($eventId = 0)
@@ -295,32 +311,33 @@ class EventController extends Controller
         $order_id = $request->order_id;
         $order = Order::where("id", $order_id)->first();
         $order_details = OrderDetail::where(["order_id" => $order->id])
-        ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
-        //->groupBy("order_details.id")
-        ->select(
-            "order_details.*",
-            "event_tickets.name as event_ticket_name",
-            "event_tickets.persons as event_ticket_persons"
-        )
-        ->get();
+            ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+            //->groupBy("order_details.id")
+            ->select(
+                "order_details.*",
+                "event_tickets.name as event_ticket_name",
+                "event_tickets.persons as event_ticket_persons"
+            )
+            ->get();
         return response()->json([
             "status" => 200,
-            'message'=>'Successfully fetched data',
-            'html'=>view("admin.event.manage.orders.check-in-details", [
+            'message' => 'Successfully fetched data',
+            'html' => view("admin.event.manage.orders.check-in-details", [
                 'order' => $order,
                 'order_details' => $order_details
             ])->render()
         ]);
     }
 
-    public function checkIn(Request $request){
+    public function checkIn(Request $request)
+    {
         $order_id = $request->order_id;
         $order = Order::where("id", $order_id)->first();
         $order->is_checked_in = true;
         $order->save();
         return response()->json([
             "status" => 200,
-            'message'=>'Data updated successful',
+            'message' => 'Data updated successful',
         ]);
     }
 
@@ -337,9 +354,8 @@ class EventController extends Controller
             ->where("event_tickets.event_id", $event_id)
             ->leftJoin('order_details', function ($join) {
                 $join->on('order_details.event_ticket_id', '=', 'event_tickets.id');
-    
             })
-            ->leftJoin("orders", function($join){
+            ->leftJoin("orders", function ($join) {
                 $join->on('order_details.order_id', '=', 'orders.id');
             })
             ->groupBy("event_tickets.id");

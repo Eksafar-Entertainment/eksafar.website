@@ -12,6 +12,10 @@
 
     <div class="row mt-4">
         @foreach($events as $index=>$event)
+        @php
+        $revenue = isset($sales[$event->id])?$sales[$event->id]["revenue"]:0;
+        $quantity = isset($sales[$event->id])?$sales[$event->id]["quantity"]:0;
+        @endphp
         <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header bg-primary text-light d-flex align-items-center">
@@ -27,13 +31,13 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col text-center">
-                            <span class="fs-5">0</span><br />
+                            <span class="fs-5">{{ $quantity }}</span><br />
                             <span class="text-primary">Tickets Sold</span>
                         </div>
 
                         <div class="col text-center">
                             <span class="fs-5">
-                                @money(20000)
+                                @money($revenue)
                             </span><br />
                             <span class="text-primary">Revenue</span>
                         </div>
@@ -43,8 +47,8 @@
                     <button class="btn btn-light btn-sm flex-grow-1" onclick="if(confirm('Are you sure')){window.location.href=`{{url('admin/event/delete/'.$event->id)}}`}">
                         <i class="fas fa-trash"></i> Delete
                     </button>
-                    <a class="btn btn-light btn-sm flex-grow-1" href="{{url('/admin/event/form/'.$event->id)}}">
-                        <i class="fas fa-pencil"></i> Edit
+                    <a class="btn btn-light btn-sm flex-grow-1" href="{{url('/admin/event/'.$event->id.'/customize')}}">
+                        <i class="fas fa-pencil"></i> Customize
                     </a>
                     <a class="btn btn-light btn-sm flex-grow-1" href="{{url('/admin/event/'.$event->id."/dashboard")}}">
                         <i class="fas fa-settings"></i> Manage
