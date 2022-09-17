@@ -27,7 +27,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 
 <body class="">
@@ -54,6 +55,8 @@
 
     @show
 </body>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 <script>
     $.ajaxSetup({
         headers: {
@@ -72,14 +75,22 @@
         //axios
         axios.defaults.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
 
-        document.querySelectorAll("textarea.rich-text").forEach(_elem => {
-            var sMDE = new SimpleMDE({
-                element: _elem
+        document.querySelectorAll(".rich-text").forEach(_elem => {
+            var _editor = document.createElement("div");
+            _elem.parentNode.insertBefore(_editor, _elem.nextSibling);
+            var quill = new Quill(_editor, {
+                theme: 'snow'
             });
-            sMDE.codemirror.on("change", function() {
-                _elem.innerHTML = sMDE.value();
-                _elem.value = sMDE.value();
+            quill.root.innerHTML = _elem.innerHTML;
+            quill.on('text-change', function(delta, oldDelta, source) {
+                _elem.innerHTML = quill.root.innerHTML;
+                if (source == 'api') {
+                    console.log("An API call triggered this change.");
+                } else if (source == 'user') {
+                    console.log("A user action triggered this change.");
+                }
             });
+            _elem.style.display="none"
         });
     });
 </script>

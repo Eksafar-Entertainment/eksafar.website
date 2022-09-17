@@ -23,7 +23,7 @@
         <div class="tab-pane card-body active" id="general" role="tabpanel" aria-labelledby="general-tab">
             <form enctype="multipart/form-data" method="post">
                 @csrf
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="name">Name</label>
 
                     <div>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="entry_type">Entry Type</label>
                     <div>
                         <select id="entry_type" class="form-select" name="entry_type" required="">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="venue">Venue</label>
 
                     <div>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="city">City</label>
 
                     <div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="address">Address</label>
 
                     <div>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="start_date">Start Date</label>
 
                     <div>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="end_date">End Date</label>
 
                     <div>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="occurrence">Occurrence</label>
 
                     <div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="description">Description</label>
 
                     <div>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="cover_image">Cover Image</label>
 
                     <div>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="video_link">Video Link</label>
 
                     <div>
@@ -117,7 +117,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="event_type">Event Type</label>
 
                     <div>
@@ -125,7 +125,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="artist">Artist</label>
 
                     <div>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="mb-3">
                     <label for="abilities">Abilities</label>
 
                     <div>
