@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('subnav')
-    @include('admin.event.manage.partials.subnav', ["active"=>"orders"])
+@include('admin.event.manage.partials.subnav', ["active"=>"orders"])
 @endsection
 
 @section('content')
@@ -45,47 +45,48 @@
     </form>
 </div>
 
-<table class="table table-bordered table-striped mt-4 bg-white">
-    <thead>
-        <tr>
-            <th width="1%">#</th>
-            <th width="1%">ID</th>
+<div class="overflow-auto">
+    <table class="table table-bordered table-striped mt-4 bg-white">
+        <thead>
+            <tr>
+                <th width="1%">#</th>
+                <th width="1%">ID</th>
 
-            <th>Name</th>
-            <th>Mobile</th>
-            <th>Email</th>
-            <th>Amount</th>
-            <th>Promoter</th>
-            <th>Commission</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Checked In</th>
-            <th width="3%">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($orders as $key => $order)
-        <tr class="data-row" data-row-id="{{$order->id}}">
-            <td>{{ $key + 1 }}</td>
-            <td>{{ $order->id }}</td>
-            <td>{{ $order->name }}</td>
-            <td>{{ $order->mobile }}</td>
-            <td>{{ $order->email }}</td>
-            <td>₹{{ $order->total_price }}</td>
-            <td>{{ $order->promoter }}</td>
-            <td>₹{{ $order->promoter_commission?$order->promoter_commission:0 }}</td>
-            <td>₹{{ $order->date?date('d-m-Y', strtotime($order->date)):""}}</td>
-            <td><span class="badge bg-{{$colors[$order->status]}}">{{ $order->status }}</span></td>
-            <td class="checked-in"><span class="text-{{ $order->is_checked_in?'success': 'danger' }}">{{ $order->is_checked_in?"Yes": "No" }}</span></td>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Amount</th>
+                <th>Promoter</th>
+                <th>Commission</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Checked In</th>
+                <th width="3%">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($orders as $key => $order)
+            <tr class="data-row" data-row-id="{{$order->id}}">
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $order->id }}</td>
+                <td>{{ $order->name }}</td>
+                <td>{{ $order->mobile }}</td>
+                <td>{{ $order->email }}</td>
+                <td>₹{{ $order->total_price }}</td>
+                <td>{{ $order->promoter }}</td>
+                <td>₹{{ $order->promoter_commission?$order->promoter_commission:0 }}</td>
+                <td>₹{{ $order->date?date('d-m-Y', strtotime($order->date)):""}}</td>
+                <td><span class="badge bg-{{$colors[$order->status]}}">{{ $order->status }}</span></td>
+                <td class="checked-in"><span class="text-{{ $order->is_checked_in?'success': 'danger' }}">{{ $order->is_checked_in?"Yes": "No" }}</span></td>
 
-            <td>
-                <a class="btn btn-info btn-sm" onclick="openCheckInDetails('{{$order->id}}')">Show</a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
+                <td>
+                    <a class="btn btn-info btn-sm" onclick="openCheckInDetails('{{$order->id}}')">Show</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 <div class="d-flex mt-4">
     @include('admin.common.pagination', ["paginator"=>$orders])
 </div>
@@ -97,6 +98,10 @@
 </div>
 
 <script>
+    $(document).ready(() => {
+        window.checkInModal = new bootstrap.Modal(document.getElementById('details-modal'), {});
+    })
+
     function openCheckInDetails(order_id) {
         jQuery.ajax({
             url: "{{ url('/admin/event/orders/check-in-details') }}",
@@ -106,8 +111,7 @@
             },
             success: function(result) {
                 $("#details-modal .modal-dialog").html(result.html);
-                new bootstrap.Modal(document.getElementById('details-modal'), {}).show();
-                //checkInDetailsModal.show();
+                checkInModal.show();
             }
         });
     }
@@ -121,7 +125,7 @@
             },
             success: function(result) {
                 $(`tr.data-row[data-row-id=${order_id}] .checked-in`).html("<span class='text-success'>Yes</span>");
-                new bootstrap.Modal(document.getElementById('details-modal'), {}).hide();
+                checkInModal.hide();
             }
         });
     }
