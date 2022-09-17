@@ -20,7 +20,6 @@
           @endrole
           <li class="nav-item"><a href="{{ route('posts.index') }}" class="nav-link">Posts</a></li>
           <li class="nav-item"><a href="/admin/event" class="nav-link">Events</a></li>
-          <li class="nav-item"><a href="/admin/order" class="nav-link">Orders</a></li>
           <li class="nav-item"><a href="/admin/promoters" class="nav-link">Promoters</a></li>
           <li class="nav-item"><a href="/admin/gallery" class="nav-link">Gallery</a></li>
           @endauth

@@ -79,7 +79,6 @@
             <td class="checked-in"><span class="text-{{ $order->is_checked_in?'success': 'danger' }}">{{ $order->is_checked_in?"Yes": "No" }}</span></td>
 
             <td>
-                <!--<a class="btn btn-info btn-sm" href="{{ route('order.show', $order->id) }}">Show</a>-->
                 <a class="btn btn-info btn-sm" onclick="openCheckInDetails('{{$order->id}}')">Show</a>
             </td>
         </tr>
@@ -100,7 +99,7 @@
 <script>
     function openCheckInDetails(order_id) {
         jQuery.ajax({
-            url: "{{ url('/admin/order/check-in-details') }}",
+            url: "{{ url('/admin/event/orders/check-in-details') }}",
             method: 'post',
             data: {
                 order_id: order_id
@@ -115,7 +114,7 @@
 
     function checkIn(order_id) {
         jQuery.ajax({
-            url: "{{ url('/admin/order/check-in') }}",
+            url: "{{ url('/admin/event/orders/check-in') }}",
             method: 'post',
             data: {
                 order_id: order_id

@@ -45,15 +45,18 @@ Route::group([
     Route::post('files/file', [FileManagerController::class, "newFile"]);
 
     //orders
-    Route::resource('order', OrderController::class);
-    Route::post('/order/check-in-details', [OrderController::class, "checkInDetails"]);
-    Route::post('/order/check-in', [OrderController::class, "checkIn"]);
+    //Route::resource('order', OrderController::class);
+
 
     //events
     Route::controller(EventController::class)->group(function () {
         Route::get('/event',  "index");
         Route::get('/event/{event_id}/dashboard', [EventController::class, 'dashboard']);
+
         Route::get('/event/{event_id}/orders', [EventController::class, 'orders']);
+        Route::post('/event/orders/check-in-details', [EventController::class, "checkInDetails"]);
+        Route::post('/event/orders/check-in', [EventController::class, "checkIn"]);
+
         Route::get('/event/{event_id}/tickets', [EventController::class, 'tickets']);
 
         Route::post('/event/{event_id}/tickets/form', [EventController::class, 'getTicketForm']);
@@ -76,7 +79,7 @@ Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutC
 
 Route::group([
     "middleware" => ["access_log"],
-    "prefix"=>"/"
+    "prefix" => "/"
 ], function () {
     Route::get('/', [FrontController::class, 'index']);
     Route::get("/event-{slug}", [FrontEventController::class, 'details']);
