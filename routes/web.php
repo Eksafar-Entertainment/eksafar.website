@@ -54,8 +54,8 @@ Route::group([
         Route::get('/event/{event_id}/dashboard', [EventController::class, 'dashboard']);
 
         Route::get('/event/{event_id}/orders', [EventController::class, 'orders']);
-        Route::post('/event/orders/check-in-details', [EventController::class, "checkInDetails"]);
-        Route::post('/event/orders/check-in', [EventController::class, "checkIn"]);
+        Route::post('/event/{event_id}/orders/check-in-details', [EventController::class, "checkInDetails"]);
+        Route::post('/event/{event_id}/orders/check-in', [EventController::class, "checkIn"]);
 
         Route::get('/event/{event_id}/tickets', [EventController::class, 'tickets']);
 

@@ -104,7 +104,7 @@
 
     function openCheckInDetails(order_id) {
         jQuery.ajax({
-            url: "{{ url('/admin/event/orders/check-in-details') }}",
+            url: "{{ url('/admin/event/'.$event->id.'/orders/check-in-details') }}",
             method: 'post',
             data: {
                 order_id: order_id
@@ -118,7 +118,7 @@
 
     function checkIn(order_id) {
         jQuery.ajax({
-            url: "{{ url('/admin/event/orders/check-in') }}",
+            url: "{{ url('/admin/event/'.$event->id.'/orders/check-in') }}",
             method: 'post',
             data: {
                 order_id: order_id
