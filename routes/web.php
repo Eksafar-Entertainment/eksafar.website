@@ -53,25 +53,25 @@ Route::group([
 
     //events
     Route::controller(EventController::class)->group(function () {
-        Route::get('/event',  "index");
-        Route::get('/event/{event_id}/dashboard', [EventController::class, 'dashboard']);
+        Route::get('/event',  "index")->middleware("permission:event:list");
+        Route::get('/event/{event_id}/dashboard', [EventController::class, 'dashboard'])->middleware("permission:event:dashboard");
 
-        Route::get('/event/{event_id}/orders', [EventController::class, 'orders']);
-        Route::post('/event/{event_id}/orders/details', [EventController::class, "orderDetails"]);
+        Route::get('/event/{event_id}/orders', [EventController::class, 'orders'])->middleware("permission:event:orders");
+        Route::post('/event/{event_id}/orders/details', [EventController::class, "orderDetails"])->middleware("permission:event:orders");
 
-        Route::get('/event/{event_id}/tickets', [EventController::class, 'tickets']);
+        Route::get('/event/{event_id}/tickets', [EventController::class, 'tickets'])->middleware("permission:event:tickets");
 
-        Route::post('/event/{event_id}/tickets/form', [EventController::class, 'getTicketForm']);
-        Route::post('/event/{event_id}/tickets', [EventController::class, 'saveTicket']);
+        Route::post('/event/{event_id}/tickets/form', [EventController::class, 'getTicketForm'])->middleware("permission:event:tickets");
+        Route::post('/event/{event_id}/tickets', [EventController::class, 'saveTicket'])->middleware("permission:event:tickets");
 
-        Route::get('/event/{event_id}/customize', [EventController::class, 'customize']);
-        Route::post('/event/{event_id}/customize', [EventController::class, 'saveEvent']);
+        Route::get('/event/{event_id}/customize', [EventController::class, 'customize'])->middleware("permission:event:customize");
+        Route::post('/event/{event_id}/customize', [EventController::class, 'saveEvent'])->middleware("permission:event:customize");
 
-        Route::get('/event/{event_id}/check-in', [EventController::class, 'checkInView']);
-        Route::post('/event/{event_id}/check-in/details', [EventController::class, 'checkInDetails']);
-        Route::post('/event/{event_id}/check-in', [EventController::class, 'checkIn']);
+        Route::get('/event/{event_id}/check-in', [EventController::class, 'checkInView'])->middleware("permission:event:check-in");
+        Route::post('/event/{event_id}/check-in/details', [EventController::class, 'checkInDetails'])->middleware("permission:event:check-in");
+        Route::post('/event/{event_id}/check-in', [EventController::class, 'checkIn'])->middleware("permission:event:check-in");
 
-        Route::get('/event/delete/{id}', "delete");
+        Route::get('/event/delete/{id}', "delete")->middleware("permission:event:delete");
 
         Route::get('/event/form/{eventId}', "details");
         Route::get('/event/form', "details");
