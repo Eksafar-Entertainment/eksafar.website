@@ -26,7 +26,9 @@
 
           @endrole
           <li class="nav-item"><a href="{{ route('posts.index') }}" class="nav-link">Posts</a></li>
+          @if(Auth::user()->can('event:list'))
           <li class="nav-item"><a href="/admin/event" class="nav-link">Events</a></li>
+          @endif
           <li class="nav-item"><a href="/admin/promoters" class="nav-link">Promoters</a></li>
           <li class="nav-item"><a href="/admin/gallery" class="nav-link">Gallery</a></li>
           @endauth
