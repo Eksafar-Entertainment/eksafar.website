@@ -51,7 +51,7 @@
                         <i class="fas fa-pencil"></i> Customize
                     </a>
                     <a class="btn btn-light btn-sm flex-grow-1" href="{{url('/admin/event/'.$event->id."/dashboard")}}">
-                        <i class="fas fa-settings"></i> Manage
+                        <i class="fas fa-cog"></i> Manage
                     </a>
                 </div>
             </div>
