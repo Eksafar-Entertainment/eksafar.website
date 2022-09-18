@@ -51,6 +51,23 @@
     @section("scripts")
 
     @show
+
+    <div class="modal fade" id="ask-modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="title">Confirm</h5>
+                </div>
+                <div class="modal-body">
+                    <p id="message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" id="cancel-btn">NO</button>
+                    <button type="button" class="btn btn-sm btn-primary" id="confirm-btn">YES</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
 <script>
@@ -218,7 +235,29 @@
         window.money = (amount) => {
             return "₹" + Intl.NumberFormat('en-US').format(amount);
         }
+
+        const ask_modal_container = document.getElementById('ask-modal');
+        const ask_modal = new bootstrap.Modal(ask_modal_container, {
+            backdrop: 'static',
+            keyboard: false,
+        });
+        window.ask = async (message) => {
+            return new Promise((resolve, reject) => {
+                ask_modal_container.querySelector("#message").innerHTML = message;
+                ask_modal_container.querySelector("#confirm-btn").onclick = () => {
+                    ask_modal.hide();
+                    resolve(true);
+                }
+                ask_modal_container.querySelector("#cancel-btn").onclick = () => {
+                    ask_modal.hide();
+                    reject(false);
+                }
+                ask_modal.show();
+            });
+        }
     });
+
+
 </script>
 
 </html>

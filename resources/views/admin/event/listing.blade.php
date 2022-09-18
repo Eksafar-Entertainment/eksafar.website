@@ -66,7 +66,7 @@
                         </a>
                         @endif
                         @if(Auth::user()->can('event:delete'))
-                        <a class="btn btn-light flex-grow-1 text-danger" onclick="if(confirm('Are you sure')){window.location.href=`{{url('admin/event/delete/'.$event->id)}}`}">
+                        <a class="btn btn-light flex-grow-1 text-danger" onclick="ask('Are you sure want to delete the event?').then(e=>window.location.href=`{{url('admin/event/delete/'.$event->id)}}`).catch(console.log)">
                             <i class="fas fa-trash"></i>
                         </a>
                         @endif
