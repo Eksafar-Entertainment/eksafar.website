@@ -28,24 +28,25 @@
 </head>
 
 <body class="">
-    <div id="preloader" class="position-fixed align-items-center justify-content-center py-1 px-3 rounded shadow-sm" style="background-color: #f8facf;  backdrop-filter: blur(20px); z-index: 999999999; top: 80px; left: 50%; transform:translateX(-50%); display: none">
-
+    <div id="preloader" class="position-fixed align-items-center justify-content-center py-1 px-3 shadow-sm" style="background-color: #f8facf;  backdrop-filter: blur(20px); z-index: 999999999; top: 80px; left: 50%; transform:translateX(-50%); display: none">
         Please wait while loading...
-
     </div>
-    @include('admin.layouts.partials.navbar')
-    <div>
-        @yield('subnav')
-    </div>
-    <main>
+    <div class="d-flex flex-column" style="height: 100vh;">
+        @include('admin.layouts.partials.navbar')
+        <div>
+            @yield('subnav')
+        </div>
+        <main class="flex-grow-1 overflow-auto">
 
-        <div class="container-lg py-4">
-            @yield('content')
-        </div>
-        <div class="text-center p-2">
-            <small>Made by <a href="">Xpeed Technologies</a></small>
-        </div>
-    </main>
+            <div class="container-lg py-4">
+                @yield('content')
+            </div>
+            <div class="text-center p-2 py-3">
+                <small>Made by <a href="">Xpeed Technologies</a></small>
+            </div>
+        </main>
+      
+    </div>
 
     @section("scripts")
 
@@ -85,8 +86,8 @@
             // a POST request with JSON as a data structure but your configuration
             // could be different.
             xhr.open('POST', '{{url("/admin/files/ck-upload")}}', true);
-            xhr.setRequestHeader('X-CSRF-TOKEN',$('meta[name="csrf-token"]').attr('content') );
-            xhr.setRequestHeader('X-Requested-With',"XMLHttpRequest");
+            xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+            xhr.setRequestHeader('X-Requested-With', "XMLHttpRequest");
             xhr.responseType = 'json';
         }
         // Initializes XMLHttpRequest listeners.
