@@ -1,9 +1,4 @@
 @extends('admin.layouts.admin')
-
-@section('subnav')
-@include('admin.event.manage.partials.subnav', ["active"=>"check-in"])
-@endsection
-
 @section('content')
 <h4>Check In</h4>
 <p class="text-muted d-none">Manage your order here.</p>
@@ -47,17 +42,17 @@
                 console.log(result);
                 $("#details-container").html(result.html);
             },
-            complete:(result)=>{
+            complete: (result) => {
 
             },
-            error:(error)=>{
+            error: (error) => {
 
             }
         });
     }
 
     function checkIn(order_id) {
-        if(!confirm("Are you sure?")) return false;
+        if (!confirm("Are you sure?")) return false;
         jQuery.ajax({
             url: "{{ url('/admin/event/'.$event->id.'/check-in') }}",
             method: 'post',
@@ -67,7 +62,7 @@
             success: function(result) {
                 openCheckInDetails({
                     target: document.getElementById("search-form"),
-                    preventDefault: ()=>{}
+                    preventDefault: () => {}
                 })
             }
         });
