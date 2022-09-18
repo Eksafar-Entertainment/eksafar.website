@@ -44,26 +44,38 @@
                     </div>
                 </div>
                 <div class="card-footer p-0">
-                <div class="btn-group d-flex" role="group" aria-label="Basic example">
-                    <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/dashboard")}}">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                    <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/tickets")}}">
-                        <i class="fas fa-ticket"></i>
-                    </a>
-                    <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/orders")}}">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                    </a>
-                    <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/check-in")}}">
-                        <i class="fa-solid fa-person-booth"></i>
-                    </a>
-                    <a class="btn btn-light flex-grow-1 text-danger" onclick="if(confirm('Are you sure')){window.location.href=`{{url('admin/event/delete/'.$event->id)}}`}">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                    <a class="btn btn-light flex-grow-1 text-success" href="{{url('/admin/event/'.$event->id.'/customize')}}">
-                        <i class="fas fa-pencil"></i>
-                    </a>
-                </div>
+                    <div class="btn-group d-flex" role="group" aria-label="Basic example">
+                        @if(Auth::user()->can('event:dashboard'))
+                        <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/dashboard")}}">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        @endif
+                        @if(Auth::user()->can('event:tickets'))
+                        <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/tickets")}}">
+                            <i class="fas fa-ticket"></i>
+                        </a>
+                        @endif
+                        @if(Auth::user()->can('event:orders'))
+                        <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/orders")}}">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </a>
+                        @endif
+                        @if(Auth::user()->can('event:check-in'))
+                        <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/check-in")}}">
+                            <i class="fa-solid fa-person-booth"></i>
+                        </a>
+                        @endif
+                        @if(Auth::user()->can('event:delete'))
+                        <a class="btn btn-light flex-grow-1 text-danger" onclick="if(confirm('Are you sure')){window.location.href=`{{url('admin/event/delete/'.$event->id)}}`}">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        @endif
+                        @if(Auth::user()->can('event:customize'))
+                        <a class="btn btn-light flex-grow-1 text-success" href="{{url('/admin/event/'.$event->id.'/customize')}}">
+                            <i class="fas fa-pencil"></i>
+                        </a>
+                        @endif
+                    </div>
                 </div>
             </div>
 
