@@ -1,4 +1,4 @@
-<div class="sub-nav">
+<div class="sub-nav d-none">
     <div class="container-lg px-0 overflow-auto">
         <ul class="nav" style="flex-wrap: nowrap;">
             <li class="nav-item">

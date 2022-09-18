@@ -43,16 +43,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer d-flex">
-                    <button class="btn btn-light btn-sm flex-grow-1" onclick="if(confirm('Are you sure')){window.location.href=`{{url('admin/event/delete/'.$event->id)}}`}">
-                        <i class="fas fa-trash"></i> Delete
-                    </button>
-                    <a class="btn btn-light btn-sm flex-grow-1" href="{{url('/admin/event/'.$event->id.'/customize')}}">
-                        <i class="fas fa-pencil"></i> Customize
+                <div class="card-footer p-0">
+                <div class="btn-group d-flex" role="group" aria-label="Basic example">
+                    <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/dashboard")}}">
+                        <i class="fas fa-eye"></i>
                     </a>
-                    <a class="btn btn-light btn-sm flex-grow-1" href="{{url('/admin/event/'.$event->id."/dashboard")}}">
-                        <i class="fas fa-cog"></i> Manage
+                    <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/tickets")}}">
+                        <i class="fas fa-ticket"></i>
                     </a>
+                    <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/orders")}}">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </a>
+                    <a class="btn btn-light flex-grow-1 text-primary" href="{{url('/admin/event/'.$event->id."/check-in")}}">
+                        <i class="fa-solid fa-person-booth"></i>
+                    </a>
+                    <a class="btn btn-light flex-grow-1 text-danger" onclick="if(confirm('Are you sure')){window.location.href=`{{url('admin/event/delete/'.$event->id)}}`}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                    <a class="btn btn-light flex-grow-1 text-success" href="{{url('/admin/event/'.$event->id.'/customize')}}">
+                        <i class="fas fa-pencil"></i>
+                    </a>
+                </div>
                 </div>
             </div>
 
