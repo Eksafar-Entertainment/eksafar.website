@@ -419,7 +419,7 @@ class EventController extends Controller
 
         if ($request->file('cover_image')) {
             $file = $request->file('cover_image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $filename = date('YmdHi') . '.'.$file->getExtension() ;//$file->getClientOriginalName();
             $file->move(public_path('storage/uploads'), $filename);
             $event->cover_image = $filename;
         }
