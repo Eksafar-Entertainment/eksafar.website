@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 @section('content')
-<div class="container">
+<div>
 
     <div class="d-flex">
         <h4 class="flex-grow-1">{{__('Events')}}</h4>
