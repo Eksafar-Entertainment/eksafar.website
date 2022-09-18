@@ -104,7 +104,7 @@
 
     function openCheckInDetails(order_id) {
         jQuery.ajax({
-            url: "{{ url('/admin/event/'.$event->id.'/orders/check-in-details') }}",
+            url: "{{ url('/admin/event/'.$event->id.'/orders/details') }}",
             method: 'post',
             data: {
                 order_id: order_id
@@ -112,20 +112,6 @@
             success: function(result) {
                 $("#details-modal .modal-dialog").html(result.html);
                 checkInModal.show();
-            }
-        });
-    }
-
-    function checkIn(order_id) {
-        jQuery.ajax({
-            url: "{{ url('/admin/event/'.$event->id.'/orders/check-in') }}",
-            method: 'post',
-            data: {
-                order_id: order_id
-            },
-            success: function(result) {
-                $(`tr.data-row[data-row-id=${order_id}] .checked-in`).html("<span class='text-success'>Yes</span>");
-                checkInModal.hide();
             }
         });
     }

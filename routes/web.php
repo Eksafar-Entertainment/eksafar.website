@@ -54,15 +54,19 @@ Route::group([
         Route::get('/event/{event_id}/dashboard', [EventController::class, 'dashboard']);
 
         Route::get('/event/{event_id}/orders', [EventController::class, 'orders']);
-        Route::post('/event/{event_id}/orders/check-in-details', [EventController::class, "checkInDetails"]);
-        Route::post('/event/{event_id}/orders/check-in', [EventController::class, "checkIn"]);
+        Route::post('/event/{event_id}/orders/details', [EventController::class, "orderDetails"]);
 
         Route::get('/event/{event_id}/tickets', [EventController::class, 'tickets']);
 
         Route::post('/event/{event_id}/tickets/form', [EventController::class, 'getTicketForm']);
         Route::post('/event/{event_id}/tickets', [EventController::class, 'saveTicket']);
+
         Route::get('/event/{event_id}/customize', [EventController::class, 'customize']);
         Route::post('/event/{event_id}/customize', [EventController::class, 'saveEvent']);
+
+        Route::get('/event/{event_id}/check-in', [EventController::class, 'checkInView']);
+        Route::post('/event/{event_id}/check-in/details', [EventController::class, 'checkInDetails']);
+        Route::post('/event/{event_id}/check-in', [EventController::class, 'checkIn']);
 
         Route::get('/event/delete/{id}', "delete");
 

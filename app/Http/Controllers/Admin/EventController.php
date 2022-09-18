@@ -311,7 +311,7 @@ class EventController extends Controller
             ->paginate(10)->appends($request->query());
         return view("admin.event.manage.orders.index", compact('event', 'orders', "colors"));
     }
-    public function checkInDetails(Request $request)
+    public function orderDetails($event_id, Request $request)
     {
         $order_id = $request->order_id;
         $order = Order::where("id", $order_id)->first();
@@ -327,25 +327,13 @@ class EventController extends Controller
         return response()->json([
             "status" => 200,
             'message' => 'Successfully fetched data',
-            'html' => view("admin.event.manage.orders.check-in-details", [
+            'html' => view("admin.event.manage.orders.details", [
                 'order' => $order,
                 'order_details' => $order_details
             ])->render()
         ]);
     }
-
-    public function checkIn(Request $request)
-    {
-        $order_id = $request->order_id;
-        $order = Order::where("id", $order_id)->first();
-        $order->is_checked_in = true;
-        $order->save();
-        return response()->json([
-            "status" => 200,
-            'message' => 'Data updated successful',
-        ]);
-    }
-
+    
     //Ticket related things
     public function tickets($event_id, Request $request)
     {
@@ -442,5 +430,49 @@ class EventController extends Controller
 
         $event->save();
         return redirect('/admin/event/' . $event->id . '/customize/');
+    }
+
+    //checkIn
+    public function checkInView($event_id, Request $request)
+    {
+        $event = Event::where("id", $event_id)->first();
+
+        return view("admin.event.manage.check-in.index",[
+            "event"=>$event
+        ]);
+    }
+    public function checkInDetails($event_id, Request $request)
+    {
+        $order_id = $request->order_id;
+        $order = Order::where("id", $order_id)->first();
+        $order_details = OrderDetail::where(["order_id" => $order->id])
+            ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+            //->groupBy("order_details.id")
+            ->select(
+                "order_details.*",
+                "event_tickets.name as event_ticket_name",
+                "event_tickets.persons as event_ticket_persons"
+            )
+            ->get();
+        return response()->json([
+            "status" => 200,
+            'message' => 'Successfully fetched data',
+            'html' => view("admin.event.manage.check-in.details", [
+                'order' => $order,
+                'order_details' => $order_details
+            ])->render()
+        ]);
+    }
+
+    public function checkIn($event_id,Request $request)
+    {
+        $order_id = $request->order_id;
+        $order = Order::where("id", $order_id)->first();
+        $order->is_checked_in = true;
+        $order->save();
+        return response()->json([
+            "status" => 200,
+            'message' => 'Data updated successful',
+        ]);
     }
 }

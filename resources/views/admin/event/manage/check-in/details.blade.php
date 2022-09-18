@@ -1,9 +1,8 @@
-<div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title">Order Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="card">
+    <div class="card-header">
+        <h5>Order Details</h5>
     </div>
-    <div class="modal-body">
+    <div class="card-body">
         <div class="rounded">
             <div class="mt-4">
                 <div>
@@ -13,10 +12,7 @@
                     Name: {{ $order->name }}
                 </div>
                 <div>
-                    Email: {{ $order->email }}
-                </div>
-                <div>
-                    Mobile: {{ $order->mobile }}
+                    Checked In: <span class="text-{{$order->is_checked_in?'success':'danger'}}">{{$order->is_checked_in?"Yes":"No"}}</span>
                 </div>
             </div>
         </div>
@@ -29,8 +25,6 @@
                         <th>Item</th>
                         <th width="1%">Quantity</th>
                         <th width="1%">Persons</th>
-                        <th class="text-end" width="1%">Rate</th>
-                        <th class="text-end" width="1%">Price</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,30 +40,14 @@
                         <td>{{$order_detail->event_ticket_name}}</td>
                         <td>{{$order_detail->quantity}}</td>
                         <td>{{$order_detail->event_ticket_persons * $order_detail->quantity}}</td>
-                        <td class="text-end">₹{{$order_detail->price}}</td>
-                        <td class="text-end">₹{{$order_detail->price}}</td>
                     </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="3">Total</th>
-                        <th>
-                            {{$total_persons}}
-                        </th>
-                        <th></th>
-                        <th class="text-end">
-                            ₹{{$order->total_price}}
-                        </th>
-                    </tr>
-
-                </tfoot>
-
+              
             </table>
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <div class="card-footer">
         @if($order->status == "SUCCESS" && !$order->is_checked_in)
         <button type="button" class="btn btn-primary" onclick="checkIn('{{$order->id}}')">Check In</button>
         @endif
