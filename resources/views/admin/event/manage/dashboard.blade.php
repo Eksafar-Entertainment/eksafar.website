@@ -187,7 +187,8 @@
                             ticks: {
                                 stepSize: 50,
                                 callback: function(label, index, labels) {
-                                    return "₹" + label;
+                                    return money(label);
+
                                 }
                             },
                         },

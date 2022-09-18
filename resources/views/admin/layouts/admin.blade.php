@@ -93,6 +93,11 @@
                 });
             _elem.parentNode.insertBefore(_node, _elem.nextSibling);
         });
+
+        //money
+        window.money = (amount)=>{
+            return "₹" +Intl.NumberFormat('en-US').format(amount);
+        }
     });
 </script>
 
