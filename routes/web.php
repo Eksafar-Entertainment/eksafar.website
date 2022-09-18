@@ -43,6 +43,7 @@ Route::group([
     Route::get('files', [FileManagerController::class, "index"])->name("admin.files");
     Route::post('files/folder', [FileManagerController::class, "newFolder"]);
     Route::post('files/file', [FileManagerController::class, "newFile"]);
+    Route::post('files/ck-upload', [FileManagerController::class, "ckUpload"]);
 
     //orders
     //Route::resource('order', OrderController::class);

@@ -98,4 +98,20 @@ class FileManagerController extends Controller
         return redirect()->route('admin.files', ["dir" => $dir])
             ->withSuccess(__('File Uploaded successfully.'));
     }
+
+    public function ckUpload(Request $request)
+    {
+        $dir = "/uploads";
+        $disk = Storage::disk('public');
+        $path = $disk->getAdapter()->getPathPrefix();
+        $filename = date('YmdHi') . ".jpeg";
+        if ($request->file('upload')) {
+            $file = $request->file('upload');
+            $file->move($path . $dir, $filename);
+        }
+
+        return response()->json([
+            'default'=> url("/storage/uploads/".$filename),
+        ]);
+    }
 }
