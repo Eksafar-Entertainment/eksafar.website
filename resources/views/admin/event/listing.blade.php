@@ -6,7 +6,7 @@
         <h4 class="flex-grow-1">{{__('Events')}}</h4>
         <div class="">
             @if(Auth::user()->can('event:create'))
-            <a data-bs-toggle="modal" data-bs-target="#new-event-modal" class="btn btn-sm btn-primary">New Event</a>
+            <a data-bs-toggle="modal" data-bs-target="#new-event-modal" class="btn btn-sm btn-primary">Create Event</a>
             @endif
         </div>
     </div>
@@ -97,7 +97,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="title">New Event</h5>
+                    <h5 class="modal-title" id="title">Create Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -111,8 +112,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" id="cancel-btn">Cancel</button>
-                    <button type="submit" class="btn btn-sm btn-primary" id="confirm-btn">Save</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
                 </div>
             </div>
         </div>
