@@ -20,6 +20,7 @@
             <ul class="dropdown-menu" aria-labelledby="usersDropdown">
               <li><a href="{{ route('users.index') }}" class="dropdown-item">Users</a></li>
               <li><a href="{{ route('roles.index') }}" class="dropdown-item">Roles</a></li>
+              <li><a href="{{ route('permissions.index') }}" class="dropdown-item">Permissions</a></li>
             </ul>
           </li>
 

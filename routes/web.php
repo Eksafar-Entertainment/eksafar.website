@@ -15,6 +15,7 @@ use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\RazorpayController;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\PermissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::group([
     Route::get('/', [AdminHomeController::class, "index"]);
     Route::resource('roles', RolesController::class);
     Route::resource('users', UsersController::class);
+    Route::resource('permissions', PermissionsController::class);
     Route::resource('posts', PostsController::class);
     Route::resource('gallery', GalleryController::class);
     Route::resource('promoters', PromotersController::class);
