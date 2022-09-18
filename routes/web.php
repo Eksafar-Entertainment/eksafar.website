@@ -72,12 +72,7 @@ Route::group([
         Route::post('/event/{event_id}/check-in', [EventController::class, 'checkIn'])->middleware("permission:event:check-in");
 
         Route::get('/event/delete/{id}', "delete")->middleware("permission:event:delete");
-
-        Route::get('/event/form/{eventId}', "details");
-        Route::get('/event/form', "details");
-
-        Route::post('/event/form/{eventId}', "save");
-        Route::post('/event/form', "save");
+        Route::post('/event', "create")->middleware("permission:event:create");
     });
 });
 

@@ -5,7 +5,9 @@
     <div class="d-flex">
         <h4 class="flex-grow-1">{{__('Events')}}</h4>
         <div class="">
-            <a href="{{url('admin/event/form')}}" class="btn btn-sm btn-primary">New Event</a>
+            @if(Auth::user()->can('event:create'))
+            <a data-bs-toggle="modal" data-bs-target="#new-event-modal" class="btn btn-sm btn-primary">New Event</a>
+            @endif
         </div>
     </div>
 
@@ -88,4 +90,33 @@
         @include('admin.common.pagination', ['paginator' => $events])
     </div>
 </div>
+@if(Auth::user()->can('event:create'))
+<div class="modal fade" id="new-event-modal" tabindex="-1">
+    <form enctype="multipart/form-data" method="post" action="/admin/event">
+        @csrf
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="title">New Event</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name-input">Name</label>
+                        <input type="text" class="form-control" id="name-input" placeholder="Enter event name" name="name">
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="description-input">Description</label>
+                        <textarea type="text" class="form-control rich-text" id="description-input" placeholder="Enter event description" name="description"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" id="cancel-btn">Cancel</button>
+                    <button type="submit" class="btn btn-sm btn-primary" id="confirm-btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@endif
 @endsection
