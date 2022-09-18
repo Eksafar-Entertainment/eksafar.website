@@ -2,11 +2,15 @@
 
 @section('content')
 
-<h3>Roles</h3>
-<div class="">
-    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm float-right">Add role</a>
+<div class="d-flex">
+    <div class="flex-grow-1">
+        <h2>Roles</h2>
+        <p class="text-muted">Manage your promoters here.</p>
+    </div>
+    <div>
+        <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm float-right">Add role</a>
+    </div>
 </div>
-
 <div class="mt-2">
     @include('layouts.partials.messages')
 </div>
