@@ -444,7 +444,13 @@ class EventController extends Controller
     public function checkInDetails($event_id, Request $request)
     {
         $order_id = $request->order_id;
-        $order = Order::where("id", $order_id)->first();
+        $order = Order::where("id", $order_id)->where("status","SUCCESS")->first();
+        if(!$order){
+            return response()->json([
+                "status" => 404,
+                'message' => 'No order details found',
+            ], 404);
+        }
         $order_details = OrderDetail::where(["order_id" => $order->id])
             ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
             //->groupBy("order_details.id")

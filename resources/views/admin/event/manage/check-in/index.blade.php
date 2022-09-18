@@ -44,7 +44,14 @@
                 order_id: order_id
             },
             success: function(result) {
+                console.log(result);
                 $("#details-container").html(result.html);
+            },
+            complete:(result)=>{
+
+            },
+            error:(error)=>{
+
             }
         });
     }
