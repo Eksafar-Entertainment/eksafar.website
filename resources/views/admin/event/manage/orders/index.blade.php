@@ -55,32 +55,33 @@
                 <th>Name</th>
                 <th>Mobile</th>
                 <th>Email</th>
-                <th>Amount</th>
+                <th class="text-end">Amount</th>
                 <th>Promoter</th>
-                <th>Commission</th>
+                <th class="text-end">Commission</th>
                 <th>Date</th>
                 <th>Status</th>
-                <th>Checked In</th>
-                <th width="3%">Action</th>
+                <th>In</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($orders as $key => $order)
             <tr class="data-row" data-row-id="{{$order->id}}">
                 <td>{{ $key + 1 }}</td>
-                <td>{{ $order->id }}</td>
+                <td><a href="javascript:void()" onclick="openCheckInDetails('{{$order->id}}')">{{ $order->id }}</a></td>
                 <td>{{ $order->name }}</td>
                 <td>{{ $order->mobile }}</td>
                 <td>{{ $order->email }}</td>
-                <td>₹{{ $order->total_price }}</td>
-                <td>{{ $order->promoter }}</td>
-                <td>₹{{ $order->promoter_commission?$order->promoter_commission:0 }}</td>
-                <td>₹{{ $order->date?date('d-m-Y', strtotime($order->date)):""}}</td>
+                <td class="text-end">
+                    @money($order->total_price)
+                </td>
+                <td>{{ $order->promoter??"----" }}</td>
+                <td class="text-end">
+                    @money($order->promoter_commission?$order->promoter_commission:0)
+                </td>
+                <td>{{ $order->date?date('d/m/Y', strtotime($order->date)):""}}</td>
                 <td><span class="badge bg-{{$colors[$order->status]}}">{{ $order->status }}</span></td>
-                <td class="checked-in"><span class="text-{{ $order->is_checked_in?'success': 'danger' }}">{{ $order->is_checked_in?"Yes": "No" }}</span></td>
-
-                <td>
-                    <a class="btn btn-info btn-sm" onclick="openCheckInDetails('{{$order->id}}')">Show</a>
+                <td class="checked-in">
+                    <span class="badge bg-{{ $order->is_checked_in?'success': 'danger' }}">{{ $order->is_checked_in?"Yes": "No" }}</span>
                 </td>
             </tr>
             @endforeach
