@@ -112,6 +112,10 @@ class FileManagerController extends Controller
 
         return response()->json([
             'default'=> url("/storage/uploads/".$filename),
+            '160'=> url("/storage/uploads/".$filename),
+            '500'=> url("/storage/uploads/".$filename),
+            '1000'=> url("/storage/uploads/".$filename),
+            '1052'=> url("/storage/uploads/".$filename)
         ]);
     }
 }
