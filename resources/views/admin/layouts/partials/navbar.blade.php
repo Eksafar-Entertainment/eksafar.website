@@ -3,7 +3,7 @@
     <div class="container-lg">
       <a class="navbar-brand" href="{{ url('/admin') }}">
         <!--{{ config('app.name', 'Laravel') }}-->
-        <img height="35px" src="{{url('img/logo.png')}}" />
+        <img height="25px" src="{{url('img/logo.png')}}" />
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
         <span class="navbar-toggler-icon"></span>
