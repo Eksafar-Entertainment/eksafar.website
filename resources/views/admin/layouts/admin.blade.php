@@ -45,7 +45,7 @@
                 <small>Made by <a href="https://www.xpeed.co.in">Xpeed Technologies</a></small>
             </div>
         </main>
-      
+
     </div>
 
     @section("scripts")
@@ -173,6 +173,20 @@
 
         //axios
         axios.defaults.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
+        axios.interceptors.request.use(function(config) {
+            $("#preloader").fadeIn();
+            return config;
+        }, function(error) {
+            $("#preloader").fadeOut();
+            return Promise.reject(error);
+        });
+        axios.interceptors.response.use(function(response) {
+            $("#preloader").fadeOut();
+            return response;
+        }, function(error) {
+            $("#preloader").fadeOut();
+            return Promise.reject(error);
+        });
 
         //ckeditor
         document.querySelectorAll(".rich-text").forEach(_elem => {

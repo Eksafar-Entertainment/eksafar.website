@@ -15,8 +15,14 @@
           <li class="nav-item"><a href="/admin" class="nav-link">Home</a></li>
           @auth
           @role('Admin')
-          <li class="nav-item"><a href="{{ route('users.index') }}" class="nav-link">Users</a></li>
-          <li class="nav-item"><a href="{{ route('roles.index') }}" class="nav-link">Roles</a></li>
+          <li class="nav-item dropdown">
+            <a id="usersDropdown" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Users</a>
+            <ul class="dropdown-menu" aria-labelledby="usersDropdown">
+              <li><a href="{{ route('users.index') }}" class="dropdown-item">Users</a></li>
+              <li><a href="{{ route('roles.index') }}" class="dropdown-item">Roles</a></li>
+            </ul>
+          </li>
+
           @endrole
           <li class="nav-item"><a href="{{ route('posts.index') }}" class="nav-link">Posts</a></li>
           <li class="nav-item"><a href="/admin/event" class="nav-link">Events</a></li>
