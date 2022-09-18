@@ -110,6 +110,22 @@
                         <label for="description-input">Description</label>
                         <textarea type="text" class="form-control rich-text" id="description-input" placeholder="Enter event description" name="description"></textarea>
                     </div>
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="form-group mt-3">
+                                <label for="start-date-input">Start Date</label>
+                                <input id="start-date-input" type="date" class="form-control" placeholder='Enter Start Date here' name="start_date" required="">
+
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mt-3">
+                                <label for="end-date-input">End Date</label>
+                                <input id="end-date-input" type="date" class="form-control" placeholder='Enter End Date here' name="end_date" required="">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
