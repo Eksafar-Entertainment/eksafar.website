@@ -232,10 +232,6 @@
         });
 
         //money
-        window.money = (amount) => {
-            return "₹" + Intl.NumberFormat('en-US').format(amount);
-        }
-
         const ask_modal_container = document.getElementById('ask-modal');
         const ask_modal = new bootstrap.Modal(ask_modal_container, {
             backdrop: 'static',

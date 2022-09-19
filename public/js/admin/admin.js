@@ -5358,6 +5358,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
+window.money = function (amount) {
+  return "₹" + Intl.NumberFormat('en-US').format(amount);
+};
+
 /***/ }),
 
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.esm.js":

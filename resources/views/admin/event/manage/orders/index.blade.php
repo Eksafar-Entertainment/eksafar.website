@@ -73,7 +73,7 @@
                     </td>
                     <td>{{ $order->promoter??"----" }}</td>
                     <td class="text-end">
-                        @money($order->promoter_commission?$order->promoter_commission:0)
+                        @money($order->promoter_commission?$order->promoter_commission:0) @ {{$order->promoter_commission_percentage}}
                     </td>
                     <td>{{ $order->date?date('d/m/Y', strtotime($order->date)):""}}</td>
                     <td><span class="badge bg-{{$colors[$order->status]}}">{{ $order->status }}</span></td>

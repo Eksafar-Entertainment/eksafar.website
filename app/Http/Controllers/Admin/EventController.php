@@ -288,7 +288,8 @@ class EventController extends Controller
             ->select(
                 "orders.*",
                 "promoters.name as promoter",
-                DB::raw("(orders.total_price * (promoters.commission/100)) as promoter_commission")
+                DB::raw("(orders.total_price * (promoters.commission/100)) as promoter_commission"),
+                "promoters.commission as promoter_commission_percentage"
             )
             ->latest()
             ->paginate(10)->appends($request->query());
