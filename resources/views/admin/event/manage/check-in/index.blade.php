@@ -13,7 +13,7 @@
 </div>
 @endsection
 @section('content')
-<div class="overflow-auto mt-4" id="details-container">
+<div class="overflow-auto mt-4" id="details-container" style="min-height: 400px">
 
 </div>
 
