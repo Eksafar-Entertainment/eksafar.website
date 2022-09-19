@@ -1,4 +1,7 @@
 @extends('admin.layouts.admin')
+@section('subnav')
+@include('admin.event.partials.subnav')
+@endsection
 @section('content')
 
 <div>

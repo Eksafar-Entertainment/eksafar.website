@@ -42,37 +42,35 @@ Route::group([
     Route::resource('gallery', GalleryController::class);
     Route::resource('promoters', PromotersController::class);
     //files
-    Route::get('files', [FileManagerController::class, "index"])->name("admin.files");
-    Route::post('files/folder', [FileManagerController::class, "newFolder"]);
-    Route::post('files/file', [FileManagerController::class, "newFile"]);
-    Route::post('files/ck-upload', [FileManagerController::class, "ckUpload"]);
-
-    //orders
-    //Route::resource('order', OrderController::class);
-
-
+    Route::controller(FileManagerController::class)->group(function () {
+        Route::get('files',  "index")->name("admin.files");
+        Route::post('files/folder',  "newFolder");
+        Route::post('files/file',  "newFile");
+        Route::post('files/ck-upload',  "ckUpload");
+    });
+    
     //events
     Route::controller(EventController::class)->group(function () {
         Route::get('/event',  "index")->middleware("permission:event:list");
-        Route::get('/event/{event_id}/dashboard', [EventController::class, 'dashboard'])->middleware("permission:event:dashboard");
+        Route::post('/event', "create")->middleware("permission:event:create");
 
-        Route::get('/event/{event_id}/orders', [EventController::class, 'orders'])->middleware("permission:event:orders");
-        Route::post('/event/{event_id}/orders/details', [EventController::class, "orderDetails"])->middleware("permission:event:orders");
+        Route::get('/event/{event_id}/dashboard', 'dashboard')->middleware("permission:event:dashboard")->name("admin:event:dashboard");
 
-        Route::get('/event/{event_id}/tickets', [EventController::class, 'tickets'])->middleware("permission:event:tickets");
+        Route::get('/event/{event_id}/orders', 'orders')->middleware("permission:event:orders")->name("admin:event:orders");
+        Route::post('/event/{event_id}/orders/details',  "orderDetails")->middleware("permission:event:orders");
 
-        Route::post('/event/{event_id}/tickets/form', [EventController::class, 'getTicketForm'])->middleware("permission:event:tickets");
-        Route::post('/event/{event_id}/tickets', [EventController::class, 'saveTicket'])->middleware("permission:event:tickets");
+        Route::get('/event/{event_id}/tickets',  'tickets')->middleware("permission:event:tickets")->name("admin:event:tickets");
+        Route::post('/event/{event_id}/tickets/form',  'getTicketForm')->middleware("permission:event:tickets");
+        Route::post('/event/{event_id}/tickets',  'saveTicket')->middleware("permission:event:tickets");
 
-        Route::get('/event/{event_id}/customize', [EventController::class, 'customize'])->middleware("permission:event:customize");
-        Route::post('/event/{event_id}/customize', [EventController::class, 'saveEvent'])->middleware("permission:event:customize");
+        Route::get('/event/{event_id}/customize',  'customize')->middleware("permission:event:customize")->name("admin:event:customize");
+        Route::post('/event/{event_id}/customize',  'saveEvent')->middleware("permission:event:customize");
 
-        Route::get('/event/{event_id}/check-in', [EventController::class, 'checkInView'])->middleware("permission:event:check-in");
-        Route::post('/event/{event_id}/check-in/details', [EventController::class, 'checkInDetails'])->middleware("permission:event:check-in");
-        Route::post('/event/{event_id}/check-in', [EventController::class, 'checkIn'])->middleware("permission:event:check-in");
+        Route::get('/event/{event_id}/check-in',  'checkInView')->middleware("permission:event:check-in")->name("admin:event:check-in");
+        Route::post('/event/{event_id}/check-in/details',  'checkInDetails')->middleware("permission:event:check-in");
+        Route::post('/event/{event_id}/check-in',  'checkIn')->middleware("permission:event:check-in");
 
         Route::get('/event/delete/{id}', "delete")->middleware("permission:event:delete");
-        Route::post('/event', "create")->middleware("permission:event:create");
     });
 });
 

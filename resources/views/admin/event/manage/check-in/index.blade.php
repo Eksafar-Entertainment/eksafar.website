@@ -1,4 +1,7 @@
 @extends('admin.layouts.admin')
+@section('subnav')
+@include('admin.event.partials.subnav')
+@endsection
 @section('content')
 <h4>Check In</h4>
 <p class="text-muted d-none">Manage your order here.</p>
