@@ -111,7 +111,7 @@
         </div>
     </div>
     <script>
-        window.onload = () => {
+        $(document).ready(() => {
             const options = {
                 plugins: {
                     legend: {
@@ -225,7 +225,7 @@
                     },
                 }
             });
-        }
+        });
     </script>
 </div>
 @endsection
