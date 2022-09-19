@@ -1,32 +1,18 @@
 @extends('admin.layouts.admin')
 @section('subnav')
-@include('admin.event.partials.subnav')
+<!-- @include('admin.event.partials.subnav') -->
+<div class="bg-white border-bottom" style="background-color: #eee;">
+    <div class="container-lg">
+        <form onsubmit="openCheckInDetails(event)" id="search-form" class="d-flex align-items-center">
+            <div class="fs-5">
+                ID
+            </div>
+            <input type="text" class="form-control form-control-lg border-0 bg-transparent flex-grow-1" placeholder="Please enter order id" name="id" value="{{app('request')->input('id')}}" />
+        </form>
+    </div>
+</div>
 @endsection
 @section('content')
-<h4>Check In</h4>
-<p class="text-muted d-none">Manage your order here.</p>
-<div class="mt-2">
-    @include('layouts.partials.messages')
-</div>
-
-
-<div class="mt-4">
-    <form onsubmit="openCheckInDetails(event)" id="search-form">
-        <div class="row">
-            <input type="hidden" name="page" value="{{app('request')->input('page')}}" />
-            <div class="col-auto">
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon1">ID</span>
-                    <input class="form-control" placeholder="Order ID" name="id" value="{{app('request')->input('id')}}" />
-                </div>
-            </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </form>
-</div>
-
 <div class="overflow-auto mt-4" id="details-container">
 
 </div>
@@ -49,7 +35,7 @@
 
             },
             error: (error) => {
-
+                $("#details-container").html("");
             }
         });
     }
