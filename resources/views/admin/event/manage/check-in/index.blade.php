@@ -16,7 +16,6 @@
 <div class="overflow-auto mt-4" id="details-container" style="min-height: 400px">
 
 </div>
-
 <script>
     function openCheckInDetails(event) {
         event.preventDefault();

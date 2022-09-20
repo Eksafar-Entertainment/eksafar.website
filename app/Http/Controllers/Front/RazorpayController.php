@@ -17,6 +17,7 @@ use App\Models\EventTicket;
 use App\Models\Promoter;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class RazorpayController extends Controller
 {
@@ -157,6 +158,7 @@ class RazorpayController extends Controller
       $payment->status = "SUCCESS";
       $order->status = "SUCCESS";
       $html = "Your payment was successful";
+      QrCode::format('png')->size(200)->generate($order->id, public_path("storage/uploads/qr-".$order->id.".png"));
       Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
     } else {
       $payment->status = "FAILED";

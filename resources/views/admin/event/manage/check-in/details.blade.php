@@ -1,3 +1,4 @@
+
 <div class="card">
     <div class="card-header">
         <h5>Order Details</h5>
@@ -5,14 +6,21 @@
     <div class="card-body">
         <div class="rounded">
             <div class="mt-4">
-                <div>
-                    ID: #{{ $order->id }}
-                </div>
-                <div>
-                    Name: {{ $order->name }}
-                </div>
-                <div>
-                    Checked In: <span class="text-{{$order->is_checked_in?'success':'danger'}}">{{$order->is_checked_in?"Yes":"No"}}</span>
+                <div class="row">
+                    <div class="col-auto">
+                        {!! QrCode::size(70)->backgroundColor(255,255,255)->generate($order->id) !!}
+                    </div>
+                    <div class="col">
+                        <div>
+                            ID: #{{ $order->id }}
+                        </div>
+                        <div>
+                            Name: {{ $order->name }}
+                        </div>
+                        <div>
+                            Checked In: <span class="text-{{$order->is_checked_in?'success':'danger'}}">{{$order->is_checked_in?"Yes":"No"}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,7 +51,7 @@
                     </tr>
                     @endforeach
                 </tbody>
-              
+
             </table>
         </div>
     </div>

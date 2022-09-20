@@ -2,9 +2,10 @@
 
 <head>
     <style>
-        *{
+        * {
             color: #222;
         }
+
         body {
             color: #222;
             background-color: white;
@@ -32,7 +33,8 @@
             border: 1px solid #e5e5e5;
             ;
         }
-        p{
+
+        p {
             color: #222222
         }
     </style>
@@ -50,8 +52,8 @@
     <h2>Event Ticket</h2>
     <table style="background-color: rgb(248, 242, 231); width: 100%; border-collapse: collapse; border: 1px dotted #ccc;">
         <tr>
-            <td style="background-color: #031364; writing-mode: vertical-rl;
-            text-orientation: mixed; text-align: center; letter-spacing: 1.2px; color: white;">
+            <td style="background-color: #031364; text-align: center; letter-spacing: 1.2px; color: white;">
+                <!-- <img src="{{url('storage/uploads/qr-'.$order->id.'png')}}"> -->
                 #{{$order->id}}
             </td>
             <th style="border-right: 1px dotted #ccc; padding: 10px;">
