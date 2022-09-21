@@ -58,8 +58,9 @@
                     <th class="text-end">Amount</th>
                     <th>Promoter</th>
                     <th class="text-end">Commission</th>
-                    <th>Date</th>
+                    <th>Booking Date</th>
                     <th>Status</th>
+                    <th>Order Date</th>
                     <th>In</th>
                 </tr>
             </thead>
@@ -80,6 +81,7 @@
                     </td>
                     <td>{{ $order->date?date('d/m/Y', strtotime($order->date)):""}}</td>
                     <td><span class="badge bg-{{$colors[$order->status]}}">{{ $order->status }}</span></td>
+                    <td>{{ $order->created_at?date('d/m/Y h:m A', strtotime($order->created_at)):""}}</td>
                     <td class="checked-in">
                         <span class="badge bg-{{ $order->is_checked_in?'success': 'danger' }}">{{ $order->is_checked_in?"Yes": "No" }}</span>
                     </td>
