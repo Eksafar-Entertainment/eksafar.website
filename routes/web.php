@@ -65,6 +65,8 @@ Route::group([
 
         Route::get('/event/{event_id}/customize',  'customize')->middleware("permission:event:customize")->name("admin:event:customize");
         Route::post('/event/{event_id}/customize',  'saveEvent')->middleware("permission:event:customize");
+        Route::post('/event/{event_id}/customize/album-images',  'addAlbumImage')->middleware("permission:event:customize");
+        Route::delete('/event/{event_id}/customize/album-images',  'deleteAlbumImage')->middleware("permission:event:customize");
 
         Route::get('/event/{event_id}/check-in',  'checkInView')->middleware("permission:event:check-in")->name("admin:event:check-in");
         Route::post('/event/{event_id}/check-in/details',  'checkInDetails')->middleware("permission:event:check-in");

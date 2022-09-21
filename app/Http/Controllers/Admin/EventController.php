@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AccessLog;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\EventAlbumImage;
 use App\Models\EventTicket;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -383,7 +384,8 @@ class EventController extends Controller
     public function customize($event_id, Request $request)
     {
         $event = Event::where("id", $event_id)->first();
-        return view("admin.event.manage.customize.index", compact('event'));
+        $event_album_images = EventAlbumImage::where("event_id", $event_id)->get();
+        return view("admin.event.manage.customize.index", compact('event', "event_album_images"));
     }
 
     function saveEvent($eventId = 0, Request $request)
@@ -464,5 +466,26 @@ class EventController extends Controller
             "status" => 200,
             'message' => 'Data updated successful',
         ]);
+    }
+
+    ///album functions
+    public function addAlbumImage($event_id, Request $request){
+        $event_album_image = new EventAlbumImage();
+        $event_album_image->event_id = $event_id;
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('storage/uploads'), $filename);
+            $event_album_image->image = $filename;
+        } else {
+            abort(400, "Error while uploading image");
+        }
+        $event_album_image->save();
+        return redirect('/admin/event/'.$event_id.'/customize/#album');
+    }
+    public function deleteAlbumImage($event_id, Request $request){
+        $event_album_image = EventAlbumImage::where("id", $request->event_album_image_id)->first();
+        $event_album_image->delete();
+        return redirect('/admin/event/'.$event_id.'/customize/#album');
     }
 }
