@@ -1,10 +1,16 @@
 @extends('frontend.index')
 @section('page_css')
 <link rel="stylesheet" href="/css/date-cal.css">
+<link rel="stylesheet" href="/css/event/carousel.css">
+<link rel="stylesheet" href="/css/event/click-line.css">
+<link rel="stylesheet" href="/css/event/main.css">
+<link rel="stylesheet" href="/css/event/sub-header.css">
 @endsection
 @section('content')
-@include('frontend.events.top-bar')
+{{-- @include('frontend.events.top-bar') --}}
 @include('frontend.header')
+<div style="padding: 5%;">
+@include('frontend.events.details.main')
 
 <div id="fh5co-couple" class="fh5co-section-gray">
     <div class="container">
@@ -151,7 +157,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 @include('frontend.landing.countdown')
 @include('frontend.landing.slider')
@@ -179,7 +185,7 @@
 
 <script>
     // set the date we're counting down to
-    var target_date = new Date('October, 2, 2022').getTime();
+    var target_date = new Date('October, 3, 2022').getTime();
 
     // variables for time units
     var days, hours, minutes, seconds;
@@ -218,5 +224,6 @@
         $("#book-ticket-modal").modal('show');
     });
 </script>
+<script src="/js/event/click-line.js"></script>
 
 @endsection

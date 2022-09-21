@@ -1,5 +1,5 @@
 // set the date we're counting down to
-var target_date = new Date('October, 2, 2022').getTime();
+var target_date = new Date('2022, 10, 3, 19, 00, 00, 00').getTime();
  
 // variables for time units
 var days, hours, minutes, seconds;
