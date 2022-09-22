@@ -68,6 +68,25 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="cropper-modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header mb-0">
+                    <h5 class="modal-title" id="title">Confirm</h5>
+                </div>
+                <div class="modal-body p-0 mt-0">
+                    <div id="preview" style="width: 100%; padding-top:100%; background-size:cover; background-position:center"></div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" id="cancel-btn">NO</button>
+                    <button type="button" class="btn btn-sm btn-primary" id="confirm-btn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
 <script>
@@ -251,9 +270,44 @@
                 ask_modal.show();
             });
         }
+        //cropper
+        const _cropper_modal_container = document.getElementById('cropper-modal');
+        const _cropper_modal = new bootstrap.Modal(_cropper_modal_container, {
+            backdrop: 'static',
+            keyboard: false,
+        });
+        document.querySelectorAll(".cropper-input").forEach(_elm => {
+ 
+            _elm.onchange = (_event) => {
+                const files = _event.target.files;
+                const url = URL.createObjectURL(files[0]);
+                const _preview = _cropper_modal_container.querySelector("#preview");
+                const _ratio = parseInt(eval(_elm.getAttribute("data-ratio") + "*100")) ?? "100";
+                _preview.style.backgroundImage = `url(${url})`;
+                _preview.style.paddingTop = _ratio + "%";
+
+                console.log(_ratio + "%");
+
+
+
+                _cropper_modal_container.querySelector("#confirm-btn").onclick = () => {
+                    _cropper_modal.hide();
+                    const _data_preview = document.querySelector(_elm.getAttribute("data-preview"));
+                    if (_data_preview) {
+                        _data_preview.style.backgroundImage = `url(${url})`;
+                        _data_preview.src = url;
+                    }
+                }
+                _cropper_modal_container.querySelector("#cancel-btn").onclick = () => {
+                    _cropper_modal.hide();
+                    _elm.value = "";
+                }
+
+                _cropper_modal.show();
+            }
+        })
+
     });
-
-
 </script>
 
 </html>

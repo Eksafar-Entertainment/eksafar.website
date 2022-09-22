@@ -6,6 +6,11 @@ try {
 } catch (e) {
 
 }
+try{
+    window.Crop = require('tinycrop');
+} catch(e){
+
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
