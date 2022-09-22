@@ -10,7 +10,7 @@
                         @include('frontend.events.details.carousel')
 
                         <div class="col-lg-12">
-                            <div class="col-xs-12 col-sm-6">
+                            {{-- <div class="col-xs-12 col-sm-6">
                                 <figure>
                                     <img class="img-circle img-responsive" alt=""
                                         src="http://placehold.it/300x300">
@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-xs-12 col-sm-6" style="margin-top: 5%;">
                                 <ul class="list-group" style="text-align:center">
                                     <li class="list-group-item">Disco Dandiya Night </li>
