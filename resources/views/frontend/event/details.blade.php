@@ -87,20 +87,39 @@
                             <ul class="list">
                                 <li>Venue and club rules apply.</li>
                                 <li>Strict COVID-19 Safety Protocols apply.</li>
-                                <li>Organiser/venue reserves the right to deny entry at any time as a precautionary measure to uphold the highest level of health and safety for everyone.</li>
-                                <li>Temperature checks might be taken by any of the venue/restaurant representatives prior, during, and after, in the club. The event organiser/venue will make a decision on access to the restaurant/venue based on your health conditions</li>
+                                <li>Organiser/venue reserves the right to deny entry at any time as a precautionary measure
+                                    to uphold the highest level of health and safety for everyone.</li>
+                                <li>Temperature checks might be taken by any of the venue/restaurant representatives prior,
+                                    during, and after, in the club. The event organiser/venue will make a decision on access
+                                    to the restaurant/venue based on your health conditions</li>
                                 <li>Do not buy tickets from anyone except online on skillboxes.com</li>
-                                <li>Please remember to carry a valid government-issued photo ID proof (Driver's License/Aadhar Card/PAN Card/Voter Card/Passport). You may not be permitted to enter in the absence of one.</li>
+                                <li>Please remember to carry a valid government-issued photo ID proof (Driver's
+                                    License/Aadhar Card/PAN Card/Voter Card/Passport). You may not be permitted to enter in
+                                    the absence of one.</li>
                                 <li>The venue and schedule are subject to change.</li>
-                                <li>This ticket permits entry to the event venue only. Any pre or after parties may have other ticketing requirements and may be sold separately.</li>
+                                <li>This ticket permits entry to the event venue only. Any pre or after parties may have
+                                    other ticketing requirements and may be sold separately.</li>
                                 <li>Security procedures, including frisking, remain the right of the management.</li>
-                                <li>No refund/replacement on a purchased ticket. Tickets you purchase are for personal use. You must not transfer (or seek to transfer) the tickets in breach of the applicable terms. A breach of this condition will entitle us to cancel the tickets without prior notification, refund, compensation or liability.</li>
-                                <li>Please do not carry dangerous or potentially hazardous objects including but not limited to weapons, knives, guns, fireworks, laser devices and bottles to the venue. We may have to eject these things (with or without you) from the venue.</li>
-                                <li>The sponsors/bands/organizers/management are not responsible for, including but not limited to, any injury or damage that may occur during or at the event.</li>
-                                <li>No liability or claims that may arise due to the consumption or intake of any food or drink or any other consumption will be entertained by the management.</li>
+                                <li>No refund/replacement on a purchased ticket. Tickets you purchase are for personal use.
+                                    You must not transfer (or seek to transfer) the tickets in breach of the applicable
+                                    terms. A breach of this condition will entitle us to cancel the tickets without prior
+                                    notification, refund, compensation or liability.</li>
+                                <li>Please do not carry dangerous or potentially hazardous objects including but not limited
+                                    to weapons, knives, guns, fireworks, laser devices and bottles to the venue. We may have
+                                    to eject these things (with or without you) from the venue.</li>
+                                <li>The sponsors/bands/organizers/management are not responsible for, including but not
+                                    limited to, any injury or damage that may occur during or at the event.</li>
+                                <li>No liability or claims that may arise due to the consumption or intake of any food or
+                                    drink or any other consumption will be entertained by the management.</li>
                                 <li>Parking near or at the event premises is at the risk of the vehicle owner.</li>
-                                <li>The holder of this ticket grants organizers the right to use, in perpetuity, all or any part of the recording of any video or still footage made of the holder's appearance on any channel or magazine for broadcast in any and all media globally and for advertising, publicity and promotions relating hereto without any further approval of theirs.</li>
-                                <li>The management reserves the exclusive right without refund or other recourse, to refuse admission to anyone who is found to be in breach of these terms and conditions including, if necessary, ejecting the holder/s of the ticket from the venue after they have entered the premises.</li>
+                                <li>The holder of this ticket grants organizers the right to use, in perpetuity, all or any
+                                    part of the recording of any video or still footage made of the holder's appearance on
+                                    any channel or magazine for broadcast in any and all media globally and for advertising,
+                                    publicity and promotions relating hereto without any further approval of theirs.</li>
+                                <li>The management reserves the exclusive right without refund or other recourse, to refuse
+                                    admission to anyone who is found to be in breach of these terms and conditions
+                                    including, if necessary, ejecting the holder/s of the ticket from the venue after they
+                                    have entered the premises.</li>
                             </ul>
                         </div>
                     </div>
@@ -147,7 +166,8 @@
                                 <div class="fs-4"><i class="fas fa-wallet"></i> </div>
                                 <div class="flex-grow-1 ps-3 fs-4 fw-bold">Rs 3000</div>
                                 <div>
-                                    <button class="btn btn-danger">Book Now</button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Book Now</button>
                                 </div>
 
                             </div>
@@ -194,7 +214,8 @@
                     <h2>No More Screens. Only LIVE Scenes.</h2>
                     <p class="mt-4 fs-5">Kiss the couch goodbye and make a checklist of the things you’ve missed! Concerts.
                         Comedy. Cricket. Camping. Cool Scenes.</p>
-                    <p class="mt-4 fs-5">Set your destination to: ‘Anywhere, but home.’ Find experiences in & around your city
+                    <p class="mt-4 fs-5">Set your destination to: ‘Anywhere, but home.’ Find experiences in & around your
+                        city
                         - Step out with the Paytm Insider app today.</p>
                 </div>
                 <div class="col-md-2">
@@ -206,4 +227,79 @@
             </div>
         </div>
     </section>
+
+    <!------- Booking Modal ---->
+    <div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content position-relative">
+                    <button type="button" class="btn-close position-absolute" style="top: 5px; right:5px" aria-label="Close" data-bs-dismiss="modal"></button>
+                    <div class="modal-body p-4">
+                        <div class="row">
+                            <div class="col-md">
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0">Emiway Bantai Live @ The LaLiT, Mumbai</h4>
+                                        <small class="text-muted"><i class="fas fa-calendar me-2"></i> 16th October, 2022
+                                            |
+                                            04:00 PM Onwards</small>
+                                    </div>
+                                    <table class="table table-ms mt-3">
+                                        @for ($n = 0; $n < 3; $n++)
+                                            <tr>
+                                                <td class="ps-0">
+                                                    <h6 class="mb-0">Phase 2 - General Access</h6>
+                                                    <small class="text-muted">Permits Entry to the Event Arena (GA Access
+                                                        Area)
+                                                        Permits Entry to the Event Arena.</small><br>
+                                                    <span class="text-success"> @money(1000) </span>
+                                                </td>
+                                                <td width="1%" class="align-middle">
+                                                    <input type="number" class="form-control form-control-small"
+                                                        placeholder="Qtde." style="min-width: 80px" />
+                                                </td>
+                                                <td class="fs-6 align-middle pe-0">
+                                                    @money(0)
+                                                </td>
+                                            </tr>
+                                        @endfor
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="col-md-auto d-none d-md-inline">
+                                <div class="d-flex" style="min-height: 300px;">
+                                    <div class="vr"></div>
+                                  </div>
+                            </div>
+
+                            <div class="col-md-auto">
+                                <table class="table fs-6" style="min-width: 250px">
+                                    <tr>
+                                        <td class="ps-0 border-bottom-0">Total Quantity</td>
+                                        <td class="pe-0 border-bottom-0">0</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="ps-0">Total Amount</td>
+                                        <td class="pe-0">@money(0)</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="ps-0 border-bottom-0">Grand Total</td>
+                                        <td class="pe-0 border-bottom-0">@money(0)</td>
+                                    </tr>
+                                </table>
+                                <div>
+                                    <button class="btn btn-primary w-100">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
