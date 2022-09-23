@@ -118,4 +118,21 @@ class FileManagerController extends Controller
             '1052'=> url("/storage/uploads/".$filename)
         ]);
     }
+
+    public function uploader(Request $request)
+    {
+        $dir = "/uploads";
+        $disk = Storage::disk('public');
+        $path = $disk->getAdapter()->getPathPrefix();
+        $filename = date('YmdHi') . ".jpeg";
+        if ($request->file('upload')) {
+            $file = $request->file('upload');
+            $file->move($path . $dir, $filename);
+        }
+
+        return response()->json([
+            "path"=>"/storage/uploads/".$filename,
+            "url"=>("/storage/uploads/".$filename),
+        ]);
+    }
 }

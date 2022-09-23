@@ -41,7 +41,7 @@ class VenueController extends Controller
         $logo = "";
         if ($request->file('logo')) {
             $file = $request->file('logo');
-            $filename = date('YmdHi') . '.'.$file->getExtension() ;//$file->getClientOriginalName();
+            $filename = date('YmdHi') . '.'.$file->extension();
             $file->move(public_path('storage/uploads'), $filename);
             $logo = $filename;
         }
@@ -49,7 +49,7 @@ class VenueController extends Controller
         $cover = "";
         if ($request->file('cover')) {
             $file = $request->file('cover');
-            $filename = date('YmdHi') . '.'.$file->getExtension() ;//$file->getClientOriginalName();
+            $filename = date('YmdHi') . '.'.$file->extension();
             $file->move(public_path('storage/uploads'), $filename);
             $cover = $filename;
         }
