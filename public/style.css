@@ -2,7 +2,6 @@
 /* :: 1.0 Import Fonts */
 @import url("https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800,900");
 /* :: 2.0 Import All CSS */
-@import url(css/new/bootstrap.min.css);
 @import url(css/new/classy-nav.css);
 @import url(css/new/owl.carousel.min.css);
 @import url(css//new/animate.css);
@@ -1525,4 +1524,3 @@ img {
 
 /* ====== The End ====== */
 
-/*# sourceMappingURL=style.css.map */

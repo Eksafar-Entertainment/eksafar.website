@@ -4,7 +4,7 @@
     <footer class="footer-area">
         <!-- Footer Logo -->
         <div class="footer-logo mb-100">
-            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+            <a href="/"><span  style="font-size: 48px;color:red;">Ek</span><span style="font-size: 48px;">safar</span></a>
         </div>
         <!-- Footer Content -->
         <div class="container">
@@ -33,9 +33,7 @@
 
                         <!-- Copywrite Text -->
                         <p class="copywrite-text"><a href="#">
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://xpeed.com" target="_blank">Xpeed</a></p>
                     </div>
                 </div>
             </div>

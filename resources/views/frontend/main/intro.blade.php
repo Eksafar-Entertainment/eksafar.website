@@ -9,7 +9,7 @@
 
                         <!-- Intro News Filter -->
                         <div class="intro-news-filter d-flex justify-content-between">
-                            <h6>All the news</h6>
+                            <h6>All the Events</h6>
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="nav1" data-toggle="tab" href="#nav-1" role="tab" aria-controls="nav-1" aria-selected="true">Latest</a>
@@ -577,10 +577,19 @@
                         </div>
 
                         <!-- Add Widget -->
-                        <div class="single-widget-area add-widget mb-30">
-                            <a href="#">
-                                <img src="img/bg-img/add3.png" alt="">
-                            </a>
+                        <div class="single-widget-area newsletter-widget mb-30">
+                        <h4>Disco Dandiya Event on: </h4>
+			                    <div class="row">
+			                    	<div class="text-center">
+			                    		<p class="countdown" id="countdown">
+			                    			<span id="days"></span>
+			                    			<span id="hours"></span>
+			                    			<span id="minutes"></span>
+			                    			<span id="seconds"></span>
+			                    		</p>
+			                    	</div>
+			                    </div>
+                                <a href="/event-disco-dandiya-night" class="btn btn-outline-danger">Book Now</a>
                         </div>
 
                     </div>

@@ -9,8 +9,13 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Newsbox - Modern Magazine &amp; Newspaper HTML Template</title>
+    <title>Eksafar</title>
 
+    <!-- Scripts -->
+    <script src="{{ asset('js/front/app.js') }}" defer></script>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
@@ -45,6 +50,7 @@
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <script src="js/countdown.js"></script>
     @yield('custom_js')
 </body>
 

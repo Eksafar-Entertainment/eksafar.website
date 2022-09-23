@@ -1,5 +1,5 @@
 // set the date we're counting down to
-var target_date = new Date('2022, 10, 3, 19, 00, 00, 00').getTime();
+var target_date = new Date('October, 3, 2022').getTime();
  
 // variables for time units
 var days, hours, minutes, seconds;
@@ -25,7 +25,7 @@ setInterval(function () {
     seconds = parseInt(seconds_left % 60);
      
     // format countdown string + set tag value
-    countdown.innerHTML = '<span class="days">' + days +  ' <label>Days</label></span> <span class="hours">' + hours + ' <label>Hours</label></span> <span class="minutes">'
-    + minutes + ' <label>Minutes</label></span> <span class="seconds">' + seconds + ' <label>Seconds</label></span>';  
+    countdown.innerHTML = '<span class="days fw-bold text-danger">' + days +  ' <label>Days</label></span> <span class="hours fw-bold text-danger">' + hours + ' <label>Hours</label></span> <span class="minutes fw-bold text-danger">'
+    + minutes + ' <label>Minutes</label></span> <span class="seconds fw-bold text-danger">' + seconds + ' <label>Seconds</label></span>';  
  
 }, 1000);

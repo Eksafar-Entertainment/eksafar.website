@@ -11,9 +11,9 @@
                         </div>
                         <div id="breakingNewsTicker" class="ticker">
                             <ul>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum.</a></li>
-                                <li><a href="#">Welcome to Colorlib Family.</a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque</a></li>
+                                <li><a href="/event-disco-dandiya-night">Disco Dandiya 2022 <button class="btn btn-outline-danger">Book Now</button></a></li>
+                                <li><a href="/">Halloween 2022. <span style="font-weight: 300; color: red;">&nbsp;&nbsp;&nbsp;&nbsp;Comming Soon...</span></a></li>
+                                <li><a href="/">Okt Fest <span style="font-weight: 300; color: red;">&nbsp;&nbsp;&nbsp;&nbsp;Comming Soon...</span></a></li>
                             </ul>
                         </div>
                     </div>

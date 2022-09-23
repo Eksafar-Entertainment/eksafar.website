@@ -8,7 +8,7 @@
                     <nav class="classy-navbar justify-content-between" id="newsboxNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="index.html" class="nav-brand"><span  style="font-size: 48px;color:red;">Ek</span><span style="font-size: 48px;">safar</span></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -94,12 +94,14 @@
                                     <li><a href="#">Lifestyle</a></li>
                                 </ul>
 
+                                @if($mobile)
                                 <!-- Header Add Area -->
                                 <div class="header-add-area">
                                     <a href="#">
                                        <img src="img/bg-img/add.png" alt="">
                                     </a>
                                 </div>
+                                @endif
                             </div>
                             <!-- Nav End -->
 

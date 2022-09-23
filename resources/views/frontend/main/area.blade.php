@@ -12,13 +12,13 @@
                             <div class="single-blog-post style-1" data-animation="fadeInUpBig" data-delay="100ms" data-duration="1000ms">
                                 <!-- Blog Thumbnail -->
                                 <div class="blog-thumbnail bg-overlay">
-                                    <a href="#"><img src="img/bg-img/1.jpg" alt=""></a>
+                                    <a href="#"><img src="images/groom.jpg" alt=""></a>
                                 </div>
 
                                 <!-- Blog Content -->
                                 <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <a href="#" class="post-title">Traffic Problems in Time Square</a>
+                                    <span class="post-date">Oct 3, 2022</span>
+                                    <a href="/event-disco-dandiya-night" class="post-title">Disco Dandiya Night</a>
                                 </div>
                             </div>
                         </div>
@@ -28,26 +28,26 @@
                             <div class="single-blog-post style-1 mb-30" data-animation="fadeInUpBig" data-delay="300ms" data-duration="1000ms">
                                 <!-- Blog Thumbnail -->
                                 <div class="blog-thumbnail bg-overlay">
-                                    <a href="#"><img src="img/bg-img/2.jpg" alt=""></a>
+                                    <a href="#"><img src="images/web2.jpg" alt=""></a>
                                 </div>
 
                                 <!-- Blog Content -->
                                 <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <a href="#" class="post-title">The best way to spend your holliday</a>
+                                    <span class="post-date">Comming Soon...</span>
+                                    <a href="#" class="post-title">Halloween Night 2022</a>
                                 </div>
                             </div>
                             <!-- Single Blog Post Area -->
                             <div class="single-blog-post style-1" data-animation="fadeInUpBig" data-delay="500ms" data-duration="1000ms">
                                 <!-- Blog Thumbnail -->
                                 <div class="blog-thumbnail bg-overlay">
-                                    <a href="#"><img src="img/bg-img/3.jpg" alt=""></a>
+                                    <a href="#"><img src="images/web3.jpg" alt=""></a>
                                 </div>
 
                                 <!-- Blog Content -->
                                 <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <a href="#" class="post-title">Sport results for the weekend games</a>
+                                    <span class="post-date">Comming Soon...</span>
+                                    <a href="#" class="post-title">New Year Party</a>
                                 </div>
                             </div>
                         </div>
@@ -64,13 +64,13 @@
                             <div class="single-blog-post style-1" data-animation="fadeInUpBig" data-delay="100ms" data-duration="1000ms">
                                 <!-- Blog Thumbnail -->
                                 <div class="blog-thumbnail bg-overlay">
-                                    <a href="#"><img src="img/bg-img/1.jpg" alt=""></a>
+                                    <a href="#"><img src="images/groom.jpg" alt=""></a>
                                 </div>
 
                                 <!-- Blog Content -->
                                 <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <a href="#" class="post-title">Second Problems in Time Square</a>
+                                    <span class="post-date">Oct 3, 2022</span>
+                                    <a href="/event-disco-dandiya-night" class="post-title">Disco Dandiya Night</a>
                                 </div>
                             </div>
                         </div>
@@ -80,26 +80,26 @@
                             <div class="single-blog-post style-1 mb-30" data-animation="fadeInUpBig" data-delay="300ms" data-duration="1000ms">
                                 <!-- Blog Thumbnail -->
                                 <div class="blog-thumbnail bg-overlay">
-                                    <a href="#"><img src="img/bg-img/2.jpg" alt=""></a>
+                                    <a href="#"><img src="images/web2.jpg" alt=""></a>
                                 </div>
 
                                 <!-- Blog Content -->
                                 <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <a href="#" class="post-title">The best way to spend your holliday</a>
+                                    <span class="post-date">Comming Soon...</span>
+                                    <a href="#" class="post-title">Halloween Night 2022</a>
                                 </div>
                             </div>
                             <!-- Single Blog Post Area -->
                             <div class="single-blog-post style-1" data-animation="fadeInUpBig" data-delay="500ms" data-duration="1000ms">
                                 <!-- Blog Thumbnail -->
                                 <div class="blog-thumbnail bg-overlay">
-                                    <a href="#"><img src="img/bg-img/3.jpg" alt=""></a>
+                                    <a href="#"><img src="images/web3.jpg" alt=""></a>
                                 </div>
 
                                 <!-- Blog Content -->
                                 <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <a href="#" class="post-title">Sport results for the weekend games</a>
+                                    <span class="post-date">Comming Soon...</span>
+                                    <a href="#" class="post-title">New Year Party</a>
                                 </div>
                             </div>
                         </div>
