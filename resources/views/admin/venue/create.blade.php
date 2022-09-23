@@ -7,7 +7,7 @@
 
 <div class="mt-4">
 
-    <form method="POST" action="{{ route('venue.store') }}">
+    <form method="POST" action="{{ route('venue.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3 bg-secondary position-relative border" id="preview-cover" style="height: 250px;  background-size:cover; background-position:center">

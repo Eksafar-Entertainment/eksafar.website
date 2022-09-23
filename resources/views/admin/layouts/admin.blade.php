@@ -277,7 +277,7 @@
             keyboard: false,
         });
         document.querySelectorAll(".cropper-input").forEach(_elm => {
- 
+
             _elm.onchange = (_event) => {
                 const files = _event.target.files;
                 const url = URL.createObjectURL(files[0]);
@@ -286,13 +286,20 @@
                 _preview.style.backgroundImage = `url(${url})`;
                 _preview.style.paddingTop = _ratio + "%";
 
-                console.log(_ratio + "%");
-
-
 
                 _cropper_modal_container.querySelector("#confirm-btn").onclick = () => {
                     _cropper_modal.hide();
                     const _data_preview = document.querySelector(_elm.getAttribute("data-preview"));
+
+                    var form = new FormData();
+                    form.append("upload", files[0]);
+                    form.append('dir', '/');
+                    axios.post('/admin/files/uploader', form).then(res=>{
+                        console.log(res);
+                    }).catch(err=>{
+                        console.log(res);
+                    });
+
                     if (_data_preview) {
                         _data_preview.style.backgroundImage = `url(${url})`;
                         _data_preview.src = url;

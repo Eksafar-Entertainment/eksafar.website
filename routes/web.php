@@ -50,6 +50,7 @@ Route::group([
         Route::post('files/folder',  "newFolder");
         Route::post('files/file',  "newFile");
         Route::post('files/ck-upload',  "ckUpload");
+        Route::post('files/uploader',  "uploader");
     });
     
     //events

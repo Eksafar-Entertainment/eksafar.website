@@ -18,12 +18,14 @@
         <tr>
             <th width="1%">No</th>
             <th>Name</th>
-            <th width="3%" colspan="3">Action</th>
+            <th>Action</th>
         </tr>
         @foreach ($venues as $key => $venue)
         <tr>
             <td>{{ $venue->id }}</td>
-            <td>{{ $venue->title }}</td>
+            <td>{{ $venue->logo }}</td>
+            <td>{{ $venue->cover }}</td>
+            <td>{{ $venue->name }}</td>
             <td>
                 <a class="btn btn-info btn-sm" href="{{ route('venue.show', $venue->id) }}">Show</a>
             </td>
