@@ -18,6 +18,7 @@ class AddFieldsToEventsTable extends Migration
             $table->string("terms");
             $table->string("min_age");
             $table->string("language");
+            $table->string("banners");
 
             $table->dropColumn('artist');
         });
@@ -35,8 +36,7 @@ class AddFieldsToEventsTable extends Migration
             $table->dropColumn("terms");
             $table->dropColumn("min_age");
             $table->dropColumn("language");
-
-            $table->string('artist');
+            $table->dropColumn("banners");
         });
     }
 }
