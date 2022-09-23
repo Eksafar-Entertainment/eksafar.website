@@ -44,13 +44,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="venue">Venue</label>
 
                                 <div>
                                     <input id="venue" type="text" class="form-control" placeholder='Enter Venue here'
                                         name="venue" value="{{ $event ? $event->venue : '' }}" required="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="language">Language</label>
+
+                                <div>
+                                    <input id="language" type="text" class="form-control" placeholder='Enter Language here'
+                                        name="language" value="{{ $event ? $event->language : '' }}" required="">
                                 </div>
                             </div>
                         </div>
@@ -127,7 +138,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="cover_image">Cover Image</label>
 
@@ -138,7 +149,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="video_link">Video Link</label>
 
@@ -149,6 +160,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="min_age">Minimum Age</label>
+
+                                <div>
+                                    <input id="min_age" type="number" class="form-control"
+                                        placeholder='Enter minimum age here' name="min_age"
+                                        value="{{ $event ? $event->min_age : '' }}" required="">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="description">Description</label>
@@ -156,6 +178,15 @@
                         <div>
                             <textarea id="description" class="form-control rich-text" placeholder='Enter Description here' name="description"
                                 required="">{!! $event ? html_entity_decode($event->description) : '' !!}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="terms">Terms & Conditions</label>
+
+                        <div>
+                            <textarea id="terms" class="form-control rich-text" placeholder='Enter Terms and conditions here' name="terms"
+                                required="">{!! $event ? html_entity_decode($event->terms) : '' !!}</textarea>
                         </div>
                     </div>
 
@@ -175,7 +206,7 @@
                             ],
                         ];
                         ?>
-                        <x-selectize :options="$artists" :multiple="true" name="artists" :selected="$event->artists"></x-selectize>
+                        <x-selectize :options="$artists" :multiple="true" name="artists[]" :selected="$event->artists"></x-selectize>
                     </div>
 
                     <button class="btn btn-primary">Save Event</button>

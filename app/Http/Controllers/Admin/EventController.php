@@ -411,7 +411,10 @@ class EventController extends Controller
         }
         $event->video_link = $request->video_link;
         $event->event_type = $request->event_type;
-        $event->artist = $request->artist;
+        $event->artists = $request->artists;
+        $event->min_age = $request->min_age;
+        $event->terms = $request->terms;
+        $event->language = $request->language;
         $event->abilities = $request->abilities;
 
         $event->save();

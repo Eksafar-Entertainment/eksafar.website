@@ -10648,3 +10648,15 @@ textarea.form-control-lg {
 .sub-nav .nav .nav-item a.active {
   color: #05335c;
 }
+
+.selectize-input {
+  border-radius: 0 !important;
+}
+
+.selectize-dropdown {
+  border-radius: 0 !important;
+}
+
+.selectize-control.multi .selectize-input > div {
+  border-radius: 0 !important;
+}

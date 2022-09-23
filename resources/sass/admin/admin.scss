@@ -23,3 +23,13 @@
         }
     }
 }
+
+.selectize-input{
+    border-radius: 0 !important;
+}
+.selectize-dropdown{
+    border-radius: 0 !important;
+}
+.selectize-control.multi .selectize-input>div{
+    border-radius: 0 !important;
+}
