@@ -292,6 +292,17 @@
                                     </tr>
                                 </table>
                                 <div>
+                                    <div class="mb-3">
+                                        <input type="text" placeholder="Full name" class="form-control"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="email" placeholder="Email" class="form-control"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input type="number" placeholder="Phone" class="form-control"/>
+                                    </div>
                                     <button class="btn btn-primary w-100">Checkout</button>
                                 </div>
                             </div>
