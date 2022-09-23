@@ -164,7 +164,7 @@
 
                             <div class="p-4 pt-3 d-flex">
                                 <div class="fs-4"><i class="fas fa-wallet"></i> </div>
-                                <div class="flex-grow-1 ps-3 fs-4 fw-bold">Rs 3000</div>
+                                <div class="flex-grow-1 ps-3 fs-4 fw-bold">@money(99)</div>
                                 <div>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">Book Now</button>
