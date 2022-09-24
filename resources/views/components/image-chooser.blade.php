@@ -12,6 +12,8 @@
         <input type="file" id="{{ $id }}-input" class="d-none" />
     </label>
     {{ $slot }}
+
+    <div id="{{ $id }}-progress" class="position-absolute bottom-0 start-0 bg-success" style="height: 4px; transition: width 0.25s"></div>
 </div>
 <script>
     $(function() {
@@ -20,20 +22,27 @@
         const _elm = document.querySelector("#{{ $id }}-input");
         const _preview = document.querySelector("#{{ $id }}-preview");
         const _field = document.querySelector("#{{ $id }}-field");
+        const _progress_div = document.querySelector("#{{ $id }}-progress");
         _elm.onchange = (_event) => {
             const files = _event.target.files;
             const url = URL.createObjectURL(files[0]);
 
             ask("Are you sure?").then(() => {
-                _preview.style.backgroundImage = `url(${url})`;
                 var form = new FormData();
                 form.append("upload", files[0]);
                 form.append('dir', '/');
-                axios.post('/admin/files/uploader', form).then(res => {
-                    console.log(res);
+                axios.post('/admin/files/uploader', form, {
+                    onUploadProgress: _p_event => {
+                        const _percentage = (_p_event.loaded/_p_event.total) * 100 ;
+                        _progress_div.style.width = _percentage + "%";
+                    }
+                }).then(res => {
+                    _preview.style.backgroundImage = `url(${url})`;
                     _field.value = res.data.path;
                 }).catch(err => {
                     console.log(res);
+                }).finally(e=>{
+                    _progress_div.style.width = "0px";
                 });
             }).catch(e => {
 
