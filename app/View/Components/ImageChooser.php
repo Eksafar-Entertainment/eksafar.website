@@ -6,10 +6,6 @@ use Illuminate\View\Component;
 
 class ImageChooser extends Component
 {
-    public $options = [];
-    public $multiple = false;
-    public $selected = []||"";
-    public $hasImage = false;
     public $id = null;
     /**
      * Create a new component instance.
@@ -18,13 +14,6 @@ class ImageChooser extends Component
      */
     public function __construct($options=[], $selected="", $multiple=false)
     {
-        $this->options = $options;
-        $this->selected = $selected;
-        $this->multiple = $multiple;
-
-        if(count($options) > 0 && is_array($options[0])){
-            $this->hasImage = true;
-        }
         $this->id = "selectize-".rand(111111,999999);
     }
 

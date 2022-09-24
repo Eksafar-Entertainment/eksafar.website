@@ -12,25 +12,15 @@
 
             <!----- Image Chooser --->
             <div>
-                <x-image-chooser class="border border-grey" height="150px" width="150px" :value="null" name="logo"></x-image-chooser>
+
             </div>
 
-            <div class="mb-3 bg-secondary position-relative border" id="preview-cover"
-                style="height: 250px;  background-size:cover; background-position:center">
-                <label for="logo" class="d-inline-block">
-                    <div class="bg-primary border" id="preview-logo"
-                        style="height: 150px; width: 150px; margin: 75px 0 25px 25px; background-size:cover; background-position:center">
-                    </div>
-                    <input style="display:none" type="file" class="form-control cropper-input" data-ratio="1/1"
-                        data-preview="#preview-logo" name="logo" placeholder="logo" id="logo" required>
-                </label>
+            <x-image-chooser class="border border-grey p-4" height="auto" width="100%" :value="null" name="cover">
+                <x-image-chooser class="border border-grey mt-5" height="150px" width="150px" :value="null" name="logo"/>
+            </x-image-chooser>
+            
 
-                <label for="cover" class="form-label" style="position: absolute; right: 25px; bottom:25px">
-                    <a class="btn btn-sm btn-primary" type="button">Select Cover</a>
-                    <input style="display:none" type="file" class="form-control cropper-input" data-ratio="1/3"
-                        data-preview="#preview-cover" name="cover" placeholder="cover" id="cover" required>
-                </label>
-            </div>
+
 
             <div class="mb-3">
                 <label for="name" class="form-label">Title</label>
@@ -114,8 +104,8 @@
 
             <div class="mb-3">
                 <label for="tags" class="form-label">tags</label>
-                <input value="{{ old('tags') }}" type="text" class="form-control" name="tags"
-                    placeholder="tags" id="tags" required>
+                <input value="{{ old('tags') }}" type="text" class="form-control" name="tags" placeholder="tags"
+                    id="tags" required>
 
                 @if ($errors->has('tags'))
                     <span class="text-danger text-left">{{ $errors->first('tags') }}</span>
