@@ -11,6 +11,7 @@ use App\Models\EventAlbumImage;
 use App\Models\EventTicket;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Venue;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Carbon\CarbonPeriod;
@@ -385,7 +386,15 @@ class EventController extends Controller
     {
         $event = Event::where("id", $event_id)->first();
         $event_album_images = EventAlbumImage::where("event_id", $event_id)->get();
-        return view("admin.event.manage.customize.index", compact('event', "event_album_images"));
+        $venues = Venue::get()->toArray();
+        $venues = array_map(function($venue){
+            return [
+                "label"=>$venue["name"],
+                "value"=>$venue["id"],
+                "avater"=>url($venue["logo"]),
+            ];
+        },$venues);
+        return view("admin.event.manage.customize.index", compact('event', "event_album_images", "venues"));
     }
 
     function saveEvent($eventId = 0, Request $request)

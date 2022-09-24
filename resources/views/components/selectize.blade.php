@@ -23,7 +23,7 @@
             plugins: ['remove_button'],
             searchField: ['label', 'value'],
             options: options,
-            items: {!!$multiple? json_encode($selected): $selected!!},
+            items: {!!$multiple? json_encode($selected): '"'.$selected.'"'!!},
             preload: true,
             persist: false,
 

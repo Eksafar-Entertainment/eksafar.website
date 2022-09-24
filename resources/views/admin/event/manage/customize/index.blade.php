@@ -49,8 +49,7 @@
                                 <label for="venue">Venue</label>
 
                                 <div>
-                                    <input id="venue" type="text" class="form-control" placeholder='Enter Venue here'
-                                        name="venue" value="{{ $event ? $event->venue : '' }}" required="">
+                                    <x-selectize :options="$venues" name="venue" :selected="$event ? $event->venue : ''"></x-selectize>
                                 </div>
                             </div>
                         </div>
