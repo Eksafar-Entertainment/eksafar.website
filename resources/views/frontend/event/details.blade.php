@@ -7,12 +7,12 @@
                 <!----- left panel--->
                 <div class="col-md-8">
                     <div class="pt-4">
-                        <div class="card">
+                        <div class="">
                             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     @for ($n = 0; $n < 3; $n++)
                                         <div class="carousel-item active">
-                                            <img src="https://picsum.photos/1080/580" class="rounded w-100" />
+                                            <img src="https://picsum.photos/1080/580" class="w-100" />
                                         </div>
                                     @endfor
                                 </div>
@@ -66,7 +66,7 @@
                                     <div class="row align-items-end">
                                         <div class="col-auto">
                                             <div style="margin-top: -40px;">
-                                                <img src="https://i.pravatar.cc/60?id={{}}"
+                                                <img src="https://i.pravatar.cc/60?id={{$n}}"
                                                     class="rounded border" />
                                             </div>
                                         </div>
