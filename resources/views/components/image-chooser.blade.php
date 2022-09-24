@@ -1,7 +1,7 @@
-<div class="position-relative text-end {{ $attributes['class'] }}"
+<div class="position-relative bg-secondary text-end {{ $attributes['class'] }}"
     style="height: {{ $attributes['height'] }}; width:{{ $attributes['width'] }}; background-size:cover; background-position:center; background-image:url('{{ url(isset($attributes['value']) ? $attributes['value'] : '/images/placeholder.png') }}')"
-    id="{{ $id }}-preview" value="{{ $attributes['value'] || '' }}">
-    <input type="text" name="{{ $attributes['name'] }}" id="{{ $id }}-field" class="d-none" />
+    id="{{ $id }}-preview" >
+    <input type="text" name="{{ $attributes['name'] }}" id="{{ $id }}-field" class="d-none" value="{{ $attributes['value']??'' }}"/>
 
 
     <div

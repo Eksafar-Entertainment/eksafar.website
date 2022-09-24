@@ -63,10 +63,9 @@ class VenueController extends Controller
             'address', 
             'founded_at', 
             'tags', 
-        ),[
-            "logo" => $logo,
-            "cover"=> $cover
-        ]));
+            'logo',
+            'cover'
+        )));
 
         return redirect()->route('venue.index')
             ->withSuccess(__('Venue created successfully.'));
@@ -107,7 +106,19 @@ class VenueController extends Controller
      */
     public function update(Request $request, Venue $venue)
     {
-        $venue->update($request->only('title', 'description', 'body'));
+        $venue->update($request->only(
+            'name', 
+            'mobile', 
+            'email', 
+            'excerpt', 
+            'description', 
+            'location', 
+            'address', 
+            'founded_at', 
+            'tags', 
+            'logo',
+            'cover'
+        ));
 
         return redirect()->route('venue.index')
             ->withSuccess(__('Venue updated successfully.'));

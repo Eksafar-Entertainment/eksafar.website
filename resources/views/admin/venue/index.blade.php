@@ -26,9 +26,9 @@
             <td>{{ $venue->logo }}</td>
             <td>{{ $venue->cover }}</td>
             <td>{{ $venue->name }}</td>
-            <td>
+            {{-- <td>
                 <a class="btn btn-info btn-sm" href="{{ route('venue.show', $venue->id) }}">Show</a>
-            </td>
+            </td> --}}
             <td>
                 <a class="btn btn-primary btn-sm" href="{{ route('venue.edit', $venue->id) }}">Edit</a>
             </td>
