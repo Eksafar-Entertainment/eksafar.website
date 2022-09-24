@@ -11,10 +11,6 @@
 
 
             <!----- Image Chooser --->
-            <div>
-
-            </div>
-
             <x-image-chooser class="border border-grey p-4" height="auto" width="100%" :value="null" name="cover">
                 <x-image-chooser class="border border-grey mt-5" height="150px" width="150px" :value="null" name="logo"/>
             </x-image-chooser>
