@@ -411,13 +411,7 @@ class EventController extends Controller
         $event->end_date = $request->end_date;
         $event->occurrence = $request->occurrence;
         $event->description = $request->description;
-
-        if ($request->file('cover_image')) {
-            $file = $request->file('cover_image');
-            $filename = date('YmdHi') . '.'.$file->extension();
-            $file->move(public_path('storage/uploads'), $filename);
-            $event->cover_image = $filename;
-        }
+        $event->cover_image = $request->cover_image;
         $event->video_link = $request->video_link;
         $event->event_type = $request->event_type;
         $event->artists = $request->artists;

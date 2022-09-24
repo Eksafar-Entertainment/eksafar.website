@@ -11,6 +11,9 @@
             <div class="card-body">
                 <form enctype="multipart/form-data" method="post">
                     @csrf
+
+                    <x-image-chooser class="border border-grey mb-3" height="200px" width="100%" :value="$event->cover_image" name="cover_image" />
+
                     <div class="mb-3">
                         <label for="name">Name</label>
 
@@ -114,7 +117,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-3">
 
                             <div class="mb-3">
                                 <label for="city">City</label>
@@ -125,7 +128,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="address">Address</label>
 
@@ -137,18 +140,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="cover_image">Cover Image</label>
-
-                                <div>
-                                    <input id="cover_image" type="file" class="form-control"
-                                        placeholder='Enter Cover Image here' name="cover_image">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="video_link">Video Link</label>
 
@@ -159,7 +151,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="min_age">Minimum Age</label>
 
