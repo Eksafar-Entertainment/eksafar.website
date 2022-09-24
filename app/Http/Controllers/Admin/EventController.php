@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\FormBuilder;
 use App\Http\Controllers\Controller;
 use App\Models\AccessLog;
+use App\Models\Artist;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventAlbumImage;
@@ -394,7 +395,16 @@ class EventController extends Controller
                 "avater"=>url($venue["logo"]),
             ];
         },$venues);
-        return view("admin.event.manage.customize.index", compact('event', "event_album_images", "venues"));
+
+        $artists = Artist::get()->toArray();
+        $artists = array_map(function($artist){
+            return [
+                "label"=>$artist["name"],
+                "value"=>$artist["id"],
+                "avater"=>url($artist["image"]),
+            ];
+        },$artists);
+        return view("admin.event.manage.customize.index", compact('event', "event_album_images", "venues", "artists"));
     }
 
     function saveEvent($eventId = 0, Request $request)

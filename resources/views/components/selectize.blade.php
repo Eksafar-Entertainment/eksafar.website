@@ -1,7 +1,7 @@
 @if (!$hasImage)
     <select id="{{$id}}" {{ $multiple ? 'multiple' : '' }} {{ $attributes }}>
         @foreach ($options as $key => $option)
-            <option value="{{ $key }}">{{ $option }}</option>
+            <option value="{{ $key }}" {{$selected==$option?"selected":""}}>{{ $option }}</option>
         @endforeach
     </select>
     <script>
@@ -23,7 +23,7 @@
             plugins: ['remove_button'],
             searchField: ['label', 'value'],
             options: options,
-            items: {!!$multiple? json_encode($selected): '"'.$selected.'"'!!},
+            items: {!! json_encode($multiple? $selected: [$selected]) !!},
             preload: true,
             persist: false,
 

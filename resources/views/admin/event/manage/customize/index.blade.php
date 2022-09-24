@@ -50,7 +50,6 @@
                         <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="venue">Venue</label>
-
                                 <div>
                                     <x-selectize :options="$venues" name="venue" :selected="$event ? $event->venue : ''"></x-selectize>
                                 </div>
@@ -183,20 +182,6 @@
 
                     <div class="mb-3">
                         <label for="artist">Artists</label>
-                        <?php
-                        $artists = [
-                            [
-                                'value' => 1,
-                                'label' => 'MOE and Sloka',
-                                'avater' => 'http://eksafar.lo/storage/uploads/202209230754WhatsApp%20Image%202022-08-20%20at%202.27.39%20PM.jpeg',
-                            ],
-                            [
-                                'value' => 2,
-                                'label' => 'MOE and Sloka2',
-                                'avater' => 'http://eksafar.lo/storage/uploads/202209230754WhatsApp%20Image%202022-08-20%20at%202.27.39%20PM.jpeg',
-                            ],
-                        ];
-                        ?>
                         <x-selectize :options="$artists" :multiple="true" name="artists[]" :selected="$event->artists"></x-selectize>
                     </div>
 
