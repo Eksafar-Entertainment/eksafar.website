@@ -27,6 +27,7 @@
           @endrole
           <li class="nav-item"><a href="{{ route('posts.index') }}" class="nav-link">Posts</a></li>
           <li class="nav-item"><a href="{{ route('venue.index') }}" class="nav-link">Venues</a></li>
+          <li class="nav-item"><a href="{{ route('artist.index') }}" class="nav-link">Artists</a></li>
           @if(Auth::user()->can('event:list'))
           <li class="nav-item"><a href="/admin/event" class="nav-link">Events</a></li>
           @endif

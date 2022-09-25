@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreArtistRequest;
-use App\Http\Requests\UpdateArtistRequest;
+use App\Http\Controllers\Controller;
+// use App\Http\Requests\StoreArtistRequest;
+// use App\Http\Requests\UpdateArtistRequest;
+use Illuminate\Http\Request;
 use App\Models\Artist;
 
 class ArtistController extends Controller
@@ -35,7 +37,7 @@ class ArtistController extends Controller
      * @param  \App\Http\Requests\StoreArtistRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreArtistRequest $request)
+    public function store(Request $request)
     {
         $image = "";
         if ($request->file('image')) {
@@ -100,7 +102,7 @@ class ArtistController extends Controller
      * @param  \App\Models\Artist  $artist
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateArtistRequest $request, Artist $artist)
+    public function update(Request $request, Artist $artist)
     {
         $artist->update($request->only('title', 'description', 'body'));
 
