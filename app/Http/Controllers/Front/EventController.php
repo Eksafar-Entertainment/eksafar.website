@@ -23,7 +23,7 @@ class EventController extends Controller
         if(!$event) return abort(404);
         $event_tickets= EventTicket::where(["event_id"=>$event->id])->get();
         $venue= Venue::where(["id"=>$event->venue])->first();
-        $artists= Artist::whereIn("id", $event->artists)->get();
+        $artists= Artist::whereIn("id", $event->artists??[])->get();
         
 
         return view("frontend.event.details", compact('desktop', 'mobile', 'tablet', 'type','event_tickets','event', 'venue','artists'));
