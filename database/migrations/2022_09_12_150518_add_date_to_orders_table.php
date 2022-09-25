@@ -26,7 +26,7 @@ class AddDateToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->date('date')->nullable();
+            $table->dropColumn('date');
         });
     }
 }

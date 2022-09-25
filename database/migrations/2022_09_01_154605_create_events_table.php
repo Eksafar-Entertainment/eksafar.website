@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('entry_type');
-            $table->string('venue');
+            $table->integer('venue')->reference("id")->on("venues");;
             $table->string('city');
             $table->string('address');
             $table->date('start_date');
@@ -27,7 +27,6 @@ class CreateEventsTable extends Migration
             $table->string('cover_image');
             $table->string('video_link');
             $table->string('event_type');
-            $table->string('artist');
             $table->text('abilities')->nullable();
             $table->text('slug');
             $table->timestamps();

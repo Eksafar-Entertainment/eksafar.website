@@ -14,12 +14,10 @@ class AddFieldsToEventsTable extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('artist');
             $table->json("artists");
-            $table->string("terms");
+            $table->longText("terms");
             $table->string("min_age");
             $table->string("language");
-            $table->string("banners");
         });
     }
 
@@ -35,7 +33,6 @@ class AddFieldsToEventsTable extends Migration
             $table->dropColumn("terms");
             $table->dropColumn("min_age");
             $table->dropColumn("language");
-            $table->dropColumn("banners");
         });
     }
 }

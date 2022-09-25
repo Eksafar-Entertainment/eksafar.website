@@ -66,26 +66,21 @@ class EventController extends Controller
         $event->name = $request->name;
         $event->slug = $event->slug == null || $event->slug == "" ? Str::slug($request->name) : $event->slug;
         $event->entry_type = $request->entry_type??"";
-        $event->venue = $request->venue??"";
+        $event->venue = $request->venue??0;
         $event->city = $request->city??"";
         $event->address = $request->address??"";
         $event->start_date = $request->start_date??"2020-01-01";
         $event->end_date = $request->end_date??"2020-01-01";
         $event->occurrence = $request->occurrence??"";
         $event->description = $request->description;
-
-        if ($request->file('cover_image')) {
-            $file = $request->file('cover_image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('storage/uploads'), $filename);
-            $event->cover_image = $filename;
-        } else {
-            $event->cover_image = "";
-        }
         $event->video_link = $request->video_link??"";
         $event->event_type = $request->event_type??"";
-        $event->artist = $request->artist??"";
+        $event->artists = $request->artist??[];
         $event->abilities = $request->abilities ??"";
+        $event->cover_image = $request->cover_image ??"";
+        $event->terms = $request->terms ??"";
+        $event->min_age = $request->min_age ??18;
+        $event->language = $request->language ??"";
 
         $event->save();
         return redirect('/admin/event/'.$event->id.'/customize/');
