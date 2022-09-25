@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\VenueController;
+use App\Http\Controllers\Admin\ArtistController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -42,6 +43,7 @@ Route::group([
     Route::resource('permissions', PermissionsController::class);
     Route::resource('posts', PostsController::class);
     Route::resource('venue', VenueController::class);
+    Route::resource('artist', ArtistController::class);
     Route::resource('gallery', GalleryController::class);
     Route::resource('promoters', PromotersController::class);
     //files
