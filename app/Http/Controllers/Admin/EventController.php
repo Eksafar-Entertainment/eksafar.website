@@ -211,7 +211,7 @@ class EventController extends Controller
         foreach ($event_views as $event_view) {
             $event_views_chart["data"][$event_view->date] = $event_view->count;
             $event_views_chart["total"] += $event_view->count;
-            $views += $order->count;
+            $views += $event_view->count;
         }
 
         foreach ($order_details as $order_detail) {
