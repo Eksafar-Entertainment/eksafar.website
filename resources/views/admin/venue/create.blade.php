@@ -12,7 +12,8 @@
 
             <!----- Image Chooser --->
             <x-image-chooser class="border border-grey p-4 mb-3" height="auto" width="100%" :value="null" name="cover">
-                <x-image-chooser class="border border-grey mt-5" height="150px" width="150px" :value="null" name="logo" />
+                <x-image-chooser class="border border-grey mt-5" height="150px" width="150px" :value="null"
+                    name="logo" />
             </x-image-chooser>
 
 
@@ -86,7 +87,7 @@
                         @endif
                     </div>
                 </div>
-               
+
             </div>
 
 
@@ -103,8 +104,9 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea  type="text" class="form-control rich-text" name="description"
-                    placeholder="description" id="description">{{ old('description') }}</textarea>
+
+                <x-rich-text-editor name="description" required="required" placeholder="Enter event description" required>
+                    {{ old('description') }}</x-rich-text-editor>
 
                 @if ($errors->has('description'))
                     <span class="text-danger text-left">{{ $errors->first('description') }}</span>

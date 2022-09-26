@@ -108,7 +108,7 @@
 
                     <div class="form-group mt-3">
                         <label for="description-input">Description</label>
-                        <textarea type="text" class="form-control rich-text" id="description-input" placeholder="Enter event description" name="description"></textarea>
+                        <x-rich-text-editor name="description" required="required" placeholder="Enter event description"></x-rich-text-editor>
                     </div>
 
                     <div class="row mb-3">

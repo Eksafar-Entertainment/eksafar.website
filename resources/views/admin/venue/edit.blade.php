@@ -86,7 +86,7 @@
                         @endif
                     </div>
                 </div>
-               
+
             </div>
 
 
@@ -103,9 +103,8 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea  type="text" class="form-control rich-text" name="description"
-                    placeholder="description" id="description">{{ $venue->description }}</textarea>
 
+                <x-rich-text-editor name="description" required="required" placeholder="Enter event description" required>{{ $venue->description }}</x-rich-text-editor>
                 @if ($errors->has('description'))
                     <span class="text-danger text-left">{{ $errors->first('description') }}</span>
                 @endif

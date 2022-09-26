@@ -12,7 +12,8 @@
                 <form enctype="multipart/form-data" method="post">
                     @csrf
 
-                    <x-image-chooser class="border border-grey mb-3" height="200px" width="100%" :value="$event->cover_image" name="cover_image" />
+                    <x-image-chooser class="border border-grey mb-3" height="200px" width="100%" :value="$event->cover_image"
+                        name="cover_image" />
 
                     <div class="mb-3">
                         <label for="name">Name</label>
@@ -41,7 +42,8 @@
                                 <div>
                                     <select id="entry_type" class="form-select" name="entry_type" required="">
                                         <option></option>
-                                        <option {{ $event && $event->entry_type == 'Normal' ? 'selected' : '' }}>Normal</option>
+                                        <option {{ $event && $event->entry_type == 'Normal' ? 'selected' : '' }}>Normal
+                                        </option>
 
                                     </select>
                                 </div>
@@ -61,8 +63,9 @@
                                 <label for="language">Language</label>
 
                                 <div>
-                                    <input id="language" type="text" class="form-control" placeholder='Enter Language here'
-                                        name="language" value="{{ $event ? $event->language : '' }}" required="">
+                                    <input id="language" type="text" class="form-control"
+                                        placeholder='Enter Language here' name="language"
+                                        value="{{ $event ? $event->language : '' }}" required="">
                                 </div>
                             </div>
                         </div>
@@ -166,8 +169,8 @@
                         <label for="description">Description</label>
 
                         <div>
-                            <textarea id="description" class="form-control rich-text" placeholder='Enter Description here' name="description"
-                                required="">{!! $event ? html_entity_decode($event->description) : '' !!}</textarea>
+                            <x-rich-text-editor name="description" required="required"
+                                placeholder="Enter event description" required>{!! $event ? html_entity_decode($event->description) : '' !!}</x-rich-text-editor>
                         </div>
                     </div>
 
