@@ -36,7 +36,7 @@
                         <!--- Desktop Slider -->
                         <div class="">
                             @if ((new \Jenssegers\Agent\Agent())->isDesktop())
-                                <div id="main-carousel" class="carousel slide rounded overflow-hidden" data-bs-ride="carousel">
+                                <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
                                         @for ($n = 0; $n < 3; $n++)
                                             <div class="carousel-item active">

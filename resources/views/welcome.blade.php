@@ -35,7 +35,7 @@
 
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
-                        <img src="{{ url('storage/uploads/' . $image->path) }}" class="w-100 rounded" />
+                        <img src="{{ url('storage/uploads/' . $image->path) }}" class="w-100" />
                     </div>
                 @endforeach
             </div>
