@@ -18,8 +18,9 @@ class FrontController extends Controller
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
         $tablet = $agent->isTablet();  
-        $gallery = GalleryImage::latest()->select(["*", DB::raw('CONCAT("'.url("/storage/uploads").'/", path) as url')])->get(); 
-        return view('welcome', compact('desktop', 'mobile', 'tablet', 'type', 'gallery'));
+        $gallery = GalleryImage::latest()->get(); 
+        $faker = \Faker\Factory::create();
+        return view('welcome', compact('desktop', 'mobile', 'tablet', 'type', 'gallery', 'faker'));
     }
 
     public function route($path)
