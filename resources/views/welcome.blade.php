@@ -26,13 +26,12 @@
     <section class="py-5">
         <div class="container my-5">
 
-            <div class="text-center mb-3">
+            <div class="text-center mb-5">
                 <h1>{{ __('Gallery') }}</h1>
-                <h5 style="width: 500px" class="m-auto">{{ $faker->text() }}</h5>
+                <h5 style="width: 500px" class="m-auto fw-normal">{{ $faker->text() }}</h5>
             </div>
 
-            <div class="row mt-5 gx-5 gy-5">
-
+            <div class="row gx-5 gy-5">
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
                         <img src="{{ url('storage/uploads/' . $image->path) }}" class="w-100" />
