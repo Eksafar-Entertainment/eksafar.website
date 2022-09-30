@@ -297,7 +297,7 @@ class EventController extends Controller
                 "promoters.commission as promoter_commission_percentage"
             )
             ->latest()
-            ->paginate(10)->appends($request->query());
+            ->paginate(30)->appends($request->query());
         return view("admin.event.manage.orders.index", compact('event', 'orders', "colors"));
     }
     public function orderDetails($event_id, Request $request)
