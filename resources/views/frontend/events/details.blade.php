@@ -147,7 +147,7 @@
                                                     <input class="form-control form-control-sm quantity"
                                                         style="min-width: 100px; color: #a0aec0;" type="number"
                                                         name="items[{{ $ticket->id }}][quantity]" value=""
-                                                        min="0" max="20" maxlength="2">
+                                                        min="0" max="99" maxlength="2">
                                                     <input type="hidden"
                                                         name="items[{{ $ticket->id }}][event_ticket_id]"
                                                         value="{{ $ticket->id }}">
