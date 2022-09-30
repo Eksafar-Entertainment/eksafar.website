@@ -25,6 +25,13 @@
 
                 <div class="col-auto">
                     <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar"></i></span>
+                        <input type="date" class="form-control" placeholder="Booking Date" name="date" value="{{app('request')->input('date')}}" />
+                    </div>
+                </div>
+
+                <div class="col-auto">
+                    <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">ID</span>
                         <input class="form-control" placeholder="Order ID" name="id" value="{{app('request')->input('id')}}" />
                     </div>
@@ -36,7 +43,6 @@
                         <option {{app('request')->input('status')=="SUCCESS"?"selected":""}}>SUCCESS</option>
                         <option {{app('request')->input('status')=="FAILED"?"selected":""}}>FAILED</option>
                     </select>
-
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-primary">Search</button>

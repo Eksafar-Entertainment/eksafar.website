@@ -8,6 +8,12 @@
                 ID
             </div>
             <input type="text" class="form-control form-control-lg border-0 bg-transparent flex-grow-1" placeholder="Please enter order id" name="id" value="{{app('request')->input('id')}}" />
+            <div class="vr"></div>
+            <select class="form-select  border-0  bg-transparent" name="date" style="width: 150px">
+                @foreach($dates as $date)
+                    <option>{{$date}}</option>
+                @endforeach
+            </select>
         </form>
     </div>
 </div>
@@ -20,11 +26,13 @@
     function openCheckInDetails(event) {
         event.preventDefault();
         const order_id = (new FormData(event.target)).get("id");
+        const date = (new FormData(event.target)).get("date");
         jQuery.ajax({
             url: "{{ url('/admin/event/'.$event->id.'/check-in/details') }}",
             method: 'post',
             data: {
-                order_id: order_id
+                order_id: order_id,
+                date: date
             },
             success: function(result) {
                 console.log(result);
