@@ -54,7 +54,7 @@ Route::group([
         Route::post('files/ck-upload',  "ckUpload");
         Route::post('files/uploader',  "uploader");
     });
-    
+
     //events
     Route::controller(EventController::class)->group(function () {
         Route::get('/event',  "index")->middleware("permission:event:list");
@@ -85,15 +85,12 @@ Route::group([
 Route::post('/payment/checkout', [RazorpayController::class, 'checkout']);
 Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutComplete'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
+//frontend routes
 Route::group([
     "middleware" => ["access_log"],
     "prefix" => "/"
 ], function () {
     Route::get('/', [FrontController::class, 'index']);
-    Route::get("/event-{slug}", [FrontEventController::class, 'details']);
     Route::get("/event/{slug}", [FrontEventController::class, 'details']);
-    // Route::get('/event-{slug}', function($slug) {
-    //     return Redirect::to("/event/$slug");
-    // });
-    Route::get('/{id}', [FrontController::class, 'route']);
+    Route::get('/{path}', [FrontController::class, 'route'])->where('path', '.*');
 });

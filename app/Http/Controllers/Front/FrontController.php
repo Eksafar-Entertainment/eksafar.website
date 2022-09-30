@@ -22,56 +22,56 @@ class FrontController extends Controller
         return view('welcome', compact('desktop', 'mobile', 'tablet', 'type', 'gallery'));
     }
 
-    public function route($type)
+    public function route($path)
     {
         $agent = new Agent();
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
         $tablet = $agent->isTablet();
 
-        switch($type){
+        switch($path){
             case "performer" : {
-                return view('frontend.performer.index', compact('desktop', 'mobile', 'tablet', 'type'));
+                return view('frontend.performer.index', compact('desktop', 'mobile', 'tablet', 'path'));
             }
             
             case "about":{
-                return view('frontend.about.index', compact('desktop', 'mobile', 'tablet','type'));
+                return view('frontend.about.index', compact('desktop', 'mobile', 'tablet','path'));
             }
             
             case "gallery":{
-                return view('frontend.gallery.index', compact('desktop', 'mobile', 'tablet','type'));
+                return view('frontend.gallery.index', compact('desktop', 'mobile', 'tablet','path'));
             }
             
             case "guest":{
-                return view('frontend.guest.index', compact('desktop', 'mobile', 'tablet','type',));
+                return view('frontend.guest.index', compact('desktop', 'mobile', 'tablet','path',));
             }
         
             case "elements":{
-                return view('frontend.elements.index', compact('desktop', 'mobile', 'tablet','type'));
+                return view('frontend.elements.index', compact('desktop', 'mobile', 'tablet','path'));
             }
             
             case "upcomming":{
-                return view('frontend.events.index', compact('desktop', 'mobile', 'tablet','type'));
+                return view('frontend.events.index', compact('desktop', 'mobile', 'tablet','path'));
             }
             
             case "current":{
-                return view('frontend.events.event.index', compact('desktop', 'mobile', 'tablet','type'));
+                return view('frontend.events.event.index', compact('desktop', 'mobile', 'tablet','path'));
             }
     
             case "contact":{
-                return view('frontend.contact.index', compact('desktop', 'mobile', 'tablet','type'));
+                return view('frontend.contact.index', compact('desktop', 'mobile', 'tablet','path'));
             }
 
             case "privacy":{
-                return view('frontend.extra.privacy', compact('desktop', 'mobile', 'tablet','type'));
+                return view('frontend.extra.privacy', compact('desktop', 'mobile', 'tablet','path'));
             }
 
             case "payment-policy":{
-                return view('frontend.extra.payment-policy', compact('desktop', 'mobile', 'tablet','type'));
+                return view('frontend.extra.payment-policy', compact('desktop', 'mobile', 'tablet','path'));
             }
 
             case "terms":{
-                return view('frontend.extra.terms', compact('desktop', 'mobile', 'tablet','type'));
+                return view('frontend.extra.terms', compact('desktop', 'mobile', 'tablet','path'));
             }
 
             default: return abort(404);
