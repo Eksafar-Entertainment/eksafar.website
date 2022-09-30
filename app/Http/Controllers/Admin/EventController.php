@@ -214,7 +214,7 @@ class EventController extends Controller
         foreach ($event_views as $event_view) {
             $event_views_chart["data"][$event_view->date] = $event_view->count;
             $event_views_chart["total"] += $event_view->count;
-            $views += $order->count;
+            $views += $event_view->count;
         }
 
         foreach ($order_details as $order_detail) {
@@ -265,13 +265,17 @@ class EventController extends Controller
             "PENDING" => "warning",
             "FAILED" => "danger"
         ];
-        $where = [];
+    
         $orders = Order::leftJoin('promoters', function ($join) {
             $join->on('promoters.id', '=', 'orders.promoter_id');
         })->where("orders.event_id", $event_id);
 
         if (isset($request->query()["id"]) && $request->query()["id"] != "") {
             $orders->where("orders.id", $request->query()["id"]);
+        }
+
+        if (isset($request->query()["date"]) && $request->query()["date"] != "") {
+            $orders->where("orders.date", $request->query()["date"]);
         }
 
         if (isset($request->query()["status"]) && $request->query()["status"] != "") {
@@ -422,15 +426,21 @@ class EventController extends Controller
     public function checkInView($event_id, Request $request)
     {
         $event = Event::where("id", $event_id)->first();
-
+        $period = CarbonPeriod::create(Carbon::parse($event->start_date)->format("Y-m-d"), Carbon::parse($event->end_date)->format("Y-m-d"));
+        $dates = [];
+        foreach ($period as $date) {
+            $dates[] = $date->format("Y-m-d");
+        }
         return view("admin.event.manage.check-in.index",[
-            "event"=>$event
+            "event"=>$event,
+            "dates"=>$dates
         ]);
     }
     public function checkInDetails($event_id, Request $request)
     {
         $order_id = $request->order_id;
-        $order = Order::where("id", $order_id)->where("status","SUCCESS")->first();
+        $date = $request->date;
+        $order = Order::where("id", $order_id)->where("status","SUCCESS")->where("date", $date)->first();
         if(!$order){
             return response()->json([
                 "status" => 404,
