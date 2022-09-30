@@ -1,10 +1,7 @@
-@extends('frontend.index')
+@extends('frontend.layouts.default')
 
 @section('content')
-
-    @include('frontend.top-bar')
-    @include('frontend.header')
-    <div id="fh5co-gallery">
+    <div >
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
@@ -42,7 +39,4 @@
 				</div>
 			</div>
 		</div>
-    @include('frontend.newsletter')
-    @include('frontend.footer')
-
 @endsection

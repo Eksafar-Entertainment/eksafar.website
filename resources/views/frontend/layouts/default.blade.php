@@ -49,6 +49,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
