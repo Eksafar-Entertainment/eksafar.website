@@ -255,7 +255,8 @@
             <div class="fs-4"><i class="fas fa-wallet"></i> </div>
             <div class="flex-grow-1 ps-3 fs-4 fw-bold">@money(99)</div>
             <div>
-                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Book
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Book
                     Now</button>
             </div>
         </div>
@@ -297,30 +298,31 @@
                             <div class="col-md">
                                 <div>
                                     <div>
-                                        <h4 class="mb-0">Emiway Bantai Live @ The LaLiT, Mumbai</h4>
-                                        <small class="text-muted"><i class="fas fa-calendar me-2"></i> 16th October, 2022
-                                            |
-                                            04:00 PM Onwards</small>
+                                        <h4 class="mb-0">{{ $event->name }} @ {{ $venue->name }}</h4>
+                                        <small class="text-muted">
+                                            <i class="fas fa-calendar me-2"></i>
+                                            16th October, 2022 | 04:00 PM Onwards
+                                        </small>
                                     </div>
                                     <table class="table table-ms mt-3">
-                                        @for ($n = 0; $n < 3; $n++)
+                                        @foreach ($event_tickets as $n=>$event_ticket)
+                                        
                                             <tr>
                                                 <td class="ps-0">
-                                                    <h6 class="mb-0">Phase 2 - General Access</h6>
-                                                    <small class="text-muted">Permits Entry to the Event Arena (GA Access
-                                                        Area)
-                                                        Permits Entry to the Event Arena.</small><br>
-                                                    <span class="text-success"> @money(1000) </span>
+                                                    <h6 class="mb-0">{{$event_ticket->name}}</h6>
+                                                    <small class="text-muted">{{$event_ticket->description}}</small><br>
+                                                    <span class="text-success"> @money($event_ticket->price)</span>
                                                 </td>
                                                 <td width="1%" class="align-middle">
+                                                    <input type="hidden" name="items[{{$n}}][event_ticket_id]" />
                                                     <input type="number" class="form-control form-control-small"
-                                                        placeholder="Qtde." style="min-width: 80px" />
+                                                        placeholder="Qtde." style="min-width: 80px" name="items[{{$n}}][quantity]" />
                                                 </td>
                                                 <td class="fs-6 align-middle pe-0">
                                                     @money(0)
                                                 </td>
                                             </tr>
-                                        @endfor
+                                        @endforeach
                                     </table>
                                 </div>
                             </div>
@@ -360,7 +362,7 @@
                                     <div class="mb-3">
                                         <input type="number" placeholder="Phone" class="form-control" />
                                     </div>
-                                    <button class="btn btn-primary w-100">Checkout</button>
+                                    <button class="btn btn-primary w-100" type="submit">Checkout</button>
                                 </div>
                             </div>
                         </div>

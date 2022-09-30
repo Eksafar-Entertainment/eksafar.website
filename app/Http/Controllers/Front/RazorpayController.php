@@ -23,13 +23,13 @@ class RazorpayController extends Controller
 {
   function checkout(Request $request)
   {
-    
+
     $date = "";
-    if($request->date == '3'){
+    if ($request->date == '3') {
       $date = Carbon::create(2022, 10, 3, 0, 0, 0, 'Asia/Kolkata');
     }
-    if($request->date == '4'){
-      $date = Carbon::create(2022, 10, 4, 0, 0, 0, 'Asia/Kolkata'); 
+    if ($request->date == '4') {
+      $date = Carbon::create(2022, 10, 4, 0, 0, 0, 'Asia/Kolkata');
     }
     $key = $_ENV["RAZORPAY_KEY_ID"];
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
@@ -41,7 +41,7 @@ class RazorpayController extends Controller
     $order_details = [];
     $total_price = 0;
     foreach ($items as $item) {
-      if($item["quantity"] > 0 == false) continue;
+      if ($item["quantity"] > 0 == false) continue;
       $event_ticket = EventTicket::where(["id" => $item["event_ticket_id"]])->first();
       $amount = $event_ticket->price * $item["quantity"];
       $total_price += $amount;
@@ -90,7 +90,7 @@ class RazorpayController extends Controller
       'amount'          => $total_price * 100,
       'currency'        => 'INR',
       'notes'           => [
-        "order_id"=>$order->id
+        "order_id" => $order->id
       ]
     ];
     $razorpay_order = $api->order->create($orderData);
@@ -116,6 +116,7 @@ class RazorpayController extends Controller
       ]
     ]);
   }
+
   function checkoutComplete(Request $request)
   {
     $success = true;
@@ -129,7 +130,7 @@ class RazorpayController extends Controller
       abort(404);
     }
     $order = Order::where(["payment_id" => $payment->id])->first();
-    $order_details = OrderDetail::where(["order_details.order_id"=> $order->id])
+    $order_details = OrderDetail::where(["order_details.order_id" => $order->id])
       ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
       //->groupBy("order_details.id")
       ->select(
@@ -138,7 +139,7 @@ class RazorpayController extends Controller
         "event_tickets.persons as event_ticket_persons"
       )
       ->get();
-    $event = Event::where(["id"=> $order->event_id])->first();
+    $event = Event::where(["id" => $order->event_id])->first();
 
     try {
       $attributes = array(
@@ -158,7 +159,7 @@ class RazorpayController extends Controller
       $payment->status = "SUCCESS";
       $order->status = "SUCCESS";
       $html = "Your payment was successful";
-      QrCode::format('png')->size(200)->generate($order->id, public_path("storage/uploads/qr-".$order->id.".png"));
+      QrCode::format('png')->size(200)->generate($order->id, public_path("storage/uploads/qr-" . $order->id . ".png"));
       Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
     } else {
       $payment->status = "FAILED";
@@ -180,11 +181,12 @@ class RazorpayController extends Controller
 
 
 
-  public function testMail() {
-        
+  public function testMail()
+  {
+
     $order = Order::where(["id" => '1000'])->first();
-    
-    $order_details = OrderDetail::where(["order_details.order_id"=> $order->id])
+
+    $order_details = OrderDetail::where(["order_details.order_id" => $order->id])
       ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
       //->groupBy("order_details.id")
       ->select(
@@ -193,6 +195,6 @@ class RazorpayController extends Controller
         "event_tickets.persons as event_ticket_persons"
       )
       ->get();
-      return view("mail.ticket", compact('order', 'order_details'));
+    return view("mail.ticket", compact('order', 'order_details'));
   }
 }
