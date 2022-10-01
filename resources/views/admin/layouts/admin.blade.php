@@ -19,19 +19,32 @@
 
     <!-- Styles -->
     <link href="{{ asset('/css/admin/admin.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"
+        integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/js/standalone/selectize.min.js" integrity="sha512-pgmLgtHvorzxpKra2mmibwH/RDAVMlOuqU98ZjnyZrOZxgAR8hwL8A02hQFWEK25V40/9yPYb/Zc+kyWMplgaA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/css/selectize.bootstrap5.min.css" integrity="sha512-w4sRMMxzHUVAyYk5ozDG+OAyOJqWAA+9sySOBWxiltj63A8co6YMESLeucKwQ5Sv7G4wycDPOmlHxkOhPW7LRg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/js/standalone/selectize.min.js"
+        integrity="sha512-pgmLgtHvorzxpKra2mmibwH/RDAVMlOuqU98ZjnyZrOZxgAR8hwL8A02hQFWEK25V40/9yPYb/Zc+kyWMplgaA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.6/css/selectize.bootstrap5.min.css"
+        integrity="sha512-w4sRMMxzHUVAyYk5ozDG+OAyOJqWAA+9sySOBWxiltj63A8co6YMESLeucKwQ5Sv7G4wycDPOmlHxkOhPW7LRg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 </head>
 
 <body class="">
-    <div id="preloader" class="position-fixed align-items-center justify-content-center py-1 px-3 shadow-sm" style="background-color: #f8facf;  backdrop-filter: blur(20px); z-index: 999999999; top: 80px; left: 50%; transform:translateX(-50%); display: none">
+    <div id="preloader" class="position-fixed align-items-center justify-content-center py-1 px-3 shadow-sm"
+        style="background-color: #f8facf;  backdrop-filter: blur(20px); z-index: 999999999; top: 80px; left: 50%; transform:translateX(-50%); display: none">
         Please wait while loading...
     </div>
     <div class="d-flex flex-column" style="height: 100vh;">
@@ -51,7 +64,7 @@
 
     </div>
 
-    @section("scripts")
+    @section('scripts')
 
     @show
 
@@ -79,7 +92,8 @@
                     <h5 class="modal-title" id="title">Confirm</h5>
                 </div>
                 <div class="modal-body p-0 mt-0">
-                    <div id="preview" style="width: 100%; padding-top:100%; background-size:cover; background-position:center"></div>
+                    <div id="preview"
+                        style="width: 100%; padding-top:100%; background-size:cover; background-position:center"></div>
                 </div>
 
 
@@ -124,7 +138,7 @@
             // integration to choose the right communication channel. This example uses
             // a POST request with JSON as a data structure but your configuration
             // could be different.
-            xhr.open('POST', '{{url("/admin/files/ck-upload")}}', true);
+            xhr.open('POST', '{{ url('/admin/files/ck-upload') }}', true);
             xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
             xhr.setRequestHeader('X-Requested-With', "XMLHttpRequest");
             xhr.responseType = 'json';
@@ -197,6 +211,14 @@
 </script>
 <script>
     $(document).ready(() => {
+        //
+        function ___postAjax(){
+            document.querySelectorAll("input[type=datetime]:not(.flatpickr-input)").forEach(_elm => {
+                flatpickr(_elm, {
+                    enableTime: true,
+                });
+            });
+        }
         //jquery 
         $.ajaxSetup({
             headers: {
@@ -208,6 +230,7 @@
         })
         $(document).ajaxComplete(() => {
             $("#preloader").fadeOut();
+            ___postAjax();
         });
 
         //axios
@@ -227,31 +250,6 @@
             return Promise.reject(error);
         });
 
-        //ckeditor
-        document.querySelectorAll(".rich-text").forEach(_elem => {
-            _elem.style.display = "none";
-            const _node = document.createElement("div");
-            const _editor = ClassicEditor
-                .create(_node, {
-                    extraPlugins: [CKUploadAdapterPlugin],
-                })
-                .then(editor => {
-                    function htmlDecode(input) {
-                        var doc = new DOMParser().parseFromString(input, "text/html");
-                        return doc.documentElement.textContent;
-                    }
-                    editor.setData(htmlDecode(_elem.innerHTML));
-                    editor.model.document.on('change:data', () => {
-                        const data = editor.getData();
-                        _elem.innerHTML = data;
-                    });
-                })
-                .catch(error => {
-                    console.error(error);
-                    _elem.style.display = null;
-                });
-            _elem.parentNode.insertBefore(_node, _elem.nextSibling);
-        });
 
         //money
         const ask_modal_container = document.getElementById('ask-modal');
@@ -273,49 +271,10 @@
                 ask_modal.show();
             });
         }
-        //cropper
-        const _cropper_modal_container = document.getElementById('cropper-modal');
-        const _cropper_modal = new bootstrap.Modal(_cropper_modal_container, {
-            backdrop: 'static',
-            keyboard: false,
-        });
-        document.querySelectorAll(".cropper-input").forEach(_elm => {
-
-            _elm.onchange = (_event) => {
-                const files = _event.target.files;
-                const url = URL.createObjectURL(files[0]);
-                const _preview = _cropper_modal_container.querySelector("#preview");
-                const _ratio = parseInt(eval(_elm.getAttribute("data-ratio") + "*100")) ?? "100";
-                _preview.style.backgroundImage = `url(${url})`;
-                _preview.style.paddingTop = _ratio + "%";
 
 
-                _cropper_modal_container.querySelector("#confirm-btn").onclick = () => {
-                    _cropper_modal.hide();
-                    const _data_preview = document.querySelector(_elm.getAttribute("data-preview"));
-
-                    var form = new FormData();
-                    form.append("upload", files[0]);
-                    form.append('dir', '/');
-                    axios.post('/admin/files/uploader', form).then(res=>{
-                        console.log(res);
-                    }).catch(err=>{
-                        console.log(res);
-                    });
-
-                    if (_data_preview) {
-                        _data_preview.style.backgroundImage = `url(${url})`;
-                        _data_preview.src = url;
-                    }
-                }
-                _cropper_modal_container.querySelector("#cancel-btn").onclick = () => {
-                    _cropper_modal.hide();
-                    _elm.value = "";
-                }
-
-                _cropper_modal.show();
-            }
-        })
+        //flatpicker 
+        ___postAjax();
 
     });
 </script>

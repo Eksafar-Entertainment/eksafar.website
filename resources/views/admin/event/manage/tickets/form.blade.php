@@ -39,6 +39,33 @@
             </div>
         </div>
 
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="start_datetime-input">Start At</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-start_datetime"><i class="fas fa-calendar text-grey"></i><span class="text-transparent">.</span></span>
+                        </div>
+                        <input type="datetime" class="form-control" id="start_datetime-input" placeholder="Enter Start Datetime" name="start_datetime"
+                            value="{{ $event_ticket->start_datetime }}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="end_datetime-input">End At</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-end_datetime"><i class="fas fa-calendar text-grey"></i><span class="text-transparent">.</span></span>
+                        </div>
+                        <input type="datetime" class="form-control" id="end_datetime-input" placeholder="Enter End Datetime" name="end_datetime"
+                            value="{{ $event_ticket->send_datetime }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="form-group mt-3">
             <label for="description-input">Description</label>
             <textarea type="text" class="form-control" id="description-input" placeholder="Enter Description" name="description">{{ $event_ticket->description }}</textarea>

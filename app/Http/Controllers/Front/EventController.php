@@ -21,7 +21,7 @@ class EventController extends Controller
 
         $event = Event::where(["slug"=>$eventSlug])->first();
         if(!$event) return abort(404);
-        $event_tickets= EventTicket::where(["event_id"=>$event->id])->get();
+        $event_tickets= EventTicket::where(["event_id"=>$event->id])->orderBy("price")->get();
         $venue= Venue::where(["id"=>$event->venue])->first();
         $artists= Artist::whereIn("id", $event->artists??[])->get();
         

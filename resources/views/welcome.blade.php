@@ -40,9 +40,12 @@
 
                             <div>
                                 <div class="w-100 position-relative card"
-                                    style="background-image:url('{{url($event->cover_image)}}'); padding-top: 50%; background-size:cover; background-position:center">
+                                    style="background-image:url('{{url($event->cover_image)}}'); padding-top: 50%; background-size:cover; background-position:center;">
                                     <div class="position-absolute top-0 start-0 w-100 h-100"
-                                        style="background: linear-gradient(180deg, rgba(0,0,0,0) 54%, rgba(0,0,0,0.7) 83%);">
+                                        style="background: linear-gradient(180deg, rgba(0,0,0,0) 54%, rgba(0,0,0,0.7) 83%); backdrop-filter: blur(10px); ">
+                                    </div>
+                                    <div class="position-absolute h-100 w-100 top-0 start-0 text-center">
+                                    <img src="{{url($event->cover_image)}}" class="m-auto h-100"/>
                                     </div>
                                     <div class="position-absolute bottom-0 start-0 card-body text-light d-flex w-100 align-items-center">
                                         <div class="flex-grow-1">

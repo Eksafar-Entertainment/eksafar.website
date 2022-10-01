@@ -372,6 +372,9 @@ class EventController extends Controller
         $event_ticket->persons = $request->persons;
         $event_ticket->price = $request->price;
         $event_ticket->description = $request->description;
+        $event_ticket->start_datetime = $request->start_datetime;
+        $event_ticket->end_datetime = $request->end_datetime;
+        $event_ticket->status = $request->status ?? "CREATED";
         $event_ticket->save();
         return response()->json([
             "status" => 200,
