@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use App\Models\EventTicket;
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 use App\Models\GalleryImage;
 use Illuminate\Support\Facades\DB;
 
@@ -13,14 +14,10 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $agent = new Agent();
-        $type = '/';
-        $desktop = $agent->isDesktop();
-        $mobile = $agent->isMobile();
-        $tablet = $agent->isTablet();  
         $gallery = GalleryImage::latest()->get(); 
+        $events = Event::limit(4)->get();
         $faker = \Faker\Factory::create();
-        return view('welcome', compact('desktop', 'mobile', 'tablet', 'type', 'gallery', 'faker'));
+        return view('welcome', compact('gallery', 'faker', 'events'));
     }
 
     public function route($path)

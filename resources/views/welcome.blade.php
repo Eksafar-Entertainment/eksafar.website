@@ -34,25 +34,31 @@
             </div>
 
             <div class="row gx-5 gy-5">
-                @for ($n=0; $n<4 ; $n++)
+                @foreach ($events as $event)
                     <div class="col-md-6">
                         <div class="card">
-                            <div class="row">
-                                <div class="col-sm-5">
-                                    <img src="https://picsum.photos/300/230" class="w-100" />
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="card-body">
-                                        <h4>{{$faker->text(60)}}</h4>
-                                        <p class="text-danger mb-0">Wed, Oct 2021, 7:30PM</p>
-                                        <small class="text-secondary d-block">Catchup @ Banglore</small>
-                                        <a class="text-primary mt-2 d-block">Read More</a>
+
+                            <div>
+                                <div class="w-100 position-relative card"
+                                    style="background-image:url('https://picsum.photos/300/230'); padding-top: 50%">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100"
+                                        style="background: linear-gradient(180deg, rgba(0,0,0,0) 54%, rgba(0,0,0,0.7) 83%);">
+                                    </div>
+                                    <div class="position-absolute bottom-0 start-0 card-body text-light d-flex w-100 align-items-center">
+                                        <div class="flex-grow-1">
+                                            <h4>{{ $event->name }}</h4>
+                                            <p class=" mb-0">Wed, Oct 2021, 7:30PM | Catchup @ Banglore</p>
+                                        </div>
+                                        <div>
+                                            <a class="btn btn-sm btn-secondary" href="{{ url('/event/' . $event->slug) }}">Read
+                                                More</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
         </div>
 
@@ -69,7 +75,9 @@
             <div class="row gx-5 gy-5">
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
-                        <div class="border" style="padding-top: 100%; background-size:cover; background-image: url('{{ url('storage/uploads/' . $image->path) }}')"></div>
+                        <div class="border"
+                            style="padding-top: 100%; background-size:cover; background-image: url('{{ url('storage/uploads/' . $image->path) }}')">
+                        </div>
                     </div>
                 @endforeach
             </div>
