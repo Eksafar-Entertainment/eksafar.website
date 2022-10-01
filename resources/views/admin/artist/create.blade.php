@@ -12,7 +12,7 @@
 
         <x-image-chooser class="border border-grey p-4 mb-3" height="auto" width="100%" :value="null" name="cover">
                 <x-image-chooser class="border border-grey mt-5" height="150px" width="150px" :value="null"
-                    name="logo" />
+                    name="image" />
         </x-image-chooser>
 
         <div class="mb-3">
