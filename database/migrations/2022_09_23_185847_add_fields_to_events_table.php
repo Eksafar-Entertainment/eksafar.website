@@ -18,6 +18,7 @@ class AddFieldsToEventsTable extends Migration
             $table->longText("terms");
             $table->string("min_age");
             $table->string("language");
+            $table->string("status");
         });
     }
 
@@ -33,6 +34,7 @@ class AddFieldsToEventsTable extends Migration
             $table->dropColumn("terms");
             $table->dropColumn("min_age");
             $table->dropColumn("language");
+            $table->dropColumn("status");
         });
     }
 }

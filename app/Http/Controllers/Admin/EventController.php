@@ -81,6 +81,7 @@ class EventController extends Controller
         $event->terms = $request->terms ??"";
         $event->min_age = $request->min_age ??18;
         $event->language = $request->language ??"";
+        $event->status = $request->status ??"CREATED";
 
         $event->save();
         return redirect('/admin/event/'.$event->id.'/customize/');
