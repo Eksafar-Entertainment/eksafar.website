@@ -10636,6 +10636,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-body {
+body, html {
   overflow-x: hidden;
+  height: 100%;
+  width: 100%;
 }

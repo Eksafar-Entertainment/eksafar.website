@@ -16,6 +16,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -26,7 +30,8 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{url('/img/ek-logo.png')}}" alt="eksafar-logo" style="height: 40px;"/> {{ config('app.name', 'Laravel') }}
+                    <img src="{{ url('/img/ek-logo.png') }}" alt="eksafar-logo" style="height: 40px;" />
+                    {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -37,7 +42,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                       
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -101,20 +106,22 @@
                 <div class="row align-items-center gy-5 gx-5">
                     <div class="col-md-6">
                         <div>
-                        <h2>No More Screens. Only LIVE Scenes.</h2>
-                        <p class="mt-4 fs-5">Kiss the couch goodbye and make a checklist of the things you’ve missed! Concerts.
-                            Comedy. Cricket. Camping. Cool Scenes.</p>
-                        <p class="mt-4 fs-5">Set your destination to: ‘Anywhere, but home.’ Find experiences in & around your
-                            city
-                            - Step out with the Paytm Insider app today.</p>
+                            <h2>No More Screens. Only LIVE Scenes.</h2>
+                            <p class="mt-4 fs-5">Kiss the couch goodbye and make a checklist of the things you’ve
+                                missed! Concerts.
+                                Comedy. Cricket. Camping. Cool Scenes.</p>
+                            <p class="mt-4 fs-5">Set your destination to: ‘Anywhere, but home.’ Find experiences in &
+                                around your
+                                city
+                                - Step out with the Paytm Insider app today.</p>
                         </div>
                     </div>
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-4">
                         <div>
-                        <img src="https://media.insider.in/image/upload/c_crop,g_custom/v1637927732/pkle4f1xuhlf5kfwlcvg.gif"
-                            style="width: 100%;" />
+                            <img src="https://media.insider.in/image/upload/c_crop,g_custom/v1637927732/pkle4f1xuhlf5kfwlcvg.gif"
+                                style="width: 100%;" />
                         </div>
                     </div>
                 </div>
@@ -159,7 +166,8 @@
             </div>
 
             <div class="container py-3">
-                <div class="copyright"> &copy; Copyright <strong><span>DevVE</span></strong>. All Rights Reserved </div>
+                <div class="copyright"> &copy; Copyright <strong><span>DevVE</span></strong>. All Rights Reserved
+                </div>
                 <div class="credits"> Designed by <a class="text-light" href="#">SalvadorDevVE</a> </div>
             </div>
         </footer>
