@@ -60,7 +60,7 @@
                         <!---- End Slider --->
 
 
-
+                        
                         <div class=" d-none">
                             @for ($n = 0; $n < 3; $n++)
                                 <span class="badge rounded-pill bg-info fs-6 fw-normal">Secondary</span>

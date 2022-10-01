@@ -8,7 +8,9 @@
             <div class="carousel-inner">
                 @for ($n = 0; $n < 3; $n++)
                     <div class="carousel-item active">
-                        <img src="https://picsum.photos/1080/580" class="w-100" style="height: 450px; object-fit:cover" />
+                        <img src="https://cdn.evbstatic.com/s3-build/fe/build/images/6aaf4a36e35b1b71bc077e200ac7429c-1_tablet_1067x470.jpg" class="w-100" style="height: 450px; object-fit:cover" />
+                    
+                        
                     </div>
                 @endfor
             </div>
