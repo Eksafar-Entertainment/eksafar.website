@@ -47,7 +47,8 @@
                                     <div class="position-absolute bottom-0 start-0 card-body text-light d-flex w-100 align-items-center">
                                         <div class="flex-grow-1">
                                             <h4>{{ $event->name }}</h4>
-                                            <p class=" mb-0">Wed, Oct 2021, 7:30PM | Catchup @ Banglore</p>
+                                            <p class=" mb-0">
+                                                {{ \Carbon\Carbon::parse($event->start_date)->format("d-m-Y") }} onwards | Catchup @ Banglore</p>
                                         </div>
                                         <div>
                                             <a class="btn btn-sm btn-secondary" href="{{ url('/event/' . $event->slug) }}">Read
