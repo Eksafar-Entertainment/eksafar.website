@@ -144,7 +144,7 @@
                                     <div class="row align-items-end">
                                         <div class="col-auto">
                                             <div style="margin-top: -40px;">
-                                                <img src="{{ url($artist->image ?? '') }}" class="rounded border" />
+                                                <img src="{{ url($artist->image!="" ? $artist->image: 'images/singer.png') }}" class="rounded border bg-primary" width="80px" />
                                             </div>
                                         </div>
                                         <div class="col">
