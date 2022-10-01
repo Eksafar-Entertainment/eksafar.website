@@ -8,9 +8,9 @@
             @if ((new \Jenssegers\Agent\Agent())->isMobile())
                 <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        @for ($n = 0; $n < 3; $n++)
+                        @for ($n = 0; $n < 1; $n++)
                             <div class="carousel-item active">
-                                <img src="https://picsum.photos/1080/580" class="w-100" />
+                                <img src="{{ url($event->cover_image) }}" class="w-100" />
                             </div>
                         @endfor
                     </div>
@@ -38,9 +38,9 @@
                             @if ((new \Jenssegers\Agent\Agent())->isDesktop())
                                 <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
-                                        @for ($n = 0; $n < 3; $n++)
+                                        @for ($n = 0; $n < 1; $n++)
                                             <div class="carousel-item active">
-                                                <img src="https://picsum.photos/1080/580" class="w-100" />
+                                                <img src="{{ url($event->cover_image) }}" class="w-100" />
                                             </div>
                                         @endfor
                                     </div>
@@ -260,8 +260,7 @@
                 @money($event_tickets[0]->price)
             </div>
             <div>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">Book
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Book
                     Now</button>
             </div>
         </div>
@@ -351,7 +350,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-sm btn-default position-absolute top-0 end-0" aria-label="Close" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
+                    <button type="button" class="btn btn-sm btn-default position-absolute top-0 end-0"
+                        aria-label="Close" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
                 </div>
             </div>
         </div>
