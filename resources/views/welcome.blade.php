@@ -69,7 +69,7 @@
             <div class="row gx-5 gy-5">
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
-                        <img src="{{ url('storage/uploads/' . $image->path) }}" class="w-100" />
+                        <div style="padding-top: 100%; background-image: url('{{ url('storage/uploads/' . $image->path) }}')"></div>
                     </div>
                 @endforeach
             </div>
