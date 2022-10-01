@@ -21,7 +21,7 @@
 
     </div>
     <div class="mt-4">
-        <a href="{{ route('banners.edit', $banner->id) }}" class="btn btn-info">Edit</a>
-        <a href="{{ route('banners.index') }}" class="btn btn-default">Back</a>
+        <a href="{{ route('banner.edit', $banner->id) }}" class="btn btn-info">Edit</a>
+        <a href="{{ route('banner.index') }}" class="btn btn-default">Back</a>
     </div>
 @endsection

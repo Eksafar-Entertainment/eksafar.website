@@ -9,7 +9,7 @@
 
         <div class="container mt-4">
 
-            <form method="banner" action="{{ route('banners.store') }}">
+            <form method="banner" action="{{ route('banner.store') }}">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
@@ -50,7 +50,7 @@
 
 
                 <button type="submit" class="btn btn-primary">Save role</button>
-                <a href="{{ route('banners.index') }}" class="btn btn-default">Back</a>
+                <a href="{{ route('banner.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>
 

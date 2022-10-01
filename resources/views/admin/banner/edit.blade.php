@@ -9,7 +9,7 @@
 
         <div class="container mt-4">
 
-            <form method="banner" action="{{ route('banners.update', $banner->id) }}">
+            <form method="banner" action="{{ route('banner.update', $banner->id) }}">
                 @method('patch')
                 @csrf
                 <div class="mb-3">
@@ -53,7 +53,7 @@
 
 
                 <button type="submit" class="btn btn-primary">Save changes</button>
-                <a href="{{ route('banners.index') }}" class="btn btn-default">Back</a>
+                <a href="{{ route('banner.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>
 
