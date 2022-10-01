@@ -8,8 +8,10 @@
             <div class="carousel-inner">
                 @foreach ($banners as $banner)
                     <div class="carousel-item active">
+                        <a href="{{$banner->url}}">
                         <img src="{{$banner->image!=""?url($banner->image):'https://cdn.evbstatic.com/s3-build/fe/build/images/6aaf4a36e35b1b71bc077e200ac7429c-1_tablet_1067x470.jpg'}}" class="w-100" 
                         style="height: 450px; object-fit:cover; object-position:center" />
+                        </a>
                     </div>
                 @endforeach
             </div>
