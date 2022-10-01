@@ -39,26 +39,24 @@
                         <div class="card">
 
                             <div>
-                                <div class="w-100 position-relative card"
-                                    style="background-image:url('{{url($event->cover_image)}}'); padding-top: 50%; background-size:cover; background-position:center;">
+                                <a class="" href="{{ url('/event/' . $event->slug) }}">
+                                <div class="w-100 position-relative card border-0"
+                                    style="background-image:url('{{url($event->cover_image)}}'); padding-top: 70%; background-size:cover; background-position:center;">
+                                    
                                     <div class="position-absolute top-0 start-0 w-100 h-100"
-                                        style="background: linear-gradient(180deg, rgba(0,0,0,0) 54%, rgba(0,0,0,0.7) 83%); backdrop-filter: blur(10px); ">
+                                        style="background: linear-gradient(180deg, rgba(0,0,0,0) 54%, rgba(0,0,0,0.7) 83%);  ">
                                     </div>
-                                    <div class="position-absolute h-100 w-100 top-0 start-0 text-center">
-                                    <img src="{{url($event->cover_image)}}" class="m-auto h-100"/>
-                                    </div>
-                                    <div class="position-absolute bottom-0 start-0 card-body text-light d-flex w-100 align-items-center">
-                                        <div class="flex-grow-1">
+                                 
+                                    <div class="position-absolute bottom-0 start-0 card-body text-light  w-100">
+                                     
                                             <h4>{{ $event->name }}</h4>
                                             <p class=" mb-0">
                                                 {{ \Carbon\Carbon::parse($event->start_date)->format("d-m-Y") }} onwards | Catchup @ Banglore</p>
-                                        </div>
-                                        <div>
-                                            <a class="btn btn-sm btn-secondary" href="{{ url('/event/' . $event->slug) }}">Read
-                                                More</a>
-                                        </div>
+                                       
+                                       
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         </div>
                     </div>
