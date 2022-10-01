@@ -9,7 +9,7 @@
 
         <div class="container mt-4">
 
-            <form method="banner" action="{{ route('banner.update', $banner->id) }}">
+            <form method="post" action="{{ route('banner.update', $banner->id) }}">
                 @method('patch')
                 @csrf
                 <div class="mb-3">

@@ -6,13 +6,12 @@
 
         <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                @for ($n = 0; $n < 3; $n++)
+                @foreach ($banners as $banner)
                     <div class="carousel-item active">
-                        <img src="https://cdn.evbstatic.com/s3-build/fe/build/images/6aaf4a36e35b1b71bc077e200ac7429c-1_tablet_1067x470.jpg" class="w-100" style="height: 450px; object-fit:cover" />
-                    
-                        
+                        <img src="{{$banner->image!=""?url($banner->image):'https://cdn.evbstatic.com/s3-build/fe/build/images/6aaf4a36e35b1b71bc077e200ac7429c-1_tablet_1067x470.jpg'}}" class="w-100" 
+                        style="height: 450px; object-fit:cover; object-position:center" />
                     </div>
-                @endfor
+                @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#main-carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

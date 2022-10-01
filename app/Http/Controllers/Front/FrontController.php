@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use App\Models\EventTicket;
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Event;
 use App\Models\GalleryImage;
 use Illuminate\Support\Facades\DB;
@@ -16,8 +17,9 @@ class FrontController extends Controller
     {
         $gallery = GalleryImage::latest()->get(); 
         $events = Event::limit(4)->get();
+        $banners = Banner::limit(4)->get();
         $faker = \Faker\Factory::create();
-        return view('welcome', compact('gallery', 'faker', 'events'));
+        return view('welcome', compact('gallery', 'faker', 'events', 'banners'));
     }
 
     public function route($path)

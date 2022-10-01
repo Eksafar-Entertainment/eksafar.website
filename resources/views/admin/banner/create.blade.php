@@ -9,7 +9,7 @@
 
         <div class="container mt-4">
 
-            <form method="banner" action="{{ route('banner.store') }}">
+            <form method="post" action="{{ route('banner.store') }}">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
