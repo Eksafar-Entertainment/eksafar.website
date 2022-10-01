@@ -98,20 +98,24 @@
 
         <section class="py-5 bg-secondary text-light">
             <div class="container my-4">
-                <div class="row align-items-center gy-5">
+                <div class="row align-items-center gy-5 gx-5">
                     <div class="col-md-6">
+                        <div>
                         <h2>No More Screens. Only LIVE Scenes.</h2>
                         <p class="mt-4 fs-5">Kiss the couch goodbye and make a checklist of the things you’ve missed! Concerts.
                             Comedy. Cricket. Camping. Cool Scenes.</p>
                         <p class="mt-4 fs-5">Set your destination to: ‘Anywhere, but home.’ Find experiences in & around your
                             city
                             - Step out with the Paytm Insider app today.</p>
+                        </div>
                     </div>
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-4">
+                        <div>
                         <img src="https://media.insider.in/image/upload/c_crop,g_custom/v1637927732/pkle4f1xuhlf5kfwlcvg.gif"
                             style="width: 100%;" />
+                        </div>
                     </div>
                 </div>
             </div>

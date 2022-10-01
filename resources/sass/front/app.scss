@@ -7,18 +7,6 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.sub-nav{
-    background-color: white;
-    border-bottom: 1px solid #e5e5e5;
-
-    .nav{
-        .nav-item{
-            a{
-                color:#222
-            }
-            a.active{
-                color: $primary;
-            }
-        }
-    }
+body{
+    overflow-x: hidden;
 }
