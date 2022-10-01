@@ -1,7 +1,7 @@
 @extends('frontend.layouts.default')
 
 @section('content')
-    <!-- Mobile Slider--->
+    <!-- Slider--->
     <div class="">
 
         <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -23,7 +23,42 @@
         </div>
 
     </div>
+
+
     <section class="py-5">
+        <div class="container my-5">
+
+            <div class="text-center mb-5">
+                <h1>{{ __('Events') }}</h1>
+                <h5 style="width: 500px" class="m-auto fw-normal">{{ $faker->text() }}</h5>
+            </div>
+
+            <div class="row gx-5 gy-5">
+                @for ($n=0; $n<4 ; $n++)
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <img src="https://picsum.photos/300/230" class="w-100" />
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="card-body">
+                                        <h4>{{$faker->text(60)}}</h4>
+                                        <p class="text-danger mb-0">Wed, Oct 2021, 7:30PM</p>
+                                        <small class="text-secondary d-block">Catchup @ Banglore</small>
+                                        <a class="text-primary mt-2 d-block">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+
+    </section>
+
+    <section class="py-5 bg-white">
         <div class="container my-5">
 
             <div class="text-center mb-5">
