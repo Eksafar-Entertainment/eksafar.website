@@ -25,7 +25,7 @@
     </div>
 
 
-    <section class="py-5">
+    <section class="py-5 border-top border-bottom">
         <div class="container my-5">
 
             <div class="text-center mb-5">
@@ -69,7 +69,7 @@
             <div class="row gx-5 gy-5">
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
-                        <div style="padding-top: 100%; background-image: url('{{ url('storage/uploads/' . $image->path) }}')"></div>
+                        <div class="border" style="padding-top: 100%; background-size:cover; background-image: url('{{ url('storage/uploads/' . $image->path) }}')"></div>
                     </div>
                 @endforeach
             </div>
