@@ -40,7 +40,7 @@
 
                             <div>
                                 <div class="w-100 position-relative card"
-                                    style="background-image:url('https://picsum.photos/300/230'); padding-top: 50%">
+                                    style="background-image:url('https://picsum.photos/300/230'); padding-top: 50%; background-size:cover; background-position:center">
                                     <div class="position-absolute top-0 start-0 w-100 h-100"
                                         style="background: linear-gradient(180deg, rgba(0,0,0,0) 54%, rgba(0,0,0,0.7) 83%);">
                                     </div>
