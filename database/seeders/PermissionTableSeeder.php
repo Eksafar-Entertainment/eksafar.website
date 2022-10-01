@@ -23,7 +23,6 @@ class PermissionTableSeeder extends Seeder
             'permission:create',
             'permission:edit',
             'permission:delete',
-
             'event:list',
             'event:dashboard',
             'event:check-in',
@@ -36,7 +35,7 @@ class PermissionTableSeeder extends Seeder
          ];
       
          foreach ($permissions as $permission) {
-              Permission::create(['name' => $permission]);
+              Permission::create(['name' => $permission, "guard_name"=>"admin"]);
          }
     }
 }

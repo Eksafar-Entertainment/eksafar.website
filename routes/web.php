@@ -34,9 +34,12 @@ use Illuminate\Support\Facades\Auth;
 
 
 Auth::routes();
+Route::get("/admin/login", function(){
+    return view("admin.auth.login");
+})->name("admin.login");
+Route::post("/admin/login", [App\Http\Controllers\Admin\AuthController::class, 'login']);
 Route::group([
-    'middleware' => ['auth'],
-    'middleware' => ['admin'],
+    'middleware' => ['auth:admin'],
     'prefix' => "/admin"
 ], function () {
     Route::get('/', [AdminHomeController::class, "index"]);
