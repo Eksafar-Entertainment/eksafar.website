@@ -7,6 +7,8 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -27,6 +29,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        if(Auth::user()->hasRole('Admin')){
+            return view('admin.home');
+        }
+        else{
+            return view('welcome');
+        }
     }
 }

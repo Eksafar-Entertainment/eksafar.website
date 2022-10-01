@@ -36,6 +36,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 Route::group([
     'middleware' => ['auth'],
+    'middleware' => ['admin'],
     'prefix' => "/admin"
 ], function () {
     Route::get('/', [AdminHomeController::class, "index"]);
