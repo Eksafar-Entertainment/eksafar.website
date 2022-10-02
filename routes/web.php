@@ -75,6 +75,8 @@ Route::group([
         Route::get('/event/{event_id}/tickets',  'tickets')->middleware("permission:event:tickets")->name("admin:event:tickets");
         Route::post('/event/{event_id}/tickets/form',  'getTicketForm')->middleware("permission:event:tickets");
         Route::post('/event/{event_id}/tickets',  'saveTicket')->middleware("permission:event:tickets");
+        Route::post('/event/{event_id}/tickets/combo/form',  'getComboTicketForm')->middleware("permission:event:tickets");
+        Route::post('/event/{event_id}/tickets/combo',  'saveComboTicket')->middleware("permission:event:tickets");
 
         Route::get('/event/{event_id}/customize',  'customize')->middleware("permission:event:customize")->name("admin:event:customize");
         Route::post('/event/{event_id}/customize',  'saveEvent')->middleware("permission:event:customize");
