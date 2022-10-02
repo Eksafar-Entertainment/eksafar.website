@@ -91,6 +91,9 @@
                     <td class="checked-in">
                         <span class="badge bg-{{ $order->is_checked_in?'success': 'danger' }}">{{ $order->is_checked_in?"Yes": "No" }}</span>
                     </td>
+                    <td>
+                        <a onclick="sendEmail('{{$order->id}}')"><i class="fas fa-envelope"></i> </a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -121,6 +124,19 @@
                 success: function(result) {
                     $("#details-modal .modal-dialog").html(result.html);
                     checkInModal.show();
+                }
+            });
+        }
+
+        function sendEmail(order_id) {
+            jQuery.ajax({
+                url: "{{ url('/admin/event/'.$event->id.'/orders/details') }}",
+                method: 'post',
+                data: {
+                    order_id: order_id
+                },
+                success: function(result) {
+                    alert(result.message);
                 }
             });
         }

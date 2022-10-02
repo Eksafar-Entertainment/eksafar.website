@@ -15,6 +15,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TicketMail;
 
 class EventController extends Controller
 {
@@ -63,13 +65,13 @@ class EventController extends Controller
 
         $event->name = $request->name;
         $event->slug = $event->slug == null || $event->slug == "" ? Str::slug($request->name) : $event->slug;
-        $event->entry_type = $request->entry_type??"";
-        $event->venue = $request->venue??"";
-        $event->city = $request->city??"";
-        $event->address = $request->address??"";
-        $event->start_date = $request->start_date??"2020-01-01";
-        $event->end_date = $request->end_date??"2020-01-01";
-        $event->occurrence = $request->occurrence??"";
+        $event->entry_type = $request->entry_type ?? "";
+        $event->venue = $request->venue ?? "";
+        $event->city = $request->city ?? "";
+        $event->address = $request->address ?? "";
+        $event->start_date = $request->start_date ?? "2020-01-01";
+        $event->end_date = $request->end_date ?? "2020-01-01";
+        $event->occurrence = $request->occurrence ?? "";
         $event->description = $request->description;
 
         if ($request->file('cover_image')) {
@@ -80,13 +82,13 @@ class EventController extends Controller
         } else {
             $event->cover_image = "";
         }
-        $event->video_link = $request->video_link??"";
-        $event->event_type = $request->event_type??"";
-        $event->artist = $request->artist??"";
-        $event->abilities = $request->abilities ??"";
+        $event->video_link = $request->video_link ?? "";
+        $event->event_type = $request->event_type ?? "";
+        $event->artist = $request->artist ?? "";
+        $event->abilities = $request->abilities ?? "";
 
         $event->save();
-        return redirect('/admin/event/'.$event->id.'/customize/');
+        return redirect('/admin/event/' . $event->id . '/customize/');
     }
     function delete($eventId)
     {
@@ -265,7 +267,7 @@ class EventController extends Controller
             "PENDING" => "warning",
             "FAILED" => "danger"
         ];
-    
+
         $orders = Order::leftJoin('promoters', function ($join) {
             $join->on('promoters.id', '=', 'orders.promoter_id');
         })->where("orders.event_id", $event_id);
@@ -300,6 +302,28 @@ class EventController extends Controller
             ->paginate(30)->appends($request->query());
         return view("admin.event.manage.orders.index", compact('event', 'orders', "colors"));
     }
+    public function orderEmail($event_id, Request $request)
+    {
+        $event = Event::where("id", $event_id)->first();
+        $order_id = $request->order_id;
+        $order = Order::where("id", $order_id)->first();
+        $order_details = OrderDetail::where(["order_id" => $order->id])
+            ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+            //->groupBy("order_details.id")
+            ->select(
+                "order_details.*",
+                "event_tickets.name as event_ticket_name",
+                "event_tickets.persons as event_ticket_persons"
+            )
+            ->get();
+
+        Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
+        return response()->json([
+            "status" => 200,
+            'message' => 'Successfully fetched data',
+        ]);
+    }
+
     public function orderDetails($event_id, Request $request)
     {
         $order_id = $request->order_id;
@@ -322,7 +346,7 @@ class EventController extends Controller
             ])->render()
         ]);
     }
-    
+
     //Ticket related things
     public function tickets($event_id, Request $request)
     {
@@ -409,7 +433,7 @@ class EventController extends Controller
 
         if ($request->file('cover_image')) {
             $file = $request->file('cover_image');
-            $filename = date('YmdHi') . '.'.$file->getExtension() ;//$file->getClientOriginalName();
+            $filename = date('YmdHi') . '.' . $file->getExtension(); //$file->getClientOriginalName();
             $file->move(public_path('storage/uploads'), $filename);
             $event->cover_image = $filename;
         }
@@ -431,17 +455,17 @@ class EventController extends Controller
         foreach ($period as $date) {
             $dates[] = $date->format("Y-m-d");
         }
-        return view("admin.event.manage.check-in.index",[
-            "event"=>$event,
-            "dates"=>$dates
+        return view("admin.event.manage.check-in.index", [
+            "event" => $event,
+            "dates" => $dates
         ]);
     }
     public function checkInDetails($event_id, Request $request)
     {
         $order_id = $request->order_id;
         $date = $request->date;
-        $order = Order::where("id", $order_id)->where("status","SUCCESS")->where("date", $date)->first();
-        if(!$order){
+        $order = Order::where("id", $order_id)->where("status", "SUCCESS")->where("date", $date)->first();
+        if (!$order) {
             return response()->json([
                 "status" => 404,
                 'message' => 'No order details found',
@@ -466,7 +490,7 @@ class EventController extends Controller
         ]);
     }
 
-    public function checkIn($event_id,Request $request)
+    public function checkIn($event_id, Request $request)
     {
         $order_id = $request->order_id;
         $order = Order::where("id", $order_id)->first();
@@ -479,7 +503,8 @@ class EventController extends Controller
     }
 
     ///album functions
-    public function addAlbumImage($event_id, Request $request){
+    public function addAlbumImage($event_id, Request $request)
+    {
         $event_album_image = new EventAlbumImage();
         $event_album_image->event_id = $event_id;
         if ($request->file('image')) {
@@ -491,11 +516,12 @@ class EventController extends Controller
             abort(400, "Error while uploading image");
         }
         $event_album_image->save();
-        return redirect('/admin/event/'.$event_id.'/customize/#album');
+        return redirect('/admin/event/' . $event_id . '/customize/#album');
     }
-    public function deleteAlbumImage($event_id, Request $request){
+    public function deleteAlbumImage($event_id, Request $request)
+    {
         $event_album_image = EventAlbumImage::where("id", $request->event_album_image_id)->first();
         $event_album_image->delete();
-        return redirect('/admin/event/'.$event_id.'/customize/#album');
+        return redirect('/admin/event/' . $event_id . '/customize/#album');
     }
 }
