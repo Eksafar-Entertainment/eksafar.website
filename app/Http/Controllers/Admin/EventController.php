@@ -17,6 +17,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TicketMail;
 
 class EventController extends Controller
 {
@@ -83,8 +85,9 @@ class EventController extends Controller
         $event->language = $request->language ??"";
         $event->status = $request->status ??"CREATED";
 
+
         $event->save();
-        return redirect('/admin/event/'.$event->id.'/customize/');
+        return redirect('/admin/event/' . $event->id . '/customize/');
     }
     function delete($eventId)
     {
@@ -263,13 +266,17 @@ class EventController extends Controller
             "PENDING" => "warning",
             "FAILED" => "danger"
         ];
-        $where = [];
+
         $orders = Order::leftJoin('promoters', function ($join) {
             $join->on('promoters.id', '=', 'orders.promoter_id');
         })->where("orders.event_id", $event_id);
 
         if (isset($request->query()["id"]) && $request->query()["id"] != "") {
             $orders->where("orders.id", $request->query()["id"]);
+        }
+
+        if (isset($request->query()["date"]) && $request->query()["date"] != "") {
+            $orders->where("orders.date", $request->query()["date"]);
         }
 
         if (isset($request->query()["status"]) && $request->query()["status"] != "") {
@@ -291,9 +298,38 @@ class EventController extends Controller
                 "promoters.commission as promoter_commission_percentage"
             )
             ->latest()
-            ->paginate(10)->appends($request->query());
+            ->paginate(30)->appends($request->query());
         return view("admin.event.manage.orders.index", compact('event', 'orders', "colors"));
     }
+    public function orderEmail($event_id, Request $request)
+    {
+        $event = Event::where("id", $event_id)->first();
+        $order_id = $request->order_id;
+        $order = Order::where("id", $order_id)->first();
+        $order_details = OrderDetail::where(["order_id" => $order->id])
+            ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+            //->groupBy("order_details.id")
+            ->select(
+                "order_details.*",
+                "event_tickets.name as event_ticket_name",
+                "event_tickets.persons as event_ticket_persons"
+            )
+            ->get();
+
+        if ($order->status === 'SUCCESS') {
+            Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
+            return response()->json([
+                "status" => 200,
+                'message' => 'Successfully email sent',
+            ]);
+        } else {
+            return response()->json([
+                "status" => 400,
+                'message' => 'Order is still not successful',
+            ]);
+        }
+    }
+
     public function orderDetails($event_id, Request $request)
     {
         $order_id = $request->order_id;
@@ -316,7 +352,7 @@ class EventController extends Controller
             ])->render()
         ]);
     }
-    
+
     //Ticket related things
     public function tickets($event_id, Request $request)
     {
@@ -437,16 +473,22 @@ class EventController extends Controller
     public function checkInView($event_id, Request $request)
     {
         $event = Event::where("id", $event_id)->first();
-
-        return view("admin.event.manage.check-in.index",[
-            "event"=>$event
+        $period = CarbonPeriod::create(Carbon::parse($event->start_date)->format("Y-m-d"), Carbon::parse($event->end_date)->format("Y-m-d"));
+        $dates = [];
+        foreach ($period as $date) {
+            $dates[] = $date->format("Y-m-d");
+        }
+        return view("admin.event.manage.check-in.index", [
+            "event" => $event,
+            "dates" => $dates
         ]);
     }
     public function checkInDetails($event_id, Request $request)
     {
         $order_id = $request->order_id;
-        $order = Order::where("id", $order_id)->where("status","SUCCESS")->first();
-        if(!$order){
+        $date = $request->date;
+        $order = Order::where("id", $order_id)->where("status", "SUCCESS")->where("date", $date)->first();
+        if (!$order) {
             return response()->json([
                 "status" => 404,
                 'message' => 'No order details found',
@@ -471,7 +513,7 @@ class EventController extends Controller
         ]);
     }
 
-    public function checkIn($event_id,Request $request)
+    public function checkIn($event_id, Request $request)
     {
         $order_id = $request->order_id;
         $order = Order::where("id", $order_id)->first();
@@ -484,7 +526,8 @@ class EventController extends Controller
     }
 
     ///album functions
-    public function addAlbumImage($event_id, Request $request){
+    public function addAlbumImage($event_id, Request $request)
+    {
         $event_album_image = new EventAlbumImage();
         $event_album_image->event_id = $event_id;
         if ($request->file('image')) {
@@ -496,11 +539,12 @@ class EventController extends Controller
             abort(400, "Error while uploading image");
         }
         $event_album_image->save();
-        return redirect('/admin/event/'.$event_id.'/customize/#album');
+        return redirect('/admin/event/' . $event_id . '/customize/#album');
     }
-    public function deleteAlbumImage($event_id, Request $request){
+    public function deleteAlbumImage($event_id, Request $request)
+    {
         $event_album_image = EventAlbumImage::where("id", $request->event_album_image_id)->first();
         $event_album_image->delete();
-        return redirect('/admin/event/'.$event_id.'/customize/#album');
+        return redirect('/admin/event/' . $event_id . '/customize/#album');
     }
 }
