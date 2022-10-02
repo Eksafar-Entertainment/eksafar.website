@@ -317,11 +317,18 @@ class EventController extends Controller
             )
             ->get();
 
-        Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
-        return response()->json([
-            "status" => 200,
-            'message' => 'Successfully fetched data',
-        ]);
+        if ($order->status === 'SUCCESS') {
+            Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
+            return response()->json([
+                "status" => 200,
+                'message' => 'Successfully fetched data',
+            ]);
+        } else {
+            return response()->json([
+                "status" => 400,
+                'message' => 'Order is still not successful',
+            ]);
+        }
     }
 
     public function orderDetails($event_id, Request $request)
