@@ -19,6 +19,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketMail;
+use App\Models\EventComboTicket;
 
 class EventController extends Controller
 {
@@ -67,23 +68,23 @@ class EventController extends Controller
 
         $event->name = $request->name;
         $event->slug = $event->slug == null || $event->slug == "" ? Str::slug($request->name) : $event->slug;
-        $event->entry_type = $request->entry_type??"";
-        $event->venue = $request->venue??0;
-        $event->city = $request->city??"";
-        $event->address = $request->address??"";
-        $event->start_date = $request->start_date??"2020-01-01";
-        $event->end_date = $request->end_date??"2020-01-01";
-        $event->occurrence = $request->occurrence??"";
+        $event->entry_type = $request->entry_type ?? "";
+        $event->venue = $request->venue ?? 0;
+        $event->city = $request->city ?? "";
+        $event->address = $request->address ?? "";
+        $event->start_date = $request->start_date ?? "2020-01-01";
+        $event->end_date = $request->end_date ?? "2020-01-01";
+        $event->occurrence = $request->occurrence ?? "";
         $event->description = $request->description;
-        $event->video_link = $request->video_link??"";
-        $event->event_type = $request->event_type??"";
-        $event->artists = $request->artist??[];
-        $event->abilities = $request->abilities ??"";
-        $event->cover_image = $request->cover_image ??"";
-        $event->terms = $request->terms ??"";
-        $event->min_age = $request->min_age ??18;
-        $event->language = $request->language ??"";
-        $event->status = $request->status ??"CREATED";
+        $event->video_link = $request->video_link ?? "";
+        $event->event_type = $request->event_type ?? "";
+        $event->artists = $request->artist ?? [];
+        $event->abilities = $request->abilities ?? "";
+        $event->cover_image = $request->cover_image ?? "";
+        $event->terms = $request->terms ?? "";
+        $event->min_age = $request->min_age ?? 18;
+        $event->language = $request->language ?? "";
+        $event->status = $request->status ?? "CREATED";
 
 
         $event->save();
@@ -371,7 +372,6 @@ class EventController extends Controller
                 $join->on('order_details.order_id', '=', 'orders.id');
             })
             ->groupBy("event_tickets.id");
-
         if (isset($request->query()["keyword"]) && $request->query()["keyword"] != "") {
             $event_tickets->where(function ($query) {
                 global $request;
@@ -380,10 +380,9 @@ class EventController extends Controller
             });
         }
 
-        $event_tickets = $event_tickets
-            ->latest()
-            ->paginate(10)->appends($request->query());
-        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets'));
+        $event_tickets = $event_tickets->latest()->get();
+        $event_combo_tickets = EventComboTicket::where("event_id", $event_id)->get();
+        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets','event_combo_tickets'));
     }
 
     public function getTicketForm($event_id, Request $request)
@@ -417,28 +416,62 @@ class EventController extends Controller
             'message' => 'Successfully updated ticket',
         ]);
     }
+
+    public function getComboTicketForm($event_id, Request $request)
+    {
+        $event = Event::where("id", $event_id)->first();
+        $event_combo_ticket = EventComboTicket::where("id", $request->event_combo_ticket_id)->first() ?? new EventComboTicket();
+        $event_tickets = EventTicket::where("event_id", $event_id)->get()??[];
+        return response()->json([
+            "status" => 200,
+            'message' => 'Successfully fetched data',
+            'html' => view("admin.event.manage.tickets.combo-form", [
+                'event_combo_ticket' => $event_combo_ticket,
+                'event_tickets' => $event_tickets,
+                'event' => $event,
+            ])->render()
+        ]);
+    }
+    public function saveComboTicket($event_id, Request $request)
+    {
+        $event_combo_ticket = EventComboTicket::where("id", $request->event_combo_ticket_id)->first() ?? new EventComboTicket();
+        $event_combo_ticket->event_id = $event_id;
+        $event_combo_ticket->name = $request->name;
+        $event_combo_ticket->price = $request->price;
+        $event_combo_ticket->event_tickets = $request->event_tickets;
+        $event_combo_ticket->status = $request->status ?? "CREATED";
+        $event_combo_ticket->save();
+        return response()->json([
+            "status" => 200,
+            'message' => 'Successfully updated combo ticket',
+        ]);
+        return response()->json([
+            "status" => 200,
+            'message' => 'Successfully updated combo ticket',
+        ]);
+    }
     //customize
     public function customize($event_id, Request $request)
     {
         $event = Event::where("id", $event_id)->first();
         $event_album_images = EventAlbumImage::where("event_id", $event_id)->get();
         $venues = Venue::get()->toArray();
-        $venues = array_map(function($venue){
+        $venues = array_map(function ($venue) {
             return [
-                "label"=>$venue["name"],
-                "value"=>$venue["id"],
-                "avater"=>url($venue["logo"]),
+                "label" => $venue["name"],
+                "value" => $venue["id"],
+                "avater" => url($venue["logo"]),
             ];
-        },$venues);
+        }, $venues);
 
         $artists = Artist::get()->toArray();
-        $artists = array_map(function($artist){
+        $artists = array_map(function ($artist) {
             return [
-                "label"=>$artist["name"],
-                "value"=>$artist["id"],
-                "avater"=>url($artist["image"]),
+                "label" => $artist["name"],
+                "value" => $artist["id"],
+                "avater" => url($artist["image"]),
             ];
-        },$artists);
+        }, $artists);
         return view("admin.event.manage.customize.index", compact('event', "event_album_images", "venues", "artists"));
     }
 
