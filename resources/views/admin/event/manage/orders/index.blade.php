@@ -70,6 +70,7 @@
                         <th>Status</th>
                         <th>Order Date</th>
                         <th>In</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
