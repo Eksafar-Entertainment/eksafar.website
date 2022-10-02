@@ -129,6 +129,10 @@ class RazorpayController extends Controller
     if (!$payment) {
       abort(404);
     }
+
+    if ($payment->status == "SUCCESS") {
+      abort(404);
+    }
     $order = Order::where(["payment_id" => $payment->id])->first();
     $order_details = OrderDetail::where(["order_details.order_id" => $order->id])
       ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
