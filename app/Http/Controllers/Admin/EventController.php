@@ -321,7 +321,7 @@ class EventController extends Controller
             Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
             return response()->json([
                 "status" => 200,
-                'message' => 'Successfully fetched data',
+                'message' => 'Successfully email sent',
             ]);
         } else {
             return response()->json([
