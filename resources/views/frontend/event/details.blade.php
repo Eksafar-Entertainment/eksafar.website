@@ -333,18 +333,23 @@
                                         </tr>
                                     </table>
                                     <div>
-                                        <div class="mb-3">
-                                            <input type="text" placeholder="Full name" class="form-control" />
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <input type="email" placeholder="Email" class="form-control" />
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <input type="number" placeholder="Phone" class="form-control" />
-                                        </div>
-                                        <button class="btn btn-primary w-100" type="submit">Checkout</button>
+                                        @guest
+                                            <div id="checkoutField">
+                                                <div class="mb-3">
+                                                    <input type="text" placeholder="Full name" class="form-control" />
+                                                </div>
+                                                <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
+                                                <div class="mb-3">
+                                                    <input type="email"  id="email" placeholder="Email" class="form-control" />
+                                                </div>
+                                                <div class="mb-3">
+                                                    <input type="number" placeholder="Phone" class="form-control" />
+                                                </div>
+                                            </div>
+                                        <button class="btn btn-primary w-100" id="continue" type="submit">Continue</button>
+                                        <button class="btn btn-primary w-100" id="login" type="submit" style="display:none">Login</button>
+                                        @endguest
+                                        <button class="btn btn-primary w-100" id="checkout" type="submit" style="display:none">Checkout</button>
                                     </div>
                                 </div>
                             </div>
@@ -397,6 +402,59 @@
                     calculateSummery()
                 });
             });
+
+            $('#continue').on('click', function(e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '/checkEmail',
+                    type: 'POST',
+                    data: {email:$("#email").val()},
+                    dataType: 'JSON',
+                    success: function (data) { 
+                    if(data.name){
+                        $("#checkoutField").empty();
+                        console.log('yes inside the doc');
+                        $('#continue').toggle();
+                        $('#login').toggle();
+                        $("#checkoutField").append('<div class="mb-3"> Enter password to login <input type="password" id="password" placeholder="Password" class="form-control" /></div>');
+                    }
+                    }
+                });
+                return false;
+            });
+
+            $('#login').on('click', function(e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '/checkLogin',
+                    type: 'POST',
+                    data: {email:$("#email").val(),password:$("#password").val()},
+                    dataType: 'JSON',
+                    success: function (data) { 
+                    if(data.name){
+                        $("#checkoutField").empty();
+                        console.log('yes inside the doc');
+                        $('#login').toggle();
+                        $('#checkout').toggle();
+                    }
+                    else{
+                        alert('Incorrect Password');
+                    }
+                    }
+                });
+                return false;
+            });
+
         })
     </script>
 @endsection
