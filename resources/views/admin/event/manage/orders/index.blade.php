@@ -130,7 +130,7 @@
 
         function sendEmail(order_id) {
             jQuery.ajax({
-                url: "{{ url('/admin/event/'.$event->id.'/orders/details') }}",
+                url: "{{ url('/admin/event/'.$event->id.'/orders/email') }}",
                 method: 'post',
                 data: {
                     order_id: order_id
