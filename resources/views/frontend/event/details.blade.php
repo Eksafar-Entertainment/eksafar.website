@@ -349,7 +349,7 @@
                                         <button class="btn btn-primary w-100" id="continue" type="submit">Continue</button>
                                         <button class="btn btn-primary w-100" id="login" type="submit" style="display:none">Login</button>
                                         @endguest
-                                        <button class="btn btn-primary w-100" id="checkout" type="submit" style="display:none">Checkout</button>
+                                        <button class="btn btn-primary w-100" id="checkout" type="submit" @guest style="display:none" @endguest>Checkout</button>
                                     </div>
                                 </div>
                             </div>
