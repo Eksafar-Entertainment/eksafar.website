@@ -81,6 +81,7 @@ class RazorpayController extends Controller
     $order->status = "PENDING";
     $order->total_price = $total_price;
     $order->payment_id = $payment->id;
+    $order->user_id = $user->id;
     $order->save();
 
     //update order
