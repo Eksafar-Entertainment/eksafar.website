@@ -93,6 +93,7 @@ Route::group([
 
 Route::post('/payment/checkout', [RazorpayController::class, 'checkout']);
 Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutComplete'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+Route::post('/payment/webhook', [RazorpayController::class, 'webhook'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 //frontend routes
 Route::group([

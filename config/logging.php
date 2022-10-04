@@ -113,6 +113,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        'rzp-webhook' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/rzp-webhook.log'),
+            'level' => 'info',
+
+        ],
     ],
 
 ];
