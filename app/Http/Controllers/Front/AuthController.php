@@ -77,20 +77,28 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = Auth::guard("web")->user();
-            return response()->json([
-                "status" => 200,
-                'message' => 'User exist',
-                'data' => $user
-            ]);
+        $user =  User::where("email", $request->email)->first();
+        if ($user) {
+            if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+                $user = Auth::guard("web")->user();
+                return response()->json([
+                    "status" => 200,
+                    'message' => 'User exist',
+                    'data' => $user
+                ]);
+            } else {
+                return response()->json([
+                    "status" => 200,
+                    'message' => 'Incorrect password',
+                ]);
+            }
         } else {
             $user = User::create([
-                'name' => $request->name, 
+                'name' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password)
             ]);
-        
+
             return response()->json([
                 "status" => 200,
                 'message' => 'User exist',

@@ -343,23 +343,27 @@
                                         <div>
                                             @guest
                                                 <div>
+                                                    <!-- Email Container -->
                                                     <div id="email-container">
                                                         <div class="mb-3">
-                                                            <input type="email" id="email" name="email" placeholder="Email" class="form-control" />
+                                                            <input type="email" id="email" name="email"
+                                                                placeholder="Email" class="form-control" />
                                                         </div>
                                                         <button class="btn btn-primary w-100" type="button">Continue</button>
                                                     </div>
-                                                    <div id="login-container">
+                                                    <!-- login Container -->
+                                                    <div id="login-container" style="display: none">
                                                         <div class="mb-3" class="password">
                                                             <input type="password" placeholder="Password" name="password"
                                                                 class="form-control" />
                                                         </div>
                                                         <button class="btn btn-primary w-100" type="button">Login</button>
                                                     </div>
-
-                                                    <div id="register-container">
+                                                    <!-- register Container -->
+                                                    <div id="register-container" style="display: none">
                                                         <div class="mb-3" class="name">
-                                                            <input type="text" placeholder="Full name" class="form-control" name="name" />
+                                                            <input type="text" placeholder="Full name"
+                                                                class="form-control" name="name" />
                                                         </div>
                                                         <div class="mb-3" class="mobile">
                                                             <input type="number" placeholder="Phone" name="mobile"
@@ -376,8 +380,7 @@
 
 
                                             @endguest
-                                            <button class="btn btn-primary w-100" id="checkout"
-                                                type="submit">Checkout</button>
+                                            <button class="btn btn-primary w-100" style="@guest display: none @endguest" id="checkout" type="submit">Checkout</button>
                                         </div>
                                     </div>
                                 </div>
@@ -446,13 +449,50 @@
                         email: $("#email").val()
                     },
                     dataType: 'JSON',
-                    success: function(data) {
-                        $("#email-container").hide();
+                    success: function(res) {
+                        console.log(res);
+                        if(res.data.is_existing_user){
+                            $('#login-container').show();
+                            $('#register-container').hide();
+                        } else {
+                            $('#login-container').hide();
+                            $('#register-container').show();
+                        }
+                        $('#email-container button').hide();
                     }
                 });
                 return false;
             });
 
+
+            $('#login-container button').on('click', function(e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '/auth/try-login',
+                    type: 'POST',
+                    data: {
+                        email: $("input[name=email]").val(),
+                        name: $("#login-container input[name=name]").val(),
+                        password: $("#login-container input[name=password]").val()
+                    },
+                    dataType: 'JSON',
+                    success: function(res) {
+                        if (res.data) {
+                            $("#email-container").hide();
+                            $('#login-container').hide();
+                            $('#checkout').show();
+                        } else {
+                            alert(res.message);
+                        }
+                    }
+                });
+                return false;
+            });
             $('#register-container button').on('click', function(e) {
                 e.preventDefault();
                 $.ajaxSetup({
@@ -461,7 +501,7 @@
                     }
                 });
                 $.ajax({
-                    url: '/checkLogin',
+                    url:  '/auth/try-login',
                     type: 'POST',
                     data: {
                         email: $("input[name=email]").val(),

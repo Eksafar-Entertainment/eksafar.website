@@ -19,12 +19,14 @@ use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class RazorpayController extends Controller
 {
   function checkout(Request $request)
   {
 
+    $user = Auth::guard("web")->user();
     $date = "";
     if ($request->date == '3') {
       $date = Carbon::create(2022, 10, 3, 0, 0, 0, 'Asia/Kolkata');
@@ -61,9 +63,9 @@ class RazorpayController extends Controller
     $payment->rzp_order_id = "";
     $payment->payment_method = "Razorpay";
     $payment->order_id = 0;
-    $payment->user = $request->name;
-    $payment->phone = $request->mobile;
-    $payment->email = $request->email;
+    $payment->user = $user->name;
+    $payment->phone = $user->mobile;
+    $payment->email = $user->email;
     $payment->amount = $total_price;
     $payment->status = "CREATED";
     $payment->save();
@@ -72,10 +74,10 @@ class RazorpayController extends Controller
     $order = new Order();
     $order->event_id = $request->event_id;
     $order->promoter_id = $promoter ? $promoter->id : null;
-    $order->name = $request->name;
+    $order->name = $user->name;
     $order->date = $date;
-    $order->email = $request->email;
-    $order->mobile = $request->mobile;
+    $order->email = $user->email;
+    $order->mobile = $user->mobile;
     $order->status = "PENDING";
     $order->total_price = $total_price;
     $order->payment_id = $payment->id;
@@ -111,9 +113,9 @@ class RazorpayController extends Controller
       "order_details" => $razorpay_order,
       "key" => $key,
       "customer_details" => [
-        "name" => $request->name,
-        "email" => $request->email,
-        "mobile" => $request->mobile
+        "name" => $user->name,
+        "email" => $user->email,
+        "mobile" => $user->mobile
       ]
     ]);
   }
