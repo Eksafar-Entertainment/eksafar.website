@@ -60,7 +60,7 @@
                         <!---- End Slider --->
 
 
-                        
+
                         <div class=" d-none">
                             @for ($n = 0; $n < 3; $n++)
                                 <span class="badge rounded-pill bg-info fs-6 fw-normal">Secondary</span>
@@ -273,90 +273,119 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content position-relative  bg-transparent">
-                    <div class="modal-body p-0">
-                        <div class="row gx-0">
-                            <div class="col-md">
-                                <div class="bg-white rounded h-100 p-4 border" style="border-style: dashed !important; ">
-                                    <div>
-                                        <h4 class="mb-0">{{ $event->name }} @ {{ $venue->name }}</h4>
-                                        <small class="text-muted">
-                                            <i class="fas fa-calendar me-2"></i>
-                                            16th October, 2022 | 04:00 PM Onwards
-                                        </small>
+                    <form action="/payment/checkout" method="post">
+                        @csrf
+                        <input type="hidden" name="event_id" value="1" />
+                        <input type="hidden" name="promoter_id" value="{{ app('request')->input('promoter') }}" />
+                        <div class="modal-body p-0">
+                            <div class="row gx-0">
+                                <div class="col-md">
+                                    <div class="bg-white rounded h-100 p-4 border"
+                                        style="border-style: dashed !important; ">
+                                        <div>
+                                            <h4 class="mb-0">{{ $event->name }} @ {{ $venue->name }}</h4>
+                                            <small class="text-muted">
+                                                <i class="fas fa-calendar me-2"></i>
+                                                16th October, 2022 | 04:00 PM Onwards
+                                            </small>
+                                        </div>
+                                        <table class="table table-ms mt-3">
+                                            @foreach ($event_tickets as $n => $event_ticket)
+                                                <tr data-row="ticket">
+                                                    <td class="ps-0">
+                                                        <h6 class="mb-0">{{ $event_ticket->name }}</h6>
+                                                        <small
+                                                            class="text-muted">{{ $event_ticket->description }}</small><br>
+                                                        <span class="text-success"> @money($event_ticket->price)</span>
+                                                    </td>
+                                                    <td width="1%" class="align-middle">
+                                                        <input type="hidden"
+                                                            name="items[{{ $n }}][event_ticket_id]"
+                                                            value="{{ $event_ticket->id }}" />
+                                                        <input type="hidden" value="{{ $event_ticket->price }}"
+                                                            data-field="price" />
+                                                        <input type="number" class="form-control form-control-sm"
+                                                            data-field='quantity' placeholder="Qtde."
+                                                            style="min-width: 80px"
+                                                            name="items[{{ $n }}][quantity]" />
+                                                    </td>
+                                                    <td class="fs-6 align-middle pe-0 text-nowrap text-end" width="90px"
+                                                        data-field="total-price">
+                                                        @money(0)
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
                                     </div>
-                                    <table class="table table-ms mt-3">
-                                        @foreach ($event_tickets as $n => $event_ticket)
-                                            <tr data-row="ticket">
-                                                <td class="ps-0">
-                                                    <h6 class="mb-0">{{ $event_ticket->name }}</h6>
-                                                    <small class="text-muted">{{ $event_ticket->description }}</small><br>
-                                                    <span class="text-success"> @money($event_ticket->price)</span>
-                                                </td>
-                                                <td width="1%" class="align-middle">
-                                                    <input type="hidden"
-                                                        name="items[{{ $n }}][event_ticket_id]"
-                                                        value="{{ $event_ticket->id }}" />
-                                                    <input type="hidden" value="{{ $event_ticket->price }}"
-                                                        data-field="price" />
-                                                    <input type="number" class="form-control form-control-sm"
-                                                        data-field='quantity' placeholder="Qtde." style="min-width: 80px"
-                                                        name="items[{{ $n }}][quantity]" />
-                                                </td>
-                                                <td class="fs-6 align-middle pe-0 text-nowrap text-end" width="90px"
-                                                    data-field="total-price">
-                                                    @money(0)
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </table>
                                 </div>
-                            </div>
 
 
 
-                            <div class="col-md-auto">
-                                <div class="bg-white rounded h-100 p-4 border" style="border-style: dashed !important; ">
-                                    <table class="table fs-6" style="min-width: 250px">
-                                        <tr>
-                                            <td class="ps-0 border-bottom-0">Total Quantity</td>
-                                            <td class="pe-0 border-bottom-0" id="total-quantity">0</td>
-                                        </tr>
+                                <div class="col-md-auto">
+                                    <div class="bg-white rounded h-100 p-4 border"
+                                        style="border-style: dashed !important; ">
+                                        <table class="table fs-6" style="min-width: 250px">
+                                            <tr>
+                                                <td class="ps-0 border-bottom-0">Total Quantity</td>
+                                                <td class="pe-0 border-bottom-0" id="total-quantity">0</td>
+                                            </tr>
 
-                                        <tr>
-                                            <td class="ps-0">Total Amount</td>
-                                            <td class="pe-0" id="total-amount">@money(0)</td>
-                                        </tr>
+                                            <tr>
+                                                <td class="ps-0">Total Amount</td>
+                                                <td class="pe-0" id="total-amount">@money(0)</td>
+                                            </tr>
 
-                                        <tr>
-                                            <td class="ps-0 border-bottom-0">Grand Total</td>
-                                            <td class="pe-0 border-bottom-0" id="grand-total">@money(0)</td>
-                                        </tr>
-                                    </table>
-                                    <div>
-                                        @guest
-                                            <div id="checkoutField">
-                                                <div class="mb-3">
-                                                    <input type="text" placeholder="Full name" class="form-control" />
+                                            <tr>
+                                                <td class="ps-0 border-bottom-0">Grand Total</td>
+                                                <td class="pe-0 border-bottom-0" id="grand-total">@money(0)</td>
+                                            </tr>
+                                        </table>
+                                        <div>
+                                            @guest
+                                                <div>
+                                                    <div id="email-container">
+                                                        <div class="mb-3">
+                                                            <input type="email" id="email" name="email" placeholder="Email" class="form-control" />
+                                                        </div>
+                                                        <button class="btn btn-primary w-100" type="button">Continue</button>
+                                                    </div>
+                                                    <div id="login-container">
+                                                        <div class="mb-3" class="password">
+                                                            <input type="password" placeholder="Password" name="password"
+                                                                class="form-control" />
+                                                        </div>
+                                                        <button class="btn btn-primary w-100" type="button">Login</button>
+                                                    </div>
+
+                                                    <div id="register-container">
+                                                        <div class="mb-3" class="name">
+                                                            <input type="text" placeholder="Full name" class="form-control" name="name" />
+                                                        </div>
+                                                        <div class="mb-3" class="mobile">
+                                                            <input type="number" placeholder="Phone" name="mobile"
+                                                                class="form-control" />
+                                                        </div>
+
+                                                        <div class="mb-3" class="password">
+                                                            <input type="password" placeholder="Password" name="password"
+                                                                class="form-control" />
+                                                        </div>
+                                                        <button class="btn btn-primary w-100" type="button">Register</button>
+                                                    </div>
                                                 </div>
-                                                <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
-                                                <div class="mb-3">
-                                                    <input type="email"  id="email" placeholder="Email" class="form-control" />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <input type="number" placeholder="Phone" class="form-control" />
-                                                </div>
-                                            </div>
-                                        <button class="btn btn-primary w-100" id="continue" type="submit">Continue</button>
-                                        <button class="btn btn-primary w-100" id="login" type="submit" style="display:none">Login</button>
-                                        @endguest
-                                        <button class="btn btn-primary w-100" id="checkout" type="submit" @guest style="display:none" @endguest>Checkout</button>
+
+
+                                            @endguest
+                                            <button class="btn btn-primary w-100" id="checkout"
+                                                type="submit">Checkout</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-default position-absolute top-0 end-0"
-                        aria-label="Close" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
+                        <button type="button" class="btn btn-sm btn-default position-absolute top-0 end-0"
+                            aria-label="Close" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -403,7 +432,7 @@
                 });
             });
 
-            $('#continue').on('click', function(e) {
+            $('#email-container button').on('click', function(e) {
                 e.preventDefault();
                 $.ajaxSetup({
                     headers: {
@@ -411,24 +440,20 @@
                     }
                 });
                 $.ajax({
-                    url: '/checkEmail',
+                    url: '/auth/check-user-email',
                     type: 'POST',
-                    data: {email:$("#email").val()},
+                    data: {
+                        email: $("#email").val()
+                    },
                     dataType: 'JSON',
-                    success: function (data) { 
-                    if(data.name){
-                        $("#checkoutField").empty();
-                        console.log('yes inside the doc');
-                        $('#continue').toggle();
-                        $('#login').toggle();
-                        $("#checkoutField").append('<div class="mb-3"> Enter password to login <input type="password" id="password" placeholder="Password" class="form-control" /></div>');
-                    }
+                    success: function(data) {
+                        $("#email-container").hide();
                     }
                 });
                 return false;
             });
 
-            $('#login').on('click', function(e) {
+            $('#register-container button').on('click', function(e) {
                 e.preventDefault();
                 $.ajaxSetup({
                     headers: {
@@ -438,18 +463,21 @@
                 $.ajax({
                     url: '/checkLogin',
                     type: 'POST',
-                    data: {email:$("#email").val(),password:$("#password").val()},
+                    data: {
+                        email: $("input[name=email]").val(),
+                        name: $("#register-container input[name=name]").val(),
+                        password: $("#register-container input[name=password]").val()
+                    },
                     dataType: 'JSON',
-                    success: function (data) { 
-                    if(data.name){
-                        $("#checkoutField").empty();
-                        console.log('yes inside the doc');
-                        $('#login').toggle();
-                        $('#checkout').toggle();
-                    }
-                    else{
-                        alert('Incorrect Password');
-                    }
+                    success: function(data) {
+                        if (data.name) {
+                            $("#checkoutField").empty();
+                            console.log('yes inside the doc');
+                            $('#login').toggle();
+                            $('#checkout').toggle();
+                        } else {
+                            alert('Incorrect Password');
+                        }
                     }
                 });
                 return false;

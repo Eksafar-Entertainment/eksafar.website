@@ -33,7 +33,6 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-Auth::routes();
 Route::get("/admin/login", function(){
     return view("admin.auth.login");
 })->name("admin.login");
@@ -96,6 +95,10 @@ Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutC
 Route::post('/payment/webhook', [RazorpayController::class, 'webhook'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 //frontend routes
+Auth::routes();
+Route::post('/auth/check-user-email', [App\Http\Controllers\Front\AuthController::class, 'checkUserEmail']);
+Route::post('/auth/try-login', [App\Http\Controllers\Front\AuthController::class, 'tryLogin']);
+
 Route::group([
     "middleware" => ["access_log"],
     "prefix" => "/"
