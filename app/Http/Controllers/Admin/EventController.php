@@ -265,7 +265,8 @@ class EventController extends Controller
         $colors = [
             "SUCCESS" => "success",
             "PENDING" => "warning",
-            "FAILED" => "danger"
+            "FAILED" => "danger",
+            "CANCELLED"=>"info"
         ];
 
         $orders = Order::leftJoin('promoters', function ($join) {
