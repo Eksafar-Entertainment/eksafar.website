@@ -13,13 +13,16 @@ use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
 use App\Mail\TicketMail;
 use App\Models\Event;
+use App\Models\EventComboTicketDetail;
 use App\Models\EventTicket;
+use App\Models\OrderDetailTicket;
 use App\Models\Promoter;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class RazorpayController extends Controller
 {
@@ -167,7 +170,39 @@ class RazorpayController extends Controller
       $payment->status = "SUCCESS";
       $order->status = "SUCCESS";
       $html = "Your payment was successful";
+
+      //generate tickets
+      $order_details = OrderDetail::where("order_id", $order->id)->get();
+      foreach ($order_details as $order_detail) {
+        //for normal tickets
+        if ($order_detail->event_ticket_id != null) {
+          for ($i = 0; $i < $order_detail->quantity; $i++) {
+            OrderDetailTicket::create([
+              "order_detail_id" => $order_detail->id,
+              "event_combo_ticket_id" => null,
+              "event_ticket_id" => $order_detail->event_ticket_id,
+            ]);
+          }
+        }
+
+        //for combo tickets
+        if ($order_detail->event_combo_ticket_id != null) {
+          $combo_ticket_details = EventComboTicketDetail::where("event_combo_ticket_id", $order_detail->event_combo_ticket_id)->get();
+          for ($i = 0; $i < $order_detail->quantity; $i++) {
+            foreach ($combo_ticket_details as $combo_ticket_detail) {
+              OrderDetailTicket::create([
+                "order_detail_id" => $order_detail->id,
+                "event_combo_ticket_id" => $order_detail->event_combo_ticket_id,
+                "event_ticket_id" => $combo_ticket_detail->event_ticket_id,
+              ]);
+            }
+          }
+        }
+      }
+
+      //generate qrcode
       QrCode::format('png')->size(200)->generate($order->id, public_path("storage/uploads/qr-" . $order->id . ".png"));
+      //send email
       Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
     } else {
       $payment->status = "FAILED";
@@ -178,6 +213,10 @@ class RazorpayController extends Controller
     $payment->save();
     $order->save();
 
+
+
+
+
     return view("payment.razorpay.success",  [
       "type" => $success ? "Order Placed" : "Payment Failed",
       "payment_id" => $payment->id,
@@ -187,7 +226,8 @@ class RazorpayController extends Controller
     ]);
   }
 
-  public function webhook(Request $request){
+  public function webhook(Request $request)
+  {
     Log::channel('rzp-webhook')->info(json_encode($request->all()));
   }
 }

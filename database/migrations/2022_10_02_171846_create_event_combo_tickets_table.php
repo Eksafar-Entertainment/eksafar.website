@@ -18,7 +18,6 @@ class CreateEventComboTicketsTable extends Migration
             $table->string("name");
             $table->integer("price");
             $table->integer("event_id");
-            $table->json("event_tickets");
             $table->string("status")->nullable()->default("CREATED");
             $table->timestamps();
         });
