@@ -98,7 +98,9 @@
                 </table>
                 <div style="line-height: 32px;">&zwnj;</div>
 
-                <form action="/payment/checkout" method="post" class="form-inline">
+                <form 
+                {{-- action="/payment/checkout"  --}}
+                method="post" class="form-inline" style="pointer-events: none">
                     @csrf
                     <input type="hidden" name="event_id" value="1" />
                     <input type="hidden" name="promoter_id" value="{{ app('request')->input('promoter') }}" />
@@ -186,8 +188,10 @@
                     @endif
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-block">Pay <span
-                                id="button-price">₹0</span></button>
+                        {{-- <button type="submit" class="btn btn-primary btn-block">Pay <span
+                                id="button-price">₹0</span></button> --}}
+
+                                <button type="button" class="btn btn-primary btn-block" disabled>EVENT IS OVER</button>
                     </div>
 
 

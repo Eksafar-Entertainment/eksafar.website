@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/event/sub-header.css">
 @endsection
 @section('content')
-    {{-- @include('frontend.events.top-bar') --}}
     @include('frontend.header')
     <div style="padding: 5%;">
         @include('frontend.events.details.main')
@@ -52,7 +51,7 @@
         </div>
 
 
-        <div class="modal fade text-light" tabindex="-1" role="dialog" id="book-ticket-modal">
+        {{-- <div class="modal fade text-light" tabindex="-1" role="dialog" id="book-ticket-modal">
             <div class="modal-dialog" role="document" @if ($mobile) style="margin: 5px;" @endif>
                 <div class="modal-content" style="background-color: rgba(0,0,0,0);">
 
@@ -108,7 +107,6 @@
                                     <div class="col-md-6 col-xs-6" style="font-weight: 600; padding-bottom: 10px;">
 
                                         <div class="row">
-                                            <!-- <div class="col-md-4 col-xs-4"><label style="font-size: 12px;font-weight: bold;padding:10px;">For Date</label></div> -->
                                             <div class="col-md-6 col-xs-12">
                                                 <label>
                                                     <input type="radio" checked name="date" value="3">
@@ -154,9 +152,6 @@
                                                     <input type="hidden" class="form-control rate"
                                                         value="{{ $ticket->price }}">
                                                 </td>
-                                                {{-- <td style="vertical-align: middle">
-                                    {{ $ticket->persons }} <i class="icon-user2 text-primary"></i>
-                                </td> --}}
                                                 <td width="1%" nowrap class="text-right d-none"
                                                     style="vertical-align:middle;min-width:100px; color: #68d391">
                                                     ₹<span class="price"></span>
@@ -182,16 +177,16 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     @include('frontend.landing.countdown')
     @include('frontend.footer')
 
-    <div style="position: fixed; bottom: 0; left:0; width: 100vw;" class="bg-primary">
+    {{-- <div style="position: fixed; bottom: 0; left:0; width: 100vw;" class="bg-primary">
         <button class="btn btn-primary btn-block" data-toggle="modal"
         data-target="#book-ticket-modal">BOOK NOW</button>
-    </div>
+    </div> --}}
 
 
     <script>
