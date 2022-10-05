@@ -273,7 +273,7 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content position-relative  bg-transparent">
-                    <form action="/payment/checkout" method="post">
+                    <form action="/payment/checkout" method="post" onsubmit="checkForm(event)">
                         @csrf
                         <input type="hidden" name="event_id" value="1" />
                         <input type="hidden" name="promoter_id" value="{{ app('request')->input('promoter') }}" />
@@ -402,18 +402,26 @@
 
             total_quantity_el.innerHTML = (() => {
                 let all = 0;
-                document.querySelectorAll("[data-field=quantity]").forEach((current) => all += parseInt(current
-                    .value));
+                document.querySelectorAll("[data-field=quantity]").forEach((current) => all += parseInt(current.value)>0?parseInt(current.value):0);
                 return all;
             })();
             total_amount_el.innerHTML = money((() => {
                 let all = 0;
-                document.querySelectorAll("[data-field=total-price]").forEach((current) => all += parseInt(
-                    current.getAttribute("amount")));
+                document.querySelectorAll("[data-field=total-price]").forEach((current) => all += parseInt(current.getAttribute("amount"))>0?parseInt(current.getAttribute("amount")):0);
                 return all;
             })());
             grand_total_el.innerHTML = total_amount_el.innerHTML;
         }
+
+        function checkForm(_evt){
+            const total_quantity = parseInt(document.getElementById("total-quantity").innerHTML);
+            if(total_quantity>0){}else{
+                _evt.preventDefault();
+                alert("Please select a ticket");
+            }
+        }
+
+
         $(function() {
 
             document.querySelectorAll("[data-row=ticket]").forEach(_row => {
@@ -437,6 +445,8 @@
 
             $('#email-container button').on('click', function(e) {
                 e.preventDefault();
+                const email = $("#email").val();
+                if(email == "") return alert("Please enter your email");
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -446,7 +456,7 @@
                     url: '/auth/check-user-email',
                     type: 'POST',
                     data: {
-                        email: $("#email").val()
+                        email: email
                     },
                     dataType: 'JSON',
                     success: function(res) {
@@ -466,6 +476,9 @@
 
 
             $('#login-container button').on('click', function(e) {
+                const email = $("#email").val();
+                const password = $("#login-container input[name=password]").val();
+                if(password == "" ||  password.length < 8) return alert("please enter 8 alphanumeric password.");
                 e.preventDefault();
                 $.ajaxSetup({
                     headers: {
@@ -476,9 +489,8 @@
                     url: '/auth/try-login',
                     type: 'POST',
                     data: {
-                        email: $("input[name=email]").val(),
-                        name: $("#login-container input[name=name]").val(),
-                        password: $("#login-container input[name=password]").val()
+                        email:email,
+                        password: password
                     },
                     dataType: 'JSON',
                     success: function(res) {
@@ -495,6 +507,14 @@
             });
             $('#register-container button').on('click', function(e) {
                 e.preventDefault();
+                const email = $("#email").val();
+                const password = $("#register-container input[name=password]").val();
+                const name = $("#register-container input[name=name]").val();
+                const mobile = $("#register-container input[name=mobile]").val();
+                console.log("");
+                if(password == "" ||  password.length < 8) return alert("please enter 8 alphanumeric password.");
+                if(name == "") return alert("please enter your name.");
+                if(mobile == "") return alert("please enter yor mobile number.");
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -504,19 +524,19 @@
                     url:  '/auth/try-login',
                     type: 'POST',
                     data: {
-                        email: $("input[name=email]").val(),
-                        name: $("#register-container input[name=name]").val(),
-                        password: $("#register-container input[name=password]").val()
+                        email: email,
+                        name: name,
+                        mobile: mobile,
+                        password: password
                     },
                     dataType: 'JSON',
-                    success: function(data) {
-                        if (data.name) {
-                            $("#checkoutField").empty();
-                            console.log('yes inside the doc');
-                            $('#login').toggle();
-                            $('#checkout').toggle();
+                    success: function(res) {
+                        if (res.data) {
+                            $("#email-container").hide();
+                            $('#register-container').hide();
+                            $('#checkout').show();
                         } else {
-                            alert('Incorrect Password');
+                            alert(res.message);
                         }
                     }
                 });
