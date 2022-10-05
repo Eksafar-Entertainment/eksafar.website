@@ -145,11 +145,11 @@
                                         <div class="col-auto">
                                             <div style="margin-top: -40px;">
                                                 <img src="{{ url($artist->image != '' ? $artist->image : 'images/singer.png') }}"
-                                                    class="rounded border bg-primary" width="80px" />
+                                                    class="rounded border bg-primary" width="80px" height="80px" style="object-fit: cover" />
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <strong>{{ $artist->name }}</strong>
+                                            <h5 class="mb-0">{{ $artist->name }}</h5>
                                         </div>
                                     </div>
                                     <div class="mt-3">

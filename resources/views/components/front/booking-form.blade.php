@@ -169,11 +169,6 @@
             e.preventDefault();
             const email = $("#email").val();
             if(email == "") return alert("Please enter your email");
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
             $.ajax({
                 url: '/auth/check-user-email',
                 type: 'POST',
@@ -202,11 +197,6 @@
             const password = $("#login-container input[name=password]").val();
             if(password == "" ||  password.length < 8) return alert("please enter 8 alphanumeric password.");
             e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
             $.ajax({
                 url: '/auth/try-login',
                 type: 'POST',
@@ -237,11 +227,6 @@
             if(password == "" ||  password.length < 8) return alert("please enter 8 alphanumeric password.");
             if(name == "") return alert("please enter your name.");
             if(mobile == "") return alert("please enter yor mobile number.");
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
             $.ajax({
                 url:  '/auth/try-login',
                 type: 'POST',
