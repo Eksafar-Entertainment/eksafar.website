@@ -1,5 +1,21 @@
 @extends('frontend.layouts.default')
 
+@section('custom_css')
+
+<style>
+.soldout {
+    opacity: 0.5;
+    color: BLACK;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+</style>
+
+@endsection
+
 @section('content')
     <section class="py-4 pt-0">
 
@@ -173,6 +189,11 @@
                     <div class="col-md-4">
                         <div class="sticky-top pt-4">
                             <div class="card">
+                            
+                            @if(\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->lt(\Carbon\Carbon::now()))
+                            <div class="soldout" style="background-image:url({{asset('img/soldout.png')}}); background-size:cover; background-position:center;"></div>
+                            @endif
+
                                 <div class="p-4 pb-3">
                                     <div class="d-flex">
                                         <h4 class="flex-grow-1">{{ $event->name }}</h4>
@@ -210,8 +231,10 @@
                                     <div class="fs-4"><i class="fas fa-wallet"></i> </div>
                                     <div class="flex-grow-1 ps-3 fs-4 fw-bold">@money($event_tickets[0]->price)</div>
                                     <div>
+                                        @if(\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->gt(\Carbon\Carbon::now()))
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal">Book Now</button>
+                                        @endif
                                     </div>
 
                                 </div>
