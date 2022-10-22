@@ -48,8 +48,8 @@
         Please wait while loading...
     </div>
     <div class="d-flex flex-column" style="height: 100vh;">
-        @if(Auth::guard('admin')->check())
-        @include('admin.layouts.partials.navbar')
+        @if (Auth::guard('admin')->check())
+            @include('admin.layouts.partials.navbar')
         @endif
         <div>
             @yield('subnav')
@@ -214,7 +214,7 @@
 <script>
     $(document).ready(() => {
         //
-        function ___postAjax(){
+        function ___postAjax() {
             document.querySelectorAll("input[type=datetime]:not(.flatpickr-input)").forEach(_elm => {
                 flatpickr(_elm, {
                     enableTime: true,
@@ -277,6 +277,28 @@
 
         //flatpicker 
         ___postAjax();
+
+        $("[inline-edit-table]").each(function() {
+
+
+
+            $(this).change((_evt) => {
+                window.ask("Are you sure?").then(() => {
+                    const table = $(this).attr("inline-edit-table");
+                    const field = $(this).attr("inline-edit-field");
+                    const where = $(this).attr("inline-edit-where");
+                    const value = $(this).val();
+                    axios.post("{{ url('/admin/settings/inline-edit') }}", {
+                        table,
+                        field,
+                        value,
+                        where
+                    }).then(console.log).catch(console.error)
+                }).catch(err => {
+          
+                })
+            })
+        });
 
     });
 </script>
