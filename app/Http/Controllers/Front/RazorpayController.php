@@ -30,13 +30,6 @@ class RazorpayController extends Controller
   {
 
     $user = Auth::guard("web")->user();
-    $date = "";
-    if ($request->date == '3') {
-      $date = Carbon::create(2022, 10, 3, 0, 0, 0, 'Asia/Kolkata');
-    }
-    if ($request->date == '4') {
-      $date = Carbon::create(2022, 10, 4, 0, 0, 0, 'Asia/Kolkata');
-    }
     $key = $_ENV["RAZORPAY_KEY_ID"];
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
     $event_id = $request->event_id;
@@ -78,7 +71,6 @@ class RazorpayController extends Controller
     $order->event_id = $request->event_id;
     $order->promoter_id = $promoter ? $promoter->id : null;
     $order->name = $user->name;
-    $order->date = $date;
     $order->email = $user->email;
     $order->mobile = $user->mobile;
     $order->status = "PENDING";
@@ -126,8 +118,10 @@ class RazorpayController extends Controller
 
   function checkoutComplete(Request $request)
   {
-    $rzp_payment_id = $request->rzp_payment_id;
-    $payment = Payment::where(["rzp_payment_id" => $rzp_payment_id])->first();
+    if ($request->exists('razorpay_payment_id') === false) {
+      abort(404);
+    }
+    $payment = Payment::where(["rzp_order_id" => $request->razorpay_order_id])->first();
     $order = Order::where(["payment_id" => $payment->id])->first();
     if (!$payment) {
       abort(404);
