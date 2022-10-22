@@ -126,108 +126,79 @@ class RazorpayController extends Controller
 
   function checkoutComplete(Request $request)
   {
-    $success = true;
-    $error = "Payment Failed";
-    if ($request->exists('razorpay_payment_id') === false) {
-      abort(404);
-    }
-    $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
-    $payment = Payment::where(["rzp_order_id" => $request->razorpay_order_id])->first();
+    $rzp_payment_id = $request->payload->payment->entity->id;
+    $payment = Payment::where(["rzp_payment_id" => $rzp_payment_id])->first();
+    $order = Order::where(["payment_id" => $payment->id])->first();
     if (!$payment) {
       abort(404);
     }
-
     if ($payment->status == "SUCCESS") {
       abort(404);
     }
-    $order = Order::where(["payment_id" => $payment->id])->first();
-    $order_details = OrderDetail::where(["order_details.order_id" => $order->id])
-      ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
-      //->groupBy("order_details.id")
-      ->select(
-        "order_details.*",
-        "event_tickets.name as event_ticket_name",
-        "event_tickets.persons as event_ticket_persons"
-      )
-      ->get();
-    $event = Event::where(["id" => $order->event_id])->first();
-
-    try {
-      $attributes = array(
-        'razorpay_order_id' => $payment->rzp_order_id,
-        'razorpay_payment_id' => $_POST['razorpay_payment_id'],
-        'razorpay_signature' => $_POST['razorpay_signature']
-      );
-      $api->utility->verifyPaymentSignature($attributes);
-    } catch (SignatureVerificationError $e) {
-      $success = false;
-      $error = 'Razorpay Error : ' . $e->getMessage();
-    }
-
-    $payment->rzp_payment_id = $request->razorpay_payment_id;
-
-    if ($success === true) {
-      $payment->status = "SUCCESS";
-      $order->status = "SUCCESS";
-      $html = "Your payment was successful";
-
-      //generate tickets
-      $order_details = OrderDetail::where("order_id", $order->id)->get();
-      foreach ($order_details as $order_detail) {
-        //for normal tickets
-        if ($order_detail->event_ticket_id != null) {
-          for ($i = 0; $i < $order_detail->quantity; $i++) {
-            OrderDetailTicket::create([
-              "order_detail_id" => $order_detail->id,
-              "event_combo_ticket_id" => null,
-              "event_ticket_id" => $order_detail->event_ticket_id,
-            ]);
-          }
-        }
-
-        //for combo tickets
-        if ($order_detail->event_combo_ticket_id != null) {
-          $combo_ticket_details = EventComboTicketDetail::where("event_combo_ticket_id", $order_detail->event_combo_ticket_id)->get();
-          for ($i = 0; $i < $order_detail->quantity; $i++) {
-            foreach ($combo_ticket_details as $combo_ticket_detail) {
-              OrderDetailTicket::create([
-                "order_detail_id" => $order_detail->id,
-                "event_combo_ticket_id" => $order_detail->event_combo_ticket_id,
-                "event_ticket_id" => $combo_ticket_detail->event_ticket_id,
-              ]);
-            }
-          }
-        }
-      }
-
-      //generate qrcode
-      QrCode::format('png')->size(200)->generate($order->id, public_path("storage/uploads/qr-" . $order->id . ".png"));
-      //send email
-      Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
-    } else {
-      $payment->status = "FAILED";
-      $order->status = "FAILED";
-      $html = "Your payment failed";
-    }
-
-    $payment->save();
-    $order->save();
-
-
-
-
-
     return view("payment.razorpay.success",  [
-      "type" => $success ? "Order Placed" : "Payment Failed",
+      "type" => "Order Processed",
       "payment_id" => $payment->id,
-      "content" => $success ? $html : $error,
-      "success" => $success,
+      "content" => "Your order placed successful",
+      "success" => true,
       "order" => $order
     ]);
   }
 
   public function webhook(Request $request)
   {
-    Log::channel('rzp-webhook')->info(json_encode($request->all()));
+    $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
+
+    //Log::channel('rzp-webhook')->info(json_encode($request->all()));
+    //handle payment captured
+    if ($request->event === "payment.captured") {
+      $rzp_payment_id = $request->payload->payment->entity->id;
+      $payment = Payment::where(["rzp_payment_id" => $rzp_payment_id])->first();
+      if (!$payment) {
+        abort(404);
+      }
+
+      if ($payment->status == "SUCCESS") {
+        abort(404);
+      }
+
+      $order = Order::where(["payment_id" => $payment->id])->first();
+      $order_details = OrderDetail::where(["order_details.order_id" => $order->id])
+        ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+        //->groupBy("order_details.id")
+        ->select(
+          "order_details.*",
+          "event_tickets.name as event_ticket_name",
+          "event_tickets.persons as event_ticket_persons"
+        )
+        ->get();
+      $event = Event::where(["id" => $order->event_id])->first();
+
+      try {
+        $attributes = array(
+          'razorpay_order_id' => $payment->rzp_order_id,
+          'razorpay_payment_id' => $_POST['razorpay_payment_id'],
+          'razorpay_signature' => $_POST['razorpay_signature']
+        );
+        $api->utility->verifyPaymentSignature($attributes);
+      } catch (SignatureVerificationError $e) {
+        $success = false;
+        $error = 'Razorpay Error : ' . $e->getMessage();
+      }
+
+      $payment->rzp_payment_id = $request->razorpay_payment_id;
+
+      if ($success === true) {
+        $payment->status = "SUCCESS";
+        $order->status = "SUCCESS";
+        //generate qrcode
+        QrCode::format('png')->size(200)->generate($order->id, public_path("storage/uploads/qr-" . $order->id . ".png"));
+        //send email
+        Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
+      } else {
+        $payment->status = "FAILED";
+        $order->status = "FAILED";
+        $html = "Your payment failed";
+      }
+    }
   }
 }
