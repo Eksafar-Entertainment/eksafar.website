@@ -283,8 +283,12 @@
                 @money($event_tickets[0]->price)
             </div>
             <div>
+            @if(\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->gt(\Carbon\Carbon::now()) && $event->status == 'CREATED')
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Book
                     Now</button>
+            @else
+            <button type="button" class="btn btn-danger" disabled="true">Sold Out</button>
+            @endif
             </div>
         </div>
         <!--- Bottom Ribbon End --->
