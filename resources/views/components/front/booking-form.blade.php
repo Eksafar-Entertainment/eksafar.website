@@ -1,6 +1,6 @@
 <form action="/payment/checkout" method="post" onsubmit="checkForm(event)">
     @csrf
-    <input type="hidden" name="event_id" value="1" />
+    <input type="hidden" name="event_id" value="{{ $event->id }}" />
     <input type="hidden" name="promoter_id" value="{{ app('request')->input('promoter') }}" />
     <div class="modal-body p-0">
         <div class="row gx-0">
