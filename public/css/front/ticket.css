@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
+* {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #dddddd;
+	color: rgb(37, 36, 36);
+	height: 100vh;
+	padding: 4rem;
+}
+
+.ticket {
+	background-color: #ffffff;
+	border-radius: 5px;
+	display: grid;
+	grid-template-columns: 200px auto;
+	height: 300px;
+	margin: auto;
+	width: 900px;
+}
+
+.ticket-body {
+	align-items: center;
+	background-image: url("https://free4kwallpapers.com/uploads/originals/2015/11/13/abstract-variation-wallpaper.jpg");
+	background-position: right;
+	background-size: cover;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 80% 20%;
+	justify-content: center;
+	padding: 0.5em;
+	position: relative;
+}
+
+.vip {
+	align-items: center;
+	animation: neon 0.08s ease-in-out infinite alternate;
+	color: #c6e2ff;
+	display: flex;
+	font-family: "Staatliches", cursive;
+	font-size: 10rem;
+	justify-content: center;
+	letter-spacing: 5px;
+	margin-left: 10px;
+	line-height: 1;
+}
+
+.event {
+	animation: neon 0.08s ease-in-out infinite alternate;
+	align-items: center;
+	color: #c6e2ff;
+	display: flex;
+	font-family: "Staatliches", cursive;
+	font-size: 3rem;
+	margin-left: -40px;
+	margin-top: 70px;
+}
+
+.location {
+	background: linear-gradient(to right, #00467f, #a5cc82);
+	border-radius: 5px;
+	bottom: 10px;
+	color: #ffffff;
+	display: flex;
+	font-family: "helvetica";
+	font-size: 1.1rem;
+	font-weight: 700;
+	grid-column: 1/3;
+	grid-row: 2/3;
+	height: 35px;
+	justify-content: space-around;
+	left: 20px;
+	padding: 4px;
+	position: absolute;
+	text-transform: uppercase;
+	width: 100%;
+}
+
+.location p {
+	background-color: #13638c;
+	border-radius: 5px;
+	line-height: 28px;
+	text-align: center;
+	width: 25%;
+}
+
+.details {
+	color: #fbf0ff;
+	font-family: "Staatliches";
+	grid-column-start: 3;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.details.name {
+	font-family: "arial";
+	font-size: 1.7rem;
+}
+
+.details.date {
+	font-size: 3.9rem;
+	font-weight: 800;
+}
+
+.details.gate {
+	font-size: 1.4rem;
+	text-align: left;
+}
+
+.despegable {
+	border-right: 3px dotted black;
+	grid-column: 1/2;
+}
+
+.barcode-container {
+	display: flex;
+	justify-content: end;
+	margin-left: 10px;
+	margin-top: 90px;
+	padding: 5px;
+	transform: rotate(-90deg);
+	width: 250px;
+}
+
+.barcode {
+	color: #333;
+	font-family: "Libre Barcode 39";
+	font-size: 1.9rem;
+	letter-spacing: 2px;
+}
+
+.bar-number {
+	font-family: Arial;
+}
+
+.disclaimer {
+	font-size: 0.6rem;
+	margin-left: -70px;
+	margin-right: 40px;
+	margin-top: -40px;
+	transform: rotate(-90deg);
+}
+
+/* Text animation neon effect */
+@keyframes neon {
+	from {
+		text-shadow: 0 0 6px rgba(202, 228, 225, 0.92),
+			0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(30, 132, 242, 0.52),
+			0 0 21px rgba(30, 132, 242, 0.92), 0 0 34px rgba(30, 132, 242, 0.78),
+			0 0 54px rgba(30, 132, 242, 0.92);
+	}
+	to {
+		text-shadow: 0 0 6px rgba(202, 228, 225, 0.98),
+			0 0 30px rgba(202, 228, 225, 0.42), 0 0 12px rgba(30, 132, 242, 0.58),
+			0 0 22px rgba(30, 132, 242, 0.84), 0 0 38px rgba(30, 132, 242, 0.88),
+			0 0 60px rgba(30, 132, 242, 1);
+	}
+}
+
+/*@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+	
+	.ticket {
+		grid-template-columns: 1fr;
+		grid-teplate-rows: 1fr 1fr;
+		height: auto;
+		margin: 0;
+		width: 300px;
+	}
+
+	.ticket-body {
+		grid-template-columns: 1fr;
+		grid-template-rows: 20% 80%;
+	}
+}
+*/
