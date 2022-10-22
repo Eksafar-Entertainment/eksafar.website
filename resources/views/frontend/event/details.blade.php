@@ -231,7 +231,7 @@
                                     <div class="fs-4"><i class="fas fa-wallet"></i> </div>
                                     <div class="flex-grow-1 ps-3 fs-4 fw-bold">@money($event_tickets[0]->price)</div>
                                     <div>
-                                        @if(\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->gt(\Carbon\Carbon::now()) || $event->status == 'CREATED')
+                                        @if(\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->gt(\Carbon\Carbon::now()) && $event->status == 'CREATED')
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal">Book Now</button>
                                         @endif
