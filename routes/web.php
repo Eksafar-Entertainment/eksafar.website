@@ -86,6 +86,7 @@ Route::group([
         Route::post('/event/{event_id}/check-in/details',  'checkInDetails')->middleware("permission:event:check-in");
         Route::post('/event/{event_id}/check-in',  'checkIn')->middleware("permission:event:check-in");
 
+        Route::get('/event/{event_id}/status', "status")->middleware("permission:event:status");
         Route::get('/event/delete/{id}', "delete")->middleware("permission:event:delete");
     });
 });

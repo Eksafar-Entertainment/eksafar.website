@@ -575,10 +575,27 @@ class EventController extends Controller
         $event_album_image->save();
         return redirect('/admin/event/' . $event_id . '/customize/#album');
     }
+
     public function deleteAlbumImage($event_id, Request $request)
     {
         $event_album_image = EventAlbumImage::where("id", $request->event_album_image_id)->first();
         $event_album_image->delete();
         return redirect('/admin/event/' . $event_id . '/customize/#album');
+    }
+
+    public function status($event_id, Request $request)
+    {
+        $event = Event::where("id", $event_id)->first();
+        if($request->status == "false"){
+            $event->status = "CLOSED";
+        }
+        else{
+            $event->status = "CREATED";
+        }
+        $event->save();
+        return response()->json([
+            "status" => 200,
+            'message' => 'Event updated successfully',
+        ]);
     }
 }

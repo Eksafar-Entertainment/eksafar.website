@@ -77,6 +77,13 @@
                             <i class="fas fa-pencil"></i>
                         </a>
                         @endif
+                        
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="eventStatus" checked event="{{$event->id}}">
+                        </div>
+                        <input type="radio" id="css" name="fav_language" value="CSS">
+                        <a class="nav-link href="{{url('/admin/event/'.$event->id."/status")}}">Status</a>
+                    
                     </div>
                 </div>
             </div>
@@ -134,6 +141,32 @@
             </div>
         </div>
     </form>
+
+
+    <script>
+        $(document).ready(() => {
+
+        $('#eventStatus').click(function() {
+            alert($(this).attr('id'));
+                alert(document.querySelector('#eventStatus').checked);
+                // event.preventDefault();
+                // jQuery.ajax({
+                //     url: "{{ url('/admin/event/' . $event->id . '/status') }}",
+                //     method: 'post',
+                //     cache: false,
+                //     contentType: false,
+                //     processData: false,
+                //     data: new FormData(event.target),
+                //     success: function(result) {
+                //         alert(result.message);
+                //         window.location.reload();
+                //         comboFormModal.hide();
+                //     }
+                // });
+            });
+
+        });
+    </script>
 </div>
 @endif
 @endsection
