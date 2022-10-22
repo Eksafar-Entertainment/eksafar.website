@@ -23,8 +23,6 @@ class SettingsController extends Controller
             return response()->json([
                 "resultCode" => 200,
                 "message" => "Successfully updated",
-                "query" => "UPDATE $table SET $field = '$value' WHERE $where;",
-                "data" => $request->all()
             ], 200);
         } catch (Exception $err) {
             return response()->json([
