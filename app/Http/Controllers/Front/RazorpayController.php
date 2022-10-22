@@ -19,6 +19,7 @@ use App\Models\OrderDetailTicket;
 use App\Models\Promoter;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use Exception;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -178,7 +179,11 @@ class RazorpayController extends Controller
         //generate qrcode
         QrCode::format('png')->size(200)->generate($order->id, public_path("storage/uploads/qr-" . $order->id . ".png"));
         //send email
-        Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
+        try {
+          Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
+        } catch (Exception $err) {
+          
+        }
       } else {
         $payment->status = "FAILED";
         $order->status = "FAILED";
