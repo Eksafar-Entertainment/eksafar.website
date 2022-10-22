@@ -142,10 +142,10 @@ class RazorpayController extends Controller
   {
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
 
-    //Log::channel('rzp-webhook')->info(json_encode($request->all()));
+    Log::channel('rzp-webhook')->info(json_encode($request->all()));
     //handle payment captured
     if ($request->event === "payment.captured") {
-      $rzp_payment_id = $request->payload->payment->entity->id;
+      $rzp_payment_id = $request->payload["payment"]["entity"]["id"];
       $payment = Payment::where(["rzp_payment_id" => $rzp_payment_id])->first();
       if (!$payment) {
         abort(404);
