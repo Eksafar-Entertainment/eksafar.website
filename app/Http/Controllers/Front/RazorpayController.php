@@ -126,7 +126,7 @@ class RazorpayController extends Controller
 
   function checkoutComplete(Request $request)
   {
-    $rzp_payment_id = $request->payload->payment->entity->id;
+    $rzp_payment_id = $request->rzp_payment_id;
     $payment = Payment::where(["rzp_payment_id" => $rzp_payment_id])->first();
     $order = Order::where(["payment_id" => $payment->id])->first();
     if (!$payment) {
