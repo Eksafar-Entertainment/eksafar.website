@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\VenueController;
 use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -94,6 +95,8 @@ Route::group([
         Route::get('/event/{event_id}/status', "status")->middleware("permission:event:status");
         Route::get('/event/delete/{id}', "delete")->middleware("permission:event:delete");
     });
+
+    Route::post('settings/inline-edit', [SettingsController::class, "inlineEdit"]);
 });
 
 Route::post('/payment/checkout', [RazorpayController::class, 'checkout']);
