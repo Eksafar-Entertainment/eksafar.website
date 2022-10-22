@@ -145,13 +145,17 @@ class RazorpayController extends Controller
     Log::channel('rzp-webhook')->info(json_encode($request->all()));
     //handle payment captured
     if ($request->event === "payment.captured") {
+      $success = true;
       $rzp_payment_id = $request->payload["payment"]["entity"]["id"];
-      $payment = Payment::where(["rzp_payment_id" => $rzp_payment_id])->first();
+      $rzp_order_id = $request->payload["payment"]["entity"]["order_id"];
+      $payment = Payment::where(["rzp_order_id" => $rzp_order_id])->first();
       if (!$payment) {
+        print "Payment not found";
         abort(404);
       }
 
       if ($payment->status == "SUCCESS") {
+        print "Payment already processed";
         abort(404);
       }
 
@@ -167,20 +171,7 @@ class RazorpayController extends Controller
         ->get();
       $event = Event::where(["id" => $order->event_id])->first();
 
-      try {
-        $attributes = array(
-          'razorpay_order_id' => $payment->rzp_order_id,
-          'razorpay_payment_id' => $_POST['razorpay_payment_id'],
-          'razorpay_signature' => $_POST['razorpay_signature']
-        );
-        $api->utility->verifyPaymentSignature($attributes);
-      } catch (SignatureVerificationError $e) {
-        $success = false;
-        $error = 'Razorpay Error : ' . $e->getMessage();
-      }
-
-      $payment->rzp_payment_id = $request->razorpay_payment_id;
-
+      $payment->rzp_payment_id = $rzp_payment_id;
       if ($success === true) {
         $payment->status = "SUCCESS";
         $order->status = "SUCCESS";
@@ -193,6 +184,8 @@ class RazorpayController extends Controller
         $order->status = "FAILED";
         $html = "Your payment failed";
       }
+      $payment->save();
+      $order->save();
     }
   }
 }
