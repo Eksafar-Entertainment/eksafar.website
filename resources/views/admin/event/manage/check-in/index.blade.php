@@ -15,12 +15,13 @@
                         <option>{{ $date }}</option>
                     @endforeach
                 </select>
+                <div class="vr"></div>
+                <button class="btn border-0" onclick="startScan();" type="button">S</button>
             </form>
         </div>
     </div>
 @endsection
 @section('content')
-    <div id="reader" width="300px"></div>
     <div class="overflow-auto mt-4" id="details-container" style="min-height: 400px">
 
     </div>
@@ -68,33 +69,65 @@
     </script>
 
 
+
+    <div class="modal fade" id="scanner-modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Scanner</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="reader" style="width: 100%"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="stopScan()">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script>
-        function onScanSuccess(decodedText, decodedResult) {
-            // handle the scanned code as you like, for example:
-            console.log(`Code matched = ${decodedText}`, decodedResult);
-            openCheckInDetails({
-                target: document.querySelector("#search-form"),
-                preventDefault : ()=>{}
-            })
-        }
-
-        function onScanFailure(error) {
-            // handle scan failure, usually better to ignore and keep scanning.
-            // for example:
-            //console.warn(`Code scan error = ${error}`);
-        }
-
-        let html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader", {
-                fps: 144,
-                qrbox: {
-                    width: 200,
-                    height: 200
+        $(function() {
+            var scanner = null;
+            var deviceId = null;
+            const scanner_modal_container = document.getElementById('scanner-modal');
+            const scanner_modal = new bootstrap.Modal(scanner_modal_container, {
+                backdrop: 'static',
+                keyboard: false,
+            });
+            window.startScan = async () => {
+                scanner_modal.show();
+                scanner = scanner ?? new Html5Qrcode("reader");;
+                if (!deviceId) {
+                    let devices = await Html5Qrcode.getCameras();
+                    if (devices && devices.length) {
+                        cameraId = devices[0].id;
+                    }
                 }
-            },
-            /* verbose= */
-            false);
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+                scanner.start(cameraId, {
+                    fps: 144,
+                    qrbox: {
+                        width: 200,
+                        height: 200
+                    }
+                }, (decodedText, decodedResult) => {
+                    // handle the scanned code as you like, for example:
+                    //console.log(`Code matched = ${decodedText}`, decodedResult);
+                    document.querySelector("#search-form input[name=id]").value = decodedText;
+                    openCheckInDetails({
+                        target: document.querySelector("#search-form"),
+                        preventDefault: () => {}
+                    });
+                    stopScan();
+                }, () => {})
+            }
+
+            window.stopScan = ()=> {
+                if (scanner) scanner.stop();
+                scanner_modal.hide();
+            }
+        });
     </script>
 @endsection
