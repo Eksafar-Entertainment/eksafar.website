@@ -62,7 +62,7 @@
 </head>
 
 <body>
-    <div style="  background-color: #ECF1F6">
+    <div style="background-color: #f5f5f5;">
         <div class="main">
             <header>
                 <h3 class="logo">EKSAFAR</h3>
