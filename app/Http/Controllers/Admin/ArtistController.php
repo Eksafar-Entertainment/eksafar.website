@@ -42,7 +42,7 @@ class ArtistController extends Controller
         $image = "";
         if ($request->file('image')) {
             $file = $request->file('image');
-            $filename = date('YmdHi') . '.'.$file->extension();
+            $filename = date('YmdHi') . '.' . $file->extension();
             $file->move(public_path('storage/uploads'), $filename);
             $image = $filename;
         }
@@ -50,18 +50,18 @@ class ArtistController extends Controller
         $cover = "";
         if ($request->file('cover')) {
             $file = $request->file('cover');
-            $filename = date('YmdHi') . '.'.$file->extension();
+            $filename = date('YmdHi') . '.' . $file->extension();
             $file->move(public_path('storage/uploads'), $filename);
             $cover = $filename;
         }
         Artist::create(array_merge($request->only(
-            'name', 
-            'image', 
-            'email', 
+            'name',
+            'image',
+            'email',
             'phone',
-            'excerpt', 
+            'excerpt',
             'description',
-            'tags', 
+            'tags',
             'cover',
         )));
 
@@ -104,7 +104,16 @@ class ArtistController extends Controller
      */
     public function update(Request $request, Artist $artist)
     {
-        $artist->update($request->only('title', 'description', 'body'));
+        $artist->update($request->only(
+            'name',
+            'image',
+            'email',
+            'phone',
+            'excerpt',
+            'description',
+            'tags',
+            'cover',
+        ));
 
         return redirect()->route('artist.index')
             ->withSuccess(__('Artist updated successfully.'));
