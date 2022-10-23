@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\SettingsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,15 @@ Route::get('/imager', function (Request $request)
 
     return response()->make($image, 200, array('Content-Type' => 'image/jpeg'));
 })->name("imager");
+
+
+//image cache
+Route::get('/imager/qr', function (Request $request){
+    $content = $request->content;
+    $size = $request->size ?? 200;
+    $image = QrCode::format('png')->size($size)->generate($content);
+    return response()->make($image, $size, array('Content-Type' => 'image/jpeg'));
+})->name("imager:qr");
 
 Route::group([
     "middleware" => ["access_log"],
