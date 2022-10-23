@@ -107,7 +107,7 @@ class RazorpayController extends Controller
       $order_detail->save();
     }
 
-    return view("payment.razorpay.checkout",  [
+    return view("front.payment.razorpay.checkout",  [
       "order_details" => $razorpay_order,
       "key" => $key,
       "customer_details" => [
@@ -131,7 +131,7 @@ class RazorpayController extends Controller
     if ($payment->status == "SUCCESS") {
       abort(404);
     }
-    return view("payment.razorpay.success",  [
+    return view("front.payment.razorpay.success",  [
       "type" => "Order Processed",
       "payment_id" => $payment->id,
       "content" => "Your order placed successful",

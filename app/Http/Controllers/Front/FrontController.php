@@ -26,7 +26,7 @@ class FrontController extends Controller
         //$image = new \mikehaertl\wkhtmlto\Image('<html>.This is the end</html>');
         ///
 
-        return view('welcome', compact('gallery', 'faker', 'events', 'banners', 'type'));
+        return view('front.home', compact('gallery', 'faker', 'events', 'banners', 'type'));
     }
 
     public function route($path)
@@ -40,58 +40,58 @@ class FrontController extends Controller
         switch ($path) {
             case "performer": {
                     $type = 'performer';
-                    return view('frontend.performer.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.performer.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "about": {
                     $type = 'about';
-                    return view('frontend.about.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.about.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "gallery": {
                 $type = 'gallery';
                     $gallery = GalleryImage::latest()->paginate();
-                    return view('frontend.gallery.index', compact('gallery', 'type'));
+                    return view('front.gallery.index', compact('gallery', 'type'));
                 }
 
             case "guest": {
                 $type = 'guest';
-                    return view('frontend.guest.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.guest.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "elements": {
                 $type = 'elements';
-                    return view('frontend.elements.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.elements.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "upcomming": {
                 $type = 'upcomming';
-                    return view('frontend.events.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.events.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "current": {
                 $type = 'current';
-                    return view('frontend.events.event.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.events.event.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "contact": {
                     $type = 'contact';
-                    return view('frontend.contact.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.contact.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "privacy": {
                 $type = 'privacy';
-                    return view('frontend.extra.privacy', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.extra.privacy', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "payment-policy": {
                 $type = 'payment-policy';
-                    return view('frontend.extra.payment-policy', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.extra.payment-policy', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "terms": {
                 $type = 'terms';
-                    return view('frontend.extra.terms', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
+                    return view('front.extra.terms', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             default:

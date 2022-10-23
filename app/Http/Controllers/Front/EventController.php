@@ -26,6 +26,6 @@ class EventController extends Controller
         $artists= Artist::whereIn("id", $event->artists??[])->get();
         
 
-        return view("frontend.event.details", compact('desktop', 'mobile', 'tablet', 'type','event_tickets','event', 'venue','artists'));
+        return view("front.event.details", compact('desktop', 'mobile', 'tablet', 'type','event_tickets','event', 'venue','artists'));
     }
 }
