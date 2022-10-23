@@ -117,14 +117,14 @@
                             <p class="mt-4 fs-5">Set your destination to: ‘Anywhere, but home.’ Find experiences in &
                                 around your
                                 city
-                                - Step out with the Paytm Insider app today.</p>
+                                - Step out with the Eksafar Club today.</p>
                         </div>
                     </div>
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-4">
                         <div>
-                            <img src="https://media.insider.in/image/upload/c_crop,g_custom/v1637927732/pkle4f1xuhlf5kfwlcvg.gif"
+                            <img src="{{ url('img/ek.gif') }}"
                                 style="width: 100%;" />
                         </div>
                     </div>
@@ -159,13 +159,13 @@
                     <div class="col-lg-3 col-md-6 footer-contact">
                         <h4>Contact Us</h4>
                         <p> HSR, 560087 <br> Bangalore<br> India <br><br> <strong>Phone:</strong>
-                           +91 805 01 49240<br> <strong>Email:</strong> info@example.com<br> </p>
+                           +91 805 01 49240<br> <strong>Email:</strong> info@eksafar.club<br> </p>
                     </div>
                     <div class="col-lg-3 col-md-6 footer-info">
                         <h3>About Eksafar</h3>
                         <p>Kiss the couch goodbye and make a checklist of the things you’ve missed! Concerts. Comedy. Cricket. Camping. Cool Scenes.
                             Set your destination to: ‘Anywhere, but home.’ Find experiences in & around your city - 
-                            Step out with the Paytm Insider app today..</p>
+                            Step out with the Eksafar club today..</p>
                     </div>
                 </div>
             </div>
