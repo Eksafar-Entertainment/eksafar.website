@@ -150,9 +150,9 @@ class RazorpayController extends Controller
       $rzp_payment_id = $request->payload["payment"]["entity"]["id"];
       $rzp_order_id = $request->payload["payment"]["entity"]["order_id"];
       $payment = Payment::where(["rzp_order_id" => $rzp_order_id])->first();
-      // if (!$payment) {
-      //   abort(404);
-      // }
+      if (!$payment) {
+        abort(404);
+      }
 
       // if ($payment->status == "SUCCESS") {
       //   abort(404);
