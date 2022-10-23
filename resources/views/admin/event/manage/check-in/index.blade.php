@@ -71,7 +71,7 @@
 
 
     <div class="modal fade" id="scanner-modal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-dialog modal-dialog-centered modal-sm" style="width: 300px">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Scanner</h5>
@@ -84,6 +84,7 @@
                             height: 265px !important;
                             object-fit: cover !important;
                             object-position: center !important;
+                            margin: auto
                         }
                         #reader{
                             width: 265px !important;
