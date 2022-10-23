@@ -14,7 +14,7 @@
         .main {
             max-width: 500px;
             margin: auto;
-            padding: 25px;
+            padding: 15px;
 
         }
 
@@ -37,6 +37,7 @@
 
         .order-details-table {
             border-collapse: collapse;
+            width: 100%
         }
 
         .order-details-table tr {
@@ -98,14 +99,16 @@
                     <table class="order-details-table">
                         <tr>
                             <th>Item</th>
+                            <th>Qtde.</th>
                             <th>Price</th>
                         </tr>
                         @foreach ($order_details as $order_detail)
                             <tr>
                                 <td>
-                                    {{ $order_detail->event_ticket_name }} x {{ $order_detail->quantity }}<br>
+                                    {{ $order_detail->event_ticket_name }}<br>
                                     <small>{{ \Carbon\Carbon::parse($order_detail->event_ticket_start_datetime)->format('d M Y') }}</small>
                                 </td>
+                                <td width="1%">{{ $order_detail->quantity }}</td>
                                 <td>₹{{ $order_detail->price }}</td>
                             </tr>
                         @endforeach
