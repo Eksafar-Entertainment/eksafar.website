@@ -20,7 +20,7 @@
     </div>
 @endsection
 @section('content')
-    <div id="reader" width="600px"></div>
+    <div id="reader" width="300px"></div>
     <div class="overflow-auto mt-4" id="details-container" style="min-height: 400px">
 
     </div>
@@ -87,10 +87,10 @@
 
         let html5QrcodeScanner = new Html5QrcodeScanner(
             "reader", {
-                fps: 10,
+                fps: 144,
                 qrbox: {
-                    width: 250,
-                    height: 250
+                    width: 200,
+                    height: 200
                 }
             },
             /* verbose= */
