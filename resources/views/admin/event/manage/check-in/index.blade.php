@@ -71,13 +71,25 @@
 
 
     <div class="modal fade" id="scanner-modal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Scanner</h5>
                 </div>
                 <div class="modal-body">
-                    <div id="reader" style="width: 100%"></div>
+                    <div id="reader" style="width: 265px"></div>
+                    <style>
+                        #reader video{
+                            width: 265px !important;
+                            height: 265px !important;
+                            object-fit: cover !important;
+                            object-position: center !important;
+                        }
+                        #reader{
+                            width: 265px !important;
+                            height: 265px !important;
+                        }
+                        </style>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary" onclick="stopScan()">CANCEL</button>
