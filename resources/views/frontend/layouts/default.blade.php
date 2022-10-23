@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
-    
+    <link rel="icon" href="{{ url('/img/ek-logo.png') }}" type="image/icon type">
     @yield('custom_css')
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -140,18 +140,18 @@
                         <h4>Useful Links</h4>
                         <ul class="nav flex-column">
                             <li class="nav-item"><a class="text-light" href="#">Home</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">About us</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Services</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Terms of service</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Privacy policy</a></li>
+                            <li class="nav-item"><a class="text-light" href="https://eksafar.club/about">About us</a></li>
+                            <li class="nav-item"><a class="text-light" href="https://eksafar.club/terms">Terms & Condition</a></li>
+                            <li class="nav-item"><a class="text-light" href="https://eksafar.club/payment-policy">Refund & Cancellation Policy</a></li>
+                            <li class="nav-item"><a class="text-light" href="https://eksafar.club/privacy">Privacy policy</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4>Our Services</h4>
                         <ul class="nav flex-column">
-                            <li class="nav-item"><a class="text-light" href="#">Web Design</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Web Development</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Product Management</a></li>
+                            <li class="nav-item"><a class="text-light" href="#">Events</a></li>
+                            <li class="nav-item"><a class="text-light" href="#">Entertainment</a></li>
+                            <li class="nav-item"><a class="text-light" href="#"></a></li>
                             <li class="nav-item"><a class="text-light" href="#">Marketing</a></li>
                             <li class="nav-item"><a class="text-light" href="#">Graphic Design</a></li>
                         </ul>
