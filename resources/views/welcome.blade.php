@@ -7,11 +7,13 @@
         <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($banners as $banner)
-                    <div class="carousel-item active" style="background-image: url({{url($banner->image)}})">
-                        <a href="{{ $banner->url }}" style="backdrop-filter: blur(20px)">
-                            <img src="{{ url($banner->image) }}" class="w-100"
-                                style="height: 450px; object-fit:contain; object-position:center" />
-                        </a>
+                    <div class="carousel-item active" style="background-image: url({{ url($banner->image) }})">
+                        <div style="backdrop-filter: blur(20px)">
+                            <a href="{{ $banner->url }}">
+                                <img src="{{ url($banner->image) }}" class="w-100"
+                                    style="height: 450px; object-fit:contain; object-position:center" />
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
