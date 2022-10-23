@@ -1,11 +1,10 @@
 @extends('front.layouts.default')
 @section('head')
-    <title>Privacy Policy</title>
+    <title>Terms & Conditions</title>
 @endsection
 @section('content')
     <div class="container py-5">
         <h1> Terms and Condition </h1>
-        </br>
         <p>Eksafar, a website, mobile site and mobile app (www.eksafar.club), is a trademark of Highesta Services Pvt. Ltd.,
             a company having its registered office at No. 610, 3rd Floor, 80 Feet Road, 6th Block, Koramangala, Bangalore -
             560095 has endeavoured to ensure that all the information on the website is correct, but Eksafar neither

@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Eksafar Ticket') }}</title>
 
     
-    @yield('custom_css')
+    @yield('head')
     
 </head>
 

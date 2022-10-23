@@ -1,6 +1,6 @@
 @extends('front.layouts.default')
 @section('head')
-    <title>Privacy Policy</title>
+    <title>About Us</title>
 @endsection
 @section('content')
     <div class="container py-5">

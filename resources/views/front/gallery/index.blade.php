@@ -1,6 +1,6 @@
 @extends('front.layouts.default')
 @section('head')
-    <title>Payment Policy</title>
+    <title>Gallery</title>
 @endsection
 @section('content')
     <div>

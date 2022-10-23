@@ -1,5 +1,7 @@
 @extends('front.layouts.default')
-
+@section('head')
+    <title>Contact Us</title>
+@endsection
 @section('content')
     <!-- ================ contact section start ================= -->
     <section>
