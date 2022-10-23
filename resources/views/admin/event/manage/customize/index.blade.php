@@ -178,6 +178,8 @@
                         <label for="terms">Terms & Conditions</label>
 
                         <div>
+                            <x-rich-text-editor name="terms" required="required"
+                            placeholder="Enter event terms and conditions" required>{!! $event ? html_entity_decode($event->terms) : '' !!}</x-rich-text-editor>
                             <textarea id="terms" class="form-control rich-text" placeholder='Enter Terms and conditions here' name="terms"
                                 required="">{!! $event ? html_entity_decode($event->terms) : '' !!}</textarea>
                         </div>
