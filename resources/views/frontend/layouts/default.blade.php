@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
-    
+    <link rel="icon" href="{{ url('/img/ek-logo.png') }}" type="image/icon type">
     @yield('custom_css')
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -140,39 +140,40 @@
                         <h4>Useful Links</h4>
                         <ul class="nav flex-column">
                             <li class="nav-item"><a class="text-light" href="#">Home</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">About us</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Services</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Terms of service</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Privacy policy</a></li>
+                            <li class="nav-item"><a class="text-light" href="https://eksafar.club/about">About us</a></li>
+                            <li class="nav-item"><a class="text-light" href="https://eksafar.club/terms">Terms & Condition</a></li>
+                            <li class="nav-item"><a class="text-light" href="https://eksafar.club/payment-policy">Refund & Cancellation Policy</a></li>
+                            <li class="nav-item"><a class="text-light" href="https://eksafar.club/privacy">Privacy policy</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4>Our Services</h4>
                         <ul class="nav flex-column">
-                            <li class="nav-item"><a class="text-light" href="#">Web Design</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Web Development</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Product Management</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Marketing</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Graphic Design</a></li>
+                            <li class="nav-item"><a class="text-light" href="#">Events</a></li>
+                            <li class="nav-item"><a class="text-light" href="#">Entertainment</a></li>
+                            <li class="nav-item"><a class="text-light" href="#">Concerts & Comedy</a></li>
+                            <li class="nav-item"><a class="text-light" href="#">Trips & Camping</a></li>
+                            <li class="nav-item"><a class="text-light" href="#">Cool Scenes</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 footer-contact">
                         <h4>Contact Us</h4>
-                        <p> A108 Adam Street <br> New York, NY 535022<br> United States <br><br> <strong>Phone:</strong>
-                            +1 5589 55488 55<br> <strong>Email:</strong> info@example.com<br> </p>
+                        <p> HSR, 560087 <br> Bangalore<br> India <br><br> <strong>Phone:</strong>
+                           +91 805 01 49240<br> <strong>Email:</strong> info@example.com<br> </p>
                     </div>
                     <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>About DevVE</h3>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
-                            valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                        <h3>About Eksafar</h3>
+                        <p>Kiss the couch goodbye and make a checklist of the things you’ve missed! Concerts. Comedy. Cricket. Camping. Cool Scenes.
+                            Set your destination to: ‘Anywhere, but home.’ Find experiences in & around your city - 
+                            Step out with the Paytm Insider app today..</p>
                     </div>
                 </div>
             </div>
 
             <div class="container py-3">
-                <div class="copyright"> &copy; Copyright <strong><span>DevVE</span></strong>. All Rights Reserved
+                <div class="copyright"> &copy; Copyright <strong><span>Eksafar</span></strong>. All Rights Reserved
                 </div>
-                <div class="credits"> Designed by <a class="text-light" href="#">SalvadorDevVE</a> </div>
+                <div class="credits"> Designed by <a class="text-light" href="#">xpeed</a> </div>
             </div>
         </footer>
     </div>
