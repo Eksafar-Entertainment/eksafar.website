@@ -13,6 +13,7 @@ class TicketMail extends Mailable
     public $order;
     public $order_details;
     public $event;
+    public $venue;
 
     /**
      * Create a new message instance.
@@ -20,11 +21,12 @@ class TicketMail extends Mailable
      * @return void
      */
 
-    public function __construct($event, $order, $order_details)
+    public function __construct($event, $order, $order_details, $venue)
     {
         $this->order = $order;
         $this->event = $event;
         $this->order_details = $order_details;
+        $this->venue = $venue;
     }
 
     /**
@@ -43,7 +45,8 @@ class TicketMail extends Mailable
             ->with([
                 "order"=>$this->order,
                 "event"=>$this->event,
-                "order_details"=> $this->order_details
+                "order_details"=> $this->order_details,
+                "venue"=> $this->order_details,
             ]);
     }
 }

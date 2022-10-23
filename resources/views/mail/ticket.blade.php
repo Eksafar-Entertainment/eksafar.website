@@ -6,104 +6,120 @@
             color: #222;
         }
 
+        html,
         body {
             color: #222;
+        }
+
+        .main {
+            max-width: 500px;
+            margin: auto;
+            padding: 15px;
+
+        }
+
+        header {
+            text-align: center;
+        }
+
+        header .logo {
+            color: #031364
+        }
+
+        .container {
             background-color: white;
+            margin-bottom: 10px;
+        }
+
+        .p-3 {
+            padding: 20px
         }
 
         .order-details-table {
             border-collapse: collapse;
-            width: 100%;
-            border: 1px solid #e5e5e5;
-            ;
+            width: 100%
         }
 
         .order-details-table tr {
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid #fafafa
         }
 
-        .order-details-table th {
-            background-color: #f1f1f1;
-        }
-
-        .order-details-table th,
-        .order-details-table td {
-            text-align: left;
-            padding: 5px 5px;
-            border: 1px solid #e5e5e5;
-            ;
-        }
-
-        p {
-            color: #222222
+        .order-details-table tr th,
+        .order-details-table tr td {
+            padding: 8px 10px;
+            text-align: left
         }
     </style>
 </head>
 
 <body>
-    <header style="background-color: #f1f1f1; text-align:center; font-size: 25px; color:#031364; padding: 25px">
-        <strong>Eksafar Club</strong>
-    </header>
-    <p>
-        Hey {{$order->name}},<br />
-        This is just a confirmation email regarding you order
-    </p>
+    <div style="background-color: #f5f5f5;">
+        <div class="main">
+            <header>
+                <h3 class="logo">EKSAFAR</h3>
 
-    <h2>Event Ticket</h2>
-    <table style="background-color: rgb(248, 242, 231); width: 100%; border-collapse: collapse; border: 1px dotted #ccc;">
-        <tr>
-            <td style="background-color: #031364; text-align: center; letter-spacing: 1.2px; color: white;">
-                <!-- <img src="{{url('storage/uploads/qr-'.$order->id.'png')}}"> -->
-                #{{$order->id}}
-            </td>
-            <th style="border-right: 1px dotted #ccc; padding: 10px;">
-                <strong style="font-size: 25px;">{{ \Carbon\Carbon::parse($order->date)->format('d')}}</strong><br />
-                <span style="font-weight: 400;">{{ \Carbon\Carbon::parse($order->date)->format('M')}}</span>
-            </th>
-            <td style="padding: 10px;">
-                <span color="#555">Dandia Festival</span>
-                <h2 style="margin:5px 0">Disco Dandia Night</h2>
-                <table style="border-collapse: collapse; font-size: 10px; color: #555;">
+            </header>
+
+            <p>
+                Hey {{ $order->name }},<br />
+                This is just a confirmation email regarding you order
+            </p>
+
+            <div class="container">
+                <table style="width: 100%; border-collapse: collapse;">
                     <tr>
-                        <td>{{ \Carbon\Carbon::parse($order->date)->format('d M Y')}}</td>
-                    </tr>
-                    <tr>
-                        <td>Catch Up, 17th Cross Road, 6th Sector, <br />HSR Layout, Bengaluru, Karnataka 560102</td>
+                        <td
+                            style="background-color: #031364; text-align: center; letter-spacing: 1.5px; color: white; padding: 15px">
+                            <img src="{{ url('storage/uploads/qr-' . $order->id . '.png') }}" style="width: 80px"><br>
+                            {{ $order->id }}
+                        </td>
+
+                        <td style="padding: 10px;">
+                            <p color="#555"><small>{{ $event->event_type }}</small></p>
+                            <h2 style="margin:5px 0">{{ $event->name }}</h2>
+                            <p>{{ $venue->name }}, {{ $venue->address }}</p>
+                        </td>
                     </tr>
                 </table>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" style="background-color: #fafafa;  padding:2px 5px ;">Eksafar Club</td>
-        </tr>
-    </table>
+            </div>
 
-    <h2>Order summery</h2>
-    <div class="table">
-        <table class="order-details-table">
-            <tr>
-                <th>Item</th>
-                <th>Price</th>
-            </tr>
-            @foreach($order_details as $order_detail)
-            <tr>
-                <td>{{$order_detail->event_ticket_name}} x {{$order_detail->quantity}}</td>
-                <td>₹{{$order_detail->price}}</td>
-            </tr>
-            @endforeach
-            <tr>
-                <td>Total</td>
-                <td>₹{{$order->total_price}}</td>
-            </tr>
-        </table>
+            <div class="container p-3">
+                <h3>Summery</h3>
+                <div class="table">
+                    <table class="order-details-table">
+                        <tr>
+                            <th style="padding-left: 0">Item</th>
+                            <th>Qtde.</th>
+                            <th style="padding-right: 0; text-align: right">Price</th>
+                        </tr>
+                        @foreach ($order_details as $order_detail)
+                            <tr>
+                                <td style="padding-left: 0">
+                                    {{ $order_detail->event_ticket_name }}<br>
+                                    <small style="color: green">{{ \Carbon\Carbon::parse($order_detail->event_ticket_start_datetime)->format('d M Y h:m A') }}</small>
+                                </td>
+                                <td width="1%">{{ $order_detail->quantity }}</td>
+                                <td style="padding-right: 0; text-align: right">@money($order_detail->price)</td>
+                            </tr>
+                        @endforeach
+                        <tr>
+                            <td style="padding-left: 0" colspan="2">Total</td>
+                            <td style="padding-right: 0; text-align: right">@money($order->total_price)</td>
+                        </tr>
+                    </table>
 
+                </div>
+            </div>
+
+
+            <footer>
+                <p>
+                    Thanks,<br>
+                    {{ config('app.name') }}
+                </p>
+            </footer>
+        </div>
     </div>
-
-
-    <p>
-        Thanks,<br>
-        {{ config('app.name') }}
-    </p>
 </body>
 
 </html>
