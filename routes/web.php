@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\VenueController;
 use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\SettingsController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -107,6 +108,20 @@ Route::post('/payment/webhook', [RazorpayController::class, 'webhook'])->without
 Auth::routes();
 Route::post('/auth/check-user-email', [App\Http\Controllers\Front\AuthController::class, 'checkUserEmail']);
 Route::post('/auth/try-login', [App\Http\Controllers\Front\AuthController::class, 'tryLogin']);
+//image cache
+Route::get('/imager', function (Request $request)
+{
+    $height = $request->height ?? null;
+    $width = $request->width ?? null;
+    $path = public_path($request->src);
+    $image = \Image::cache(function($image) use ($path, $height, $width) {
+        return $image->make($path)->resize($width,$height, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+    }, .10, false);
+
+    return response()->make($image, 200, array('Content-Type' => 'image/jpeg'));
+})->name("imager");
 
 Route::group([
     "middleware" => ["access_log"],
