@@ -19,5 +19,9 @@
                 @endforeach
             </div>
         </div>
+
+		<div class="mt-2 text-end">
+            @include('admin.common.pagination', ['paginator' => $gallery])
+        </div>
     </div>
 @endsection
