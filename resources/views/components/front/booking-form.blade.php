@@ -152,7 +152,7 @@
             const _price_field = _row.querySelector("[data-field=price]");
             const _total_price_field = _row.querySelector("[data-field=total-price]");
 
-            _quantity_field.addEventListener("keyup", (_evt) => {
+            _quantity_field.addEventListener("change", (_evt) => {
                 const _quantity = parseInt(_evt.target.value) < 0 ? 0 : parseInt(_evt.target
                     .value);
                 const _total_price = parseInt(_price_field.value) * parseInt(_quantity) > 0 ?
