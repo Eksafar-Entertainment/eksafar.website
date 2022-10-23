@@ -111,7 +111,7 @@
             </div>
 
             <div class="container p-3">
-                <h3>Summery</h3>
+                <h3>Terms & Conditions</h3>
                 {!! $event->terms !!}
 
             </div>
