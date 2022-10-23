@@ -16,7 +16,7 @@
                     @endforeach
                 </select>
                 <div class="vr"></div>
-                <button class="btn border-0" onclick="startScan();" type="button">S</button>
+                <button class="btn border-0" onclick="startScan();" type="button"><i class="fa-solid fa-qrcode"></i></button>
             </form>
         </div>
     </div>
