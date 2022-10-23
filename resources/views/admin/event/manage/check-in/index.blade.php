@@ -79,12 +79,14 @@
                 <div class="modal-body">
                     <div id="reader" style="width: 265px"></div>
                     <style>
+                        #reader{
+                            margin: auto
+                        }
                         #reader video{
                             width: 265px !important;
                             height: 265px !important;
                             object-fit: cover !important;
                             object-position: center !important;
-                            margin: auto
                         }
                         #reader{
                             width: 265px !important;
