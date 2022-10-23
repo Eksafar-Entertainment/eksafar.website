@@ -91,7 +91,7 @@
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
                         <div class="border"
-                            style="padding-top: 100%; background-size:cover; background-image: url(' {{ route('imager', [ 'src' => 'storage/uploads/' . $image->path,'width'=>1080])}}')">
+                            style="padding-top: 100%; background-size:cover; background-image: url(' {{ route('imager', [ 'src' => 'storage/uploads/' . $image->path,'width'=>320])}}')">
                         </div>
                     </div>
                 @endforeach
