@@ -3,8 +3,8 @@
     <title>Payment Policy</title>
 @endsection
 @section('content')
-    <div class="container " style="margin: 30px auto">
-        <h2>Refund/Cancellation Policy</h2>
+    <div class="container py-5">
+        <h2>Refund & Cancellation Policy</h2>
         <p>Tickets once successfully purchased for an event listed on Eksafar cannot be cancelled, and that amount will not
             be refunded. Eksafar does not support cancellation of registration/ticket purchase on the website/App right now.
         </p>
