@@ -46,18 +46,8 @@
 
         .order-details-table tr th,
         .order-details-table tr td {
-            padding: 5px 10px;
+            padding: 8px 10px;
             text-align: left
-        }
-
-        .order-details-table tr th:nth-child(1),
-        .order-details-table tr td:nth-child(1) {
-            padding-left: 0
-        }
-
-        .order-details-table tr th:nth-last-child(1),
-        .order-details-table tr td:nth-last-child(1) {
-            padding-right: 0
         }
     </style>
 </head>
@@ -98,23 +88,23 @@
                 <div class="table">
                     <table class="order-details-table">
                         <tr>
-                            <th>Item</th>
+                            <th style="padding-left: 0">Item</th>
                             <th>Qtde.</th>
-                            <th>Price</th>
+                            <th style="padding-right: 0; text-align: right">Price</th>
                         </tr>
                         @foreach ($order_details as $order_detail)
                             <tr>
-                                <td>
+                                <td style="padding-left: 0">
                                     {{ $order_detail->event_ticket_name }}<br>
                                     <small>{{ \Carbon\Carbon::parse($order_detail->event_ticket_start_datetime)->format('d M Y') }}</small>
                                 </td>
                                 <td width="1%">{{ $order_detail->quantity }}</td>
-                                <td>₹{{ $order_detail->price }}</td>
+                                <td style="padding-right: 0; text-align: right">@money($order_detail->price)</td>
                             </tr>
                         @endforeach
                         <tr>
-                            <td>Total</td>
-                            <td>₹{{ $order->total_price }}</td>
+                            <td style="padding-left: 0" colspan="2">Total</td>
+                            <td style="padding-right: 0; text-align: right">@money($order->total_price)</td>
                         </tr>
                     </table>
 
