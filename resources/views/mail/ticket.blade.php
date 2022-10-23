@@ -65,7 +65,7 @@
                 This is just a confirmation email regarding you order
             </p>
 
-            <div class="container">
+            <div class="container p-3">
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
                         <td
