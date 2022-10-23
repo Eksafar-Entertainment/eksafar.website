@@ -125,7 +125,7 @@
                     <div class="col-md-4">
                         <div>
                             <img src="{{ url('img/ek.gif') }}"
-                                style="width: 100%; clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);" />
+                                style="width: 100%; clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);" />
                         </div>
                     </div>
                 </div>
