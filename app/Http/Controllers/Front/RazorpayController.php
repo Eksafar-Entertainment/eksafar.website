@@ -17,6 +17,7 @@ use App\Models\EventComboTicketDetail;
 use App\Models\EventTicket;
 use App\Models\OrderDetailTicket;
 use App\Models\Promoter;
+use App\Models\Venue;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Exception;
@@ -150,15 +151,13 @@ class RazorpayController extends Controller
       $rzp_payment_id = $request->payload["payment"]["entity"]["id"];
       $rzp_order_id = $request->payload["payment"]["entity"]["order_id"];
       $payment = Payment::where(["rzp_order_id" => $rzp_order_id])->first();
-      if (!$payment) {
-        print "Payment not found";
-        abort(404);
-      }
+      // if (!$payment) {
+      //   abort(404);
+      // }
 
-      if ($payment->status == "SUCCESS") {
-        print "Payment already processed";
-        abort(404);
-      }
+      // if ($payment->status == "SUCCESS") {
+      //   abort(404);
+      // }
 
       $order = Order::where(["payment_id" => $payment->id])->first();
       $order_details = OrderDetail::where(["order_details.order_id" => $order->id])
@@ -167,11 +166,13 @@ class RazorpayController extends Controller
         ->select(
           "order_details.*",
           "event_tickets.name as event_ticket_name",
-          "event_tickets.persons as event_ticket_persons"
+          "event_tickets.persons as event_ticket_persons",
+          "event_tickets.start_datetime as event_ticket_start_datetime",
+          "event_tickets.end_datetime as event_ticket_end_datetime"
         )
         ->get();
       $event = Event::where(["id" => $order->event_id])->first();
-
+      $venue = Venue::where(["id"=> $event->venue])->first();
       $payment->rzp_payment_id = $rzp_payment_id;
       if ($success === true) {
         $payment->status = "SUCCESS";
@@ -180,7 +181,7 @@ class RazorpayController extends Controller
         QrCode::format('png')->size(200)->generate($order->id, public_path("storage/uploads/qr-" . $order->id . ".png"));
         //send email
         try {
-          Mail::to($order->email)->send(new TicketMail($event, $order, $order_details));
+          Mail::to($order->email)->send(new TicketMail($event, $order, $order_details, $venue));
         } catch (Exception $err) {
           
         }
