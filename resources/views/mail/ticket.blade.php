@@ -12,7 +12,7 @@
         }
 
         .main {
-            max-width: 500px;
+            max-width: 450px;
             margin: auto;
             padding: 15px;
 
