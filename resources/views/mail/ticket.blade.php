@@ -8,13 +8,14 @@
 
         body {
             color: #222;
+            background-color: #ECF1F6
         }
 
         .main {
-            width: 500px;
+            max-width: 500px;
             margin: auto;
             padding: 25px;
-            background-color: #e5e5e5 
+    
         }
 
         header {
@@ -32,6 +33,26 @@
         .p-3{
             padding: 20px
         }
+
+        .order-details-table{
+            border-collapse: collapse;
+        }
+        .order-details-table tr{
+            border-bottom: 1px solid #fafafa
+        }
+        .order-details-table tr th, .order-details-table tr td{
+            padding: 5px 10px;
+            text-align: left
+        }
+        .order-details-table tr th:nth-child(1), 
+        .order-details-table tr td:nth-child(1){
+            padding-left: 0
+        }
+
+        .order-details-table tr th:nth-last-child(1), 
+        .order-details-table tr td:nth-last-child(1){
+            padding-right: 0
+        }
     </style>
 </head>
 
@@ -39,24 +60,22 @@
     <div class="main">
         <header>
             <h3 class="logo">EKSAFAR</h3>
-            <h5>
-                Hey {{$order->name}},<br />
-                This is just a confirmation email regarding you order
-            </h5>
+           
         </header>
 
-
+        <p>
+            Hey {{$order->name}},<br />
+            This is just a confirmation email regarding you order
+        </p>
 
         <div class="container">
             <table style="width: 100%; border-collapse: collapse;">
                 <tr>
-                    <td colspan="2"
-                        style="background-color: #031364; text-align: center; letter-spacing: 1.2px; color: white;">
-                        <img src="{{url('storage/uploads/qr-'.$order->id.'.png')}}">
+                    <td style="background-color: #031364; text-align: center; letter-spacing: 1.2px; color: white; padding: 15px">
+                        <img src="{{url('storage/uploads/qr-'.$order->id.'.png')}}" style="width: 100px"><br>
                         #{{$order->id}}
                     </td>
-                </tr>
-                <tr>
+               
                     <td style="padding: 10px;">
                         <p color="#555"><small>{{$event->event_type}}</small></p>
                         <h2 style="margin:5px 0">{{$event->name}}</h2>
@@ -67,7 +86,7 @@
         </div>
 
         <div class="container p-3">
-            <h3>Order summery</h3>
+            <h3>Summery</h3>
             <div class="table">
                 <table class="order-details-table">
                     <tr>
