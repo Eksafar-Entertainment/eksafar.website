@@ -67,10 +67,10 @@
 
             <div class="container">
                 <table style="width: 100%; border-collapse: collapse;">
-                    <tr style="border-bottom: 3px dashed #000000">
+                    <tr style="border-bottom: 2px dashed #000000">
                         <td style="text-align: center; letter-spacing: 1.5; padding: 20px">
                             <img src="{{ url('storage/uploads/qr-' . $order->id . '.png') }}" style="width: 120px"><br>
-                            {{ $order->id }}
+                            #{{ $order->id }}
                         </td>
                     </tr>
                     <tr>
@@ -107,8 +107,13 @@
                             <td style="padding-right: 0; text-align: right">@money($order->total_price)</td>
                         </tr>
                     </table>
-
                 </div>
+            </div>
+
+            <div class="container p-3">
+                <h3>Terms & Conditions</h3>
+                {!! $event->terms !!}
+
             </div>
 
 
