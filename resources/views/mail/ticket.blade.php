@@ -11,7 +11,7 @@
         }
 
         main {
-            max-width: 500px;
+            width: 500px;
             margin: auto;
             padding: 25px;
             background-color: #e5e5e5 
