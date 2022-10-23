@@ -91,7 +91,6 @@
     <script>
         $(function() {
             var scanner = null;
-            var deviceId = null;
             const scanner_modal_container = document.getElementById('scanner-modal');
             const scanner_modal = new bootstrap.Modal(scanner_modal_container, {
                 backdrop: 'static',
@@ -100,13 +99,7 @@
             window.startScan = async () => {
                 scanner_modal.show();
                 scanner = scanner ?? new Html5Qrcode("reader");;
-                if (!deviceId) {
-                    let devices = await Html5Qrcode.getCameras();
-                    if (devices && devices.length) {
-                        cameraId = devices[0].id;
-                    }
-                }
-                scanner.start(cameraId, {
+                scanner.start({ facingMode: "environment" }, {
                     fps: 144,
                     qrbox: {
                         width: 200,
