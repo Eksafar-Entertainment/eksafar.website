@@ -107,8 +107,13 @@
                             <td style="padding-right: 0; text-align: right">@money($order->total_price)</td>
                         </tr>
                     </table>
-
                 </div>
+            </div>
+
+            <div class="container p-3">
+                <h3>Summery</h3>
+                {!! $event->terms !!}
+
             </div>
 
 
