@@ -21,7 +21,6 @@ use App\Models\Venue;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Exception;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -177,8 +176,6 @@ class RazorpayController extends Controller
       if ($success === true) {
         $payment->status = "SUCCESS";
         $order->status = "SUCCESS";
-        //generate qrcode
-        QrCode::format('png')->size(200)->generate($order->id, public_path("storage/uploads/qr-" . $order->id . ".png"));
         //send email
         try {
           Mail::to($order->email)->send(new TicketMail($event, $order, $order_details, $venue));
