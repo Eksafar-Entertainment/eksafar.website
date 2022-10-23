@@ -47,7 +47,7 @@
 
 
             <div class="col-md-auto">
-                <div class="h-100 p-4" style="border-left: 1px dashed #e5e5e5">
+                <div class="h-100 p-4">
                     <table class="table fs-6" style="min-width: 250px">
                         <tr>
                             <td class="ps-0 border-bottom-0">Total Quantity</td>
