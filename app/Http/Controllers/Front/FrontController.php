@@ -16,7 +16,7 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $gallery = GalleryImage::latest()->get();
+        $gallery = GalleryImage::latest()->limit(4)->get();
         $events = Event::limit(4)->get();
         $banners = Banner::limit(4)->get();
         $faker = \Faker\Factory::create();
