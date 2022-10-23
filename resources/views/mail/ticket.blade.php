@@ -69,9 +69,9 @@
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
                         <td
-                            style="background-color: #031364; text-align: center; letter-spacing: 1.2px; color: white; padding: 15px">
-                            <img src="{{ url('storage/uploads/qr-' . $order->id . '.png') }}" style="width: 100px"><br>
-                            #{{ $order->id }}
+                            style="background-color: #031364; text-align: center; letter-spacing: 1.5px; color: white; padding: 15px">
+                            <img src="{{ url('storage/uploads/qr-' . $order->id . '.png') }}" style="width: 80px"><br>
+                            {{ $order->id }}
                         </td>
 
                         <td style="padding: 10px;">
@@ -96,7 +96,7 @@
                             <tr>
                                 <td style="padding-left: 0">
                                     {{ $order_detail->event_ticket_name }}<br>
-                                    <small>{{ \Carbon\Carbon::parse($order_detail->event_ticket_start_datetime)->format('d M Y') }}</small>
+                                    <small style="color: green">{{ \Carbon\Carbon::parse($order_detail->event_ticket_start_datetime)->format('d M Y h:m A') }}</small>
                                 </td>
                                 <td width="1%">{{ $order_detail->quantity }}</td>
                                 <td style="padding-right: 0; text-align: right">@money($order_detail->price)</td>
