@@ -10,7 +10,7 @@
             color: #222;
         }
 
-        main {
+        .main {
             width: 500px;
             margin: auto;
             padding: 25px;
@@ -36,7 +36,7 @@
 </head>
 
 <body>
-    <main>
+    <div class="main">
         <header>
             <h3 class="logo">EKSAFAR</h3>
             <h5>
@@ -99,7 +99,7 @@
                 {{ config('app.name') }}
             </p>
         </footer>
-    </main>
+    </div>
 </body>
 
 </html>
