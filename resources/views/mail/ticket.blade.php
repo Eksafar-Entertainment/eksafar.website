@@ -12,7 +12,7 @@
         }
 
         .main {
-            max-width: 500px;
+            max-width: 450px;
             margin: auto;
             padding: 15px;
 
@@ -67,14 +67,14 @@
 
             <div class="container">
                 <table style="width: 100%; border-collapse: collapse;">
-                    <tr>
-                        <td
-                            style="background-color: #031364; text-align: center; letter-spacing: 1.5px; color: white; padding: 15px">
-                            <img src="{{ url('storage/uploads/qr-' . $order->id . '.png') }}" style="width: 80px"><br>
+                    <tr style="border-bottom: 3px dashed #000000">
+                        <td style="text-align: center; letter-spacing: 1.5; padding: 20px">
+                            <img src="{{ url('storage/uploads/qr-' . $order->id . '.png') }}" style="width: 120px"><br>
                             {{ $order->id }}
                         </td>
-
-                        <td style="padding: 10px;">
+                    </tr>
+                    <tr>
+                        <td style="padding: 20px">
                             <p color="#555"><small>{{ $event->event_type }}</small></p>
                             <h2 style="margin:5px 0">{{ $event->name }}</h2>
                             <p>{{ $venue->name }}, {{ $venue->address }}</p>
