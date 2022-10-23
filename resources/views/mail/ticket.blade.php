@@ -52,7 +52,7 @@
                 <tr>
                     <td colspan="2"
                         style="background-color: #031364; text-align: center; letter-spacing: 1.2px; color: white;">
-                        <img src="{{url('storage/uploads/qr-'.$order->id.'png')}}">
+                        <img src="{{url('storage/uploads/qr-'.$order->id.'.png')}}">
                         #{{$order->id}}
                     </td>
                 </tr>
