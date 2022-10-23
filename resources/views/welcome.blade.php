@@ -11,7 +11,7 @@
                         <div style="backdrop-filter: blur(20px)">
                             <a href="{{ $banner->url }}">
                                 <img src="{{ url($banner->image) }}" class="w-100"
-                                    style="height: 450px; object-fit:contain; object-position:center" />
+                                    style="height: 500px; object-fit:contain; object-position:center" />
                             </a>
                         </div>
                     </div>
