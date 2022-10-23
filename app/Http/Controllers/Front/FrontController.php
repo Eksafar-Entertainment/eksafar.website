@@ -85,22 +85,4 @@ class FrontController extends Controller
                 return abort(404);
         }
     }
-
-    public function checkEmail(Request $request)
-    {
-
-        $user = DB::table('users')->Where('email', 'LIKE', "%{$request->email}%")->first();
-        return \Response::json($user);
-    }
-
-    public function checkLogin(Request $request)
-    {
-
-        $user = DB::table('users')->Where('email', 'LIKE', "%{$request->email}%")->first();
-        if (\Hash::check(request('password'), $user->password)) {
-            return \Response::json($user);
-        } {
-            return \Response::json('Incorrect passowrd');
-        }
-    }
 }
