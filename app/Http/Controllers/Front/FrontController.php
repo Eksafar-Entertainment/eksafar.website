@@ -20,12 +20,13 @@ class FrontController extends Controller
         $events = Event::limit(4)->get();
         $banners = Banner::limit(4)->get();
         $faker = \Faker\Factory::create();
+        $type = '/';
 
         //generate pdf
         //$image = new \mikehaertl\wkhtmlto\Image('<html>.This is the end</html>');
         ///
 
-        return view('welcome', compact('gallery', 'faker', 'events', 'banners'));
+        return view('welcome', compact('gallery', 'faker', 'events', 'banners', 'type'));
     }
 
     public function route($path)
@@ -34,51 +35,63 @@ class FrontController extends Controller
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
         $tablet = $agent->isTablet();
+        $type = '/';
 
         switch ($path) {
             case "performer": {
-                    return view('frontend.performer.index', compact('desktop', 'mobile', 'tablet', 'path'));
+                    $type = 'performer';
+                    return view('frontend.performer.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "about": {
-                    return view('frontend.about.index', compact('desktop', 'mobile', 'tablet', 'path'));
+                    $type = 'about';
+                    return view('frontend.about.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "gallery": {
+                $type = 'gallery';
                     $gallery = GalleryImage::latest()->paginate();
-                    return view('frontend.gallery.index', compact('gallery'));
+                    return view('frontend.gallery.index', compact('gallery', 'type'));
                 }
 
             case "guest": {
-                    return view('frontend.guest.index', compact('desktop', 'mobile', 'tablet', 'path',));
+                $type = 'guest';
+                    return view('frontend.guest.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "elements": {
-                    return view('frontend.elements.index', compact('desktop', 'mobile', 'tablet', 'path'));
+                $type = 'elements';
+                    return view('frontend.elements.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "upcomming": {
-                    return view('frontend.events.index', compact('desktop', 'mobile', 'tablet', 'path'));
+                $type = 'upcomming';
+                    return view('frontend.events.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "current": {
-                    return view('frontend.events.event.index', compact('desktop', 'mobile', 'tablet', 'path'));
+                $type = 'current';
+                    return view('frontend.events.event.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "contact": {
-                    return view('frontend.contact.index', compact('desktop', 'mobile', 'tablet', 'path'));
+                    $type = 'contact';
+                    return view('frontend.contact.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "privacy": {
-                    return view('frontend.extra.privacy', compact('desktop', 'mobile', 'tablet', 'path'));
+                $type = 'privacy';
+                    return view('frontend.extra.privacy', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "payment-policy": {
-                    return view('frontend.extra.payment-policy', compact('desktop', 'mobile', 'tablet', 'path'));
+                $type = 'payment-policy';
+                    return view('frontend.extra.payment-policy', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "terms": {
-                    return view('frontend.extra.terms', compact('desktop', 'mobile', 'tablet', 'path'));
+                $type = 'terms';
+                    return view('frontend.extra.terms', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             default:
