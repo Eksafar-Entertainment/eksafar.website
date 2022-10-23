@@ -46,8 +46,11 @@
 
                             <div>
                                 <a class="" href="{{ url('/event/' . $event->slug) }}">
-                                    <div class="w-100 position-relative card border-0"
+                                    <div class="w-100 position-relative card border-0 overflow-hidden"
                                         style="background-image:url('{{ url($event->cover_image) }}'); padding-top: 70%; background-size:cover; background-position:center;">
+                                        @if($event->status==="CLOSED")
+                                            <div class="position-absolute badge bg-danger" style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">COMPLETED</div>
+                                        @endif
 
                                         <div class="position-absolute top-0 start-0 w-100 h-100"
                                             style="background: linear-gradient(180deg, rgba(0,0,0,0) 54%, rgba(0,0,0,0.7) 83%);  ">
