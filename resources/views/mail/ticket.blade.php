@@ -6,7 +6,7 @@
             color: #222;
         }
 
-        body {
+        html, body {
             color: #222;
             background-color: #ECF1F6
         }
