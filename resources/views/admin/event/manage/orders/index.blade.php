@@ -7,7 +7,7 @@
         <h4>Orders</h4>
         <p class="text-muted">Manage your order here.</p>
         <div class="mt-2">
-            @include('layouts.partials.messages')
+            @include('admin.layouts.partials.messages')
         </div>
 
 

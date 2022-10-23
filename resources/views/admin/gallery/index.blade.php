@@ -9,7 +9,7 @@
         </div>
 
         <div class="mt-2">
-            @include('layouts.partials.messages')
+            @include('admin.layouts.partials.messages')
         </div>
 
         <table class="table table-bordered">
