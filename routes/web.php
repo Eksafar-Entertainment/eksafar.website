@@ -77,7 +77,6 @@ Route::group([
 
         Route::get('/event/{event_id}/orders', 'orders')->middleware("permission:event:orders")->name("admin:event:orders");
         Route::post('/event/{event_id}/orders/details',  "orderDetails")->middleware("permission:event:orders");
-        Route::post('/event/{event_id}/orders/email',  "orderEmail")->middleware("permission:event:orders");
 
         Route::get('/event/{event_id}/tickets',  'tickets')->middleware("permission:event:tickets")->name("admin:event:tickets");
         Route::post('/event/{event_id}/tickets/form',  'getTicketForm')->middleware("permission:event:tickets");

@@ -70,7 +70,6 @@
                         <th>Status</th>
                         <th>Order Date</th>
                         <th>In</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,11 +94,6 @@
                             <td class="checked-in">
                                 <span
                                     class="badge bg-{{ $order->is_checked_in ? 'success' : 'danger' }}">{{ $order->is_checked_in ? 'Yes' : 'No' }}</span>
-                            </td>
-                            <td>
-                                @if ($order->status === 'SUCCESS')
-                                    <a onclick="sendEmail('{{ $order->id }}')"><i class="fas fa-envelope"></i> </a>
-                                @endif
                             </td>
                         </tr>
                     @endforeach
