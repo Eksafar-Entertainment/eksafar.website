@@ -28,12 +28,12 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-0">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <img src="{{ url('/img/ek-logo.png') }}" alt="eksafar-logo" style="height: 40px;" />
+                <a class="navbar-brand d-flex align-items-center py-0" href="{{ url('/') }}">
+                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" />
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                    <strong style="letter-spacing: 2.2x; font-size: 20px" class="ms-2 text-primary">EKSAFAR</strong>
+                    {{-- <strong style="letter-spacing: 2.2x; font-size: 20px" class="ms-2 text-primary">EKSAFAR</strong> --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
