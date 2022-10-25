@@ -69,7 +69,7 @@
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr style="border-bottom: 1px dashed #000000">
                         <td style="text-align: center; letter-spacing: 1.5; padding: 20px">
-                            <img src="{{ route('imager:qr', ["content"=>$order->id]) }}" style="width: 120px"><br>
+                            <img src="{{ route('resources:images:qr', ["content"=>$order->id]) }}" style="width: 120px"><br>
                             #{{ $order->id }}
                         </td>
                     </tr>
