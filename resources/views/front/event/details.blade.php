@@ -100,7 +100,7 @@
 
                                         <div class="pb-2 d-flex">
                                             <div><i class="fas fa-calendar"></i></div>
-                                            <div class="flex-grow-1 ps-3">September 24 | 5PM</div>
+                                            <div class="flex-grow-1 ps-3">{{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y') }} | 07:00 PM Onwards</div>
                                         </div>
 
                                         <div class="d-flex">
@@ -212,8 +212,8 @@
                                     <div class="pb-2 d-flex">
                                         <div><i class="fas fa-calendar"></i></div>
                                         <div class="flex-grow-1 ps-3">
-                                            {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d/m/Y | h:i A') }}
-                                            Onwards</div>
+                                            {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y') }} | 07:00 PM Onwards
+                                        </div>
                                     </div>
 
                                     <div class="d-flex">

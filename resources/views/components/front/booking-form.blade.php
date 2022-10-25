@@ -10,7 +10,7 @@
                         <h4 class="mb-0">{{ $event->name }} @ {{ $venue->name }}</h4>
                         <small class="text-muted">
                             <i class="fas fa-calendar me-2"></i>
-                            16th October, 2022 | 04:00 PM Onwards
+                            {{ \Carbon\Carbon::parse($event->start_date)->format("d-M-Y") }} | 07:00 PM Onwards
                         </small>
                     </div>
                     <table class="table table-ms mt-3">
