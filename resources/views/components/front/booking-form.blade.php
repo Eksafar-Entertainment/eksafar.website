@@ -32,11 +32,15 @@
                                     <input type="number" class="form-control form-control-sm"
                                         data-field='quantity' placeholder="Qtde."
                                         style="min-width: 80px"
-                                        name="items[{{ $n }}][quantity]" />
+                                        name="items[{{ $n }}][quantity]" @if($event_ticket->status=="SOLD") disabled @endif/>
                                 </td>
                                 <td class="fs-6 align-middle pe-0 text-nowrap text-end" width="90px"
                                     data-field="total-price">
-                                    @money(0)
+                                    @if($event_ticket->status=="SOLD")
+                                    <span class="badge bg-danger"> Sold Out</span>
+                                    @else
+                                    @money(0) 
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
