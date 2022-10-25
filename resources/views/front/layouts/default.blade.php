@@ -39,10 +39,15 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-0">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-00">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center py-0" href="{{ url('/') }}">
-                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" />
+
+                    <img src="{{ url('/img/ek-logo.png') }}" alt="eksafar-logo" style="height: 40px;" />
+                    {{-- {{ config('app.name', 'Laravel') }} --}}
+                    <strong style="letter-spacing: 2.2x; font-size: 20px" class="ms-2 text-primary">EKSAFAR</strong>
+                
+                    {{-- <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" /> --}}
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                     {{-- <strong style="letter-spacing: 2.2x; font-size: 20px" class="ms-2 text-primary">EKSAFAR</strong> --}}
                 </a>
