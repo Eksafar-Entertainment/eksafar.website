@@ -11,7 +11,7 @@
         <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($banners as $banner)
-                    <div class="carousel-item active" style="background-image: url({{ route('imager', [ 'src' => $banner->image,'width'=>1080])}})">
+                    <div class="carousel-item active" style="background-image: url({{ route('resources:images', [ 'src' => $banner->image,'width'=>1080])}})">
                         <div style="backdrop-filter: blur(20px)">
                             <a href="{{ $banner->url }}">
                                 <img src="{{ url($banner->image) }}" class="w-100"
@@ -51,7 +51,7 @@
                             <div>
                                 <a class="" href="{{ url('/event/' . $event->slug) }}">
                                     <div class="w-100 position-relative card border-0 overflow-hidden"
-                                        style="background-image:url('{{ route('imager', [
+                                        style="background-image:url('{{ route('resources:images', [
                                             'src' => $event->cover_image,
                                             'width'=>500
                                             ]) }}'); padding-top: 70%; background-size:cover; background-position:center;">
@@ -95,7 +95,7 @@
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
                         <div class="border"
-                            style="padding-top: 100%; background-size:cover; background-image: url(' {{ route('imager', [ 'src' => 'storage/uploads/' . $image->path,'width'=>320])}}')">
+                            style="padding-top: 100%; background-size:cover; background-image: url(' {{ route('resources:images', [ 'src' => 'storage/uploads/' . $image->path,'width'=>320])}}')">
                         </div>
                     </div>
                 @endforeach
