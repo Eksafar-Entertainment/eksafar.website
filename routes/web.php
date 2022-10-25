@@ -114,11 +114,11 @@ Route::get('/imager', function (Request $request)
     $height = $request->height ?? null;
     $width = $request->width ?? null;
     $path = public_path($request->src);
-    $image = \Image::cache(function($image) use ($path, $height, $width) {
+    $image = \Intervention\Image\Facades\Image::cache(function($image) use ($path, $height, $width) {
         return $image->make($path)->resize($width,$height, function ($constraint) {
             $constraint->aspectRatio();
         });
-    }, .10, false);
+    }, 100, false);
 
     return response()->make($image, 200, array('Content-Type' => 'image/jpeg'));
 })->name("imager");
