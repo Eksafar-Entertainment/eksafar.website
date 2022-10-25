@@ -14,6 +14,7 @@ class ImageController extends Controller
         "md" => [240, 180],
         "lg" => [480, 360],
         "xl" => [960, 720],
+        "xxl" => [1080, 810],
     ];
     function serve(Request $request)
     {
