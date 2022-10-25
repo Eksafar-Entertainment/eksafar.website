@@ -39,7 +39,7 @@
 
             <div class="text-center mb-5">
                 <h1>{{ __('Events') }}</h1>
-                <h5 style="max-width: 500px" class="m-auto fw-normal">Checout The best upcomming events in your city that
+                <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
                     you won't want to miss...</h5>
             </div>
 
