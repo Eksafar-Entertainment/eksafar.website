@@ -108,29 +108,10 @@ Route::post('/payment/webhook', [RazorpayController::class, 'webhook'])->without
 Auth::routes();
 Route::post('/auth/check-user-email', [App\Http\Controllers\Front\AuthController::class, 'checkUserEmail']);
 Route::post('/auth/try-login', [App\Http\Controllers\Front\AuthController::class, 'tryLogin']);
-//image cache
-Route::get('/imager', function (Request $request)
-{
-    $height = $request->height ?? null;
-    $width = $request->width ?? null;
-    $path = public_path($request->src);
-    $image = \Image::cache(function($image) use ($path, $height, $width) {
-        return $image->make($path)->resize($width,$height, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-    }, .10, false);
 
-    return response()->make($image, 200, array('Content-Type' => 'image/jpeg'));
-})->name("imager");
-
-
-//image cache
-Route::get('/imager/qr', function (Request $request){
-    $content = $request->content;
-    $size = $request->size ?? 200;
-    $image = QrCode::format('png')->size($size)->generate($content);
-    return response()->make($image, $size, array('Content-Type' => 'image/jpeg'));
-})->name("imager:qr");
+//image related functions
+Route::get('/resources/images', [App\Http\Controllers\Front\Settings\ImageController::class, "serve"])->name("resources:images");
+Route::get('/resources/images/qr', [App\Http\Controllers\Front\Settings\ImageController::class, "generateQrCode"])->name("resources:images:qr");
 
 Route::group([
     "middleware" => ["access_log"],
