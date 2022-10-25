@@ -119,7 +119,5 @@ Route::group([
 ], function () {
     Route::get('/', [FrontController::class, 'index']);
     Route::get("/event/{slug}", [FrontEventController::class, 'details']);
-    Route::post('/checkEmail', [FrontController::class, 'checkEmail']);
-    Route::post('/checkLogin', [FrontController::class, 'checkLogin']);
     Route::get('/{path}', [FrontController::class, 'route'])->where('path', '.*');
 });
