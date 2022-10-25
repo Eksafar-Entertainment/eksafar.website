@@ -109,7 +109,6 @@ Auth::routes();
 Route::post('/auth/check-user-email', [App\Http\Controllers\Front\AuthController::class, 'checkUserEmail']);
 Route::post('/auth/try-login', [App\Http\Controllers\Front\AuthController::class, 'tryLogin']);
 
-
 //image related functions
 Route::get('/resources/images', [App\Http\Controllers\Front\Settings\ImageController::class, "serve"])->name("resources:images");
 Route::get('/resources/images/qr', [App\Http\Controllers\Front\Settings\ImageController::class, "generateQrCode"])->name("resources:images:qr");
