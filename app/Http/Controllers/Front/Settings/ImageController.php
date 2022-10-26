@@ -10,11 +10,11 @@ use Intervention\Image\Templates\Large;
 class ImageController extends Controller
 {
     protected $sizes = [
-        "sm" => [120, 90],
-        "md" => [240, 180],
+        "sm" => [150, 110],
+        "md" => [300, 220],
         "lg" => [480, 360],
-        "xl" => [960, 720],
-        "xxl" => [1080, 810],
+        "xl" => [720, 540],
+        "xxl" => [1024, 768],
     ];
     function serve(Request $request)
     {
