@@ -53,7 +53,7 @@
                                     <div class="w-100 position-relative card border-0 overflow-hidden"
                                         style="background-image:url('{{ route('resources:images', [
                                             'src' => $event->cover_image,
-                                            'width'=>500
+                                            'size'=>"lg"
                                             ]) }}'); padding-top: 70%; background-size:cover; background-position:center;">
                                         @if($event->status==="CLOSED")
                                             <div class="position-absolute badge bg-danger" style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">COMPLETED</div>
@@ -95,7 +95,7 @@
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
                         <div class="border"
-                            style="padding-top: 100%; background-size:cover; background-image: url(' {{ route('resources:images', [ 'src' => 'storage/uploads/' . $image->path,'width'=>320])}}')">
+                            style="padding-top: 100%; background-size:cover; background-image: url(' {{ route('resources:images', [ 'src' => 'storage/uploads/' . $image->path,'size'=>"md"])}}')">
                         </div>
                     </div>
                 @endforeach
