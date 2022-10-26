@@ -15,7 +15,7 @@
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
                         <div class="border"
-                            style="padding-top: 100%; background-size:cover; background-image: url('{{ route('resources:images', [ 'src' => 'storage/uploads/' . $image->path,'size'=>"md"])}}')">
+                            style="padding-top: 75%; background-size:cover; background-image: url('{{ route('resources:images', [ 'src' => 'storage/uploads/' . $image->path,'size'=>"md"])}}')">
                         </div>
                     </div>
                 @endforeach
