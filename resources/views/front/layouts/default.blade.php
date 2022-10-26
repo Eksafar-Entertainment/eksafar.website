@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
-    <link rel="icon" href="{{ url('/img/ek-logo.png') }}" type="image/icon type">
+    <link rel="icon" href="{{ url('/images/ek-logo.png') }}" type="image/icon type">
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -43,7 +43,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center py-0" href="{{ url('/') }}">
 
-                    <img src="{{ url('/img/ek-logo.png') }}" alt="eksafar-logo" style="height: 40px;" />
+                    <img src="{{ url('/images/ek-logo.png') }}" alt="eksafar-logo" style="height: 40px;" />
                     {{-- <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" /> --}}
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                     <strong style="letter-spacing: 2.2x; font-size: 20px" class="ms-2 text-primary">EKSAFAR</strong>
@@ -136,7 +136,7 @@
                     </div>
                     <div class="col-md-4">
                         <div>
-                            <img src="{{ url('img/ek.gif') }}"
+                            <img src="{{ url('images/ek.gif') }}"
                                 style="width: 100%; clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);" />
                         </div>
                     </div>

@@ -192,7 +192,7 @@
                                 @if (\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->lt(\Carbon\Carbon::now()) ||
                                     $event->status == 'CLOSED')
                                     <div class="soldout"
-                                        style="background-image:url({{ asset('img/soldout.png') }}); background-size:cover; background-position:center;">
+                                        style="background-image:url({{ asset('images/soldout.png') }}); background-size:cover; background-position:center;">
                                     </div>
                                 @endif
 
