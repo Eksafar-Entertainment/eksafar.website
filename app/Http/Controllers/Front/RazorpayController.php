@@ -130,11 +130,8 @@ class RazorpayController extends Controller
     if ($payment->status == "SUCCESS") {
       abort(404);
     }
-    return view("front.payment.razorpay.success",  [
-      "type" => "Order Processed",
-      "payment_id" => $payment->id,
-      "content" => "Your order placed successful",
-      "success" => true,
+    return view("front.payment.complete",  [
+      "status" => "PENDING",
       "order" => $order
     ]);
   }
@@ -153,10 +150,9 @@ class RazorpayController extends Controller
       if (!$payment) {
         abort(404);
       }
-
-      // if ($payment->status == "SUCCESS") {
-      //   abort(404);
-      // }
+      if ($payment->status == "SUCCESS") {
+        abort(404);
+      }
 
       $order = Order::where(["payment_id" => $payment->id])->first();
       $order_details = OrderDetail::where(["order_details.order_id" => $order->id])

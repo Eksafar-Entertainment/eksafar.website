@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\VenueController;
 use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Front\CashfreeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -103,6 +104,11 @@ Route::group([
 Route::post('/payment/checkout', [RazorpayController::class, 'checkout']);
 Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutComplete'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 Route::post('/payment/webhook', [RazorpayController::class, 'webhook'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+
+Route::post('/payment/cashfree/checkout', [CashfreeController::class, 'checkout'])->name("payment:cashfree:checkout");
+Route::get('/payment/cashfree/complete', [CashfreeController::class, 'complete'])->name("payment:cashfree:complete");
+Route::post('/payment/cashfree/webhook', [CashfreeController::class, 'webhook'])->name("payment:cashfree:webhook");
+
 
 //frontend routes
 Auth::routes();
