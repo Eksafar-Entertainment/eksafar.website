@@ -10642,6 +10642,6 @@ body, html {
   width: 100%;
 }
 
-footer .nav-item {
+footer .nav-item a {
   text-decoration: none;
 }
