@@ -169,8 +169,8 @@ class CashfreeController extends Controller
         Log::channel('payment-notification')->info(json_encode($request->all(), JSON_PRETTY_PRINT));
         //handle payment captured
         $cf_payment_id = $request->data["payment"]["cf_payment_id"];
-        $cf_order_id = $request->data["order"]["order_id"];
-        $payment = Payment::where(["cf_order_id" => $cf_order_id])->first();
+        $order_id = $request->data["order"]["order_id"];
+        $payment = Payment::where(["order_id" => $order_id])->first();
         if (!$payment) {
             abort(404);
         }
