@@ -7,12 +7,12 @@
         <article class="text-center m-auto" style="max-width: 600px;">
             <h1 class="display-1">
                 @if($status === "FAILED")
-                <i class="fa-solid fa-circle-exclamation text-danger"></i>
+                <lottie-player src="https://assets3.lottiefiles.com/temp/lf20_QYm9j9.json"  background="transparent"  speed="1"  style="width: 300px; height: 200px; margin:auto"  loop  autoplay></lottie-player>
                 @elseif($status === "SUCCESS")
-                <i class="fa-solid fa-circle-check text-success"></i>
+                <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_s2lryxtd.json"  background="transparent"  speed="1"  style="width: 300px; height: 200px; margin:auto"  loop  autoplay></lottie-player>
                 @elseif($status === "PENDING")
-                <i class="fa-solid fa-triangle-exclamation text-warning"></i>
-                @endif      
+                <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_qbuxqwzg.json"  background="transparent"  speed="1"  style="width: 300px; height: 200px; margin:auto"  loop  autoplay></lottie-player>
+                @endif 
             </h1>
             <h3 style="margin: 10px 0;">
                 @if($status === "FAILED")
@@ -40,4 +40,5 @@
             </div>
         </article>
     </div>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 @endsection
