@@ -6,10 +6,10 @@
         "currency": "{{$order_details->currency}}",
         "name": "Eksafar Club",
         "description": "{{$event->name}}",
-        "image": "https://example.com/your_logo",
+        "image": "{{url('images/ek-logo.png')}}",
         "order_id": "{{$order_details->id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "redirect": true,
-        "callback_url": "{{url('payment/checkout/razorpay/complete')}}",
+        "callback_url": "{{url('payment/razorpay/complete')}}",
         "prefill": {
             "name": "{{$customer_details['name']}}",
             "email": "{{$customer_details['email']}}",
