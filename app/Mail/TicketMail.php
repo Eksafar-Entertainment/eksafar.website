@@ -38,7 +38,7 @@ class TicketMail extends Mailable
                 "event_tickets.end_datetime as event_ticket_end_datetime"
             )
             ->get();
-        $this->event = Event::where(["id" => $this->order->id])->first();
+        $this->event = Event::where(["id" => $this->order->event_id])->first();
         $this->venue = Venue::where(["id" => $this->event->venue])->first();
     }
 
