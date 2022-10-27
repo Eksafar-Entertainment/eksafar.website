@@ -37,11 +37,11 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 */
 
 
-Route::get("/ticket", function(){
+Route::get("/ticket", function () {
     return view("ticket.index");
 });
 
-Route::get("/admin/login", function(){
+Route::get("/admin/login", function () {
     return view("admin.auth.login");
 })->name("admin.login");
 
@@ -101,14 +101,16 @@ Route::group([
     Route::post('settings/inline-edit', [SettingsController::class, "inlineEdit"]);
 });
 
-Route::post('/payment/checkout', [RazorpayController::class, 'checkout']);
-Route::post('/payment/checkout/complete', [RazorpayController::class, 'checkoutComplete'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
-Route::post('/payment/webhook', [RazorpayController::class, 'webhook'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+//payment related routes
+Route::group(['prefix' => "/payment"], function () {
+    Route::post('/razorpay/checkout', [RazorpayController::class, 'checkout'])->name("payment:razorpay:checkout");
+    Route::post('/razorpay/complete', [RazorpayController::class, 'complete'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])->name("payment:razorpay:complete");
+    Route::post('/razorpay/webhook', [RazorpayController::class, 'webhook'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])->name("payment:razorpay:webhook");
 
-Route::post('/payment/cashfree/checkout', [CashfreeController::class, 'checkout'])->name("payment:cashfree:checkout");
-Route::get('/payment/cashfree/complete', [CashfreeController::class, 'complete'])->name("payment:cashfree:complete");
-Route::post('/payment/cashfree/webhook', [CashfreeController::class, 'webhook'])->name("payment:cashfree:webhook");
-
+    Route::post('/cashfree/checkout', [CashfreeController::class, 'checkout'])->name("payment:cashfree:checkout");
+    Route::get('/cashfree/complete', [CashfreeController::class, 'complete'])->name("payment:cashfree:complete");
+    Route::post('/cashfree/webhook', [CashfreeController::class, 'webhook'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])->name("payment:cashfree:webhook");
+});
 
 //frontend routes
 Auth::routes();

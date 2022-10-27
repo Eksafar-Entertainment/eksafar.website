@@ -5,11 +5,11 @@
         "amount": "{{$order_details->amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "{{$order_details->currency}}",
         "name": "Eksafar Club",
-        "description": "Halloween",
+        "description": "{{$event->name}}",
         "image": "https://example.com/your_logo",
         "order_id": "{{$order_details->id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         "redirect": true,
-        "callback_url": "{{url('payment/checkout/complete')}}",
+        "callback_url": "{{url('payment/checkout/razorpay/complete')}}",
         "prefill": {
             "name": "{{$customer_details['name']}}",
             "email": "{{$customer_details['email']}}",

@@ -122,7 +122,7 @@ class CashfreeController extends Controller
         ];
         $cf_response = Http::withHeaders($this->headers())->post($_ENV["CASHFREE_BASE_URL"] . '/orders', $body);
         $cf_response_body = $cf_response->json();
-        
+
         //dd($cf_response_body);
 
         //update payment
@@ -137,7 +137,7 @@ class CashfreeController extends Controller
     public function complete(Request $request)
     {
         $order_id = $request->order_id;
-        
+
         $cf_order_request = Http::withHeaders($this->headers())->get($_ENV["CASHFREE_BASE_URL"] . '/orders/' . $order_id);
         $cf_order = $cf_order_request->json();
 
@@ -149,7 +149,7 @@ class CashfreeController extends Controller
             $order->status = "SUCCESS";
             $payment->status = "SUCCESS";
             $status = "SUCCESS";
-        }else if ($cf_order["order_status"] === "EXPIRED") {
+        } else if ($cf_order["order_status"] === "EXPIRED") {
             $order->status = "FAILED";
             $payment->status = "FAILED";
             $status = "FAILED";
@@ -166,6 +166,31 @@ class CashfreeController extends Controller
 
     public function webhook(Request $request)
     {
-        return $request->all();
+        Log::channel('payment-notification')->info(json_encode($request->all(), JSON_PRETTY_PRINT));
+        //handle payment captured
+        $cf_payment_id = $request->data["payment"]["cf_payment_id"];
+        $cf_order_id = $request->data["order"]["order_id"];
+        $payment = Payment::where(["cf_order_id" => $cf_order_id])->first();
+        if (!$payment) {
+            abort(404);
+        }
+        $order = Order::where(["payment_id" => $payment->id])->first();
+        $payment->rzp_payment_id = $cf_payment_id;
+        if ($request->type === "PAYMENT_SUCCESS_WEBHOOK") {
+            $payment->status = "SUCCESS";
+            $order->status = "SUCCESS";
+            //send email
+            try {
+                Mail::to($order->email)->send(new TicketMail($order->id));
+            } catch (Exception $err) {
+
+            }
+        }
+        if ($request->type === "PAYMENT_FAILED_WEBHOOK") {
+            $payment->status = "FAILED";
+            $order->status = "FAILED";
+        }
+        $payment->save();
+        $order->save();
     }
 }

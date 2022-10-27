@@ -35,6 +35,7 @@ class RazorpayController extends Controller
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
     $event_id = $request->event_id;
     $promoter_id = $request->promoter_id;
+    $event = Event::where(["id"=>$event_id])->first();
     $promoter = Promoter::where(["id" => $promoter_id])->first();
     $items = $request->items;
 
@@ -113,11 +114,12 @@ class RazorpayController extends Controller
         "name" => $user->name,
         "email" => $user->email,
         "mobile" => $user->mobile
-      ]
+      ],
+      "event"=>$event
     ]);
   }
 
-  function checkoutComplete(Request $request)
+  function complete(Request $request)
   {
     if ($request->exists('razorpay_payment_id') === false) {
       abort(404);
@@ -138,9 +140,7 @@ class RazorpayController extends Controller
 
   public function webhook(Request $request)
   {
-    $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
-
-    Log::channel('rzp-webhook')->info(json_encode($request->all()));
+    Log::channel('payment-notification')->info(json_encode($request->all(), JSON_PRETTY_PRINT));
     //handle payment captured
     if ($request->event === "payment.captured") {
       $success = true;
@@ -155,33 +155,19 @@ class RazorpayController extends Controller
       }
 
       $order = Order::where(["payment_id" => $payment->id])->first();
-      $order_details = OrderDetail::where(["order_details.order_id" => $order->id])
-        ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
-        //->groupBy("order_details.id")
-        ->select(
-          "order_details.*",
-          "event_tickets.name as event_ticket_name",
-          "event_tickets.persons as event_ticket_persons",
-          "event_tickets.start_datetime as event_ticket_start_datetime",
-          "event_tickets.end_datetime as event_ticket_end_datetime"
-        )
-        ->get();
-      $event = Event::where(["id" => $order->event_id])->first();
-      $venue = Venue::where(["id"=> $event->venue])->first();
       $payment->rzp_payment_id = $rzp_payment_id;
       if ($success === true) {
         $payment->status = "SUCCESS";
         $order->status = "SUCCESS";
         //send email
         try {
-          Mail::to($order->email)->send(new TicketMail($event, $order, $order_details, $venue));
+          Mail::to($order->email)->send(new TicketMail($order->id));
         } catch (Exception $err) {
           
         }
       } else {
         $payment->status = "FAILED";
         $order->status = "FAILED";
-        $html = "Your payment failed";
       }
       $payment->save();
       $order->save();

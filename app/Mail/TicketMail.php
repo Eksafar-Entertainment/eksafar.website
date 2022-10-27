@@ -2,10 +2,13 @@
 
 namespace App\Mail;
 
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Event;
+use App\Models\OrderDetail;
+use App\Models\Venue;
 
 class TicketMail extends Mailable
 {
@@ -21,12 +24,22 @@ class TicketMail extends Mailable
      * @return void
      */
 
-    public function __construct($event, $order, $order_details, $venue)
+    public function __construct($order_id)
     {
-        $this->order = $order;
-        $this->event = $event;
-        $this->order_details = $order_details;
-        $this->venue = $venue;
+        $this->order = Order::where(["id" => $order_id])->first();
+        $this->order_details = OrderDetail::where(["order_details.order_id" => $this->order->id])
+            ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+            //->groupBy("order_details.id")
+            ->select(
+                "order_details.*",
+                "event_tickets.name as event_ticket_name",
+                "event_tickets.persons as event_ticket_persons",
+                "event_tickets.start_datetime as event_ticket_start_datetime",
+                "event_tickets.end_datetime as event_ticket_end_datetime"
+            )
+            ->get();
+        $this->event = Event::where(["id" => $this->order->id])->first();
+        $this->venue = Venue::where(["id" => $this->event->venue])->first();
     }
 
     /**
@@ -36,17 +49,14 @@ class TicketMail extends Mailable
      */
     public function build()
     {
-        // return $this
-        //     ->subject('Please collect your ticket.')
-        //     ->markdown('mail.ticket');
         return $this->view('mail.ticket')
             //->text('mail.ticket.plain')
             ->subject("Please collect your ticket.")
             ->with([
-                "order"=>$this->order,
-                "event"=>$this->event,
-                "order_details"=> $this->order_details,
-                "venue"=> $this->order_details,
+                "order" => $this->order,
+                "event" => $this->event,
+                "order_details" => $this->order_details,
+                "venue" => $this->order_details,
             ]);
     }
 }
