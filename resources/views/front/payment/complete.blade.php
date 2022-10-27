@@ -27,16 +27,16 @@
                 @if($status === "FAILED")
                 Your ticket order has been is failed 
                 @elseif($status === "SUCCESS")
-                Your ticket order has been handled. Once payment has been received, the ticket has been delivered to {{ $order->email }}.
+                Your ticket order has been handled. Once payment has been received, the ticket has been delivered to <a href="">{{ $order->email }}</a>.
                 @elseif($status === "PENDING")
-                Your ticket order has been handled. Once payment has been received, the ticket has been delivered to {{ $order->email }}.
+                Your ticket order has been handled. Once payment has been received, the ticket has been delivered to <a href="">{{ $order->email }}</a>.
                 @endif
                 
             </p>
-            <div style="width:300px; border-radius: 8px; background-color:#e5e5e5;padding: 10px 15px; margin: auto">
-                <small>
-                    #Order Id: <span class="text-success">{{ $order->id }}</span>
-                </small>
+            <div>
+                <kbd>
+                    Order Id: #{{ $order->id }}
+                </kdb>
             </div>
         </article>
     </div>
