@@ -122,6 +122,8 @@ class CashfreeController extends Controller
         ];
         $cf_response = Http::withHeaders($this->headers())->post($_ENV["CASHFREE_BASE_URL"] . '/orders', $body);
         $cf_response_body = $cf_response->json();
+        
+        dd($cf_response_body);
 
         //update payment
         $payment->order_id = $order->id;
