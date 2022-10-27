@@ -23,13 +23,13 @@
                         </div>
                     </div>
 
-                    <div class="col-auto">
+                    {{-- <div class="col-auto">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar"></i></span>
                             <input type="date" class="form-control" placeholder="Booking Date" name="date"
                                 value="{{ app('request')->input('date') }}" />
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="col-auto">
                         <div class="input-group">
@@ -66,7 +66,6 @@
                         <th class="text-end">Amount</th>
                         <th>Promoter</th>
                         <th class="text-end">Commission</th>
-                        <th>Booking Date</th>
                         <th>Status</th>
                         <th>Order Date</th>
                         <th>In</th>
@@ -88,7 +87,6 @@
                             <td class="text-end">
                                 @money($order->promoter_commission ? $order->promoter_commission : 0) @ {{ $order->promoter_commission_percentage ?? 0 }}%
                             </td>
-                            <td>{{ $order->date ? date('d/m/Y', strtotime($order->date)) : '' }}</td>
                             <td><span class="badge bg-{{ $colors[$order->status] }}">{{ $order->status }}</span></td>
                             <td>{{ $order->created_at ? date('d/m/Y h:m A', strtotime($order->created_at)) : '' }}</td>
                             <td class="checked-in">
@@ -125,19 +123,6 @@
                     success: function(result) {
                         $("#details-modal .modal-dialog").html(result.html);
                         checkInModal.show();
-                    }
-                });
-            }
-
-            function sendEmail(order_id) {
-                jQuery.ajax({
-                    url: "{{ url('/admin/event/' . $event->id . '/orders/email') }}",
-                    method: 'post',
-                    data: {
-                        order_id: order_id
-                    },
-                    success: function(result) {
-                        alert(result.message);
                     }
                 });
             }
