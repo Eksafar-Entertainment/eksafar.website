@@ -141,13 +141,16 @@ class CashfreeController extends Controller
         $cf_order_request = Http::withHeaders($this->headers())->get($_ENV["CASHFREE_BASE_URL"] . '/orders/' . $order_id);
         $cf_order = $cf_order_request->json();
 
+        // $cf_payments_request = Http::withHeaders($this->headers())->get($cf_order["payments"]["url"]);
+        // $cf_payments = $cf_payments_request->json();
+
         $payment = Payment::where("order_id", $order_id)->first();
         if (!$payment) {
             abort(404, "Broken Link");
         }
         $order = Order::where("id", $order_id)->first();
 
-        $status = "PENDING";
+        $status = "FAILED";
         if ($cf_order["order_status"] === "PAID") {
             $order->status = "SUCCESS";
             $payment->status = "SUCCESS";
