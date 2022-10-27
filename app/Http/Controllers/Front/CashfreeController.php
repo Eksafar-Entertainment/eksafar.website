@@ -171,9 +171,9 @@ class CashfreeController extends Controller
         $cf_payment_id = $request->data["payment"]["cf_payment_id"];
         $order_id = $request->data["order"]["order_id"];
         $payment = Payment::where(["order_id" => $order_id])->first();
-        // if (!$payment) {
-        //     abort(404);
-        // }
+        if (!$payment) {
+            abort(404);
+        }
         $order = Order::where(["payment_id" => $payment->id])->first();
         $payment->rzp_payment_id = $cf_payment_id;
         if ($request->type === "PAYMENT_SUCCESS_WEBHOOK") {
@@ -192,5 +192,9 @@ class CashfreeController extends Controller
         }
         $payment->save();
         $order->save();
+        return [
+            $order, 
+            $payment
+        ];
     }
 }
