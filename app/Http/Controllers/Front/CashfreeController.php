@@ -189,6 +189,12 @@ class CashfreeController extends Controller
             $payment->status = "FAILED";
             $order->status = "FAILED";
         }
+
+        if ($request->type === "PAYMENT_USER_DROPPED_WEBHOOK") {
+            $payment->status = "CANCELLED";
+            $order->status = "CANCELLED";
+        }
+
         $payment->save();
         $order->save();
         return [
