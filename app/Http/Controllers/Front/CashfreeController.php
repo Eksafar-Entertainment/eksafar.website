@@ -141,22 +141,22 @@ class CashfreeController extends Controller
         $cf_order_request = Http::withHeaders($this->headers())->get($_ENV["CASHFREE_BASE_URL"] . '/orders/' . $order_id);
         $cf_order = $cf_order_request->json();
 
-        //$payment = Payment::where("order_id", $order_id)->first();
+        $payment = Payment::where("order_id", $order_id)->first();
         $order = Order::where("id", $order_id)->first();
 
         $status = "PENDING";
         if ($cf_order["order_status"] === "PAID") {
-            //$order->status = "SUCCESS";
-            //$payment->status = "SUCCESS";
+            $order->status = "SUCCESS";
+            $payment->status = "SUCCESS";
             $status = "SUCCESS";
         } else if ($cf_order["order_status"] === "EXPIRED") {
-            //$order->status = "FAILED";
-            //$payment->status = "FAILED";
+            $order->status = "FAILED";
+            $payment->status = "FAILED";
             $status = "FAILED";
         }
 
-        //$payment->save();
-        //$order->save();
+        $payment->save();
+        $order->save();
 
         return view("front.payment.complete",  [
             "status" => $status,
@@ -175,7 +175,7 @@ class CashfreeController extends Controller
             abort(404);
         }
         $order = Order::where(["payment_id" => $payment->id])->first();
-        $payment->rzp_payment_id = $cf_payment_id;
+        $payment->cf_payment_id = $cf_payment_id;
         if ($request->type === "PAYMENT_SUCCESS_WEBHOOK") {
             $payment->status = "SUCCESS";
             $order->status = "SUCCESS";
