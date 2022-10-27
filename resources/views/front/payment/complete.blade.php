@@ -3,9 +3,17 @@
     <title>Payment Processed</title>
 @endsection
 @section('content')
-    <div class="container my-5">
-        <article class="text-center">
-            <img src="{{ url('/images/check-mark-verified.gif') }}" style="width: 120px" />
+    <div class="container my-5 py-5">
+        <article class="text-center m-auto" style="max-width: 600px;">
+            <h1 class="display-1">
+                @if($status === "FAILED")
+                <i class="fa-solid fa-circle-exclamation text-danger"></i>
+                @elseif($status === "SUCCESS")
+                <i class="fa-solid fa-circle-check text-success"></i>
+                @elseif($status === "PENDING")
+                <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+                @endif      
+            </h1>
             <h3 style="margin: 10px 0;">
                 @if($status === "FAILED")
                 Your reservation is failed.
