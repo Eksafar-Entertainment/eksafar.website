@@ -35,7 +35,7 @@ class RazorpayController extends Controller
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
     $event_id = $request->event_id;
     $promoter_id = $request->promoter_id;
-    $event = Event::where(["id"=>$event_id])->first();
+    $event = Event::where(["id" => $event_id])->first();
     $promoter = Promoter::where(["id" => $promoter_id])->first();
     $items = $request->items;
 
@@ -115,7 +115,7 @@ class RazorpayController extends Controller
         "email" => $user->email,
         "mobile" => $user->mobile
       ],
-      "event"=>$event
+      "event" => $event
     ]);
   }
 
@@ -125,15 +125,32 @@ class RazorpayController extends Controller
       abort(404);
     }
     $payment = Payment::where(["rzp_order_id" => $request->razorpay_order_id])->first();
-    $order = Order::where(["payment_id" => $payment->id])->first();
     if (!$payment) {
-      abort(404);
+      abort(404, "Broken Link");
     }
-    if ($payment->status == "SUCCESS") {
-      abort(404);
+    $order = Order::where(["payment_id" => $payment->id])->first();
+    $status = "FAILED";
+    try {
+      $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
+      $attributes = array(
+        'razorpay_order_id' => $payment->rzp_order_id,
+        'razorpay_payment_id' => $_POST['razorpay_payment_id'],
+        'razorpay_signature' => $_POST['razorpay_signature']
+      );
+      $api->utility->verifyPaymentSignature($attributes);
+      $order->status = "SUCCESS";
+      $payment->status = "SUCCESS";
+      $status = "SUCCESS";
+    } catch (SignatureVerificationError $e) {
+      $error = 'Razorpay Error : ' . $e->getMessage();
+      $order->status = "FAILED";
+      $payment->status = "FAILED";
+      $status = "FAILED";
     }
+    $payment->save();
+    $order->save();
     return view("front.payment.complete",  [
-      "status" => "PENDING",
+      "status" => $status,
       "order" => $order
     ]);
   }
@@ -163,7 +180,6 @@ class RazorpayController extends Controller
         try {
           Mail::to($order->email)->send(new TicketMail($order->id));
         } catch (Exception $err) {
-          
         }
       } else {
         $payment->status = "FAILED";

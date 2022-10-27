@@ -142,6 +142,9 @@ class CashfreeController extends Controller
         $cf_order = $cf_order_request->json();
 
         $payment = Payment::where("order_id", $order_id)->first();
+        if (!$payment) {
+            abort(404, "Broken Link");
+        }
         $order = Order::where("id", $order_id)->first();
 
         $status = "PENDING";
