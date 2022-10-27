@@ -1,9 +1,10 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
         <div class="container-lg">
-            <a class="navbar-brand" href="{{ url('/admin') }}">
-                <!--{{ config('app.name', 'Laravel') }}-->
-                <img height="25px" src="{{ url('images/logo.png') }}" />
+            <a class="navbar-brand" href="{{ url('/admin') }}" style="letter-spacing: 2px">
+                {{-- {{ config('app.name', 'Laravel') }} --}}
+                {{-- <img height="60px" src="{{ url('images/ek-logo.svg') }}" /> --}}
+                EKSAFAR
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
