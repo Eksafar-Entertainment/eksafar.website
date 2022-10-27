@@ -231,7 +231,10 @@
 
                                 <div class="p-4 pt-3 d-flex">
                                     <div class="fs-4"><i class="fas fa-wallet"></i> </div>
-                                    <div class="flex-grow-1 ps-3 fs-4 fw-bold">@money($event_tickets[0]->price) Onwards</div>
+                                    <div class="flex-grow-1 ps-3">
+                                        <span class="fs-4 fw-bold">@money($event_tickets[0]->price)</span>
+                                        <span>Onwards</span>
+                                    </div>
                                     <div>
                                         @if (\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->gt(\Carbon\Carbon::now()) &&
                                             $event->status == 'CREATED')
@@ -282,8 +285,9 @@
         <!--- Bottom Ribbon -->
         <div class="position-fixed bottom-0 start-0 w-100 bg-white border-top border-grey p-4 py-2 d-flex">
             <div class="fs-4"><i class="fas fa-wallet"></i> </div>
-            <div class="flex-grow-1 ps-3 fs-4 fw-bold">
-                @money($event_tickets[0]->price) Onwards
+            <div class="flex-grow-1 ps-3">
+                <span class="fs-4 fw-bold">@money($event_tickets[0]->price)</span> 
+                <span>Onwards</span>
             </div>
             <div>
                 @if (\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->gt(\Carbon\Carbon::now()) &&
