@@ -113,7 +113,7 @@ class CashfreeController extends Controller
                 "return_url" => route("payment:cashfree:complete") . "?order_id={order_id}&order_token={order_token}",
                 "notify_url" => route("payment:cashfree:webhook")
             ],
-            "order_expiry_time" => "2022-10-27T10:20:12+05:30",
+            //"order_expiry_time" => "2022-10-27T10:20:12+05:30",
             "order_note" => "Test order",
             "order_tags" => [
                 "additionalProp" => "string"
