@@ -180,11 +180,7 @@ class CashfreeController extends Controller
             $payment->status = "SUCCESS";
             $order->status = "SUCCESS";
             //send email
-            try {
-                Mail::to($order->email)->send(new TicketMail($order->id));
-            } catch (Exception $err) {
-                print_r($err);
-            }
+            Mail::to($order->email)->send(new TicketMail($order->id));
         }
         if ($request->type === "PAYMENT_FAILED_WEBHOOK") {
             $payment->status = "FAILED";
@@ -193,7 +189,7 @@ class CashfreeController extends Controller
         $payment->save();
         $order->save();
         return [
-            $order, 
+            $order,
             $payment,
             $request->all
         ];
