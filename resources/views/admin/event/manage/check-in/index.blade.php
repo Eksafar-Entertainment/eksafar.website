@@ -22,7 +22,7 @@
     </div>
 @endsection
 @section('content')
-    <div class="overflow-auto mt-4" id="details-container" style="min-height: 400px">
+    <div class="overflow-auto mt-4" id="details-container" style="min-height: 400px; max-width: 600px; margin:auto">
 
     </div>
     <script>
