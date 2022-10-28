@@ -7,11 +7,11 @@
         <article class="text-center m-auto" style="max-width: 600px;">
             <h1 class="display-1">
                 @if($status === "FAILED")
-                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_yw3nyrsv.json"  background="transparent"  speed="1"  style="width: 300px; height: 200px; margin:auto"  autoplay></lottie-player>
-                @elseif($status === "SUCCESS")
-                <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_s2lryxtd.json"  background="transparent"  speed="1"  style="width: 300px; height: 200px; margin:auto"  autoplay></lottie-player>
+                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_yw3nyrsv.json"  background="transparent"  speed="1"  style="width: 150px; height: 150px; margin:auto"  autoplay></lottie-player>
+                @elseif($status === "SUCCESS" )
+                <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_s2lryxtd.json"  background="transparent"  speed="1"  style="width: 150px; height: 150px; margin:auto"  autoplay></lottie-player>
                 @elseif($status === "PENDING")
-                <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_qbuxqwzg.json"  background="transparent"  speed="1"  style="width: 300px; height: 200px; margin:auto"  autoplay></lottie-player>
+                <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_qbuxqwzg.json"  background="transparent"  speed="1"  style="width: 150px; height: 150px; margin:auto"  autoplay></lottie-player>
                 @endif 
             </h1>
             <h3 style="margin: 10px 0;">
