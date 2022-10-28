@@ -39,12 +39,12 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-00">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center py-0" href="{{ url('/') }}">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
 
                     {{-- <img src="{{ url('/images/ek-logo.png') }}" alt="eksafar-logo" style="height: 40px;" /> --}}
-                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" />
+                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 40px;" />
                     {{-- <strong style="letter-spacing: 2.2x; font-size: 20px" class="ms-2 text-primary">EKSAFAR</strong> --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
