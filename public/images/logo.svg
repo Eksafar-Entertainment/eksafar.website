@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg width="393.5px" height="85.267334px" viewBox="0 0 393.5 85.267334" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
   <g id="logo">
-    <path d="M83 72.3791L22.0513 85.2673L0 15.8792L83 0L83 72.3791Z" id="Line-15" fill="#0C0124" fill-rule="evenodd" stroke="none" />
+    <path d="M83 72.3791L22.0513 85.2673L0 15.8792L83 0L83 72.3791Z" id="Line-15" fill="#1D0257" fill-rule="evenodd" stroke="none" />
     <g id="Group-7" transform="translate(19.5 20.87915)">
       <path d="M18 1L55.5 1" id="Line" fill="none" fill-rule="evenodd" stroke="#FFFFFF" stroke-width="7" />
       <path d="M10.0001 19.5L47.5001 19.5" id="Line-2" fill="none" fill-rule="evenodd" stroke="#FFFFFF" stroke-width="7" />
       <path d="M0 40L37.5 40" id="Line-3" fill="none" fill-rule="evenodd" stroke="#FFFFFF" stroke-width="7" />
     </g>
-    <path d="M117.744 21.8087L107.256 60.9496" id="Line-4" fill="none" fill-rule="evenodd" stroke="#0C0124" stroke-width="8" />
+    <g id="Group" transform="translate(107.256226 21.808716)">
+      <path d="M10.4877 0L0 39.1409" id="Line-4" fill="none" fill-rule="evenodd" stroke="#1D0257" stroke-width="8" />
+      <path d="M40.7438 0.0704346L0.243774 20.0704L28.7438 39.0704" id="Line-8" fill="none" fill-rule="evenodd" stroke="#1D0257" stroke-width="8" />
+    </g>
     <g id="Group-3" transform="translate(184 21.87915)">
-      <path d="M0 39L39.5704 0L39.5704 39" id="Line-10" fill="none" fill-rule="evenodd" stroke="#0C0124" stroke-width="8" />
+      <path d="M0 39L39.5704 0L39.5704 39" id="Line-10" fill="none" fill-rule="evenodd" stroke="#1D0257" stroke-width="8" />
     </g>
     <g id="Group-5" transform="translate(279.40002 21.37915)">
-      <path d="M0 39L39.5704 0L39.5704 39" id="Line-13" fill="none" fill-rule="evenodd" stroke="#0C0124" stroke-width="8" />
+      <path d="M0 39L39.5704 0L39.5704 39" id="Line-13" fill="none" fill-rule="evenodd" stroke="#1D0257" stroke-width="8" />
     </g>
     <g id="Group-6" transform="translate(339 19.37915)">
-      <path d="M0 41.5L13.1833 0L50.5 20.5515L12.0439 21.9286L50.5 41.5" id="Line-14" fill="none" fill-rule="evenodd" stroke="#0C0124" stroke-width="8" />
+      <path d="M0 41.5L13.1833 0L50.5 20.5515L12.0439 21.9286L50.5 41.5" id="Line-14" fill="none" fill-rule="evenodd" stroke="#1D0257" stroke-width="8" />
     </g>
-    <g id="Group" transform="translate(107.5 21.87915)">
-      <path d="M40.5 0L0 20L28.5 39" id="Line-8" fill="none" fill-rule="evenodd" stroke="#0C0124" stroke-width="8" />
-    </g>
+    <g id="Group" transform="translate(107.5 21.87915)" />
     <g id="Group-2" transform="translate(148 21.87915)">
-      <path d="M36 0L6.18398e-07 19.5L36 19.5L0 39" id="Line-9" fill="none" fill-rule="evenodd" stroke="#0C0124" stroke-width="8" />
+      <path d="M36 0L6.18398e-07 19.5L36 19.5L0 39" id="Line-9" fill="none" fill-rule="evenodd" stroke="#1D0257" stroke-width="8" />
     </g>
     <g id="Group-4" transform="translate(240.5 21.87915)">
-      <path d="M0 39.0001L12.6 0L45.2744 0" id="Line-11" fill="none" fill-rule="evenodd" stroke="#0C0124" stroke-width="8" />
+      <path d="M0 39.0001L12.6 0L45.2744 0" id="Line-11" fill="none" fill-rule="evenodd" stroke="#1D0257" stroke-width="8" />
+      <path d="M0 19.5L22 19.5" id="Line-12" fill="none" fill-rule="evenodd" stroke="#1D0257" stroke-width="8" />
     </g>
-    <path d="M240.5 41.3792L262.5 41.3792" id="Line-12" fill="none" fill-rule="evenodd" stroke="#0C0124" stroke-width="8" />
   </g>
 </svg>
