@@ -266,7 +266,7 @@ class EventController extends Controller
             "SUCCESS" => "success",
             "PENDING" => "warning",
             "FAILED" => "danger",
-            "CANCELLED"=>"info"
+            "CANCELLED" => "info"
         ];
 
         $orders = Order::leftJoin('promoters', function ($join) {
@@ -303,7 +303,7 @@ class EventController extends Controller
             ->paginate(30)->appends($request->query());
         return view("admin.event.manage.orders.index", compact('event', 'orders', "colors"));
     }
-   
+
     public function orderDetails($event_id, Request $request)
     {
         $order_id = $request->order_id;
@@ -355,7 +355,7 @@ class EventController extends Controller
 
         $event_tickets = $event_tickets->latest()->get();
         $event_combo_tickets = EventComboTicket::where("event_id", $event_id)->get();
-        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets','event_combo_tickets'));
+        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets', 'event_combo_tickets'));
     }
 
     public function getTicketForm($event_id, Request $request)
@@ -394,7 +394,7 @@ class EventController extends Controller
     {
         $event = Event::where("id", $event_id)->first();
         $event_combo_ticket = EventComboTicket::where("id", $request->event_combo_ticket_id)->first() ?? new EventComboTicket();
-        $event_tickets = EventTicket::where("event_id", $event_id)->get()??[];
+        $event_tickets = EventTicket::where("event_id", $event_id)->get() ?? [];
         return response()->json([
             "status" => 200,
             'message' => 'Successfully fetched data',
@@ -493,7 +493,7 @@ class EventController extends Controller
     {
         $order_id = $request->order_id;
         $date = $request->date;
-        $order = Order::where("id", $order_id)->where("status", "SUCCESS")->where("date", $date)->first();
+        $order = Order::where("id", $order_id)->where("status", "SUCCESS")->first();
         if (!$order) {
             return response()->json([
                 "status" => 404,
@@ -501,14 +501,22 @@ class EventController extends Controller
             ], 404);
         }
         $order_details = OrderDetail::where(["order_id" => $order->id])
-            ->leftJoin("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
+            ->join("event_tickets", 'event_tickets.id', '=', 'order_details.event_ticket_id')
             //->groupBy("order_details.id")
+            ->where(DB::raw("DATE(event_tickets.start_datetime)"), $date)
             ->select(
                 "order_details.*",
                 "event_tickets.name as event_ticket_name",
                 "event_tickets.persons as event_ticket_persons"
-            )
-            ->get();
+            )->get();
+
+        if (!(count($order_details) > 0)) {
+            return response()->json([
+                "status" => 404,
+                'message' => 'Tickets not found',
+            ], 404);
+        }
+        
         return response()->json([
             "status" => 200,
             'message' => 'Successfully fetched data',
@@ -558,10 +566,9 @@ class EventController extends Controller
     public function status($event_id, Request $request)
     {
         $event = Event::where("id", $event_id)->first();
-        if($request->status == "false"){
+        if ($request->status == "false") {
             $event->status = "CLOSED";
-        }
-        else{
+        } else {
             $event->status = "CREATED";
         }
         $event->save();
