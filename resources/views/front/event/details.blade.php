@@ -11,7 +11,7 @@
             height: 100%;
         }
     </style>
-    <title>{{$event->name}}</title>
+    <title>{{ $event->name }}</title>
 @endsection
 
 @section('content')
@@ -100,7 +100,9 @@
 
                                         <div class="pb-2 d-flex">
                                             <div><i class="fas fa-calendar"></i></div>
-                                            <div class="flex-grow-1 ps-3">{{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y') }} | 07:00 PM Onwards</div>
+                                            <div class="flex-grow-1 ps-3">
+                                                {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y') }}
+                                                | 07:00 PM Onwards</div>
                                         </div>
 
                                         <div class="d-flex">
@@ -189,8 +191,7 @@
                         <div class="sticky-top pt-4">
                             <div class="card">
 
-                                @if (\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->lt(\Carbon\Carbon::now()) ||
-                                    $event->status == 'CLOSED')
+                                @if ($event->status == 'CLOSED')
                                     <div class="soldout"
                                         style="background-image:url({{ asset('images/soldout.png') }}); background-size:cover; background-position:center;">
                                     </div>
@@ -212,7 +213,8 @@
                                     <div class="pb-2 d-flex">
                                         <div><i class="fas fa-calendar"></i></div>
                                         <div class="flex-grow-1 ps-3">
-                                            {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y') }} | 07:00 PM Onwards
+                                            {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y') }}
+                                            | 07:00 PM Onwards
                                         </div>
                                     </div>
 
@@ -286,15 +288,13 @@
         <div class="position-fixed bottom-0 start-0 w-100 bg-white border-top border-grey p-4 py-2 d-flex">
             <div class="fs-4"><i class="fas fa-wallet"></i> </div>
             <div class="flex-grow-1 ps-3">
-                <span class="fs-4 fw-bold">@money($event_tickets[0]->price)</span> 
+                <span class="fs-4 fw-bold">@money($event_tickets[0]->price)</span>
                 <span>Onwards</span>
             </div>
             <div>
-                @if (\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->gt(\Carbon\Carbon::now()) &&
-                    $event->status == 'CREATED')
+                @if ($event->status == 'CREATED')
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">Book
-                        Now</button>
+                        data-bs-target="#exampleModal">Book Now</button>
                 @else
                     <button type="button" class="btn btn-danger" disabled="true">Sold Out</button>
                 @endif
