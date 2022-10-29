@@ -238,8 +238,7 @@
                                         <span>Onwards</span>
                                     </div>
                                     <div>
-                                        @if (\Carbon\Carbon::parse($event_tickets[0]->start_datetime)->gt(\Carbon\Carbon::now()) &&
-                                            $event->status == 'CREATED')
+                                        @if ($event->status == 'CREATED')
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal">Book Now</button>
                                         @endif
