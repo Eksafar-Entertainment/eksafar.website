@@ -12,7 +12,7 @@
     <script src="{{ asset('js/front/app.js') }}" defer></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/front/light/app.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ url('/images/ek-logo.png') }}" type="image/icon type">
 
 
@@ -34,12 +34,14 @@
 		gtag('js', new Date());
 		gtag('config', 'G-Y5EVW7L56Z');
 	</script>
+    <script src="{{ asset('js/front/custom.js') }}" defer></script>
+
     @yield('head')
 </head>
 
-<body>
+<body class="dark">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
 
@@ -106,6 +108,7 @@
                             </li>
                         @endguest
                     </ul>
+                    <button class="btn btn-primary" id="btnSwitch">Switch</button>
                 </div>
             </div>
         </nav>

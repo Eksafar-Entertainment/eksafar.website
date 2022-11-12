@@ -33,7 +33,7 @@
 
     </div>
 
-
+    @include('front.first.event-list')
     <section class="py-5 border-top border-bottom">
         <div class="container my-5">
 

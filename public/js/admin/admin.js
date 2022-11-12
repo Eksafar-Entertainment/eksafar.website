@@ -27840,10 +27840,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/front/app.scss":
-/*!***************************************!*\
-  !*** ./resources/sass/front/app.scss ***!
-  \***************************************/
+/***/ "./resources/sass/front/dark/app.scss":
+/*!********************************************!*\
+  !*** ./resources/sass/front/dark/app.scss ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/front/light/app.scss":
+/*!*********************************************!*\
+  !*** ./resources/sass/front/light/app.scss ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -29923,7 +29936,8 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		var installedChunks = {
 /******/ 			"/js/admin/admin": 0,
 /******/ 			"css/admin/admin": 0,
-/******/ 			"css/front/app": 0
+/******/ 			"css/front/light/app": 0,
+/******/ 			"css/front/dark/app": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -29973,9 +29987,10 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/admin/admin","css/front/app"], () => (__webpack_require__("./resources/js/admin/admin.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/admin/admin","css/front/app"], () => (__webpack_require__("./resources/sass/admin/admin.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin/admin","css/front/app"], () => (__webpack_require__("./resources/sass/front/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin/admin","css/front/light/app","css/front/dark/app"], () => (__webpack_require__("./resources/js/admin/admin.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin/admin","css/front/light/app","css/front/dark/app"], () => (__webpack_require__("./resources/sass/admin/admin.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin/admin","css/front/light/app","css/front/dark/app"], () => (__webpack_require__("./resources/sass/front/dark/app.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin/admin","css/front/light/app","css/front/dark/app"], () => (__webpack_require__("./resources/sass/front/light/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
