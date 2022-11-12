@@ -1,12 +1,16 @@
 // Body
-$body-bg: #f8fafc;
+$enable-gradients: true;
+$body-bg: #19181F;
+
+/* redefine theme colors for dark theme */
 $primary: #05335c;
+$dark: #000;
 
 // Typography
-$font-family-sans-serif: 'Jost', sans-serif;
+$font-family-sans-serif: "Jost", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
-$enable-rounded:  false;
+$enable-rounded: false;
 //remove shadow
 $input-box-shadow: none;
 $input-focus-box-shadow: none;
@@ -15,4 +19,5 @@ $form-select-focus-box-shadow: none;
 $btn-focus-box-shadow: none;
 $btn-active-box-shadow: none;
 
-$border-color: rgba(255,255,255,0.04);
+$border-color: rgba(255,255,255,0.07);
+$input-border-color: rgba(255,255,255,0.07);

@@ -12,7 +12,7 @@
     <script src="{{ asset('js/front/app.js') }}" defer></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/front/light/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/front/dark/app.css') }}" rel="stylesheet" id="main-css">
     <link rel="icon" href="{{ url('/images/ek-logo.png') }}" type="image/icon type">
 
 
@@ -41,7 +41,7 @@
 
 <body class="dark">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
 
@@ -108,7 +108,7 @@
                             </li>
                         @endguest
                     </ul>
-                    <button class="btn btn-primary" id="btnSwitch">Switch</button>
+                    {{-- <button class="btn btn-primary" id="btnSwitch">Switch</button> --}}
                 </div>
             </div>
         </nav>
