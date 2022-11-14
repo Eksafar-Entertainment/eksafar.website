@@ -10675,7 +10675,7 @@ html {
   }
 }
 #main-carousel .owl-item:not(.active.center) {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 #main-carousel .owl-item:not(.active.center) img {
   transform: perspective(70vw) rotateY(5deg);
