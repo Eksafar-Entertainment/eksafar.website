@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Slider--->
-    <div class="">
+    <section class="">
         <div class="owl-carousel owl-theme" id="main-carousel">
             @foreach ($banners as $banner)
                 <div class="item">
@@ -41,34 +41,10 @@
                 }
             })
         </script>
-
-        {{-- <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @foreach ($banners as $banner)
-                    <div class="carousel-item active"
-                        style="background-image: url({{ route('resources:images', ['src' => $banner->image, 'width' => 1080]) }})">
-                        <div style="backdrop-filter: blur(20px)">
-                            <a href="{{ $banner->url }}" class="item-container">
-                                <img src="{{ url($banner->image) }}" class="w-100" />
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#main-carousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#main-carousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div> --}}
-
-    </div>
+    </section>
 
     {{-- @include('front.first.event-list') --}}
-    <section class="py-5 border-top border-bottom">
+    <section class="py-5">
         <div class="container my-5">
 
             <div class="text-center mb-5">
@@ -116,7 +92,7 @@
 
     <section
         style="background-image: url(https://picsum.photos/1080/720?id=1);background-size: cover;background-position: center;background-attachment: fixed;">
-        <div class="transparent-gradient-blur py-5">
+        <div class="transparent-gradient-blur py-5 border-top border-bottom">
             <div class="container my-5">
 
                 <div class="text-center mb-5">
