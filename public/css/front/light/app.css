@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
-@charset "UTF-8"; /*!
+@charset "UTF-8";
+/*!
  * Bootstrap  v5.2.0 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
  * Copyright 2011-2022 Twitter, Inc.
@@ -10636,10 +10637,34 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-body, html {
+body,
+html {
   overflow-x: hidden;
   height: 100%;
   width: 100%;
+  color: #ffffff;
+}
+
+#main-carousel .owl-item {
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  #main-carousel .owl-item {
+    width: 70vw !important;
+  }
+  #main-carousel .owl-item img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+#main-carousel .owl-item:not(.active.center) {
+  opacity: 0.7;
+}
+
+.transparent-gradient-blur {
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
 
 footer .nav-item a {

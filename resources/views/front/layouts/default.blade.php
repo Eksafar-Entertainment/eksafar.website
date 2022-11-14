@@ -60,6 +60,18 @@
         gtag('config', 'G-Y5EVW7L56Z');
     </script>
     <script src="{{ asset('js/front/custom.js') }}" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+        integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     @yield('head')
 </head>
 
@@ -176,7 +188,8 @@
                         <ul class="nav flex-column">
                             <li class="nav-item"><a class="text-light" href="{{ url('') }}">Home</a></li>
                             <li class="nav-item"><a class="text-light" href="{{ url('about') }}">About us</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('terms') }}">Terms & Condition</a>
+                            <li class="nav-item"><a class="text-light" href="{{ url('terms') }}">Terms &
+                                    Condition</a>
                             </li>
                             <li class="nav-item"><a class="text-light" href="{{ url('payment-policy') }}">Refund &
                                     Cancellation Policy</a></li>

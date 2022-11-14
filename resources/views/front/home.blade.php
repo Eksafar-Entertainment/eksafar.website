@@ -7,8 +7,42 @@
 @section('content')
     <!-- Slider--->
     <div class="">
+        <div class="owl-carousel owl-theme" id="main-carousel">
+            @foreach ($banners as $banner)
+                <div class="item">
+                    <a href="{{ $banner->url }}" class="item-container">
+                        <img src="{{ url($banner->image) }}" />
+                    </a>
+                </div>
+            @endforeach
+        </div>
 
-        <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
+        <script>
+            $('.owl-carousel').owlCarousel({
+                responsive: {
+                    0: {
+                        margin: 0,
+                        loop: false,
+                        autoWidth: false,
+                        items: 1,
+                        center: true,
+                        autoHeight: true
+                    },
+                    768: {
+                        margin: 10,
+                        loop: true,
+                        autoWidth: true,
+                        items: 4,
+                        center: true,
+                        autoHeight: true,
+                        animateOut: "fadeOut",
+                        animateIn: "fadeIn",
+                    }
+                }
+            })
+        </script>
+
+        {{-- <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($banners as $banner)
                     <div class="carousel-item active"
@@ -29,7 +63,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-        </div>
+        </div> --}}
 
     </div>
 
@@ -50,7 +84,7 @@
 
                             <div>
                                 <a class="" href="{{ url('/event/' . $event->slug) }}">
-                                    <div class="w-100 position-relative card border-0 overflow-hidden"
+                                    <div class="w-100 position-relative overflow-hidden"
                                         style="background-image:url('{{ route('resources:images', [
                                             'src' => $event->cover_image,
                                             'size' => 'lg',
