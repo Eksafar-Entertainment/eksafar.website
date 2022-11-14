@@ -1,16 +1,25 @@
-// Body
-$enable-gradients: true;
-$body-bg: #19181F;
+
+//$enable-gradients: true;
+
 
 /* redefine theme colors for dark theme */
 $primary: #05335c;
-$dark: #000;
+$secondary: #EC4390;
+$white: #fff;
+$black: #000;
+
+// Body
+$body-bg: #000000;
+$card-bg: rgb(27,27,27);
+
+$navbar-dark-color:                 rgba($white, .9);
 
 // Typography
 $font-family-sans-serif: "Figtree", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 $enable-rounded: false;
+
 //remove shadow
 $input-box-shadow: none;
 $input-focus-box-shadow: none;
@@ -19,5 +28,5 @@ $form-select-focus-box-shadow: none;
 $btn-focus-box-shadow: none;
 $btn-active-box-shadow: none;
 
-$border-color: rgba(255,255,255,0.07);
-$input-border-color: rgba(255,255,255,0.07);
+$border-color: rgba(255,255,255,0.09);
+$input-border-color: rgba(255,255,255,0.4);
