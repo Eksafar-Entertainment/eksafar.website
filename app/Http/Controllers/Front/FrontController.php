@@ -16,7 +16,7 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $gallery = GalleryImage::latest()->limit(4)->get();
+        $gallery = GalleryImage::latest()->limit(6)->get();
         $events = Event::limit(4)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])->get();

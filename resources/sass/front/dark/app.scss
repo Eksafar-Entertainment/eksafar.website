@@ -52,6 +52,11 @@ body, html{
     }
 }
 
+.transparent-gradient-blur{
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+}
+
 footer{
     .nav-item a{
         text-decoration: none;

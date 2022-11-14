@@ -43,7 +43,7 @@
                     you won't want to miss...</h5>
             </div>
 
-            <div class="row gx-5 gy-5">
+            <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($events as $event)
                     <div class="col-md-4">
                         <div class="card">
@@ -68,8 +68,9 @@
                                 </a>
                             </div>
                             <div class="card-body pt-0">
-                                <span class="text-danger">{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span><br/>
-                                <span>{{$event->venue_name }}</span>
+                                <span
+                                    class="text-danger">{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span><br />
+                                <span>{{ $event->venue_name }}</span>
                             </div>
                         </div>
                     </div>
@@ -79,25 +80,27 @@
 
     </section>
 
-    <section class="py-5">
-        <div class="container my-5">
+    <section
+        style="background-image: url(https://picsum.photos/1080/720?id=1);background-size: cover;background-position: center;background-attachment: fixed;">
+        <div class="transparent-gradient-blur py-5">
+            <div class="container my-5">
 
-            <div class="text-center mb-5">
-                <h1>{{ __('Gallery') }}</h1>
-                <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout the Gallery for the past events that have
-                    conducted in your city.</h5>
-            </div>
+                <div class="text-center mb-5">
+                    <h1>{{ __('Gallery') }}</h1>
+                    <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout the Gallery for the past events that have
+                        conducted in your city.</h5>
+                </div>
 
-            <div class="row gx-5 gy-5">
-                @foreach ($gallery as $image)
-                    <div class="col-md-3">
-                        <div class="border "
-                            style="padding-top: 75%; background-size:cover; background-image: url(' {{ route('resources:images', ['src' => 'storage/uploads/' . $image->path, 'size' => 'md']) }}')">
+                <div class="row gx-5 gy-5">
+                    @foreach ($gallery as $image)
+                        <div class="col-md-4">
+                            <div class="border "
+                                style="padding-top: 75%; background-size:cover; background-image: url(' {{ route('resources:images', ['src' => 'storage/uploads/' . $image->path, 'size' => 'md']) }}')">
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
-
     </section>
 @endsection

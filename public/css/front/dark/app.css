@@ -10682,6 +10682,12 @@ body, html {
      object-position: center;
 }
 
+.transparent-gradient-blur {
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
 footer .nav-item a {
   text-decoration: none;
 }
