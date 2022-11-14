@@ -19,9 +19,26 @@ body, html{
     .item-container{
         display: block;
         width: 100%;
-        padding-top: 50%;
-        max-height: 600px;
         position: relative;
+       
+
+        @media only screen and (max-width: 1080px) {
+            padding-top: 50%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            padding-top: 60%;
+        }
+
+        @media only screen and (min-width: 1080px) {
+            height: 650px;
+        }
+
+        @media only screen and (min-width: 1500px) {
+            height: 750px;
+        }
+
+       
 
         img{
             position: absolute;

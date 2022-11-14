@@ -24,18 +24,42 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <!-- Facebook Pixel Code --><script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js'); fbq('init', '816550026455403'); fbq('track', 'PageView');</script><noscript> <img height="1" width="1" src="https://www.facebook.com/tr?id=816550026455403&ev=PageView&noscript=1"/></noscript><!-- End Facebook Pixel Code -->
+    <!-- Facebook Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '816550026455403');
+        fbq('track', 'PageView');
+    </script><noscript> <img height="1" width="1"
+            src="https://www.facebook.com/tr?id=816550026455403&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
 
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5EVW7L56Z"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'G-Y5EVW7L56Z');
-	</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5EVW7L56Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-Y5EVW7L56Z');
+    </script>
     <script src="{{ asset('js/front/custom.js') }}" defer></script>
-
     @yield('head')
 </head>
 
@@ -116,7 +140,7 @@
 
 
 
-        <section class="py-5 bg-secondary text-light">
+        <section class="py-5 text-light card">
             <div class="container my-4">
                 <div class="row align-items-center gy-5 gx-5">
                     <div class="col-md-6">
@@ -143,18 +167,21 @@
             </div>
         </section>
 
-        <footer class="bg-primary text-light pt-5">
+        <footer class="text-light pt-5 border-top">
 
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <h4>Useful Links</h4>
                         <ul class="nav flex-column">
-                            <li class="nav-item"><a class="text-light" href="{{url('')}}">Home</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('about')}}">About us</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('terms')}}">Terms & Condition</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('payment-policy')}}">Refund & Cancellation Policy</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('privacy')}}">Privacy Policy</a></li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('') }}">Home</a></li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('about') }}">About us</a></li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('terms') }}">Terms & Condition</a>
+                            </li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('payment-policy') }}">Refund &
+                                    Cancellation Policy</a></li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('privacy') }}">Privacy
+                                    Policy</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6">

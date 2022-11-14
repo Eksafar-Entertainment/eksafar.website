@@ -1,7 +1,7 @@
 @extends('front.layouts.default')
 
 @section('head')
-<title>Eksafar Club</title>
+    <title>Eksafar Club</title>
 @endsection
 
 @section('content')
@@ -11,7 +11,8 @@
         <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($banners as $banner)
-                    <div class="carousel-item active" style="background-image: url({{ route('resources:images', [ 'src' => $banner->image,'width'=>1080])}})">
+                    <div class="carousel-item active"
+                        style="background-image: url({{ route('resources:images', ['src' => $banner->image, 'width' => 1080]) }})">
                         <div style="backdrop-filter: blur(20px)">
                             <a href="{{ $banner->url }}" class="item-container">
                                 <img src="{{ url($banner->image) }}" class="w-100" />
@@ -44,7 +45,7 @@
 
             <div class="row gx-5 gy-5">
                 @foreach ($events as $event)
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card">
 
                             <div>
@@ -52,26 +53,23 @@
                                     <div class="w-100 position-relative card border-0 overflow-hidden"
                                         style="background-image:url('{{ route('resources:images', [
                                             'src' => $event->cover_image,
-                                            'size'=>"lg"
-                                            ]) }}'); padding-top: 70%; background-size:cover; background-position:center;">
-                                        @if($event->status==="CLOSED")
-                                            <div class="position-absolute badge bg-danger" style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">COMPLETED</div>
+                                            'size' => 'lg',
+                                        ]) }}'); padding-top: 80%; background-size:cover; background-position:center;">
+                                        @if ($event->status === 'CLOSED')
+                                            <div class="position-absolute badge bg-danger"
+                                                style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
+                                                COMPLETED</div>
                                         @endif
-                                        <div class="position-absolute top-0 start-0 w-100 h-100"
-                                            style="background: linear-gradient(180deg, rgba(0,0,0,0) 54%, rgba(0,0,0,0.7) 83%);  ">
-                                        </div>
-
-                                        <div class="position-absolute bottom-0 start-0 card-body text-light  w-100">
-
-                                            <h4>{{ $event->name }}</h4>
-                                            <p class=" mb-0">
-                                                {{ \Carbon\Carbon::parse($event->start_date)->format('d-m-Y') }} onwards |
-                                                Catchup @ Banglore</p>
-
-
+                                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end text-white ps-3"
+                                            style="background: linear-gradient(180deg, rgba(0,0,0,0.3) 54%, #333333);">
+                                            <h4 class="mb-1">{{ $event->name }}</h4>
                                         </div>
                                     </div>
                                 </a>
+                            </div>
+                            <div class="card-body pt-0">
+                                <span class="text-danger">{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span><br/>
+                                <span>{{$event->venue_name }}</span>
                             </div>
                         </div>
                     </div>
@@ -81,7 +79,7 @@
 
     </section>
 
-    <section class="py-5 bg-white">
+    <section class="py-5">
         <div class="container my-5">
 
             <div class="text-center mb-5">
@@ -93,8 +91,8 @@
             <div class="row gx-5 gy-5">
                 @foreach ($gallery as $image)
                     <div class="col-md-3">
-                        <div class="border"
-                            style="padding-top: 75%; background-size:cover; background-image: url(' {{ route('resources:images', [ 'src' => 'storage/uploads/' . $image->path,'size'=>"md"])}}')">
+                        <div class="border "
+                            style="padding-top: 75%; background-size:cover; background-image: url(' {{ route('resources:images', ['src' => 'storage/uploads/' . $image->path, 'size' => 'md']) }}')">
                         </div>
                     </div>
                 @endforeach
