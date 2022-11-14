@@ -10645,6 +10645,24 @@ body, html {
   color: #ffffff;
 }
 
+#main-carousel .item-container {
+  display: block;
+  width: 100%;
+  padding-top: 50%;
+  position: relative;
+}
+#main-carousel .item-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
 footer .nav-item a {
   text-decoration: none;
 }

@@ -13,9 +13,8 @@
                 @foreach ($banners as $banner)
                     <div class="carousel-item active" style="background-image: url({{ route('resources:images', [ 'src' => $banner->image,'width'=>1080])}})">
                         <div style="backdrop-filter: blur(20px)">
-                            <a href="{{ $banner->url }}">
-                                <img src="{{ url($banner->image) }}" class="w-100"
-                                    style="height: 500px; object-fit:contain; object-position:center" />
+                            <a href="{{ $banner->url }}" class="item-container">
+                                <img src="{{ url($banner->image) }}" class="w-100" />
                             </a>
                         </div>
                     </div>
