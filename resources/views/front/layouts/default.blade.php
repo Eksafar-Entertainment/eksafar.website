@@ -46,7 +46,7 @@
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
 
                     {{-- <img src="{{ url('/images/ek-logo.png') }}" alt="eksafar-logo" style="height: 40px;" /> --}}
-                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 30px;" />
+                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 25px;" />
                     {{-- <strong style="letter-spacing: 2.2x; font-size: 20px" class="ms-2 text-primary">EKSAFAR</strong> --}}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
