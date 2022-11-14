@@ -10665,6 +10665,8 @@ html {
        object-fit: cover;
     -o-object-position: center;
        object-position: center;
+    transition: 0.25s ease-in-out;
+    transform: perspective(70vw) rotateY(0);
   }
 }
 @media screen and (min-width: 1080px) {
@@ -10674,6 +10676,12 @@ html {
 }
 #main-carousel .owl-item:not(.active.center) {
   opacity: 0.7;
+}
+#main-carousel .owl-item:not(.active.center) img {
+  transform: perspective(70vw) rotateY(5deg);
+}
+#main-carousel .owl-item.active.center + .owl-item img {
+  transform: perspective(70vw) rotateY(-5deg);
 }
 
 .transparent-gradient-blur {

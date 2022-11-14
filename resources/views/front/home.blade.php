@@ -29,7 +29,7 @@
                         autoHeight: true
                     },
                     768: {
-                        margin: 10,
+                        margin: 0,
                         loop: true,
                         autoWidth: true,
                         //items: 4,
