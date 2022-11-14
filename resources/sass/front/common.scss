@@ -14,14 +14,27 @@ html {
 #main-carousel {
     .owl-item {
         width: 100%;
-        @media screen and (min-width: 768px) {
-            width: 70vw !important;
-            img{
-                margin-top: 10px;
-                margin-bottom: 10px;
+        .item {
+            @media screen and (min-width: 768px) {
+                width: 70vw !important;
+                height: 500px !important;
+
+                a {
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+            }
+            @media screen and (min-width: 1080px) {
+                height: 600px !important;
             }
         }
-        
     }
     .owl-item:not(.active.center) {
         opacity: 0.7;

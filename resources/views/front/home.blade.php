@@ -32,9 +32,9 @@
                         margin: 10,
                         loop: true,
                         autoWidth: true,
-                        items: 4,
+                        //items: 4,
                         center: true,
-                        autoHeight: true,
+                        autoHeight: false,
                         animateOut: "fadeOut",
                         animateIn: "fadeIn",
                     }

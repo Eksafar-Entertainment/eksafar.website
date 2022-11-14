@@ -10650,12 +10650,27 @@ html {
   width: 100%;
 }
 @media screen and (min-width: 768px) {
-  #main-carousel .owl-item {
+  #main-carousel .owl-item .item {
     width: 70vw !important;
+    height: 500px !important;
   }
-  #main-carousel .owl-item img {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  #main-carousel .owl-item .item a {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  #main-carousel .owl-item .item a img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+  }
+}
+@media screen and (min-width: 1080px) {
+  #main-carousel .owl-item .item {
+    height: 600px !important;
   }
 }
 #main-carousel .owl-item:not(.active.center) {
