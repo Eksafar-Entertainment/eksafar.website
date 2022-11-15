@@ -43,7 +43,7 @@
         </script>
     </section>
 
-     @include('front.first.event-list')
+     @include('front.index-page.event-list')
     <section class="py-5">
         <div class="container my-5">
 
