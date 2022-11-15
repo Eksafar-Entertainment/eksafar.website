@@ -21393,7 +21393,7 @@ footer .nav-item a {
           animation-delay: -0.5s;
 }
 
-.card {
+.card-1 {
   width: 350px;
   padding: 30px;
   background: #3b3b3b;
@@ -21401,11 +21401,11 @@ footer .nav-item a {
   transition: 0.3s ease;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
-.card:hover {
+.card-1:hover {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
   transform: translateY(-10px) scale(1.02);
 }
-.card:hover .entry-title {
+.card-1:hover .entry-title {
   background-position: -100% 0;
 }
 
