@@ -65,37 +65,37 @@
                     <ul class="navbar-nav ms-auto">
                         <!--- default Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/">{{ __('Home') }}</a>
+                            <a class="nav-link glow" href="/">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
+                            <a class="nav-link glow" href="/gallery">{{ __('Gallery') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
+                            <a class="nav-link glow" href="/contact">{{ __('Contact') }}</a>
                         </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link glow" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link glow" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle glow" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
                                     style="z-index: 9999">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item glow" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}

@@ -10675,3 +10675,168 @@ body, html {
 footer .nav-item a {
   text-decoration: none;
 }
+
+.glow {
+  color: #F7A9A8;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 5px #F7A9A8, 0 0 10px #F7A9A8, 0 0 15px #e60073, 0 0 20px #e60073, 0 0 25px #e60073, 0 0 30px #e60073, 0 0 35px #e60073;
+  }
+  to {
+    text-shadow: 0 0 10px #F7A9A8, 0 0 15px #ff4da6, 0 0 20px #ff4da6, 0 0 25px #ff4da6, 0 0 30px #ff4da6, 0 0 35px #ff4da6, 0 0 40px #ff4da6;
+  }
+}
+.popout {
+  font-family: Futura, sans-serif;
+  font-weight: 600;
+  font-size: 60px;
+  padding: 60px;
+}
+@-webkit-keyframes ani {
+  0% {
+    transform: translate3d(0, 0, 0);
+    text-shadow: 0em 0em 0 lightblue;
+    color: #19181F;
+  }
+  30% {
+    transform: translate3d(0, 0, 0);
+    text-shadow: 0em 0em 0 lightblue;
+    color: #19181F;
+  }
+  70% {
+    transform: translate3d(0.08em, -0.08em, 0);
+    text-shadow: -0.08em 0.08em lightblue;
+    color: #19181F;
+  }
+  100% {
+    transform: translate3d(0.08em, -0.08em, 0);
+    text-shadow: -0.08em 0.08em lightblue;
+    color: #19181F;
+  }
+}
+@keyframes ani {
+  0% {
+    transform: translate3d(0, 0, 0);
+    text-shadow: 0em 0em 0 lightblue;
+    color: #19181F;
+  }
+  30% {
+    transform: translate3d(0, 0, 0);
+    text-shadow: 0em 0em 0 lightblue;
+    color: #19181F;
+  }
+  70% {
+    transform: translate3d(0.08em, -0.08em, 0);
+    text-shadow: -0.08em 0.08em lightblue;
+    color: #19181F;
+  }
+  100% {
+    transform: translate3d(0.08em, -0.08em, 0);
+    text-shadow: -0.08em 0.08em lightblue;
+    color: #19181F;
+  }
+}
+.popout span {
+  position: relative;
+  display: inline-block;
+  -webkit-animation: ani 1s infinite alternate cubic-bezier(0.86, 0, 0.07, 1);
+          animation: ani 1s infinite alternate cubic-bezier(0.86, 0, 0.07, 1);
+}
+.popout span:nth-last-child(1n) {
+  -webkit-animation-delay: -0.1666666667s;
+          animation-delay: -0.1666666667s;
+}
+.popout span:nth-last-child(2n) {
+  -webkit-animation-delay: -0.3333333333s;
+          animation-delay: -0.3333333333s;
+}
+.popout span:nth-last-child(3n) {
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+
+.card {
+  width: 350px;
+  padding: 30px;
+  background: #1abc9c;
+  margin: auto;
+  transition: 0.3s ease;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.card:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+  transform: translateY(-10px) scale(1.02);
+}
+.card:hover .entry-title {
+  background-position: -100% 0;
+}
+
+.date-glow {
+  color: #8df5e0;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes date-glow {
+  from {
+    text-shadow: 0 0 5px #8df5e0, 0 0 10px #8df5e0, 0 0 15px #278d79, 0 0 20px #278d79, 0 0 25px #278d79, 0 0 30px #278d79, 0 0 35px #278d79;
+  }
+  to {
+    text-shadow: 0 0 10px #8df5e0, 0 0 15px #01ffcc, 0 0 20px #01ffcc, 0 0 25px #01ffcc, 0 0 30px #01ffcc, 0 0 35px #01ffcc, 0 0 40px #01ffcc;
+  }
+}
+.entry-title {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, rgb(22, 160, 133) 50%);
+  background-size: 200%;
+  background-position: 0 0;
+  display: inline;
+  transition: 0.5s ease-in-out;
+  font-family: raleway, arial, sans-serif;
+  text-transform: uppercase;
+}
+.entry-title a {
+  color: white;
+  text-decoration: none;
+}
+
+small, .small {
+  margin-top: 20px;
+  display: block;
+  font-family: raleway, arial, sans-serif;
+  color: white;
+  text-transform: uppercase;
+}
+small a, .small a {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.iklan {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: white;
+  width: 200px;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+.iklan p {
+  margin: 0 0 15px;
+  line-height: 1.4;
+  color: #333;
+}
+.iklan a {
+  background-color: #ff4757;
+  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 14px;
+}

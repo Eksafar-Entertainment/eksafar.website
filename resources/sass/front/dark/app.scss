@@ -1,6 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+// @import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
 // Variables
 @import 'variables';
 
@@ -14,8 +14,162 @@ body, html{
     color: #ffffff
 }
 
+
 footer{
     .nav-item a{
         text-decoration: none;
     }
 }
+
+
+.glow {
+    color: #F7A9A8;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 5px #F7A9A8, 0 0 10px #F7A9A8, 0 0 15px #e60073, 0 0 20px #e60073, 0 0 25px #e60073, 0 0 30px #e60073, 0 0 35px #e60073;
+    }
+    to {
+      text-shadow: 0 0 10px #F7A9A8, 0 0 15px #ff4da6, 0 0 20px #ff4da6, 0 0 25px #ff4da6, 0 0 30px #ff4da6, 0 0 35px #ff4da6, 0 0 40px #ff4da6;
+    }
+  }
+
+
+$t: 1s;
+$d: 0.08em;
+$n: 3;
+$e: cubic-bezier(0.860, 0.000, 0.070, 1.000); 
+$front: #19181F;
+$back: lightblue;
+
+.popout{
+	font-family: Futura, sans-serif;
+	font-weight: 600;
+	font-size: 60px;
+	padding: 60px;
+
+	@keyframes ani{
+		0%{
+			transform: translate3d(0,0,0);
+			text-shadow: 0em 0em 0 $back;
+			color: $front;
+		}
+		30%{
+			transform: translate3d(0,0,0);
+			text-shadow: 0em 0em 0 $back;
+			color: $front;
+		}
+		70%{
+			transform: translate3d($d,-$d,0);
+			text-shadow: -$d $d $back;
+			color: $front;
+		}
+		100%{
+			transform: translate3d($d,-$d,0);
+			text-shadow: -$d $d $back;
+			color: $front;
+		}
+	}
+	span{
+		position: relative;
+		display: inline-block;
+		animation: ani $t infinite alternate $e;
+		@for $i from 1 through $n{
+			&:nth-last-child(#{$i}n){ animation-delay: -$t*$i/$n/2;}
+		}
+	}
+	
+}
+
+.card{
+    width: 350px;
+    padding: 30px;
+    background: #1abc9c;
+    margin: auto;
+    transition: .3s ease;
+    box-shadow: 0 1px 1px rgba(0,0,0,.3);
+    
+    &:hover {
+      box-shadow: 0 5px 20px rgba(0,0,0,.8);
+      transform: translateY(-10px) scale(1.02);
+        .entry-title{
+              background-position: -100% 0;
+          } 
+    }
+  }
+
+  .date-glow {
+    color: #8df5e0;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+
+  @-webkit-keyframes date-glow {
+    from {
+      text-shadow: 0 0 5px #8df5e0, 0 0 10px #8df5e0, 0 0 15px #278d79, 0 0 20px #278d79, 0 0 25px #278d79, 0 0 30px #278d79, 0 0 35px #278d79;
+    }
+    to {
+      text-shadow: 0 0 10px #8df5e0, 0 0 15px #01ffcc, 0 0 20px #01ffcc, 0 0 25px #01ffcc, 0 0 30px #01ffcc, 0 0 35px #01ffcc, 0 0 40px #01ffcc;
+    }
+  }
+
+  .entry-title{
+    background: linear-gradient(to right, rgba(255,255,255,0) 50%, rgba(22, 160, 133,1.0) 50%);
+    background-size: 200%;
+    background-position: 0 0;
+    display: inline;
+    transition: .5s ease-in-out;
+    font-family: raleway, arial, sans-serif;
+    text-transform: uppercase;
+    
+    a{
+      color: white;
+      text-decoration: none;
+    }
+  }
+  
+  small{
+    margin-top: 20px;
+    display: block;
+    font-family: raleway, arial, sans-serif;
+    color: white;
+    text-transform: uppercase;
+    
+    a{
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+    }
+  }
+  
+  .iklan{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: white;
+    width: 200px;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    
+    p{
+      margin: 0 0 15px;
+      line-height: 1.4;
+      color: #333;
+    }
+    
+    a{
+      background-color: #ff4757;
+      color: white;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+  }
