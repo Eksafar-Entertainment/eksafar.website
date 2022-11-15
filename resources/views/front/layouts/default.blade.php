@@ -24,30 +24,63 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <!-- Facebook Pixel Code --><script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js'); fbq('init', '816550026455403'); fbq('track', 'PageView');</script><noscript> <img height="1" width="1" src="https://www.facebook.com/tr?id=816550026455403&ev=PageView&noscript=1"/></noscript><!-- End Facebook Pixel Code -->
+    <!-- Facebook Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '816550026455403');
+        fbq('track', 'PageView');
+    </script><noscript> <img height="1" width="1"
+            src="https://www.facebook.com/tr?id=816550026455403&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
 
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5EVW7L56Z"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'G-Y5EVW7L56Z');
-	</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5EVW7L56Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-Y5EVW7L56Z');
+    </script>
     <script src="{{ asset('js/front/custom.js') }}" defer></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+        integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     @yield('head')
 </head>
 
-<body class="dark">
+<body>
     <div id="app">
-        <nav class="navbar navbar-expand-md shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm navbar-dark border-bottom">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-
-                    {{-- <img src="{{ url('/images/ek-logo.png') }}" alt="eksafar-logo" style="height: 40px;" /> --}}
-                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 40px;" />
-                    {{-- <strong style="letter-spacing: 2.2x; font-size: 20px" class="ms-2 text-primary">EKSAFAR</strong> --}}
+                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 25px;" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -65,37 +98,37 @@
                     <ul class="navbar-nav ms-auto">
                         <!--- default Links -->
                         <li class="nav-item">
-                            <a class="nav-link glow" href="/">{{ __('Home') }}</a>
+                            <a class="nav-link" href="/">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link glow" href="/gallery">{{ __('Gallery') }}</a>
+                            <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link glow" href="/contact">{{ __('Contact') }}</a>
+                            <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
                         </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link glow" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link glow" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle glow" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
                                     style="z-index: 9999">
-                                    <a class="dropdown-item glow" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -119,7 +152,7 @@
 
 
 
-        <section class="py-5 bg-secondary text-light">
+        <section class="py-5 text-light">
             <div class="container my-4">
                 <div class="row align-items-center gy-5 gx-5">
                     <div class="col-md-6">
@@ -146,18 +179,22 @@
             </div>
         </section>
 
-        <footer class="bg-primary text-light pt-5">
+        <footer class="text-light pt-5 border-top">
 
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <h4>Useful Links</h4>
                         <ul class="nav flex-column">
-                            <li class="nav-item"><a class="text-light" href="{{url('')}}">Home</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('about')}}">About us</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('terms')}}">Terms & Condition</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('payment-policy')}}">Refund & Cancellation Policy</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('privacy')}}">Privacy Policy</a></li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('') }}">Home</a></li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('about') }}">About us</a></li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('terms') }}">Terms &
+                                    Condition</a>
+                            </li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('payment-policy') }}">Refund &
+                                    Cancellation Policy</a></li>
+                            <li class="nav-item"><a class="text-light" href="{{ url('privacy') }}">Privacy
+                                    Policy</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6">

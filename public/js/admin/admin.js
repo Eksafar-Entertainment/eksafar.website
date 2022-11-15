@@ -29935,9 +29935,9 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/admin/admin": 0,
+/******/ 			"css/front/dark/app": 0,
 /******/ 			"css/admin/admin": 0,
-/******/ 			"css/front/light/app": 0,
-/******/ 			"css/front/dark/app": 0
+/******/ 			"css/front/light/app": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -29987,10 +29987,10 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/admin/admin","css/front/light/app","css/front/dark/app"], () => (__webpack_require__("./resources/js/admin/admin.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/admin/admin","css/front/light/app","css/front/dark/app"], () => (__webpack_require__("./resources/sass/admin/admin.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/admin/admin","css/front/light/app","css/front/dark/app"], () => (__webpack_require__("./resources/sass/front/dark/app.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin/admin","css/front/light/app","css/front/dark/app"], () => (__webpack_require__("./resources/sass/front/light/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/front/dark/app","css/admin/admin","css/front/light/app"], () => (__webpack_require__("./resources/js/admin/admin.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/front/dark/app","css/admin/admin","css/front/light/app"], () => (__webpack_require__("./resources/sass/admin/admin.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/front/dark/app","css/admin/admin","css/front/light/app"], () => (__webpack_require__("./resources/sass/front/dark/app.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/front/dark/app","css/admin/admin","css/front/light/app"], () => (__webpack_require__("./resources/sass/front/light/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

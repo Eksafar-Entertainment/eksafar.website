@@ -16,8 +16,10 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $gallery = GalleryImage::latest()->limit(4)->get();
-        $events = Event::limit(4)->get();
+        $gallery = GalleryImage::latest()->limit(6)->get();
+        $events = Event::limit(4)
+            ->join('venues', "events.venue", "=", "venues.id")
+            ->select(["events.*", "venues.name as venue_name"])->get();
         $banners = Banner::limit(4)->get();
         $faker = \Faker\Factory::create();
         $type = '/';
@@ -49,28 +51,28 @@ class FrontController extends Controller
                 }
 
             case "gallery": {
-                $type = 'gallery';
+                    $type = 'gallery';
                     $gallery = GalleryImage::latest()->paginate();
                     return view('front.gallery.index', compact('gallery', 'type'));
                 }
 
             case "guest": {
-                $type = 'guest';
+                    $type = 'guest';
                     return view('front.guest.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "elements": {
-                $type = 'elements';
+                    $type = 'elements';
                     return view('front.elements.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "upcomming": {
-                $type = 'upcomming';
+                    $type = 'upcomming';
                     return view('front.events.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "current": {
-                $type = 'current';
+                    $type = 'current';
                     return view('front.events.event.index', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
@@ -80,17 +82,17 @@ class FrontController extends Controller
                 }
 
             case "privacy": {
-                $type = 'privacy';
+                    $type = 'privacy';
                     return view('front.extra.privacy', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "payment-policy": {
-                $type = 'payment-policy';
+                    $type = 'payment-policy';
                     return view('front.extra.payment-policy', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 
             case "terms": {
-                $type = 'terms';
+                    $type = 'terms';
                     return view('front.extra.terms', compact('desktop', 'mobile', 'tablet', 'path', 'type'));
                 }
 

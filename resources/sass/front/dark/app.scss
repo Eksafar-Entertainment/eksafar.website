@@ -1,8 +1,10 @@
+
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
 // Variables
 @import 'variables';
+@import '../common.scss';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -89,7 +91,7 @@ $back: lightblue;
 .card{
     width: 350px;
     padding: 30px;
-    background: #1abc9c;
+    background: #3b3b3b;
     margin: auto;
     transition: .3s ease;
     box-shadow: 0 1px 1px rgba(0,0,0,.3);
@@ -104,18 +106,18 @@ $back: lightblue;
   }
 
   .date-glow {
-    color: #8df5e0;
-    -webkit-animation: glow 1s ease-in-out infinite alternate;
-    -moz-animation: glow 1s ease-in-out infinite alternate;
-    animation: glow 1s ease-in-out infinite alternate;
+    color: #dfb8db;
+    -webkit-animation: date-glow 1s ease-in-out infinite alternate;
+    -moz-animation: date-glow 1s ease-in-out infinite alternate;
+    animation: date-glow 1s ease-in-out infinite alternate;
   }
 
   @-webkit-keyframes date-glow {
     from {
-      text-shadow: 0 0 5px #8df5e0, 0 0 10px #8df5e0, 0 0 15px #278d79, 0 0 20px #278d79, 0 0 25px #278d79, 0 0 30px #278d79, 0 0 35px #278d79;
+      text-shadow: 0 0 2px #634a61, 0 0 5px #634a61, 0 0 7px #681c61, 0 0 10px #681c61, 0 0 12px #681c61, 0 0 15px #681c61, 0 0 12px #681c61;
     }
     to {
-      text-shadow: 0 0 10px #8df5e0, 0 0 15px #01ffcc, 0 0 20px #01ffcc, 0 0 25px #01ffcc, 0 0 30px #01ffcc, 0 0 35px #01ffcc, 0 0 40px #01ffcc;
+      text-shadow: 0 0 5px #634a61, 0 0 7px #cc6ac4, 0 0 10px #cc6ac4, 0 0 12px #cc6ac4, 0 0 15px #cc6ac4, 0 0 16px #cc6ac4, 0 0 20px #cc6ac4;
     }
   }
 
