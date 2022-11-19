@@ -21309,6 +21309,24 @@ footer .nav-item a {
   text-decoration: none;
 }
 
+.gray-f {
+  color: gray;
+}
+
+.gray-footer {
+  color: gray;
+}
+
+.gray-footer:hover {
+  color: white;
+}
+
+.f-icons {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
 .glow {
   color: #F7A9A8;
   text-align: center;

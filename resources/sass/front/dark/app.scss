@@ -23,6 +23,23 @@ footer{
     }
 }
 
+.gray-f{
+  color: gray;
+}
+
+.gray-footer{
+  color: gray;
+}
+
+.gray-footer:hover{
+  color: white;
+}
+
+.f-icons{
+  display:inline-block; 
+  position:relative; 
+  text-align: center;
+}
 
 .glow {
     color: #F7A9A8;
@@ -175,3 +192,4 @@ $back: lightblue;
       font-size: 14px;
     }
   }
+

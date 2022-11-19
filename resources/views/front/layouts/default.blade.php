@@ -183,6 +183,44 @@
 
             <div class="container">
                 <div class="row">
+                    <div class="col-lg-12 col-md-12 f-icons">
+                        <a href="{{ url('/') }}">
+                            <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" />
+                        </a>
+                        <small class="gray-f">Where words fail, music speaks</small>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div  class="col-lg-12 col-md-12 f-icons">
+                        <a href="https://www.facebook.com/eksafar.club"><i class="fab fa-facebook-f fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/eksafarclub"><i class="fab fa-twitter fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/eksafar.club/"><i class="fab fa-instagram fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i class="fab fa-youtube fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i class="fab fa-whatsapp fa-2x gray-footer"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container py-3">
+                <div class="row">
+                    <div  class="col-lg-12 col-md-12 f-icons">
+                    
+                        <span class="gray-f" style="display: inline; padding-right: 20px"> &copy; Copyright <strong><span>Eksafar</span></strong></span>
+                        <span style="display: inline; padding-right: 20px"><a class="gray-footer" href="{{ url('privacy') }}">Terms & Condition</a></span>
+                        <span style="display: inline; padding-right: 20px"><a class="gray-footer" href="{{ url('payment-policy') }}">Refund &
+                                        Cancellation Policy</a></span>
+                        <span  style="display: inline; padding-right: 20px"><a class="gray-footer" href="{{ url('privacy') }}">Privacy
+                                        Policy</a></span>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- <footer class="text-light pt-5 border-top">
+
+            <div class="container">
+                <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <h4>Useful Links</h4>
                         <ul class="nav flex-column">
@@ -227,7 +265,7 @@
                 </div>
                 <div class="credits"> Designed by <a class="text-light" href="#">xpeed</a> </div>
             </div>
-        </footer>
+        </footer> -->
     </div>
 </body>
 
