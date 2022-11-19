@@ -16,11 +16,15 @@ class FrontController extends Controller
 {
     public function index()
     {
+        $agent = new Agent();
         $gallery = GalleryImage::latest()->limit(6)->get();
         $events = Event::limit(4)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])->get();
         $banners = Banner::limit(4)->get();
+        $desktop = $agent->isDesktop();
+        $mobile = $agent->isMobile();
+        $tablet = $agent->isTablet();
         $faker = \Faker\Factory::create();
         $type = '/';
 
@@ -28,7 +32,7 @@ class FrontController extends Controller
         //$image = new \mikehaertl\wkhtmlto\Image('<html>.This is the end</html>');
         ///
 
-        return view('front.home', compact('gallery', 'faker', 'events', 'banners', 'type'));
+        return view('front.home', compact('desktop', 'mobile', 'tablet', 'gallery', 'faker', 'events', 'banners', 'type'));
     }
 
     public function route($path)
