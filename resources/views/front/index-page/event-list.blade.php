@@ -60,10 +60,10 @@
 
 
 
-                            <div class="iklan">
+                            <!-- <div class="iklan">
                                 <p>Upcomming New Year Party</p>
                                 <a href="#" target="_blank">Learn More <strong>Here</strong></a>
-                            </div>
+                            </div> -->
 
 
 

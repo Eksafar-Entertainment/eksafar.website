@@ -191,6 +191,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
+                <div class="row">
                     <div  class="col-lg-12 col-md-12 f-icons">
                         <a href="https://www.facebook.com/eksafar.club"><i class="fab fa-facebook-f fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
                         <a href="https://twitter.com/eksafarclub"><i class="fab fa-twitter fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
@@ -198,6 +199,7 @@
                         <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i class="fab fa-youtube fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
                         <a href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i class="fab fa-whatsapp fa-2x gray-footer"></i></a>
                     </div>
+                </div>
                 </div>
             </div>
 
