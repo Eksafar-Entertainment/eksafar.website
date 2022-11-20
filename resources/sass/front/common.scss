@@ -59,6 +59,45 @@ html {
     backdrop-filter: blur(10px);
 }
 
+#gallery-carousel {
+    .owl-item {
+        .item-container {
+            width: 100%;
+            padding-top: 70%;
+            position: relative;
+            transform: scale(0.85);
+            transition: all 0.25s ease-in;
+            img {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+    .owl-item.active.center{
+        .item-container{
+            transform: scale(1);
+        }
+        .item-container:hover{
+            transform: scale(1.02);
+        }
+    }
+    .owl-item:not(.center){
+        .item-container{
+            img{
+                -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+                filter: grayscale(100%);
+            }
+        }
+    }
+
+   .owl-nav.disabled, .owl-dots.disabled{
+        display: block !important;
+    }
+}
+
 footer {
     .nav-item a {
         text-decoration: none;

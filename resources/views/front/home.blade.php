@@ -18,7 +18,7 @@
         </div>
 
         <script>
-            $('.owl-carousel').owlCarousel({
+            $('#main-carousel').owlCarousel({
                 responsive: {
                     0: {
                         margin: 0,
@@ -42,8 +42,46 @@
             })
         </script>
     </section>
+    <section class="py-5">
+        <div class="container">
+            <h3 class="text-center mb-4">Events</h3>
+            <div class="owl-carousel owl-theme" id="gallery-carousel">
+                @foreach ($banners as $banner)
+                    <div class="item">
+                        <div class="item-container">
+                            <img src="{{ url($banner->image) }}" />
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
 
-     @include('front.index-page.event-list')
+        <script>
+            $(document).ready(function() {
+                $('#gallery-carousel').owlCarousel({
+                    loop: true,
+                    margin: 15,
+                    nav: true,
+                    center: true,
+                    autoplay: true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 3
+                        }
+                    }
+                })
+            })
+        </script>
+    </section>
+
+
+    @include('front.index-page.event-list')
     <section class="py-5">
         <div class="container my-5">
 

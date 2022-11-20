@@ -10692,6 +10692,33 @@ html {
           backdrop-filter: blur(10px);
 }
 
+#gallery-carousel .owl-item .item-container {
+  width: 100%;
+  padding-top: 70%;
+  position: relative;
+  transform: scale(0.85);
+  transition: all 0.25s ease-in;
+}
+#gallery-carousel .owl-item .item-container img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#gallery-carousel .owl-item.active.center .item-container {
+  transform: scale(1);
+}
+#gallery-carousel .owl-item.active.center .item-container:hover {
+  transform: scale(1.02);
+}
+#gallery-carousel .owl-item:not(.center) .item-container img { /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+#gallery-carousel .owl-nav.disabled, #gallery-carousel .owl-dots.disabled {
+  display: block !important;
+}
+
 footer .nav-item a {
   text-decoration: none;
 }
