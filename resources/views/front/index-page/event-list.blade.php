@@ -73,6 +73,80 @@
 </section>
 
 
+<section class="py-5">
+        <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div class="row text-center mb-5">
+                    <h1><span class="glow">E</span>vents</h1>
+                    <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city
+                        that
+                        you won't want to miss...</h5>
+                </div>
+            </div>
+
+            <div class="col-8">
+                <div class="row gx-5 gy-5">
+                    
+            <div class="owl-carousel owl-theme" id="gallery-carousel">
+            @foreach ($events as $event)
+            <div class="carousel-item active">
+                <div class="card card-1"
+                    style="background-image:url('https://cdn.pixabay.com/photo/2016/11/21/16/55/high-heels-1846436__340.jpg'); padding-top: 80%; background-size:cover; background-position:center;background-size: 400px 400px;background-repeat: no-repeat;">
+
+                            @if ($event->status === 'CLOSED')
+                                <div class="position-absolute badge bg-danger"
+                                    style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
+                                    COMPLETED</div>
+                            @endif
+                            <div class="position-absolute top-0 start-0 w-100 h-100"
+                                style="background: linear-gradient(180deg, rgba(0,0,0,0) 54%, rgba(0,0,0,0.7) 83%);  ">
+
+                             <div class="position-absolute bottom-0 start-0 card-body text-light  w-100">
+                                 <h1 class="entry-title">
+                                     <a href="{{ url('/event/' . $event->slug) }}">{{ $event->name }}</a>
+                                 </h1>
+                                 <small>@ <a href="">Catchup Banglore</a></small><br />
+                                 <span
+                                     class="date-glow">{{ \Carbon\Carbon::parse($event->start_date)->format('d-m-Y') }}</span><br />
+                                 <a href="#" style="color: lightgray; float: right;">Learn More</a>
+                             </div>
+                         </div>
+
+                    </div>
+                </div>
+            @endforeach
+            </div>
+        </div>
+            </div>
+        </div>
+        </div>
+
+        <script>
+            $(document).ready(function() {
+                $('#gallery-carousel').owlCarousel({
+                    loop: true,
+                    margin: 5,
+                    nav: true,
+                    center: true,
+                    autoplay: true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 3
+                        }
+                    }
+                })
+            })
+        </script>
+    </section>
+
+
 <section id="slider" class="pt-5">
   <div class="container">
     <h1 class="text-center"><b>Responsive Owl Carousel</b></h1>
