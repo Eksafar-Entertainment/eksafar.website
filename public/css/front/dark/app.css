@@ -21309,6 +21309,66 @@ footer .nav-item a {
   text-decoration: none;
 }
 
+.card {
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+  border: none;
+  margin-bottom: 30px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transition: all 1s ease;
+  z-index: 999;
+}
+
+.card-01 .card-body {
+  position: relative;
+  padding-top: 40px;
+}
+
+.card-01 .badge-box {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  text-align: center;
+}
+
+.card-01 .badge-box i {
+  background: #006EFF;
+  color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.card-01 .height-fix {
+  height: 255px;
+  overflow: hidden;
+}
+
+.card-01 .height-fix .card-img-top {
+  width: auto !important;
+}
+
+.card-01.height-fix .card-img-overlay {
+  top: unset;
+  color: #fff; /* FF3.6-15 */ /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(1, 1, 1, 0) 0%, rgba(1, 1, 1, 0) 1%, rgba(1, 1, 1, 0.91) 31%, rgba(1, 1, 1, 0.91) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#001a606f", endColorstr="#e8154159",GradientType=0 );
+}
+
+.card-01.height-fix .fa {
+  color: #fff;
+  font-size: 22px;
+  margin-right: 18px;
+}
+
 .gray-f {
   color: gray;
 }

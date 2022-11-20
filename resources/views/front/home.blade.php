@@ -56,7 +56,7 @@
             <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($events as $event)
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card card-01">
 
                             <div>
                                 <a class="" href="{{ url('/event/' . $event->slug) }}">
@@ -77,7 +77,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="card-body pt-0">
+                            <div class="card-body pt-0 card-img-overlay">
                                 <span
                                     class="text-danger">{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span><br />
                                 <span>{{ $event->venue_name }}</span>
