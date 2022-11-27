@@ -98,7 +98,7 @@
     </section> --}}
     <section class="py-5">
         <div class="container">
-            <h3 class="text-center mb-4">Events</h3>
+            <h2 class="text-center mb-4"><span class="glow">U</span>pdates</h2>
             <div class="owl-carousel owl-theme" id="gallery-carousel">
                 @foreach ($banners as $banner)
                     <div class="item">
@@ -140,7 +140,7 @@
         <div class="container my-5">
 
             <div class="text-center mb-5">
-                <h1>{{ __('Events') }}</h1>
+                <h1><span class="glow">E</span>vents</h1>
                 <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
                     you won't want to miss...</h5>
             </div>
@@ -196,7 +196,7 @@
             <div class="container my-5">
 
                 <div class="text-center mb-5">
-                    <h1>{{ __('Gallery') }}</h1>
+                    <h1><span class="glow">G</span>allery</h1>
                     <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout the Gallery for the past events that have
                         conducted in your city.</h5>
                 </div>
