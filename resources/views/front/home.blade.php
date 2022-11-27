@@ -171,7 +171,7 @@
                               <h2 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h2>
                               <p class="card-text">{!! Str::limit("$event->description", 90, ' ...') !!}</p>
 
-                              <span class="date-glow">{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span><br />
+                              <span class="date-glow">@if ($event->status === 'CLOSED') COMPLETED @else {{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }} @endif</span><br />
                               <span>@ {{ $event->venue_name }}</span>
                             </div>
                         </div>
