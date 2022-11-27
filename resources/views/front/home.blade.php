@@ -169,7 +169,7 @@
                             
                             <div class="card-img-overlay text-center">
                               <h2 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h2>
-                              <p class="card-text">{!! $event->description !!}</p>
+                              <p class="card-text">{!! Str::limit("$event->description", 90, ' ...') !!}</p>
 
                               <span class="date-glow">{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span><br />
                               <span>@ {{ $event->venue_name }}</span>
