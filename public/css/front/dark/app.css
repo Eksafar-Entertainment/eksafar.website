@@ -21342,10 +21342,16 @@ footer .nav-item a {
   margin-bottom: 30px;
 }
 
+.card-01 {
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  z-index: 0 !important;
+}
+
 .card:hover {
   transform: scale(1.05);
   transition: all 1s ease;
-  z-index: 999;
+  z-index: 0;
 }
 
 .card-01 .card-body {
@@ -21394,6 +21400,23 @@ footer .nav-item a {
   color: #fff;
   font-size: 22px;
   margin-right: 18px;
+}
+
+.card-img-caption {
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.card-img-caption .card-img-top {
+  z-index: 0;
+}
+
+.card-img-caption .card-text {
+  text-align: center;
+  width: 100%;
+  margin: 33% 0;
+  position: absolute;
+  z-index: 1;
 }
 
 .gray-f {
@@ -21505,18 +21528,6 @@ footer .nav-item a {
   display: inline-block;
   -webkit-animation: ani 1s infinite alternate cubic-bezier(0.86, 0, 0.07, 1);
           animation: ani 1s infinite alternate cubic-bezier(0.86, 0, 0.07, 1);
-}
-.popout span:nth-last-child(1n) {
-  -webkit-animation-delay: -0.1666666667s;
-          animation-delay: -0.1666666667s;
-}
-.popout span:nth-last-child(2n) {
-  -webkit-animation-delay: -0.3333333333s;
-          animation-delay: -0.3333333333s;
-}
-.popout span:nth-last-child(3n) {
-  -webkit-animation-delay: -0.5s;
-          animation-delay: -0.5s;
 }
 
 .card-1 {
