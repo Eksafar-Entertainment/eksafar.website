@@ -36,11 +36,6 @@
                               <span class="date-glow">{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span><br />
                               <span>@ {{ $event->venue_name }}</span>
                             </div>
-                            <!-- <div class="card-body mb-20 card-img-overlay">
-                                <span
-                                    class="text-danger">{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span><br />
-                                <span>{{ $event->venue_name }}</span>
-                            </div> -->
                         </div>
 
                         <div class="mb-20" style="margin-top: -20%;">

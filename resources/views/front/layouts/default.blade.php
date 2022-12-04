@@ -298,7 +298,7 @@
 
         <footer class="text-light pt-5 border-top">
 
-            <div class="container">
+            <div class="container footer-margin">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 f-icons">
                         <a href="{{ url('/') }}">
@@ -320,7 +320,7 @@
                 </div>
             </div>
 
-            <div class="container py-3">
+            <div class="container py-3 footer-margin">
                 <div class="row">
                     <div  class="col-lg-12 col-md-12 f-icons">
                     
@@ -334,10 +334,10 @@
                 </div>
             </div>
             <hr/>
-            <div class="container py-3">
+            <div class="container py-2">
                 <div class="row">
                     <div  class="col-lg-12 col-md-12 f-icons">
-                        <span style="display: inline; padding-right: 20px"> &copy; Copyright <strong><span>Eksafar</span></strong></span>
+                        <span style="display: inline; padding-right: 20px"> &copy; Copyright 2023 <strong><span>Eksafar Club</span></strong> All Rights reserved</span>
                     </div>
                 </div>
             </div>
