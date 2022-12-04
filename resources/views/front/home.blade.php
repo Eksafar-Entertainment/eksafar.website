@@ -15,7 +15,7 @@
         <div class="caption p-5 transparent-gradient-blur border">
             <p>People of Eksafar Club,</p>
 
-            <p>In 2023 you will witness the rise of a magnificent tale in the history of Eksafr's Great Library. Our
+            <p>In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great Library. Our
                 destination lies high on the horizon. Prepare yourself for a beautiful adventure.</p>
 
             <p>Expore all the events below.</p>
@@ -199,7 +199,8 @@
                               <span class="date-glow">@if ($event->status === 'CLOSED') COMPLETED @else {{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }} @endif</span><br />
                               <span>@ {{ $event->venue_name }}</span>
                             </div>
-                            <a class="btn btn-light fw-lighter position-absolute" style="left: 50%; transform: translateX(-50%); bottom:10px; z-index:9999" href="{{ url('/event/' . $event->slug) }}"> More Info > </a>
+
+                            <a class="btn btn-light fw-lighter position-absolute" style="left: 50%; transform: translateX(-50%); bottom:10px; z-index:9" href="{{ url('/event/' . $event->slug) }}"> More Info > </a>
                         </div>
                       
                     </div>
