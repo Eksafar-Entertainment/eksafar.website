@@ -337,7 +337,7 @@
             <div class="container py-2">
                 <div class="row">
                     <div  class="col-lg-12 col-md-12 f-icons">
-                        <span style="display: inline; padding-right: 20px"> &copy; Copyright 2023 <strong><span>Eksafar Club</span></strong> All Rights reserved</span>
+                        <span style="display: inline; padding-right: 20px"> &copy; Copyright 2023 <strong><span class="date-glow">Eksafar Club</span></strong> All Rights reserved</span>
                     </div>
                 </div>
             </div>

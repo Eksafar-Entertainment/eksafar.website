@@ -13,13 +13,12 @@
             Your browser does not support the video tag.
         </video>
         <div class="caption p-5 transparent-gradient-blur border">
-            <p>People of Tomorrow,</p>
+            <p>People of Eksafar Club,</p>
 
-            <p>In 2023 you will witness the rise of a magnificent tale in the history of Tomorrowland's Great Library. Our
-                destination lies high on the horizon. Prepare yourself for a beautiful adventure on July 21 & - 23 and July
-                28 - 30.</p>
+            <p>In 2023 you will witness the rise of a magnificent tale in the history of Eksafr's Great Library. Our
+                destination lies high on the horizon. Prepare yourself for a beautiful adventure.</p>
 
-            <p>Pre-Registration starts on December 7 on adscendo.tomorrowland.com.</p>
+            <p>Expore all the events below.</p>
         </div>
         <script>
             document.querySelector("#banner-video video")?.play();
@@ -96,7 +95,31 @@
             })
         </script>
     </section> --}}
+
     <section class="py-5">
+        <style>
+            .owl-prev {
+                width: 15px;
+                height: 100px;
+                position: absolute;
+                top: 30%;
+                margin-left: -25px !important;
+                display: block !important;
+                border:0px solid black;
+            }
+
+            .owl-next {
+                width: 15px;
+                height: 100px;
+                position: absolute;
+                top: 30%;
+                right: -25px;
+                display: block !important;
+                border:0px solid black;
+            }
+            .owl-prev i, .owl-next i {transform : scale(1,6); color: #ccc;}
+        </style>
+
         <div class="container">
             <h2 class="text-center mb-4"><span class="glow">U</span>pdates</h2>
             <div class="owl-carousel owl-theme" id="gallery-carousel">
@@ -114,8 +137,10 @@
             $(document).ready(function() {
                 $('#gallery-carousel').owlCarousel({
                     loop: true,
-                    margin: 15,
-                    nav: true,
+                    margin: 10,
+                    nav: false,
+                    navText : ['<i class="fa fa-angle-left glow" aria-hidden="true"></i>','<i class="fa fa-angle-right glow" aria-hidden="true"></i>'],
+                    autoWidth:false,
                     center: true,
                     autoplay: true,
                     responsive: {
@@ -186,36 +211,44 @@
 
     <section id="slider" class="pt-5">
   <div class="container" style="margin-top: 10%; margin-bottom: 10%;">
-    <h1 class="text-center"><b>Responsive Owl Carousel</b></h1>
+    <h1 class="text-center"><b><span class="glow">W</span>hat's next</b></h1>
       <div class="slider">
                 <div class="owl-carousel">
                 <div class="slider-card">
                         <div class="d-flex justify-content-center align-items-center mb-4">
                             <img src="images/slide-2.jpg" alt="">
                         </div>
-                        <h5 class="mb-0 text-center"><b>Wordpress Tutorials</b></h5>
-                        <p class="text-center p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima.</p>
+                        <h5 class="mb-0 text-center"><b>Our Style</b></h5>
+                        <p class="text-center p-4">
+                            We celebrate our rich history in a contemporary style, and look forward to seeing this work continue in the future as we embark on a new journey as Eksafar Club..
+                        </p>
                     </div>
                     <div class="slider-card">
                         <div class="d-flex justify-content-center align-items-center mb-4">
                             <img src="images/slide-3.jpg" alt="">
                         </div>
-                        <h5 class="mb-0 text-center"><b>PHP MySQL Tutorials</b></h5>
-                        <p class="text-center p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima.</p>
+                        <h5 class="mb-0 text-center"><b>Get Ready for Winter</b></h5>
+                        <p class="text-center p-4">
+                            Winter is coming closer by the day and magical memories await, so dress the part, stay warm, and spread positive vibes with eksafar's iconic winter Events...
+                        </p>
                     </div>
                     <div class="slider-card">
                         <div class="d-flex justify-content-center align-items-center mb-4">
                             <img src="images/slide-4.jpg" alt="">
                         </div>
-                        <h5 class="mb-0 text-center"><b>Javascript Tutorials</b></h5>
-                        <p class="text-center p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima.</p>
+                        <h5 class="mb-0 text-center"><b>New Year Blast</b></h5>
+                        <p class="text-center p-4">
+                            Tune in and secure your passes for your favourite time of the year, Packages are nearly sold our. You can book your packages from our site.    
+                        </p>
                     </div>
                     <div class="slider-card">
                         <div class="d-flex justify-content-center align-items-center mb-4">
                             <img src="images/slide-5.jpg" alt="">
                         </div>
-                        <h5 class="mb-0 text-center"><b>Bootstrap Tutorials</b></h5>
-                        <p class="text-center p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima.</p>
+                        <h5 class="mb-0 text-center"><b>Getting Ready For New Year</b></h5>
+                        <p class="text-center p-4">
+                            Discover a new and wonderful Year ahead of 2023 live to the rhythm of the sun, guided by the magic of Eksafar for the new year.    
+                        </p>
                     </div>
                 </div>
             </div>
@@ -233,8 +266,8 @@ $(document).ready(function(){
     autoplayHoverPause:true,
     center: true,
     navText: [
-        "<i class='fa fa-angle-left'></i>",
-        "<i class='fa fa-angle-right'></i>"
+        "<i class='fa fa-angle-left date-glow'></i>",
+        "<i class='fa fa-angle-right date-glow'></i>"
     ],
     responsive:{
         0:{
