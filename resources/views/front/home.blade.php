@@ -266,7 +266,7 @@ $(document).ready(function(){
                 <div class="row gx-5 gy-5">
                     @foreach ($gallery as $image)
                         <div class="col-md-4">
-                            <div class="border "
+                            <div class=""
                                 style="padding-top: 75%; background-size:cover; background-image: url(' {{ route('resources:images', ['src' => 'storage/uploads/' . $image->path, 'size' => 'md']) }}')">
                             </div>
                         </div>
