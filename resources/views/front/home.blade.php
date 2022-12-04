@@ -173,7 +173,7 @@
             <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($events as $event)
                     <div class="col-md-4">
-                        <div class="card card-01 position-relative">
+                        <div class="card card-01 position-relative" style="z-index: 0;">
                             
                             <div class="card-img-caption">
                                 <a class="" href="{{ url('/event/' . $event->slug) }}">
@@ -200,9 +200,10 @@
                               <span>@ {{ $event->venue_name }}</span>
                             </div>
 
-                            <a class="btn btn-light fw-lighter position-absolute" style="left: 50%; transform: translateX(-50%); bottom:10px; z-index:9" href="{{ url('/event/' . $event->slug) }}"> More Info > </a>
                         </div>
-                      
+                        <div style="z-index: 9; margin-top: -20%; text-align: center;">
+                            <a class="btn btn-light fw-lighter" style="z-index:9" href="{{ url('/event/' . $event->slug) }}"> More Info > </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
