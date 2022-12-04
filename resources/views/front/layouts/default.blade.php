@@ -269,7 +269,7 @@
 
 
 
-        <section class="py-5 text-light">
+        <!-- <section class="py-5 text-light">
             <div class="container my-4">
                 <div class="row align-items-center gy-5 gx-5">
                     <div class="col-md-6">
@@ -294,7 +294,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <footer class="text-light pt-5 border-top">
 
@@ -324,13 +324,20 @@
                 <div class="row">
                     <div  class="col-lg-12 col-md-12 f-icons">
                     
-                        <span class="gray-f" style="display: inline; padding-right: 20px"> &copy; Copyright <strong><span>Eksafar</span></strong></span>
                         <span style="display: inline; padding-right: 20px"><a class="gray-footer" href="{{ url('privacy') }}">Terms & Condition</a></span>
                         <span style="display: inline; padding-right: 20px"><a class="gray-footer" href="{{ url('payment-policy') }}">Refund &
                                         Cancellation Policy</a></span>
                         <span  style="display: inline; padding-right: 20px"><a class="gray-footer" href="{{ url('privacy') }}">Privacy
                                         Policy</a></span>
                     </ul>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="container py-3">
+                <div class="row">
+                    <div  class="col-lg-12 col-md-12 f-icons">
+                        <span style="display: inline; padding-right: 20px"> &copy; Copyright <strong><span>Eksafar</span></strong></span>
                     </div>
                 </div>
             </div>

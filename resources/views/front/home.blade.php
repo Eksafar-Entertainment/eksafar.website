@@ -148,8 +148,8 @@
             <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($events as $event)
                     <div class="col-md-4">
-                        <div class="card card-01">
-
+                        <div class="card card-01 position-relative">
+                            
                             <div class="card-img-caption">
                                 <a class="" href="{{ url('/event/' . $event->slug) }}">
                                     <div class="w-100 position-relative overflow-hidden"
@@ -174,21 +174,83 @@
                               <span class="date-glow">@if ($event->status === 'CLOSED') COMPLETED @else {{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }} @endif</span><br />
                               <span>@ {{ $event->venue_name }}</span>
                             </div>
+                            <a class="btn btn-light fw-lighter position-absolute" style="left: 50%; transform: translateX(-50%); bottom:10px; z-index:9999" href="{{ url('/event/' . $event->slug) }}"> More Info > </a>
                         </div>
-
-                        <div class="mb-20" style="margin-top: -20%;">
-
-                            <div class="text-center" >
-                                <a class="btn btn-light fw-lighter" href="{{ url('/event/' . $event->slug) }}"> More Info > </a>
-                            </div>
-
-                        </div>
+                      
                     </div>
                 @endforeach
             </div>
         </div>
 
     </section>
+
+    <section id="slider" class="pt-5">
+  <div class="container" style="margin-top: 10%; margin-bottom: 10%;">
+    <h1 class="text-center"><b>Responsive Owl Carousel</b></h1>
+      <div class="slider">
+                <div class="owl-carousel">
+                <div class="slider-card">
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <img src="images/slide-2.jpg" alt="">
+                        </div>
+                        <h5 class="mb-0 text-center"><b>Wordpress Tutorials</b></h5>
+                        <p class="text-center p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima.</p>
+                    </div>
+                    <div class="slider-card">
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <img src="images/slide-3.jpg" alt="">
+                        </div>
+                        <h5 class="mb-0 text-center"><b>PHP MySQL Tutorials</b></h5>
+                        <p class="text-center p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima.</p>
+                    </div>
+                    <div class="slider-card">
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <img src="images/slide-4.jpg" alt="">
+                        </div>
+                        <h5 class="mb-0 text-center"><b>Javascript Tutorials</b></h5>
+                        <p class="text-center p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima.</p>
+                    </div>
+                    <div class="slider-card">
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <img src="images/slide-5.jpg" alt="">
+                        </div>
+                        <h5 class="mb-0 text-center"><b>Bootstrap Tutorials</b></h5>
+                        <p class="text-center p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima.</p>
+                    </div>
+                </div>
+            </div>
+  </div>
+
+  <script>
+// Owlcarousel
+$(document).ready(function(){
+  $(".owl-carousel").owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    autoplay:true,
+    autoplayTimeout:3000,
+    autoplayHoverPause:true,
+    center: true,
+    navText: [
+        "<i class='fa fa-angle-left'></i>",
+        "<i class='fa fa-angle-right'></i>"
+    ],
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:3
+        }
+    }
+  });
+});
+  </script>
+</section>
 
     <section
         style="background-image: url(https://picsum.photos/1080/720?id=1);background-size: cover;background-position: center;background-attachment: fixed;">
