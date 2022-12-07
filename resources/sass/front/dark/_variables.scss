@@ -1,0 +1,38 @@
+
+//$enable-gradients: true;
+
+
+/* redefine theme colors for dark theme */
+$primary: #05335c;
+$secondary: #9C0259;
+$white: #fff;
+$black: #000;
+
+// Body
+$body-bg: #111;
+$card-bg: #333;
+
+$navbar-dark-color: rgba($white, .9);
+
+// Typography
+$font-family-sans-serif: "Figtree", sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+$enable-rounded: false;
+
+//remove shadow
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
+$input-btn-focus-box-shadow: none;
+$form-select-focus-box-shadow: none;
+$btn-focus-box-shadow: none;
+$btn-active-box-shadow: none;
+
+$border-color: rgba(255,255,255,0.09);
+$input-border-color: rgba(255,255,255,0.4);
+
+$color-purple: #8B5CF6;
+$color-pink: #EC4899;
+$color-gray: #9CA3AF;
+$color-black: #1F2937;
+$card-size: 23rem;

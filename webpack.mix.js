@@ -21,4 +21,5 @@ mix.js('resources/js/admin/admin.js', 'public/js/admin')
 
 mix.js('resources/js/front/app.js', 'public/js/front')
    .react()
-   .sass('resources/sass/front/app.scss', 'public/css/front');
+   .sass('resources/sass/front/dark/app.scss', 'public/css/front/dark')
+   .sass('resources/sass/front/light/app.scss', 'public/css/front/light');

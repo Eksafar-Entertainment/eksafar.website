@@ -1,0 +1,275 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
+// Variables
+@import 'variables';
+@import '../common.scss';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+body, html{
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    color: #ffffff
+}
+
+
+footer{
+    .nav-item a{
+        text-decoration: none;
+    }
+}
+
+.card{
+  box-shadow:2px 2px 20px rgba(0,0,0,0.3); border:none; margin-bottom:30px;
+}
+
+.card-01 {
+  background: linear-gradient(to bottom, black 50%, transparent 100%);
+  z-index: -1 !important;
+}
+
+.card:hover{
+  transform: scale(1.05);
+  transition: all 1s ease;
+  z-index: 0;
+}
+
+.card-01 .card-body{
+  position:relative;
+  padding-top:40px;
+}
+.card-01 .badge-box{
+  position:absolute; 
+  top:-20px; left:50%; width:100px; height:100px;margin-left:-50px; text-align:center;
+}
+.card-01 .badge-box i{
+  background:#006EFF; color:#fff; border-radius:50%;  width:50px; height:50px; line-height:50px; text-align:center; font-size:20px;
+}
+.card-01 .height-fix{
+  height:255px; overflow:hidden;
+}
+
+.card-01 .height-fix .card-img-top{width:auto !important;}
+
+.card-01.height-fix .card-img-overlay{
+  top:unset; 
+  color:#fff;
+  background: linear-gradient(rgba(0,0,0,.1),rgb(0,0,0));
+}
+
+.card-01.height-fix .fa{color: #fff;font-size: 22px;margin-right: 18px;};
+
+.card-img-caption {
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+}
+  
+.card-img-caption .card-img-top {
+  z-index: 0;
+}
+    
+.card-img-caption .card-text {
+  text-align: center;
+  width: 100%;
+  margin: 33% 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.gray-f{
+  color: gray;
+}
+
+.gray-footer{
+  color: gray;
+}
+
+.gray-footer:hover{
+  color: white;
+}
+
+
+.navbar-desktop{
+  background-color:rgba(0, 0, 0, 0.6);
+  position:fixed;
+  margin-top: -6px !important;
+  width:100%;
+  z-index: 2;
+}
+.navbar-mobile{
+  background-color:black;
+  position:fixed;
+  width:100%;
+  z-index: 2;
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .navbar-desktop {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.f-icons{
+  display:inline-block; 
+  position:relative; 
+  text-align: center;
+}
+
+.glow {
+    color: #F7A9A8;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 5px #F7A9A8, 0 0 10px #F7A9A8, 0 0 15px #e60073, 0 0 20px #e60073, 0 0 25px #e60073, 0 0 30px #e60073, 0 0 35px #e60073;
+    }
+    to {
+      text-shadow: 0 0 10px #F7A9A8, 0 0 15px #ff4da6, 0 0 20px #ff4da6, 0 0 25px #ff4da6, 0 0 30px #ff4da6, 0 0 35px #ff4da6, 0 0 40px #ff4da6;
+    }
+  }
+
+
+$t: 1s;
+$d: 0.08em;
+$n: 3;
+$e: cubic-bezier(0.860, 0.000, 0.070, 1.000); 
+$front: #19181F;
+$back: lightblue;
+
+.popout{
+	font-family: Futura, sans-serif;
+	font-weight: 600;
+	font-size: 60px;
+	padding: 60px;
+
+	@keyframes ani{
+		0%{
+			transform: translate3d(0,0,0);
+			text-shadow: 0em 0em 0 $back;
+			color: $front;
+		}
+		30%{
+			transform: translate3d(0,0,0);
+			text-shadow: 0em 0em 0 $back;
+			color: $front;
+		}
+		70%{
+			transform: translate3d($d,-$d,0);
+			text-shadow: -$d $d $back;
+			color: $front;
+		}
+		100%{
+			transform: translate3d($d,-$d,0);
+			text-shadow: -$d $d $back;
+			color: $front;
+		}
+	}
+	span{
+		position: relative;
+		display: inline-block;
+		animation: ani $t infinite alternate $e;
+	}
+	
+}
+
+.card-1{
+    width: 350px;
+    padding: 30px;
+    background: #3b3b3b;
+    margin: auto;
+    transition: .3s ease;
+    box-shadow: 0 1px 1px rgba(0,0,0,.3);
+    
+    &:hover {
+      box-shadow: 0 5px 20px rgba(0,0,0,.8);
+      transform: translateY(-10px) scale(1.02);
+        .entry-title{
+              background-position: -100% 0;
+          } 
+    }
+  }
+
+  .date-glow {
+    color: #dfb8db;
+    -webkit-animation: date-glow 1s ease-in-out infinite alternate;
+    -moz-animation: date-glow 1s ease-in-out infinite alternate;
+    animation: date-glow 1s ease-in-out infinite alternate;
+  }
+
+  @-webkit-keyframes date-glow {
+    from {
+      text-shadow: 0 0 2px #634a61, 0 0 5px #634a61, 0 0 7px #681c61, 0 0 10px #681c61, 0 0 12px #681c61, 0 0 15px #681c61, 0 0 12px #681c61;
+    }
+    to {
+      text-shadow: 0 0 5px #634a61, 0 0 7px #cc6ac4, 0 0 10px #cc6ac4, 0 0 12px #cc6ac4, 0 0 15px #cc6ac4, 0 0 16px #cc6ac4, 0 0 20px #cc6ac4;
+    }
+  }
+
+  .entry-title{
+    background: linear-gradient(to right, rgba(255,255,255,0) 50%, rgba(22, 160, 133,1.0) 50%);
+    background-size: 200%;
+    background-position: 0 0;
+    display: inline;
+    transition: .5s ease-in-out;
+    font-family: raleway, arial, sans-serif;
+    text-transform: uppercase;
+    
+    a{
+      color: white;
+      text-decoration: none;
+    }
+  }
+  
+  small{
+    margin-top: 20px;
+    display: block;
+    font-family: raleway, arial, sans-serif;
+    color: white;
+    text-transform: uppercase;
+    
+    a{
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+    }
+  }
+  
+  .iklan{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: white;
+    width: 200px;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    
+    p{
+      margin: 0 0 15px;
+      line-height: 1.4;
+      color: #333;
+    }
+    
+    a{
+      background-color: #ff4757;
+      color: white;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+  }
+
+.footer-margin {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
