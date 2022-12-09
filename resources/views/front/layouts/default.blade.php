@@ -82,7 +82,7 @@
 
 <body>
     <div id="app">
-        <div class="navbar-div">
+        <div class="navbar-div position-sticky">
                     <!-- Navbar -->
             <nav class="navbar @if($desktop) navbar-desktop @else navbar-mobile @endif navbar-expand-lg shadow-sm navbar-dark">
               <!-- Container wrapper -->

@@ -32,11 +32,6 @@ footer{
   z-index: -1 !important;
 }
 
-.card:hover{
-  transform: scale(1.05);
-  transition: all 1s ease;
-  z-index: 0;
-}
 
 .card-01 .card-body{
   position:relative;
@@ -95,14 +90,14 @@ footer{
 
 .navbar-desktop{
   background-color:rgba(0, 0, 0, 0.6);
-  position:fixed;
+  //position:fixed;
   margin-top: -6px !important;
   width:100%;
   z-index: 2;
 }
 .navbar-mobile{
   background-color:black;
-  position:fixed;
+  //position:fixed;
   width:100%;
   z-index: 2;
 }
