@@ -49,6 +49,7 @@
             #banner-video .caption{
                 position: absolute;
                 max-width: 600px;
+                min-width: 380px;
                 bottom: 25px;
                 left: 50%;
                 transform: translateX(-50%);
