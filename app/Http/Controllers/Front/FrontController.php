@@ -20,7 +20,7 @@ class FrontController extends Controller
         $gallery = GalleryImage::latest()->limit(6)->get();
         $events = Event::limit(4)
             ->join('venues', "events.venue", "=", "venues.id")
-            ->select(["events.*", "venues.name as venue_name"])->get();
+            ->select(["events.*", "venues.name as venue_name"])->orderBy('start_date', 'DESC')->get();
         $banners = Banner::limit(4)->get();
         $desktop = $agent->isDesktop();
         $mobile = $agent->isMobile();
