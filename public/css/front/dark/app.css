@@ -21564,14 +21564,13 @@ footer .nav-item a {
   text-decoration: none;
 }
 
-small, .small {
-  margin-top: 20px;
+.small-class {
   display: block;
   font-family: raleway, arial, sans-serif;
   color: white;
   text-transform: uppercase;
 }
-small a, .small a {
+.small-class a {
   font-weight: 700;
   color: white;
   text-decoration: none;
