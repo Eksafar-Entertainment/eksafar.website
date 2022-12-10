@@ -10985,21 +10985,6 @@ html {
   display: block !important;
 }
 
-.glass {
-  position: relative;
-}
-.glass::after {
-  position: absolute;
-  content: "";
-  background: linear-gradient(225deg, rgba(255, 255, 255, 0.3137254902) 50%, rgba(255, 255, 255, 0.062745098));
-  pointer-events: none;
-  height: 100%;
-  width: 100%;
-  z-index: 99999999;
-  top: 0;
-  left: 0;
-}
-
 footer .nav-item a {
   text-decoration: none;
 }
