@@ -271,6 +271,9 @@
             </div>
         </div>
     </footer>
+    @if ($mobile)
+    <div style="height: 60px"></div>
+    @endif
 </body>
 
 <script>
