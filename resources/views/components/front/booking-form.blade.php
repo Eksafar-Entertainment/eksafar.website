@@ -27,10 +27,10 @@
                                 <td width="1%" class="align-middle">
                                     <input type="hidden"
                                         name="items[{{ $n }}][event_ticket_id]"
-                                        value="{{ $event_ticket->id }}" class=" text-light" />
+                                        value="{{ $event_ticket->id }}" class="" />
                                     <input type="hidden" value="{{ $event_ticket->price }}"
-                                        data-field="price" class="text-light" />
-                                    <input type="number" class="form-control form-control-sm text-light"
+                                        data-field="price" />
+                                    <input type="number" class="form-control form-control-sm"
                                         data-field='quantity' placeholder="Qtde."
                                         style="min-width: 80px"
                                         name="items[{{ $n }}][quantity]" @if($event_ticket->status=="SOLD") disabled @endif/>
