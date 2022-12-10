@@ -182,42 +182,37 @@
             <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($events as $event)
                     <div class="col-md-4">
-                        <div class="card card-01 position-relative rounded over-flow-hidden" style="z-index: 0;">
+                        <div class="card rounded over-flow-hidden">
+                            <div class="w-100 position-relative overflow-hidden rounded"
+                                style="background-image:linear-gradient(0deg, rgba(149, 6, 90, 0.3), rgba(126, 4, 75, 0.3)), url('{{ $event->cover_image }}'); padding-top: 80%; background-size:cover; background-position:center;">
+                                @if ($event->status === 'CLOSED')
+                                    <div class="position-absolute badge bg-danger"
+                                        style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
+                                        COMPLETED</div>
+                                @endif
 
-                            <div class="card-img-caption">
-                                <a class="" href="{{ url('/event/' . $event->slug) }}">
-                                    <div class="w-100 position-relative overflow-hidden rounded"
-                                        style="background-image:linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3)), url('{{ $event->cover_image }}'); padding-top: 80%; background-size:cover; background-position:center;">
+
+                                <div class="card-img-overlay rounded text-center w-100 h-100">
+                                    <h2 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h2>
+                                    <p class="card-text">{!! Str::limit("$event->description", 90, ' ...') !!}</p>
+
+                                    <span class="date-glow">
                                         @if ($event->status === 'CLOSED')
-                                            <div class="position-absolute badge bg-danger"
-                                                style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
-                                                COMPLETED</div>
+                                            COMPLETED
+                                        @else
+                                            {{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}
                                         @endif
-                                    </div>
-                                </a>
+                                    </span><br />
+                                    <span>@ {{ $event->venue_name }}</span>
+                                </div>
+                                <div style="position:absolute; text-align: center;  left: 0; bottom:10px; z-index:99999"
+                                    class="w-100">
+                                    <a class="btn btn-light fw-lighter" href="{{ url('/event/' . $event->slug) }}">More Info
+                                        <i class="fa-solid fa-arrow-right"></i> </a>
+                                </div>
                             </div>
 
-                            <div class="card-img-overlay rounded text-center">
-                                <h2 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h2>
-                                <p class="card-text">{!! Str::limit("$event->description", 90, ' ...') !!}</p>
 
-                                <span class="date-glow">
-                                    @if ($event->status === 'CLOSED')
-                                        COMPLETED
-                                    @else
-                                        {{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}
-                                    @endif
-                                </span><br />
-                                <span>@ {{ $event->venue_name }}</span>
-                            </div>
-
-                        </div>
-                        <div style="z-index: 9; margin-top: -20%; text-align: center;">
-                            <a class="btn btn-light fw-lighter" style="z-index:9"
-                                href="{{ url('/event/' . $event->slug) }}">
-                                More Info
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
                 @endforeach
