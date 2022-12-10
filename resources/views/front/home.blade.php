@@ -132,7 +132,7 @@
             <div class="owl-carousel owl-theme" id="gallery-carousel">
                 @foreach ($banners as $banner)
                     <div class="item">
-                        <div class="item-container">
+                        <div class="item-container ">
                             <img class="rounded" src="{{ url($banner->image) }}" />
                         </div>
                     </div>

@@ -10982,8 +10982,24 @@ html {
 #gallery-carousel .owl-item:not(.center) .item-container img { /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-#gallery-carousel .owl-nav.disabled, #gallery-carousel .owl-dots.disabled {
+#gallery-carousel .owl-nav.disabled,
+#gallery-carousel .owl-dots.disabled {
   display: block !important;
+}
+
+.glass {
+  position: relative;
+}
+.glass::after {
+  position: absolute;
+  content: "";
+  background: linear-gradient(225deg, rgba(255, 255, 255, 0.3137254902) 50%, rgba(255, 255, 255, 0.062745098));
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  z-index: 99999999;
+  top: 0;
+  left: 0;
 }
 
 footer .nav-item a {

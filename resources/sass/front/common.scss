@@ -76,28 +76,28 @@ html {
             }
         }
     }
-    .owl-item.active.center{
-        .item-container{
+    .owl-item.active.center {
+        .item-container {
             transform: scale(1);
         }
-        .item-container:hover{
+        .item-container:hover {
             transform: scale(1.02);
         }
     }
-    .owl-item:not(.center){
-        .item-container{
-            img{
+    .owl-item:not(.center) {
+        .item-container {
+            img {
                 -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
                 filter: grayscale(100%);
             }
         }
     }
 
-   .owl-nav.disabled, .owl-dots.disabled{
+    .owl-nav.disabled,
+    .owl-dots.disabled {
         display: block !important;
     }
 }
-
 footer {
     .nav-item a {
         text-decoration: none;
