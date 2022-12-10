@@ -20,8 +20,8 @@
                                 <td class="ps-0">
                                     <h6 class="mb-0 text-light">{{ $event_ticket->name }} on <span class="badge bg-danger">
                                         {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format("d-m-Y") }}</span></h6>
-                                    <small
-                                        class="text-muted ">{{ $event_ticket->description }}</small><br>
+                                    <!-- <small class="text-muted ">{{ $event_ticket->description }}</small> -->
+                                    <!-- <br/> -->
                                     <span class="text-light"> @money($event_ticket->price)</span>
                                 </td>
                                 <td width="1%" class="align-middle">

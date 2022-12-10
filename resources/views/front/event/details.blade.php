@@ -248,7 +248,7 @@
                         </div>
                     </div>
                     <div class="d-flex mt-3">
-                        <div class="fs-3 text-secondary"><i class="fa-solid fa-globe"></i></div>
+                        <div class="fs-3 text-secondary"><i class="fa-solid fa-globe glow"></i></div>
                         <div class="flex-grow-1 ps-4">
                             <small class="text-muted mb-0 d-flex">Language</small>
                             <span>{{ $event->language }}</span>
@@ -277,16 +277,24 @@
 
     <div class="d-flex ">
         <div class="fs-4"><i class="fas fa-wallet"></i> </div>
-        <div class="flex-grow-1 ps-3">
-            <span class="fs-4 fw-bold">@money($event_tickets[0]->price)</span>
-            <span>Onwards</span>
-        </div>
+            <div class="flex-grow-1 ps-3 initial">
+                <span class="fs-4 fw-bold">@money($event_tickets[0]->price)</span>
+                <span>Onwards</span>
+            </div>
+            <div class="book-amount">
+
+            </div>
         <div>
-            @if ($event->status == 'CREATED')
-            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Book Now</button>
-            @else
-            <button type="button" class="btn btn-danger btn-sm" disabled="true">Sold Out</button>
-            @endif
+            <div class="initial">
+                @if ($event->status == 'CREATED')
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Book Now</button>
+                @else
+                <button type="button" class="btn btn-danger btn-sm" disabled="true">Sold Out</button>
+                @endif
+            </div>
+            <div class="book-amount">
+                
+            </div>
         </div>
     </div>
 
