@@ -21605,3 +21605,147 @@ small a, .small a {
   margin-top: 40px;
   margin-bottom: 20px;
 }
+
+.ticket {
+  max-width: 70rem;
+  max-height: 40rem;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #7B3DBA, #FFD700, #EF2098, #2DC7CC, #99FF00);
+  border-radius: 20px;
+  padding: 5px;
+  perspective: 100rem;
+  -webkit-animation: animate 4s linear infinite;
+          animation: animate 4s linear infinite;
+}
+
+@-webkit-keyframes animate {
+  0% {
+    background-position-x: 0;
+  }
+  0% {
+    background-position-x: 70rem;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: 0;
+  }
+  0% {
+    background-position-x: 70rem;
+  }
+}
+.ticket__box {
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+  border-radius: 20px;
+  position: relative;
+}
+
+@-webkit-keyframes color {
+  0% {
+    border-bottom-color: #2DC7CC;
+    border-right-color: #2DC7CC;
+  }
+  20% {
+    border-bottom-color: #FFD700;
+    border-right-color: #FFD700;
+  }
+  40% {
+    border-bottom-color: #EF2098;
+    border-right-color: #EF2098;
+  }
+  60% {
+    border-bottom-color: #7B3DBA;
+    border-right-color: #7B3DBA;
+  }
+  80% {
+    border-bottom-color: #99FF00;
+    border-right-color: #99FF00;
+  }
+  100% {
+    border-bottom-color: #2DC7CC;
+    border-right-color: #2DC7CC;
+  }
+}
+
+@keyframes color {
+  0% {
+    border-bottom-color: #2DC7CC;
+    border-right-color: #2DC7CC;
+  }
+  20% {
+    border-bottom-color: #FFD700;
+    border-right-color: #FFD700;
+  }
+  40% {
+    border-bottom-color: #EF2098;
+    border-right-color: #EF2098;
+  }
+  60% {
+    border-bottom-color: #7B3DBA;
+    border-right-color: #7B3DBA;
+  }
+  80% {
+    border-bottom-color: #99FF00;
+    border-right-color: #99FF00;
+  }
+  100% {
+    border-bottom-color: #2DC7CC;
+    border-right-color: #2DC7CC;
+  }
+}
+@-webkit-keyframes color-after {
+  0% {
+    border-top-color: #2DC7CC;
+    border-left-color: #2DC7CC;
+  }
+  20% {
+    border-top-color: #FFD700;
+    border-left-color: #FFD700;
+  }
+  40% {
+    border-top-color: #EF2098;
+    border-left-color: #EF2098;
+  }
+  60% {
+    border-top-color: #7B3DBA;
+    border-left-color: #7B3DBA;
+  }
+  80% {
+    border-top-color: #99FF00;
+    border-left-color: #99FF00;
+  }
+  100% {
+    border-top-color: #2DC7CC;
+    border-left-color: #2DC7CC;
+  }
+}
+@keyframes color-after {
+  0% {
+    border-top-color: #2DC7CC;
+    border-left-color: #2DC7CC;
+  }
+  20% {
+    border-top-color: #FFD700;
+    border-left-color: #FFD700;
+  }
+  40% {
+    border-top-color: #EF2098;
+    border-left-color: #EF2098;
+  }
+  60% {
+    border-top-color: #7B3DBA;
+    border-left-color: #7B3DBA;
+  }
+  80% {
+    border-top-color: #99FF00;
+    border-left-color: #99FF00;
+  }
+  100% {
+    border-top-color: #2DC7CC;
+    border-left-color: #2DC7CC;
+  }
+}

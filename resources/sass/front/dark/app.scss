@@ -268,3 +268,114 @@ $back: lightblue;
   margin-top: 40px;
   margin-bottom: 20px;
 }
+
+//ticket
+
+.ticket {
+  max-width: 70rem;
+  max-height: 40rem;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #7B3DBA , #FFD700 , #EF2098 , #2DC7CC  ,#99FF00 );
+  border-radius: 20px;
+  padding: 5px;
+  perspective: 100rem;
+  animation:animate 4s linear infinite;
+}
+@keyframes animate{
+  0%{
+    background-position-x:0;
+  }
+  0%{
+    background-position-x:70rem;
+  }
+}
+.ticket__box {
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+  border-radius: 20px;
+  position: relative;
+}
+// .ticket__box::before {
+//   content: "";
+//   position: absolute;
+//   left: -4rem;
+//   top: 16.5rem;
+//   background-color: #222;
+//   border-radius: 50%;
+//   width: 7rem;
+//   height: 7rem;
+//   border-bottom: 5px solid #99FF00;
+  
+//   border-right: 5px solid #99FF00;
+//   border-top: 5px solid transparent;
+//   border-left: 5px solid transparent;
+//   transform: rotate(315deg);
+//   animation:color 5s linear infinite
+// }
+@keyframes color{
+  0%{
+    border-bottom-color:#2DC7CC;
+    border-right-color:#2DC7CC;    
+  }
+  20%{
+    border-bottom-color:#FFD700;
+    border-right-color:#FFD700;    
+  }40%{
+    border-bottom-color:#EF2098;
+    border-right-color:#EF2098;    
+  }60%{
+    border-bottom-color:#7B3DBA;
+    border-right-color:#7B3DBA;    
+  }80%{
+    border-bottom-color:#99FF00;
+    border-right-color:#99FF00;    
+  }
+  100%{
+    border-bottom-color:#2DC7CC;
+    border-right-color:#2DC7CC;    
+  }
+  
+}
+// .ticket__box::after {
+//   content: "";
+//   position: absolute;
+//   right: -4rem;
+//   top: 10.5rem;
+//   background-color: rgba(0, 0, 0, 0);
+//   border-radius: 50%;
+//   width: 7rem;
+//   height: 7rem;
+//   border-top: 5px solid #FFD700;
+//   border-left: 5px solid #FFD700;
+//   border-bottom: 5px solid transparent;
+//   border-right: 5px solid transparent;
+//   transform: rotate(315deg);
+//    animation:color-after 5s linear infinite
+
+// }
+@keyframes color-after{
+  0%{
+    border-top-color:#2DC7CC;
+    border-left-color:#2DC7CC;    
+  }
+  20%{
+    border-top-color:#FFD700;
+    border-left-color:#FFD700;    
+  }40%{
+    border-top-color:#EF2098;
+    border-left-color:#EF2098;    
+  }60%{
+    border-top-color:#7B3DBA;
+    border-left-color:#7B3DBA;    
+  }80%{
+    border-top-color:#99FF00;
+    border-left-color:#99FF00;    
+  }
+  100%{
+    border-top-color:#2DC7CC;
+    border-left-color:#2DC7CC;    
+  }
+  
+}

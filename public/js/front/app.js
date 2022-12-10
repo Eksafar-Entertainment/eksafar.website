@@ -28090,6 +28090,28 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/front/bootstrap.js");
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+
+var ticketElm = document.getElementById("ticket");
+var ticket = document.querySelector(".ticket__box");
+
+var _ticketElm$getBoundin = ticketElm.getBoundingClientRect(),
+    x = _ticketElm$getBoundin.x,
+    y = _ticketElm$getBoundin.y,
+    width = _ticketElm$getBoundin.width,
+    height = _ticketElm$getBoundin.height;
+
+window.addEventListener("mousemove", function (e) {
+  var ticketCntr = {
+    x: x + width / 2,
+    y: y + height / 2
+  };
+  var degreeY = (e.clientX - ticketCntr.x) * -0.006;
+  var degreeX = (e.clientY - ticketCntr.y) * 0.006;
+  console.log(degreeX, degreeY);
+  ticketElm.style.transform = "perspective(1000px) rotateX(".concat(degreeX, "deg) rotateY(").concat(degreeY, "deg)");
+  ticket.style.background = "linear-gradient(\n     ".concat((e.clientY - ticketCntr.y) % 360, "deg, #111 50%, #222)");
+});
 })();
 
 /******/ })()

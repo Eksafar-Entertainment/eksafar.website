@@ -18,11 +18,11 @@
                         @foreach ($event_tickets as $n => $event_ticket)
                             <tr data-row="ticket">
                                 <td class="ps-0">
-                                    <h6 class="mb-0">{{ $event_ticket->name }} on <span class="badge bg-danger">
+                                    <h6 class="mb-0" style="color: white;">{{ $event_ticket->name }} on <span class="badge bg-danger">
                                         {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format("d-m-Y") }}</span></h6>
                                     <small
                                         class="text-muted">{{ $event_ticket->description }}</small><br>
-                                    <span class="text-success"> @money($event_ticket->price)</span>
+                                    <span class="text-light"> @money($event_ticket->price)</span>
                                 </td>
                                 <td width="1%" class="align-middle">
                                     <input type="hidden"
@@ -36,11 +36,11 @@
                                         name="items[{{ $n }}][quantity]" @if($event_ticket->status=="SOLD") disabled @endif/>
                                 </td>
                                 <td class="fs-6 align-middle pe-0 text-nowrap text-end" width="90px"
-                                    data-field="total-price">
+                                    data-field="total-price" >
                                     @if($event_ticket->status=="SOLD")
                                     <span class="badge bg-danger"> Sold Out</span>
                                     @else
-                                    @money(0) 
+                                    @money(0)
                                     @endif
                                 </td>
                             </tr>
@@ -55,18 +55,18 @@
                 <div class="h-100 p-4" style="border-top: 1px dashed #e5e5e5">
                     <table class="table fs-6" style="min-width: 250px">
                         <tr>
-                            <td class="ps-0 border-bottom-0">Total Quantity</td>
-                            <td class="pe-0 border-bottom-0" id="total-quantity">0</td>
+                            <td class="ps-0 border-bottom-0" style="color: white;">Total Quantity</td>
+                            <td class="pe-0 border-bottom-0" id="total-quantity" style="color: white;">0</td>
                         </tr>
 
                         <tr>
-                            <td class="ps-0">Total Amount</td>
-                            <td class="pe-0" id="total-amount">@money(0)</td>
+                            <td class="ps-0" style="color: white;">Total Amount</td>
+                            <td class="pe-0" id="total-amount" style="color: white;">@money(0)</td>
                         </tr>
 
                         <tr>
-                            <td class="ps-0 border-bottom-0">Grand Total</td>
-                            <td class="pe-0 border-bottom-0" id="grand-total">@money(0)</td>
+                            <td class="ps-0 border-bottom-0" style="color: white;">Grand Total</td>
+                            <td class="pe-0 border-bottom-0" id="grand-total" style="color: white;">@money(0)</td>
                         </tr>
                     </table>
                     <div>
@@ -78,7 +78,7 @@
                                         <input type="email" id="email" name="email"
                                             placeholder="Email" class="form-control" />
                                     </div>
-                                    <button class="btn btn-primary w-100" type="button">Continue</button>
+                                    <button class="btn btn-primary w-100 glow" type="button">Continue</button>
                                 </div>
                                 <!-- login Container -->
                                 <div id="login-container" style="display: none">
