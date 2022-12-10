@@ -111,7 +111,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="py-2 text-info" style="background-color: rgba(0,0,0.03)">
+                                    <div class="py-2 px-2 text-info" style="background-color: rgba(0,0,0.03)">
                                         <div class="d-flex">
                                             <div><i class="fa-solid fa-shoe-prints"></i></div>
                                             <div class="flex-grow-1 ps-3">Step out and enjoy this event</div>
