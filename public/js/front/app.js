@@ -28108,8 +28108,8 @@ window.addEventListener("mousemove", function (e) {
   };
   var degreeY = (e.clientX - ticketCntr.x) * -0.006;
   var degreeX = (e.clientY - ticketCntr.y) * 0.006;
-  console.log(degreeX, degreeY);
-  ticketElm.style.transform = "perspective(1000px) rotateX(".concat(degreeX, "deg) rotateY(").concat(degreeY, "deg)");
+  console.log(degreeX, degreeY); //ticketElm.style.transform = `perspective(1000px) rotateX(${degreeX}deg) rotateY(${degreeY}deg)`;
+
   ticket.style.background = "linear-gradient(\n     ".concat((e.clientY - ticketCntr.y) % 360, "deg, #111 50%, #222)");
 });
 })();
