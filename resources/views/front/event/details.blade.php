@@ -273,7 +273,7 @@
 
 @if ((new \Jenssegers\Agent\Agent())->isMobile())
 <!--- Bottom Ribbon -->
-<div class="position-fixed bottom-0 start-0 w-100 bg-dark p-3" id="ticket" style="width: 100%; z-index:9999">
+<div class="position-fixed bottom-0 start-0 w-100 bg-dark p-3" id="ticket" style="width: 100%; z-index:5">
 
     <div class="d-flex ">
         <div class="fs-4"><i class="fas fa-wallet"></i> </div>
@@ -298,7 +298,7 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content position-relative ticket mb-5" id="ticket">
+            <div class="modal-content position-relative ticket" id="ticket">
                 <div class="ticket__box">
                     <x-front.booking-form :event="$event" :venue="$venue" :tickets="$event_tickets" />
                 </div>
