@@ -122,16 +122,14 @@
         </style>
 
         <div class="container">
-            <h2 class="text-center mb-4"><span class="glow">U</span>pcoming</h2>
+            <h2 class="text-center mb-4"><span class="glow">U</span>pdates</h2>
             <div class="owl-carousel owl-theme" id="gallery-carousel">
                 @foreach ($banners as $banner)
-                <a href="{{ $banner->url }}" class="item-container">
                     <div class="item">
                         <div class="item-container">
                             <img src="{{ url($banner->image) }}" />
                         </div>
                     </div>
-                </a>
                 @endforeach
             </div>
         </div>
@@ -168,7 +166,7 @@
         <div class="container my-5">
 
             <div class="text-center mb-5">
-                <h1><span class="glow">A</span>ll Events</h1>
+                <h1><span class="glow">E</span>vents</h1>
                 <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
                     you won't want to miss...</h5>
             </div>
@@ -187,10 +185,6 @@
                                                 style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
                                                 COMPLETED</div>
                                         @endif
-                                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end text-white ps-3"
-                                            style="background: linear-gradient(180deg, rgba(0,0,0,0.3) 54%, #333333);">
-                                            <h4 class="mb-1">{{ $event->name }}</h4>
-                                        </div>
                                     </div>
                                 </a>
                             </div>
@@ -205,7 +199,10 @@
 
                         </div>
                         <div style="z-index: 9; margin-top: -20%; text-align: center;">
-                            <a class="btn btn-light fw-lighter" style="z-index:9" href="{{ url('/event/' . $event->slug) }}"> More Info > </a>
+                            <a class="btn btn-light fw-lighter" style="z-index:9" href="{{ url('/event/' . $event->slug) }}"> 
+                                More Info  
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 @endforeach
