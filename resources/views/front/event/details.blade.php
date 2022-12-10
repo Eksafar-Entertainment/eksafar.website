@@ -115,21 +115,21 @@
                     <div class="mt-5">
                         <h5>Event Guide</h5>
                         <div class="d-flex">
-                            <div class="fs-3 text-secondary"><i class="fa-solid fa-person-walking"></i></div>
+                            <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-person-walking"></i></div>
                             <div class="flex-grow-1 ps-4">
                                 <small class="text-muted mb-0 d-flex">For Age</small>
                                 <span>{{ $event->min_age }}+</span>
                             </div>
                         </div>
                         <div class="d-flex mt-3">
-                            <div class="fs-3 text-secondary"><i class="fa-solid fa-globe"></i></div>
+                            <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-language"></i></div>
                             <div class="flex-grow-1 ps-4">
                                 <small class="text-muted mb-0 d-flex">Language</small>
                                 <span>{{ $event->language }}</span>
                             </div>
                         </div>
                         <div class="d-flex mt-3">
-                            <div class="fs-3 text-secondary"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-microphone-lines"></i></div>
                             <div class="flex-grow-1 ps-4">
                                 <small class="text-muted mb-0 d-flex">Live Performance</small>
                                 <span>Enjoy a unique experience</span>
@@ -241,21 +241,21 @@
                     <h5>Event Guide</h5>
                     <hr />
                     <div class="d-flex">
-                        <div class="fs-3 text-secondary"><i class="fa-solid fa-person-walking"></i></div>
+                        <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-person-walking"></i></div>
                         <div class="flex-grow-1 ps-4">
                             <small class="text-muted mb-0 d-flex">For Age</small>
                             <span>{{ $event->min_age }}+</span>
                         </div>
                     </div>
                     <div class="d-flex mt-3">
-                        <div class="fs-3 text-secondary"><i class="fa-solid fa-globe"></i></div>
+                        <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-language"></i></div>
                         <div class="flex-grow-1 ps-4">
                             <small class="text-muted mb-0 d-flex">Language</small>
                             <span>{{ $event->language }}</span>
                         </div>
                     </div>
                     <div class="d-flex mt-3">
-                        <div class="fs-3 text-secondary"><i class="fa-solid fa-microphone-lines"></i></div>
+                        <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-microphone-lines"></i></div>
                         <div class="flex-grow-1 ps-4">
                             <small class="text-muted mb-0 d-flex">Live Performance</small>
                             <span>Enjoy a unique experience</span>
