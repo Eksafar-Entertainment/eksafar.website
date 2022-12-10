@@ -6,7 +6,7 @@
     <div class="modal-body p-0">
         <div class="row gx-0">
             <div class="col-md">
-                <div class="h-100 p-4 " style="border-right: 1px dashed #e5e5e5">
+                <div class="h-100 p-4 ">
                     <div>
                         <h4 class="mb-0">{{ $event->name }} @ {{ $venue->name }}</h4>
                         <small class="text-muted">
@@ -52,7 +52,7 @@
 
 
             <div class="col-md-auto">
-                <div class="h-100 p-4" style="border-top: 1px dashed #e5e5e5">
+                <div class="h-100 p-4">
                     <table class="table fs-6" style="min-width: 250px">
                         <tr>
                             <td class="ps-0 border-bottom-0" style="color: white;">Total Quantity</td>
