@@ -122,14 +122,16 @@
         </style>
 
         <div class="container">
-            <h2 class="text-center mb-4"><span class="glow">U</span>pdates</h2>
+            <h2 class="text-center mb-4"><span class="glow">U</span>pcoming</h2>
             <div class="owl-carousel owl-theme" id="gallery-carousel">
                 @foreach ($banners as $banner)
+                <a href="{{ $banner->url }}" class="item-container">
                     <div class="item">
                         <div class="item-container">
                             <img src="{{ url($banner->image) }}" />
                         </div>
                     </div>
+                </a>
                 @endforeach
             </div>
         </div>
@@ -166,7 +168,7 @@
         <div class="container my-5">
 
             <div class="text-center mb-5">
-                <h1><span class="glow">E</span>vents</h1>
+                <h1><span class="glow">A</span>ll Events</h1>
                 <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
                     you won't want to miss...</h5>
             </div>

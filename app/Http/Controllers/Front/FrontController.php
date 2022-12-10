@@ -57,7 +57,7 @@ class FrontController extends Controller
             case "gallery": {
                     $type = 'gallery';
                     $gallery = GalleryImage::latest()->paginate();
-                    return view('front.gallery.index', compact('gallery', 'type'));
+                    return view('front.gallery.index', compact('desktop', 'mobile', 'tablet', 'gallery', 'type'));
                 }
 
             case "guest": {
