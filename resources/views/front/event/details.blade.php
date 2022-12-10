@@ -271,7 +271,6 @@
                                         <span>Enjoy a unique experience</span>
                                     </div>
                                 </div>
-                                <div class="card-footer">This is my footer</div>
                             </div>
                         </div>
 
