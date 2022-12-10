@@ -18,7 +18,7 @@
                         @foreach ($event_tickets as $n => $event_ticket)
                             <tr data-row="ticket">
                                 <td class="ps-0">
-                                    <h6 class="mb-0" style="color: white;">{{ $event_ticket->name }} on <span class="badge bg-danger">
+                                    <h6 class="mb-0 text-light">{{ $event_ticket->name }} on <span class="badge bg-danger">
                                         {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format("d-m-Y") }}</span></h6>
                                     <small
                                         class="text-muted">{{ $event_ticket->description }}</small><br>
@@ -55,18 +55,18 @@
                 <div class="h-100 p-4">
                     <table class="table fs-6" style="min-width: 250px">
                         <tr>
-                            <td class="ps-0 border-bottom-0" style="color: white;">Total Quantity</td>
-                            <td class="pe-0 border-bottom-0" id="total-quantity" style="color: white;">0</td>
+                            <td class="ps-0 border-bottom-0 text-light">Total Quantity</td>
+                            <td class="pe-0 border-bottom-0 text-light" id="total-quantity">0</td>
                         </tr>
 
                         <tr>
-                            <td class="ps-0" style="color: white;">Total Amount</td>
-                            <td class="pe-0" id="total-amount" style="color: white;">@money(0)</td>
+                            <td class="ps-0 text-light">Total Amount</td>
+                            <td class="pe-0 text-light" id="total-amount">@money(0)</td>
                         </tr>
 
                         <tr>
-                            <td class="ps-0 border-bottom-0" style="color: white;">Grand Total</td>
-                            <td class="pe-0 border-bottom-0" id="grand-total" style="color: white;">@money(0)</td>
+                            <td class="ps-0 border-bottom-0 text-light">Grand Total</td>
+                            <td class="pe-0 border-bottom-0 text-light" id="grand-total">@money(0)</td>
                         </tr>
                     </table>
                     <div>
@@ -78,7 +78,7 @@
                                         <input type="email" id="email" name="email"
                                             placeholder="Email" class="form-control" />
                                     </div>
-                                    <button class="btn btn-primary w-100 glow" type="button">Continue</button>
+                                    <button class="btn btn-primary w-100" type="button">Continue</button>
                                 </div>
                                 <!-- login Container -->
                                 <div id="login-container" style="display: none">
