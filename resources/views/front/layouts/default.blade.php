@@ -24,8 +24,7 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
@@ -83,316 +82,198 @@
 <body>
     <div id="app">
         <div class="navbar-div position-sticky">
-                    <!-- Navbar -->
-            <nav class="navbar @if($desktop) navbar-desktop @else navbar-mobile @endif navbar-expand-lg shadow-sm navbar-dark">
-              <!-- Container wrapper -->
-              <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 25px;" />
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <!-- Navbar brand -->
-                  <!-- Left links -->
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                         <a class="nav-link" href="/">{{ __('Home') }}</a>
-                    </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
-                    </li>
-                    @if($desktop)
-                    <li class="nav-item mt-2">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.facebook.com/eksafar.club"><i class="fab fa-facebook-f gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://twitter.com/eksafarclub"><i class="fab fa-twitter gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.instagram.com/eksafar.club/"><i class="fab fa-instagram gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i class="fab fa-youtube gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i class="fab fa-whatsapp gray-footer"></i></a>
-                    </li>
-                    @endif
-                  </ul>
-                  <!-- Left links -->
-                    
-                </div>
-                <!-- Collapsible wrapper -->
-
-                <!-- Right elements -->
-                  
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!--- default Links -->
-                        
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
-                                    style="z-index: 9999">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                        @if($desktop)
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        @endif
-                        @if($mobile)
-                        <div  class="col-lg-12 col-md-12 f-icons">
-                        <li class="nav-item mt-2">
-                            <a href="https://www.facebook.com/eksafar.club"><i class="fab fa-facebook-f gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                            <a href="https://twitter.com/eksafarclub"><i class="fab fa-twitter gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                            <a href="https://www.instagram.com/eksafar.club/"><i class="fab fa-instagram gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                            <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i class="fab fa-youtube gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                            <a href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i class="fab fa-whatsapp gray-footer"></i></a>
-                        </li>
-                        </div>
-                        @endif
-                    </ul>
-                    {{-- <button class="btn btn-primary" id="btnSwitch">Switch</button> --}}
-                </div>
-                  
-                </div>
-                <!-- Right elements -->
-              </div>
-              <!-- Container wrapper -->
-            </nav>
             <!-- Navbar -->
-        </div>
+            <nav
+                class="navbar @if ($desktop) navbar-desktop @else navbar-mobile @endif navbar-expand-lg shadow-sm navbar-dark">
+                <!-- Container wrapper -->
+                <div class="container-fluid">
+                    <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                        <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 25px;" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-        <!-- <nav class="navbar navbar-expand-md shadow-sm navbar-dark border-bottom">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 25px;" />
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    
-                    <ul class="navbar-nav ms-auto">
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">{{ __('Home') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
-                        </li>
-                        
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Navbar brand -->
+                        <!-- Left links -->
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">{{ __('Home') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
+                            </li>
+                            @if ($desktop)
+                                <li class="nav-item mt-2">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="https://www.facebook.com/eksafar.club"><i
+                                            class="fab fa-facebook-f gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                                    <a href="https://twitter.com/eksafarclub"><i
+                                            class="fab fa-twitter gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                                    <a href="https://www.instagram.com/eksafar.club/"><i
+                                            class="fab fa-instagram gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                                    <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i
+                                            class="fab fa-youtube gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                                    <a
+                                        href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i
+                                            class="fab fa-whatsapp gray-footer"></i></a>
                                 </li>
                             @endif
+                        </ul>
+                        <!-- Left links -->
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                    </div>
+                    <!-- Collapsible wrapper -->
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
-                                    style="z-index: 9999">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                    <!-- Right elements -->
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ms-auto">
+                            <!--- default Links -->
+
+                            <!-- Authentication Links -->
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    </li>
+                                @endif
+
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
+                                        style="z-index: 9999">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
+                            @if ($desktop)
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @endif
+                            @if ($mobile)
+                                <div class="col-lg-12 col-md-12 f-icons">
+                                    <li class="nav-item mt-2">
+                                        <a href="https://www.facebook.com/eksafar.club"><i
+                                                class="fab fa-facebook-f gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                                        <a href="https://twitter.com/eksafarclub"><i
+                                                class="fab fa-twitter gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                                        <a href="https://www.instagram.com/eksafar.club/"><i
+                                                class="fab fa-instagram gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                                        <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i
+                                                class="fab fa-youtube gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                                        <a
+                                            href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i
+                                                class="fab fa-whatsapp gray-footer"></i></a>
+                                    </li>
                                 </div>
-                            </li>
-                        @endguest
-                    </ul>
-                    {{-- <button class="btn btn-primary" id="btnSwitch">Switch</button> --}}
+                            @endif
+                        </ul>
+                        {{-- <button class="btn btn-primary" id="btnSwitch">Switch</button> --}}
+                    </div>
+
                 </div>
-            </div>
-        </nav> -->
+                <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+    </div>
+    <main>
+        @yield('content')
+    </main>
 
-        <main>
-            @yield('content')
-        </main>
 
 
 
-        <!-- <section class="py-5 text-light">
-            <div class="container my-4">
-                <div class="row align-items-center gy-5 gx-5">
-                    <div class="col-md-6">
-                        <div>
-                            <h2>No More Screens. Only LIVE Scenes.</h2>
-                            <p class="mt-4 fs-5">Kiss the couch goodbye and make a checklist of the things you’ve
-                                missed! Concerts.
-                                Comedy. Cricket. Camping. Cool Scenes.</p>
-                            <p class="mt-4 fs-5">Set your destination to: ‘Anywhere, but home.’ Find experiences in &
-                                around your
-                                city
-                                - Step out with the Eksafar Club today.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-4">
-                        <div>
-                            <img src="{{ url('images/ek.gif') }}"
-                                style="width: 100%; clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
+    <footer class="text-light pt-5 border-top">
 
-        <footer class="text-light pt-5 border-top">
-
-            <div class="container footer-margin">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 f-icons">
-                        <a href="{{ url('/') }}">
-                            <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" />
-                        </a>
+        <div class="container footer-margin">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 f-icons">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" />
+                    </a>
+                    <div class="mt-3">
                         <small class="gray-f">Where words fail, music speaks</small>
                     </div>
                 </div>
-                <div class="mt-3">
+            </div>
+            <div class="mt-3">
                 <div class="row">
-                    <div  class="col-lg-12 col-md-12 f-icons">
-                        <a href="https://www.facebook.com/eksafar.club"><i class="fab fa-facebook-f fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://twitter.com/eksafarclub"><i class="fab fa-twitter fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.instagram.com/eksafar.club/"><i class="fab fa-instagram fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i class="fab fa-youtube fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                        <a href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i class="fab fa-whatsapp fa-2x gray-footer"></i></a>
+                    <div class="col-lg-12 col-md-12 f-icons">
+                        <a href="https://www.facebook.com/eksafar.club"><i
+                                class="fab fa-facebook-f fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/eksafarclub"><i
+                                class="fab fa-twitter fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/eksafar.club/"><i
+                                class="fab fa-instagram fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i
+                                class="fab fa-youtube fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a
+                            href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i
+                                class="fab fa-whatsapp fa-2x gray-footer"></i></a>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
 
-            <div class="container py-3 footer-margin">
-                <div class="row">
-                    <div  class="col-lg-12 col-md-12 f-icons">
-                    
-                        <span style="display: inline; padding-right: 20px"><a class="gray-footer" href="{{ url('privacy') }}">Terms & Condition</a></span>
-                        <span style="display: inline; padding-right: 20px"><a class="gray-footer" href="{{ url('payment-policy') }}">Refund &
-                                        Cancellation Policy</a></span>
-                        <span  style="display: inline; padding-right: 20px"><a class="gray-footer" href="{{ url('privacy') }}">Privacy
-                                        Policy</a></span>
+        <div class="container py-3 footer-margin">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 f-icons">
+
+                    <span style="display: inline; padding-right: 20px"><a class="gray-footer"
+                            href="{{ url('privacy') }}">Terms & Condition</a></span>
+                    <span style="display: inline; padding-right: 20px"><a class="gray-footer"
+                            href="{{ url('payment-policy') }}">Refund &
+                            Cancellation Policy</a></span>
+                    <span style="display: inline; padding-right: 20px"><a class="gray-footer"
+                            href="{{ url('privacy') }}">Privacy
+                            Policy</a></span>
                     </ul>
-                    </div>
                 </div>
             </div>
-            <hr/>
-            <div class="container py-2">
-                <div class="row">
-                    <div  class="col-lg-12 col-md-12 f-icons">
-                        <span style="display: inline; padding-right: 20px"> &copy; Copyright 2023 <strong><span class="date-glow">Eksafar Club</span></strong> All Rights reserved</span>
-                    </div>
+        </div>
+        <hr />
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 f-icons">
+                    <span style="display: inline; padding-right: 20px"> &copy; Copyright 2023 <strong><span
+                                class="date-glow">Eksafar Club</span></strong> All Rights reserved</span>
                 </div>
             </div>
-        </footer>
-
-        <!-- <footer class="text-light pt-5 border-top">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <h4>Useful Links</h4>
-                        <ul class="nav flex-column">
-                            <li class="nav-item"><a class="text-light" href="{{ url('') }}">Home</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('about') }}">About us</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('terms') }}">Terms &
-                                    Condition</a>
-                            </li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('payment-policy') }}">Refund &
-                                    Cancellation Policy</a></li>
-                            <li class="nav-item"><a class="text-light" href="{{ url('privacy') }}">Privacy
-                                    Policy</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4>Our Services</h4>
-                        <ul class="nav flex-column">
-                            <li class="nav-item"><a class="text-light" href="#">Events</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Entertainment</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Concerts & Comedy</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Trips & Camping</a></li>
-                            <li class="nav-item"><a class="text-light" href="#">Cool Scenes</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h4>Contact Us</h4>
-                        <p> HSR, 560087 <br> Bangalore<br> India <br><br> <strong>Phone:</strong>
-                            +91 805 01 49240<br> <strong>Email:</strong> info@eksafar.club<br> </p>
-                    </div>
-                    <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>About Eksafar</h3>
-                        <p>Kiss the couch goodbye and make a checklist of the things you’ve missed! Concerts. Comedy.
-                            Cricket. Camping. Cool Scenes.
-                            Set your destination to: ‘Anywhere, but home.’ Find experiences in & around your city -
-                            Step out with the Eksafar club today..</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container py-3">
-                <div class="copyright"> &copy; Copyright <strong><span>Eksafar</span></strong>. All Rights Reserved
-                </div>
-                <div class="credits"> Designed by <a class="text-light" href="#">xpeed</a> </div>
-            </div>
-        </footer> -->
-    </div>
+        </div>
+    </footer>
+    @if ($mobile)
+    <div style="height: 60px"></div>
+    @endif
 </body>
 
 <script>
@@ -406,21 +287,21 @@
 </script>
 
 <script>
-      var swiper = new Swiper(".mySwiper", {
+    var swiper = new Swiper(".mySwiper", {
         slidesPerView: 3,
         spaceBetween: 30,
         slidesPerGroup: 3,
         loop: true,
         loopFillGroupWithBlank: true,
         pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
+            el: ".swiper-pagination",
+            clickable: true,
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
         },
-      });
+    });
 </script>
 
 </html>
