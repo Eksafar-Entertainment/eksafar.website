@@ -115,7 +115,7 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-sm btn-default position-absolute top-0 end-0"
+    <button type="button" class="btn btn-sm btn-link position-absolute top-0 end-0 text-light"
         aria-label="Close" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
 </form>
 
