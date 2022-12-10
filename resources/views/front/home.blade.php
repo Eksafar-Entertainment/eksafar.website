@@ -205,7 +205,7 @@
                                     </span><br />
                                     <span>@ {{ $event->venue_name }}</span>
                                 </div>
-                                <div style="position:absolute; text-align: center;  left: 0; bottom:10px; z-index:99999"
+                                <div style="position:absolute; text-align: center;  left: 0; bottom:25px; z-index:99999"
                                     class="w-100">
                                     <a class="btn btn-light fw-lighter" href="{{ url('/event/' . $event->slug) }}">More Info
                                         <i class="fa-solid fa-arrow-right"></i> </a>
