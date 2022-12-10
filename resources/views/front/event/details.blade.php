@@ -298,8 +298,8 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content position-relative ticket" id="ticket">
-                <div class="ticket__box">
+            <div class="modal-content position-relative ticket rounded" id="ticket">
+                <div class="ticket__box rounded">
                     <x-front.booking-form :event="$event" :venue="$venue" :tickets="$event_tickets" />
                 </div>
             </div>
