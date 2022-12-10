@@ -22149,8 +22149,6 @@ footer .nav-item a {
 }
 
 .ticket {
-  max-width: 70rem;
-  max-height: 40rem;
   background: linear-gradient(90deg, #7B3DBA, #FFD700, #EF2098, #2DC7CC, #99FF00);
   border-radius: 20px;
   padding: 5px;
