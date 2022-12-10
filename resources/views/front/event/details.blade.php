@@ -50,7 +50,7 @@
                         <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @for ($n = 0; $n < 1; $n++) <div class="carousel-item active">
-                                    <img src="{{ url($event->cover_image) }}" class="w-100" />
+                                    <img src="{{ url($event->cover_image) }}" class="w-100 rounded" />
                             </div>
                             @endfor
                         </div>
