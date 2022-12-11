@@ -21,11 +21,9 @@
                                 <td width="50%" class="ps-0">
                                     <h6 class="mb-0 text-light">{{ $event_ticket->name }} on <span class="badge bg-danger">
                                             {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format("d-m-Y") }}</span></h6>
-                                    <small class="text-muted ">{{ $event_ticket->description }}</small>
-                                    <br />
                                     <span class="text-light"> @money($event_ticket->price)</span>
                                 </td>
-                                <td class="align-middle">
+                                <td class="align-middle" style="text-align: center;">
                                     <input type="hidden" name="items[{{ $n }}][event_ticket_id]" value="{{ $event_ticket->id }}" class="" />
                                     <input type="hidden" value="{{ $event_ticket->price }}" data-field="price" />
                                     <div class="input-group scale-down-div scale-center">
@@ -37,6 +35,7 @@
                                             <span class="fa fa-plus"></span>
                                         </button>
                                     </div>
+                                    <small class="text-muted">{{ $event_ticket->description }}</small>
                                 </td>
                                 <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light" width="90px" data-field="total-price">
                                     @if($event_ticket->status=="SOLD")
