@@ -213,7 +213,7 @@
 
 
 
-    <footer class="text-light pt-5 border-top">
+    <footer class="text-light pt-5 border-top bg-black">
 
         <div class="container footer-margin">
             <div class="row">
@@ -221,12 +221,12 @@
                     <a href="{{ url('/') }}">
                         <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" />
                     </a>
-                    <div class="mt-3">
+                    <div class="mt-2">
                         <small class="gray-f">Where words fail, music speaks</small>
                     </div>
                 </div>
             </div>
-            <div class="mt-3">
+            <div class="mt-4">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 f-icons">
                         <a href="https://www.facebook.com/eksafar.club"><i
@@ -245,7 +245,7 @@
             </div>
         </div>
 
-        <div class="container py-3 footer-margin">
+        <div class="container py-2 footer-margin">
             <div class="row">
                 <div class="col-lg-12 col-md-12 f-icons">
 
@@ -261,14 +261,8 @@
                 </div>
             </div>
         </div>
-        <hr />
-        <div class="container py-2">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 f-icons">
-                    <span style="display: inline; padding-right: 20px"> &copy; Copyright 2023 <strong><span
-                                class="date-glow">Eksafar Club</span></strong> All Rights reserved</span>
-                </div>
-            </div>
+        <div class="py-2 border-top text-center">
+            &copy; Copyright 2023 <strong class="date-glow---"> Eksafar Club</strong> All Rights reserved
         </div>
     </footer>
     @if ($mobile)

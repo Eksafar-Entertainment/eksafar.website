@@ -50,7 +50,7 @@
                         <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @for ($n = 0; $n < 1; $n++) <div class="carousel-item active">
-                                    <img src="{{ url($event->cover_image) }}" class="w-100" />
+                                    <img src="{{ url($event->cover_image) }}" class="w-100 rounded" />
                             </div>
                             @endfor
                         </div>
@@ -115,21 +115,21 @@
                     <div class="mt-5">
                         <h5>Event Guide</h5>
                         <div class="d-flex">
-                            <div class="fs-3 text-secondary"><i class="fa-solid fa-person-walking"></i></div>
+                            <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-person-walking"></i></div>
                             <div class="flex-grow-1 ps-4">
                                 <small class="text-muted mb-0 d-flex">For Age</small>
                                 <span>{{ $event->min_age }}+</span>
                             </div>
                         </div>
                         <div class="d-flex mt-3">
-                            <div class="fs-3 text-secondary"><i class="fa-solid fa-globe"></i></div>
+                            <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-language"></i></div>
                             <div class="flex-grow-1 ps-4">
                                 <small class="text-muted mb-0 d-flex">Language</small>
                                 <span>{{ $event->language }}</span>
                             </div>
                         </div>
                         <div class="d-flex mt-3">
-                            <div class="fs-3 text-secondary"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-microphone-lines"></i></div>
                             <div class="flex-grow-1 ps-4">
                                 <small class="text-muted mb-0 d-flex">Live Performance</small>
                                 <span>Enjoy a unique experience</span>
@@ -241,21 +241,21 @@
                     <h5>Event Guide</h5>
                     <hr />
                     <div class="d-flex">
-                        <div class="fs-3 text-secondary"><i class="fa-solid fa-person-walking"></i></div>
+                        <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-person-walking"></i></div>
                         <div class="flex-grow-1 ps-4">
                             <small class="text-muted mb-0 d-flex">For Age</small>
                             <span>{{ $event->min_age }}+</span>
                         </div>
                     </div>
                     <div class="d-flex mt-3">
-                        <div class="fs-3 text-secondary"><i class="fa-solid fa-globe glow"></i></div>
+                        <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-language"></i></div>
                         <div class="flex-grow-1 ps-4">
                             <small class="text-muted mb-0 d-flex">Language</small>
                             <span>{{ $event->language }}</span>
                         </div>
                     </div>
                     <div class="d-flex mt-3">
-                        <div class="fs-3 text-secondary"><i class="fa-solid fa-microphone-lines"></i></div>
+                        <div class="fs-3 text-secondary" style="width: 20px"><i class="fa-solid fa-microphone-lines"></i></div>
                         <div class="flex-grow-1 ps-4">
                             <small class="text-muted mb-0 d-flex">Live Performance</small>
                             <span>Enjoy a unique experience</span>
@@ -273,7 +273,7 @@
 
 @if ((new \Jenssegers\Agent\Agent())->isMobile())
 <!--- Bottom Ribbon -->
-<div class="position-fixed bottom-0 start-0 w-100 bg-dark p-3" id="ticket" style="width: 100%; z-index:9999">
+<div class="position-fixed bottom-0 start-0 w-100 bg-dark p-3" id="ticket" style="width: 100%; z-index:5">
 
     <div class="d-flex ">
         <div class="fs-4"><i class="fas fa-wallet"></i> </div>
@@ -306,8 +306,8 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content position-relative ticket" id="ticket">
-                <div class="ticket__box">
+            <div class="modal-content position-relative ticket rounded" id="ticket">
+                <div class="ticket__box rounded">
                     <x-front.booking-form :event="$event" :venue="$venue" :tickets="$event_tickets" />
                 </div>
             </div>

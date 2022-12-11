@@ -18,7 +18,7 @@ $navbar-dark-color: rgba($white, .9);
 $font-family-sans-serif: "Figtree", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
-$enable-rounded: false;
+$enable-rounded: true;
 
 //remove shadow
 $input-box-shadow: none;
@@ -36,3 +36,5 @@ $color-pink: #EC4899;
 $color-gray: #9CA3AF;
 $color-black: #1F2937;
 $card-size: 23rem;
+
+$input-color:  #ffffff
