@@ -14,14 +14,17 @@
                             {{ \Carbon\Carbon::parse($event->start_date)->format("d-M-Y") }} | 07:00 PM Onwards
                         </small>
                     </div>
+                    <div class="table-responsive-sm">
                     <table class="table table-ms mt-3">
                         @foreach ($event_tickets as $n => $event_ticket)
                             <tr data-row="ticket">
                                 <td class="ps-0">
                                     <h6 class="mb-0 text-light">{{ $event_ticket->name }} on <span class="badge bg-danger">
                                         {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format("d-m-Y") }}</span></h6>
-                                    <!-- <small class="text-muted ">{{ $event_ticket->description }}</small> -->
-                                    <!-- <br/> -->
+                                        @if ((new \Jenssegers\Agent\Agent())->isDesktop())
+                                            <small class="text-muted ">{{ $event_ticket->description }}</small>
+                                            <br/>
+                                        @endif
                                     <span class="text-light"> @money($event_ticket->price)</span>
                                 </td>
                                 <td width="1%" class="align-middle">
@@ -46,6 +49,7 @@
                             </tr>
                         @endforeach
                     </table>
+                    </div>
                 </div>
             </div>
 
