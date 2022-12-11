@@ -22288,3 +22288,15 @@ footer .nav-item a {
     border-left-color: #2DC7CC;
   }
 }
+.scale-down-div {
+  transform: scale(0.8);
+  -ms-transform: scale(0.8); /* IE 9 */
+  -webkit-transform: scale(0.8); /* Safari and Chrome */
+  -o-transform: scale(0.8); /* Opera */
+  -moz-transform: scale(0.8); /* Firefox */
+}
+
+.scale-center {
+  width: 150px;
+  margin: 40px auto;
+}

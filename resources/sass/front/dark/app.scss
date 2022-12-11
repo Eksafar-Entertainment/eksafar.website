@@ -382,3 +382,16 @@ $back: lightblue;
   }
   
 }
+
+.scale-down-div {
+  transform: scale(.8);
+  -ms-transform: scale(.8); /* IE 9 */
+  -webkit-transform: scale(.8); /* Safari and Chrome */
+  -o-transform: scale(.8); /* Opera */
+  -moz-transform: scale(.8); /* Firefox */      
+  }
+
+.scale-center{
+  width: 150px;
+  margin: 40px auto;  
+}
