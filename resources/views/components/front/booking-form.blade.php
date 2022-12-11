@@ -31,7 +31,7 @@
                                         <input type="hidden" name="items[{{ $n }}][event_ticket_id]"
                                             value="{{ $event_ticket->id }}" class="" />
                                         <input type="hidden" value="{{ $event_ticket->price }}" data-field="price" />
-                                        <div class="input-group" style="width: 100px">
+                                        <div class="input-group" style="width: 100px;transform: scale(0.8)">
                                             <button type="button" class="btn btn-danger btn-number btn-sm"
                                                 data-field="minus">
                                                 <span class="fa fa-minus"></span>
