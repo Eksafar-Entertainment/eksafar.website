@@ -46,9 +46,8 @@
                                                 <span class="fa fa-plus"></span>
                                             </button>
                                         </div>
-
                                     </td>
-                                    <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light" width="1%" style="min-width: 60px"
+                                    <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light d-sm-table-cell d-none" width="1%" style="min-width: 60px"
                                         data-field="total-price">
                                         @if ($event_ticket->status == 'SOLD')
                                             <span class="badge bg-danger"> Sold Out</span>
