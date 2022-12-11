@@ -11,40 +11,52 @@
                         <h4 class="mb-0">{{ $event->name }} @ {{ $venue->name }}</h4>
                         <small class="text-muted">
                             <i class="fas fa-calendar me-2"></i>
-                            {{ \Carbon\Carbon::parse($event->start_date)->format("d-M-Y") }} | 07:00 PM Onwards
+                            {{ \Carbon\Carbon::parse($event->start_date)->format('d-M-Y') }} | 07:00 PM Onwards
                         </small>
                     </div>
                     <div class="table-responsive-sm">
                         <table class="table table-ms mt-3">
                             @foreach ($event_tickets as $n => $event_ticket)
-                            <tr data-row="ticket">
-                                <td width="50%" class="ps-0">
-                                    <h6 class="mb-0 text-light">{{ $event_ticket->name }} on <span class="badge bg-danger">
-                                            {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format("d-m-Y") }}</span></h6>
-                                    <span class="text-light"> @money($event_ticket->price)</span>
-                                </td>
-                                <td class="align-middle" style="text-align: center;">
-                                    <input type="hidden" name="items[{{ $n }}][event_ticket_id]" value="{{ $event_ticket->id }}" class="" />
-                                    <input type="hidden" value="{{ $event_ticket->price }}" data-field="price" />
-                                    <div class="input-group scale-down-div scale-center">
-                                        <button type="button" class=" btn btn-danger btn-number" data-field="minus">
-                                            <span class="fa fa-minus"></span>
-                                        </button>
-                                        <input type="number" class="form-control form-control-sm" data-field='quantity' placeholder="Qtde." style="font-size: 20px;" name="items[{{ $n }}][quantity]" @if($event_ticket->status=="SOLD") disabled @endif/>
-                                        <button type="button" class=" btn btn-danger btn-number" data-field="plus">
-                                            <span class="fa fa-plus"></span>
-                                        </button>
-                                    </div>
-                                    <small class="text-muted">{{ $event_ticket->description }}</small>
-                                </td>
-                                <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light" width="90px" data-field="total-price">
-                                    @if($event_ticket->status=="SOLD")
-                                    <span class="badge bg-danger"> Sold Out</span>
-                                    @else
-                                    <span class="text-light">@money(0)</span>
-                                    @endif
-                                </td>
-                            </tr>
+                                <tr data-row="ticket">
+                                    <td width="50%" class="ps-0">
+                                        <h6 class="mb-0 text-light">{{ $event_ticket->name }} on
+                                            <span class="badge bg-danger">
+                                                {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format('d-m-Y') }}
+                                            </span>
+                                        </h6>
+                                        <small class="text-muted">{{ $event_ticket->description }}</small>
+                                        <span class="text-light"> @money($event_ticket->price)</span>
+                                    </td>
+                                    <td class="align-middle" width="1%" >
+                                        <input type="hidden" name="items[{{ $n }}][event_ticket_id]"
+                                            value="{{ $event_ticket->id }}" class="" />
+                                        <input type="hidden" value="{{ $event_ticket->price }}" data-field="price" />
+                                        <div class="input-group" style="width: 100px">
+                                            <button type="button" class="btn btn-danger btn-number btn-sm"
+                                                data-field="minus">
+                                                <span class="fa fa-minus"></span>
+                                            </button>
+                                            <input type="number" class="form-control form-control-sm bare text-center" 
+                                                data-field='quantity'
+                                                name="items[{{ $n }}][quantity]"
+                                                value="0"
+                                                @if ($event_ticket->status == 'SOLD') disabled @endif />
+                                            <button type="button" class=" btn btn-danger btn-number btn-sm"
+                                                data-field="plus">
+                                                <span class="fa fa-plus"></span>
+                                            </button>
+                                        </div>
+
+                                    </td>
+                                    <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light" width="1%" style="min-width: 60px"
+                                        data-field="total-price">
+                                        @if ($event_ticket->status == 'SOLD')
+                                            <span class="badge bg-danger"> Sold Out</span>
+                                        @else
+                                            <span class="text-light">@money(0)</span>
+                                        @endif
+                                    </td>
+                                </tr>
                             @endforeach
                         </table>
                     </div>
@@ -73,46 +85,51 @@
                     </table>
                     <div>
                         @guest
-                        <div>
-                            <!-- Email Container -->
-                            <div id="email-container">
-                                <div class="mb-3">
-                                    <input type="email" id="email" name="email" placeholder="Email" class="form-control" />
+                            <div>
+                                <!-- Email Container -->
+                                <div id="email-container">
+                                    <div class="mb-3">
+                                        <input type="email" id="email" name="email" placeholder="Email"
+                                            class="form-control" />
+                                    </div>
+                                    <button class="btn btn-primary w-100" type="button">Continue</button>
                                 </div>
-                                <button class="btn btn-primary w-100" type="button">Continue</button>
-                            </div>
-                            <!-- login Container -->
-                            <div id="login-container" style="display: none">
-                                <div class="mb-3" class="password">
-                                    <input type="password" placeholder="Password" name="password" class="form-control" />
+                                <!-- login Container -->
+                                <div id="login-container" style="display: none">
+                                    <div class="mb-3" class="password">
+                                        <input type="password" placeholder="Password" name="password"
+                                            class="form-control" />
+                                    </div>
+                                    <button class="btn btn-primary w-100" type="button">Login</button>
                                 </div>
-                                <button class="btn btn-primary w-100" type="button">Login</button>
-                            </div>
-                            <!-- register Container -->
-                            <div id="register-container" style="display: none">
-                                <div class="mb-3" class="name">
-                                    <input type="text" placeholder="Full name" class="form-control" name="name" />
-                                </div>
-                                <div class="mb-3" class="mobile">
-                                    <input type="number" placeholder="Phone" name="mobile" class="form-control" />
-                                </div>
+                                <!-- register Container -->
+                                <div id="register-container" style="display: none">
+                                    <div class="mb-3" class="name">
+                                        <input type="text" placeholder="Full name" class="form-control" name="name" />
+                                    </div>
+                                    <div class="mb-3" class="mobile">
+                                        <input type="number" placeholder="Phone" name="mobile" class="form-control" />
+                                    </div>
 
-                                <div class="mb-3" class="password">
-                                    <input type="password" placeholder="Password" name="password" class="form-control" />
+                                    <div class="mb-3" class="password">
+                                        <input type="password" placeholder="Password" name="password"
+                                            class="form-control" />
+                                    </div>
+                                    <button class="btn btn-primary w-100" type="button">Register</button>
                                 </div>
-                                <button class="btn btn-primary w-100" type="button">Register</button>
                             </div>
-                        </div>
 
 
                         @endguest
-                        <button class="btn btn-primary w-100" style="@guest display: none @endguest" id="checkout" type="submit">Checkout</button>
+                        <button class="btn btn-primary w-100" style="@guest display: none @endguest" id="checkout"
+                            type="submit">Checkout</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-sm btn-link position-absolute top-0 end-0 text-light" aria-label="Close" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
+    <button type="button" class="btn btn-sm btn-link position-absolute top-0 end-0 text-light" aria-label="Close"
+        data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
 </form>
 
 
@@ -124,12 +141,14 @@
 
         total_quantity_el.innerHTML = (() => {
             let all = 0;
-            document.querySelectorAll("[data-field=quantity]").forEach((current) => all += parseInt(current.value) > 0 ? parseInt(current.value) : 0);
+            document.querySelectorAll("[data-field=quantity]").forEach((current) => all += parseInt(current
+                .value) > 0 ? parseInt(current.value) : 0);
             return all;
         })();
         total_amount_el.innerHTML = money((() => {
             let all = 0;
-            document.querySelectorAll("[data-field=total-price]").forEach((current) => all += parseInt(current.getAttribute("amount")) > 0 ? parseInt(current.getAttribute("amount")) : 0);
+            document.querySelectorAll("[data-field=total-price]").forEach((current) => all += parseInt(
+                current.getAttribute("amount")) > 0 ? parseInt(current.getAttribute("amount")) : 0);
             return all;
         })());
         grand_total_el.innerHTML = total_amount_el.innerHTML;
@@ -169,14 +188,16 @@
             });
 
             _minus_btn.addEventListener("click", () => {
-                const _quantity = (parseInt(_quantity_field.value) < 0 ? 0 : parseInt(_quantity_field.value)) - 1;
+                const _quantity = (parseInt(_quantity_field.value) < 0 ? 0 : parseInt(
+                    _quantity_field.value)) - 1;
                 _quantity_field.value = _quantity >= 0 ? _quantity : 0;
                 var event = new Event('change');
                 _quantity_field.dispatchEvent(event);
             });
             _plus_btn.addEventListener("click", () => {
-                const _quantity = _quantity_field.value == "" ? 0 : parseInt(_quantity_field.value);
-                _quantity_field.value = _quantity+1 ;
+                const _quantity = _quantity_field.value == "" ? 0 : parseInt(_quantity_field
+                    .value);
+                _quantity_field.value = _quantity + 1;
                 var event = new Event('change');
                 _quantity_field.dispatchEvent(event);
             })
@@ -212,7 +233,8 @@
         $('#login-container button').on('click', function(e) {
             const email = $("#email").val();
             const password = $("#login-container input[name=password]").val();
-            if (password == "" || password.length < 8) return alert("please enter 8 alphanumeric password.");
+            if (password == "" || password.length < 8) return alert(
+                "please enter 8 alphanumeric password.");
             e.preventDefault();
             $.ajax({
                 url: '/auth/try-login',
@@ -241,7 +263,8 @@
             const name = $("#register-container input[name=name]").val();
             const mobile = $("#register-container input[name=mobile]").val();
             console.log("");
-            if (password == "" || password.length < 8) return alert("please enter 8 alphanumeric password.");
+            if (password == "" || password.length < 8) return alert(
+                "please enter 8 alphanumeric password.");
             if (name == "") return alert("please enter your name.");
             if (mobile == "") return alert("please enter yor mobile number.");
             $.ajax({
