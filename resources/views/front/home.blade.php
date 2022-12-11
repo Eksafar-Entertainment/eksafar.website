@@ -133,7 +133,9 @@
                 @foreach ($banners as $banner)
                     <div class="item">
                         <div class="item-container ">
-                            <img class="rounded" src="{{ url($banner->image) }}" />
+                            <a class="btn btn-light fw-lighter" href="{{ url('/event/' . $banner->url) }}">
+                                <img class="rounded" src="{{ url($banner->image) }}" />
+                            </a>
                         </div>
                     </div>
                 @endforeach
