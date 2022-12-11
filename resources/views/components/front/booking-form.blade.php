@@ -24,7 +24,7 @@
                                                 {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format('d-m-Y') }}
                                             </span>
                                         </h6>
-                                        <small class="text-muted">{{ $event_ticket->description }}</small>
+                                        <small class="text-muted">{{ $event_ticket->description }}</small><br/>
                                         <span class="text-light"> @money($event_ticket->price)</span>
                                     </td>
                                     <td class="align-middle" width="1%" >
