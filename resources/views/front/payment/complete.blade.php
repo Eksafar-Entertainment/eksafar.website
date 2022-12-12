@@ -34,7 +34,7 @@
                 
             </p>
             <div>
-                <kbd class="bg-danger">
+                <kbd class="bg-danger text-light" style="font-size: 20px;">
                     Booking Id: #{{ $order->id }}
                 </kdb>
             </div>
