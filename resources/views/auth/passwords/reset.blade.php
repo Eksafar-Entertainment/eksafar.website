@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('front.layouts.default-bare')
 
 @section('content')
 <div class="container">
