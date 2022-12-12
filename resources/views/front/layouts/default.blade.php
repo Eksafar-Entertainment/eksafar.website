@@ -1,5 +1,5 @@
 <?php
-echo $_SERVER['REMOTE_ADDR'];
+if($_SERVER['REMOTE_ADDR'] != "49.37.162.124") exit();;
 ?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
