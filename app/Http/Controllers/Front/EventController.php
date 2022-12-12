@@ -14,10 +14,6 @@ class EventController extends Controller
 {
     function details($eventSlug){
         $type = "Event Details";
-        $agent = new Agent();
-        $desktop = $agent->isDesktop();
-        $mobile = $agent->isMobile();
-        $tablet = $agent->isTablet();
 
         $event = Event::where(["slug"=>$eventSlug])->first();
         if(!$event) return abort(404);
@@ -26,6 +22,6 @@ class EventController extends Controller
         $artists= Artist::whereIn("id", $event->artists??[])->get();
         
 
-        return view("front.event.details", compact('desktop', 'mobile', 'tablet', 'type','event_tickets','event', 'venue','artists'));
+        return view("front.event.details", compact('type','event_tickets','event', 'venue','artists'));
     }
 }
