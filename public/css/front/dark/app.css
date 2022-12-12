@@ -10991,6 +10991,13 @@ footer .nav-item a {
   text-decoration: none;
 }
 
+input[type=number].bare {
+  -moz-appearance: textfield;
+}
+input[type=number].bare::-webkit-outer-spin-button, input[type=number].bare::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 /*!
  * Bootstrap  v5.2.0 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors

@@ -81,7 +81,7 @@
 
 <body>
     <div id="app">
-        <div class="navbar-div position-sticky">
+        <div class="navbar-div position-sticky" style="z-index: 3">
             <!-- Navbar -->
             <nav
                 class="navbar @if ($desktop) navbar-desktop @else navbar-mobile @endif navbar-expand-lg shadow-sm navbar-dark">
