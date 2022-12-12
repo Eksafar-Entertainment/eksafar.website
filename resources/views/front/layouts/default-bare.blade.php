@@ -12,7 +12,7 @@
     <script src="{{ asset('js/front/app.js') }}" defer></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/front/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/front/dark/app.css') }}" rel="stylesheet" id="main-css">
     <link rel="icon" href="{{ url('/images/ek-logo.png') }}" type="image/icon type">
 
 
