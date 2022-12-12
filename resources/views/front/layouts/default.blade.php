@@ -84,7 +84,7 @@
         <div class="navbar-div position-sticky" style="z-index: 3">
             <!-- Navbar -->
             <nav
-                class="navbar @if ($desktop) navbar-desktop @else navbar-mobile @endif navbar-expand-lg shadow-sm navbar-dark">
+                class="navbar @if ((new \Jenssegers\Agent\Agent())->isDesktop()) navbar-desktop @else navbar-mobile @endif navbar-expand-lg shadow-sm navbar-dark">
                 <!-- Container wrapper -->
                 <div class="container-fluid">
                     <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
@@ -109,7 +109,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
                             </li>
-                            @if ($desktop)
+                            @if ((new \Jenssegers\Agent\Agent())->isDesktop())
                                 <li class="nav-item mt-2">
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="https://www.facebook.com/eksafar.club"><i
@@ -175,7 +175,7 @@
                                     </div>
                                 </li>
                             @endguest
-                            @if ($desktop)
+                            @if ((new \Jenssegers\Agent\Agent())->isDesktop())
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             @endif
                             @if ($mobile)
