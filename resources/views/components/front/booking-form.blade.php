@@ -19,7 +19,7 @@
                             @foreach ($event_tickets as $n => $event_ticket)
                             <tr data-row="ticket">
                                 <td width="50%" class="ps-0">
-                                    <h6 class="mb-0 text-light">{{ $event_ticket->name }} on <span class="badge bg-danger">
+                                    <h6 class="mb-0 text-light">{{ $event_ticket->name }} <span class="badge bg-danger">
                                             {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format("d-m-Y") }}</span></h6>
                                     <span class="text-light"> @money($event_ticket->price)</span>
                                 </td>
