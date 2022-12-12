@@ -178,7 +178,7 @@
                             @if ((new \Jenssegers\Agent\Agent())->isDesktop())
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             @endif
-                            @if ($mobile)
+                            @if ((new \Jenssegers\Agent\Agent())->isMobile())
                                 <div class="col-lg-12 col-md-12 f-icons">
                                     <li class="nav-item mt-2">
                                         <a href="https://www.facebook.com/eksafar.club"><i
@@ -265,7 +265,7 @@
             &copy; Copyright 2023 <strong class="date-glow---"> Eksafar Club</strong> All Rights reserved
         </div>
     </footer>
-    @if ($mobile)
+    @if ((new \Jenssegers\Agent\Agent())->isMobile())
     <div style="height: 60px"></div>
     @endif
 </body>
