@@ -120,7 +120,7 @@
                                     </div>
                                 </div>
 
-                                <div class="p-3">
+                                <div class="px-1 mt-5">
                                     <div class="card overflow-hidden">
                                         <iframe class="w-100"
                                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.924370889854!2d77.63082841526439!3d12.912582290894669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae152ecf404d0f%3A0x57cc9839f5589dee!2sCatch%20Up%20Bangalore!5e0!3m2!1sen!2sin!4v1671526347987!5m2!1sen!2sin"
