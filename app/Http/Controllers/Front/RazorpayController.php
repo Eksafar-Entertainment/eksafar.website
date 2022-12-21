@@ -105,7 +105,7 @@ class RazorpayController extends Controller
     $order->payment_id = $payment->id;
     $order->user_id = $user->id;
     if($coupon){
-      $payment->discount = $discount;
+      $order->discount = $discount;
     }
     $order->save();
 
