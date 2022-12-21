@@ -88,15 +88,15 @@
                     <div>
                         @guest
                         <div>
+                            <hr/>
                             <!-- Discount Container -->
-                            <div id="discount-container" class="mb-3">
-                                <div class="mb-3">
-                                    <input type="text" id="coupon" name="coupon" placeholder="Discount Coupon" class="form-control" />
-                                </div>
-                                <input type="hidden" name="discount" value="0" />
-                                <button class="btn btn-primary w-100" type="button">Apply Coupon</button>
+                            <input type="hidden" name="discount" value="0" />
+                            <div id="discount-container" class="input-group mb-3">
+                                <input type="text" id="coupon" name="coupon" placeholder="Discount Coupon" class="form-control" />
+                                <button class="btn btn-danger" type="button"> Redeem </button>
                             </div>
-
+                            
+                            <hr/>
                             <!-- Email Container -->
                             <div id="email-container">
                                 <div class="mb-3">
@@ -278,7 +278,7 @@
             return false;
         });
 
-        $("#coupon").keyup(evt=>{
+        $("#coupon").keyup(evt => {
             document.querySelector("input[name=discount]").value = 0;
             calculateSummery();
         });
