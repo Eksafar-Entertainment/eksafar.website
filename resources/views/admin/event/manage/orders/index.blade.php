@@ -64,6 +64,7 @@
                         <th>Mobile</th>
                         <th>Email</th>
                         <th class="text-end">Amount</th>
+                        <th class="text-end">Discount</th>
                         <th>Promoter</th>
                         <th class="text-end">Commission</th>
                         <th>Status</th>
@@ -82,6 +83,10 @@
                             <td>{{ $order->email }}</td>
                             <td class="text-end">
                                 @money($order->total_price)
+                            </td>
+
+                            <td class="text-end">
+                                @money($order->discount)
                             </td>
                             <td>{{ $order->promoter ?? '----' }}</td>
                             <td class="text-end">
