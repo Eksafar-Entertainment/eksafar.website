@@ -28,10 +28,6 @@ use Illuminate\Support\Str;
 
 class RazorpayController extends Controller
 {
-  protected   $coupons = [
-    "10FREE" => 10,
-    "15FREE" => 15
-  ];
   function checkout(Request $request)
   {
 
