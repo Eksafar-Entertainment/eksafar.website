@@ -115,6 +115,7 @@ Route::group(['prefix' => "/payment"], function () {
 //frontend routes
 Auth::routes();
 Route::post('/auth/check-user-email', [App\Http\Controllers\Front\AuthController::class, 'checkUserEmail']);
+Route::post('/auth/check-user-discount', [App\Http\Controllers\Front\RazorpayController::class, 'checkUserDiscount']);
 Route::post('/auth/try-login', [App\Http\Controllers\Front\AuthController::class, 'tryLogin']);
 
 //image related functions

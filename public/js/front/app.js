@@ -28107,8 +28107,7 @@ window.addEventListener("mousemove", function (e) {
     y: y + height / 2
   };
   var degreeY = (e.clientX - ticketCntr.x) * -0.006;
-  var degreeX = (e.clientY - ticketCntr.y) * 0.006;
-  console.log(degreeX, degreeY); //ticketElm.style.transform = `perspective(1000px) rotateX(${degreeX}deg) rotateY(${degreeY}deg)`;
+  var degreeX = (e.clientY - ticketCntr.y) * 0.006; //ticketElm.style.transform = `perspective(1000px) rotateX(${degreeX}deg) rotateY(${degreeY}deg)`;
 
   ticket.style.background = "linear-gradient(\n     ".concat((e.clientY - ticketCntr.y) % 360, "deg, #111 50%, #222)");
 }); //  $('.btn-number').click(function(e){

@@ -19,7 +19,6 @@ require('./bootstrap');
    const ticketCntr = { x: x + width / 2, y: y + height / 2 };
    const degreeY = (e.clientX - ticketCntr.x) * -0.006;
    const degreeX = (e.clientY - ticketCntr.y) * 0.006;
-   console.log(degreeX, degreeY);
    //ticketElm.style.transform = `perspective(1000px) rotateX(${degreeX}deg) rotateY(${degreeY}deg)`;
 
    ticket.style.background = `linear-gradient(

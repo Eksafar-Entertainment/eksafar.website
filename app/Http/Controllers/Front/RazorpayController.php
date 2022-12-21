@@ -27,6 +27,10 @@ use Illuminate\Support\Str;
 
 class RazorpayController extends Controller
 {
+  protected   $coupons = [
+    "10FREE" => 10,
+    "15FREE" => 15
+  ];
   function checkout(Request $request)
   {
 
@@ -188,5 +192,14 @@ class RazorpayController extends Controller
       $payment->save();
       $order->save();
     }
+  }
+
+  public function checkUserDiscount(Request $request)
+  {
+    $couponCode = $request->coupon;
+    if (!isset($this->coupons[$couponCode])) {
+      return abort(400, "Invalid code");
+    }
+    return response()->json(["status" => 200, "message" => "code verified", "discount" => $this->coupons[$couponCode]]);
   }
 }
