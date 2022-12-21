@@ -17,37 +17,43 @@
                     <div class="table-responsive-sm">
                         <table class="table table-ms mt-3">
                             @foreach ($event_tickets as $n => $event_ticket)
-                            <tr data-row="ticket">
-                                <td width="50%" class="ps-0">
-                                    <h6 class="mb-0 text-light">{{ $event_ticket->name }}
-                                        <span class="badge bg-danger">
-                                            {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format('d-m-Y') }}
-                                        </span>
-                                    </h6>
-                                    <small class="text-muted">{{ $event_ticket->description }}</small><br />
-                                    <span class="text-light"> @money($event_ticket->price)</span>
-                                </td>
-                                <td class="align-middle pe-0 pr-0" width="1%">
-                                    <input type="hidden" name="items[{{ $n }}][event_ticket_id]" value="{{ $event_ticket->id }}" class="" />
-                                    <input type="hidden" value="{{ $event_ticket->price }}" data-field="price" />
-                                    <div class="input-group" style="width: 100px;transform: scale(0.8)">
-                                        <button type="button" class="btn btn-danger btn-number btn-sm" data-field="minus">
-                                            <span class="fa fa-minus"></span>
-                                        </button>
-                                        <input type="number" class="form-control form-control-sm bare text-center" data-field='quantity' name="items[{{ $n }}][quantity]" value="0" @if ($event_ticket->status == 'SOLD') disabled @endif />
-                                        <button type="button" class=" btn btn-danger btn-number btn-sm" data-field="plus">
-                                            <span class="fa fa-plus"></span>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light d-sm-table-cell d-none" width="1%" style="min-width: 60px" data-field="total-price">
-                                    @if ($event_ticket->status == 'SOLD')
-                                    <span class="badge bg-danger"> Sold Out</span>
-                                    @else
-                                    <span class="text-light">@money(0)</span>
-                                    @endif
-                                </td>
-                            </tr>
+                                <tr data-row="ticket">
+                                    <td width="50%" class="ps-0">
+                                        <h6 class="mb-0 text-light">{{ $event_ticket->name }}
+                                            <span class="badge bg-danger">
+                                                {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format('d-m-Y') }}
+                                            </span>
+                                        </h6>
+                                        <small class="text-muted">{{ $event_ticket->description }}</small><br />
+                                        <span class="text-light"> @money($event_ticket->price)</span>
+                                    </td>
+                                    <td class="align-middle pe-0 pr-0" width="1%">
+                                        <input type="hidden" name="items[{{ $n }}][event_ticket_id]"
+                                            value="{{ $event_ticket->id }}" class="" />
+                                        <input type="hidden" value="{{ $event_ticket->price }}" data-field="price" />
+                                        <div class="input-group" style="width: 100px;transform: scale(0.8)">
+                                            <button type="button" class="btn btn-danger btn-number btn-sm"
+                                                data-field="minus">
+                                                <span class="fa fa-minus"></span>
+                                            </button>
+                                            <input type="number" class="form-control form-control-sm bare text-center"
+                                                data-field='quantity' name="items[{{ $n }}][quantity]"
+                                                value="0" @if ($event_ticket->status == 'SOLD') disabled @endif />
+                                            <button type="button" class=" btn btn-danger btn-number btn-sm"
+                                                data-field="plus">
+                                                <span class="fa fa-plus"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light d-sm-table-cell d-none"
+                                        width="1%" style="min-width: 60px" data-field="total-price">
+                                        @if ($event_ticket->status == 'SOLD')
+                                            <span class="badge bg-danger"> Sold Out</span>
+                                        @else
+                                            <span class="text-light">@money(0)</span>
+                                        @endif
+                                    </td>
+                                </tr>
                             @endforeach
                         </table>
                     </div>
@@ -86,56 +92,62 @@
 
                     </table>
                     <div>
-                        @guest
-                        <div>
-                            <hr/>
-                            <!-- Discount Container -->
-                            <input type="hidden" name="discount" value="0" />
-                            <div id="discount-container" class="input-group mb-3">
-                                <input type="text" id="coupon" name="coupon" placeholder="Discount Coupon" class="form-control" />
-                                <button class="btn btn-danger" type="button"> Redeem </button>
-                            </div>
-                            
-                            <hr/>
-                            <!-- Email Container -->
-                            <div id="email-container">
-                                <div class="mb-3">
-                                    <input type="email" id="email" name="email" placeholder="Email" class="form-control" />
-                                </div>
-                                <button class="btn btn-primary w-100" type="button">Continue</button>
-                            </div>
-                            <!-- login Container -->
-                            <div id="login-container" style="display: none">
-                                <div class="mb-3" class="password">
-                                    <input type="password" placeholder="Password" name="password" class="form-control" />
-                                </div>
-                                <button class="btn btn-primary w-100" type="button">Login</button>
-                            </div>
-                            <!-- register Container -->
-                            <div id="register-container" style="display: none">
-                                <div class="mb-3" class="name">
-                                    <input type="text" placeholder="Full name" class="form-control" name="name" />
-                                </div>
-                                <div class="mb-3" class="mobile">
-                                    <input type="number" placeholder="Phone" name="mobile" class="form-control" />
-                                </div>
-
-                                <div class="mb-3" class="password">
-                                    <input type="password" placeholder="Password" name="password" class="form-control" />
-                                </div>
-                                <button class="btn btn-primary w-100" type="button">Register</button>
-                            </div>
+                        <hr />
+                        <!-- Discount Container -->
+                        <input type="hidden" name="discount" value="0" />
+                        <div id="discount-container" class="input-group mb-3">
+                            <input type="text" id="coupon" name="coupon" placeholder="Discount Coupon"
+                                class="form-control" />
+                            <button class="btn btn-danger" type="button"> Redeem </button>
                         </div>
+                        @guest
+                            <div>
+                                <hr />
+                                <!-- Email Container -->
+                                <div id="email-container">
+                                    <div class="mb-3">
+                                        <input type="email" id="email" name="email" placeholder="Email"
+                                            class="form-control" />
+                                    </div>
+                                    <button class="btn btn-primary w-100" type="button">Continue</button>
+                                </div>
+                                <!-- login Container -->
+                                <div id="login-container" style="display: none">
+                                    <div class="mb-3" class="password">
+                                        <input type="password" placeholder="Password" name="password"
+                                            class="form-control" />
+                                    </div>
+                                    <button class="btn btn-primary w-100" type="button">Login</button>
+                                </div>
+                                <!-- register Container -->
+                                <div id="register-container" style="display: none">
+                                    <div class="mb-3" class="name">
+                                        <input type="text" placeholder="Full name" class="form-control"
+                                            name="name" />
+                                    </div>
+                                    <div class="mb-3" class="mobile">
+                                        <input type="number" placeholder="Phone" name="mobile" class="form-control" />
+                                    </div>
+
+                                    <div class="mb-3" class="password">
+                                        <input type="password" placeholder="Password" name="password"
+                                            class="form-control" />
+                                    </div>
+                                    <button class="btn btn-primary w-100" type="button">Register</button>
+                                </div>
+                            </div>
 
 
                         @endguest
-                        <button class="btn btn-primary w-100" style="@guest display: none @endguest" id="checkout" type="submit">Checkout</button>
+                        <button class="btn btn-primary w-100" style="@guest display: none @endguest" id="checkout"
+                            type="submit">Checkout</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-sm btn-link position-absolute top-0 end-0 text-light" aria-label="Close" data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
+    <button type="button" class="btn btn-sm btn-link position-absolute top-0 end-0 text-light" aria-label="Close"
+        data-bs-dismiss="modal"><i class="fas fa-close"></i></button>
 </form>
 
 

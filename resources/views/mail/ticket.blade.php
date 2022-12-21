@@ -69,7 +69,8 @@
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr style="border-bottom: 1px dashed #000000">
                         <td style="text-align: center; letter-spacing: 1.5; padding: 20px">
-                            <img src="{{ route('resources:images:qr', ["content"=>$order->id]) }}" style="width: 120px"><br>
+                            <img src="{{ route('resources:images:qr', ['content' => $order->id]) }}"
+                                style="width: 120px"><br>
                             #{{ $order->id }}
                         </td>
                     </tr>
@@ -96,7 +97,8 @@
                             <tr>
                                 <td style="padding-left: 0">
                                     {{ $order_detail->event_ticket_name }}<br>
-                                    <small style="color: green">{{ \Carbon\Carbon::parse($order_detail->event_ticket_start_datetime)->format('d M Y h:m A') }}</small>
+                                    <small
+                                        style="color: green">{{ \Carbon\Carbon::parse($order_detail->event_ticket_start_datetime)->format('d M Y h:m A') }}</small>
                                 </td>
                                 <td width="1%">{{ $order_detail->quantity }}</td>
                                 <td style="padding-right: 0; text-align: right">@money($order_detail->price)</td>
@@ -106,6 +108,17 @@
                             <td style="padding-left: 0" colspan="2">Total</td>
                             <td style="padding-right: 0; text-align: right">@money($order->total_price)</td>
                         </tr>
+                        @if ($order->discount > 0)
+                            <tr>
+                                <td style="padding-left: 0" colspan="2">Discount</td>
+                                <td style="padding-right: 0; text-align: right">@money($order->discount)</td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding-left: 0" colspan="2">Grand Total</td>
+                                <td style="padding-right: 0; text-align: right">@money($order->total_price - $order->discount)</td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
             </div>

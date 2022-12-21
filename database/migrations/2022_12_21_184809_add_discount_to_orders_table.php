@@ -18,6 +18,7 @@ class AddDiscountToOrdersTable extends Migration
         });
         Schema::table('payments', function (Blueprint $table) {
             $table->integer("discount")->default(0);
+            $table->string("coupon")->default(null);
         });
     }
 
@@ -34,6 +35,7 @@ class AddDiscountToOrdersTable extends Migration
 
         Schema::table('payments', function (Blueprint $table) {
             $table->dropColumn("discount");
+            $table->dropColumn("coupon");
         });
     }
 }

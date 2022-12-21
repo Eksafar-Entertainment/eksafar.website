@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
 use App\Mail\TicketMail;
+use App\Models\Coupon;
 use App\Models\Event;
 use App\Models\EventComboTicketDetail;
 use App\Models\EventTicket;
@@ -60,6 +61,22 @@ class RazorpayController extends Controller
       $order_details[] = $order_detail;
     }
 
+    //coupon
+    $coupon_code = $request->coupon;
+    $coupon = Coupon::where("code", $coupon_code)
+      ->where("type", "%")
+      ->where("remaining_count", ">", 0)->first();
+    $discounted_amount = $total_price;
+    $discount = 0;
+    if($coupon){
+      $coupon->remaining_count = $coupon->remaining_count - 1;
+
+      $discount = ($coupon->discount/100)*$total_price;
+      $discounted_amount = $total_price - $discount;
+
+      $coupon->save();
+    }
+
     //create payment
     $payment = new Payment();
     $payment->rzp_order_id = "";
@@ -70,6 +87,10 @@ class RazorpayController extends Controller
     $payment->email = $user->email;
     $payment->amount = $total_price;
     $payment->status = "CREATED";
+    if($coupon){
+      $payment->discount = $discount;
+      $payment->coupon = $coupon->code;
+    }
     $payment->save();
 
     //create order
@@ -83,6 +104,9 @@ class RazorpayController extends Controller
     $order->total_price = $total_price;
     $order->payment_id = $payment->id;
     $order->user_id = $user->id;
+    if($coupon){
+      $payment->discount = $discount;
+    }
     $order->save();
 
     //update order
@@ -92,7 +116,7 @@ class RazorpayController extends Controller
     //create razorpay payment
     $orderData = [
       'receipt'         => $order->id,
-      'amount'          => $total_price * 100,
+      'amount'          => round($discounted_amount * 100),
       'currency'        => 'INR',
       'notes'           => [
         "order_id" => $order->id
@@ -196,10 +220,13 @@ class RazorpayController extends Controller
 
   public function checkUserDiscount(Request $request)
   {
-    $couponCode = $request->coupon;
-    if (!isset($this->coupons[$couponCode])) {
+    $code = $request->coupon;
+    $coupon = Coupon::where("code", $code)
+      ->where("type", "%")
+      ->where("remaining_count", ">", 0)->first();
+    if (!$coupon) {
       return abort(400, "Invalid code");
     }
-    return response()->json(["status" => 200, "message" => "code verified", "discount" => $this->coupons[$couponCode]]);
+    return response()->json(["status" => 200, "message" => "code verified", "discount" => $coupon->discount]);
   }
 }
