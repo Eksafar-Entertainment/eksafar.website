@@ -90,8 +90,8 @@
                             <td><span class="badge bg-{{ $colors[$order->status] }}">{{ $order->status }}</span></td>
                             <td>{{ $order->created_at ? date('d/m/Y h:m A', strtotime($order->created_at)) : '' }}</td>
                             <td class="checked-in">
-                                <span
-                                    class="badge bg-{{ $order->is_checked_in ? 'success' : 'danger' }}">{{ $order->is_checked_in ? 'Yes' : 'No' }}</span>
+                                <span class="badge bg-{{ $order->is_checked_in ? 'success' : 'danger' }}">{{ $order->is_checked_in ? 'Yes' : 'No' }}</span>
+                                <span onclick="resendMail('{{ $order->id }}')"><i class="fa-solid fa-envelope"></i></span>
                             </td>
                         </tr>
                     @endforeach
@@ -123,6 +123,19 @@
                     success: function(result) {
                         $("#details-modal .modal-dialog").html(result.html);
                         checkInModal.show();
+                    }
+                });
+            }
+
+            function resendMail(order_id) {
+                jQuery.ajax({
+                    url: "{{ url('/admin/event/' . $event->id . '/orders/resend-mail') }}",
+                    method: 'post',
+                    data: {
+                        order_id: order_id
+                    },
+                    success: function(result) {
+                        console.log(result);
                     }
                 });
             }

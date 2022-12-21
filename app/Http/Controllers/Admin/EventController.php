@@ -327,6 +327,22 @@ class EventController extends Controller
         ]);
     }
 
+    public function resendMail($event_id, Request $request){
+        $order_id = $request->order_id;
+        $order = Order::where("id", $order_id)->first();
+        if(!$order ||  $order->status != "SUCCESS"){
+            return response()->json([
+                "status" => 500,
+                'message' => 'Invalid order',
+            ], 500);
+        }
+        Mail::to($order->email)->send(new TicketMail($order->id));
+        return response()->json([
+            "status" => 200,
+            'message' => 'Email send successful',
+        ]);
+    }
+
     //Ticket related things
     public function tickets($event_id, Request $request)
     {
