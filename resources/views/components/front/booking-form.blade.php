@@ -117,6 +117,11 @@
                                         <input type="password" placeholder="Password" name="password"
                                             class="form-control" />
                                     </div>
+                                        @if (Route::has('password.request'))
+                                            <a class="btn btn-link" style="color:lightgrey" href="{{ route('password.request') }}">
+                                                {{ __('Forgot Your Password?') }}
+                                            </a>
+                                        @endif
                                     <button class="btn btn-primary w-100" type="button">Login</button>
                                 </div>
                                 <!-- register Container -->
