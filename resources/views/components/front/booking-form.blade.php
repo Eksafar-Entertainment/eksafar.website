@@ -118,7 +118,7 @@
                                             class="form-control" />
                                     </div>
                                         @if (Route::has('password.request'))
-                                            <a class="btn btn-link" style="color:lightgrey" href="{{ route('password.request') }}">
+                                            <a class="btn btn-link" style="color:lightgrey" target="_blank" href="{{ route('password.request') }}">
                                                 {{ __('Forgot Your Password?') }}
                                             </a>
                                         @endif
