@@ -3,8 +3,7 @@
         <div class="container-lg">
             <a class="navbar-brand" href="{{ url('/admin') }}" style="letter-spacing: 2px">
                 {{-- {{ config('app.name', 'Laravel') }} --}}
-                {{-- <img height="60px" src="{{ url('images/ek-logo.svg') }}" /> --}}
-                EKSAFAR
+                <img height="20px" src="{{ url('images/logo.svg') }}" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -13,7 +12,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav me-auto flex-grow-1 justify-content-center">
                     <li class="nav-item"><a href="/admin" class="nav-link">{{ __('Home') }}</a></li>
                     @auth
                         @role('Admin')
