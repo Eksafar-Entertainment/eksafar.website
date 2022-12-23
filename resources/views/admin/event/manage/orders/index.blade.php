@@ -53,8 +53,8 @@
             </form>
         </div>
 
-        <div class="overflow-auto">
-            <table class="table table-bordered table-striped mt-4 bg-white">
+        <div class="overflow-auto card rounded mt-4">
+            <table class="table table-striped bg-white mb-0">
                 <thead>
                     <tr>
                         <th width="1%">#</th>

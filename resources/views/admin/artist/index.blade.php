@@ -4,7 +4,7 @@
 
 
 <div class="bg-light p-4 rounded">
-    <h2>Artist</h2>
+    <h4>Artist</h4>
     <div class="lead">
         Manage your Artist here.
         <a href="{{ route('artist.create') }}" class="btn btn-primary btn-sm float-right">Add artist</a>
@@ -14,25 +14,21 @@
         @include('admin.layouts.partials.messages')
     </div>
 
-    <table class="table table-bordered">
+    <div class="overflow-auto card rounded mt-4">
+        <table class="table table-striped bg-white mb-0">
         <tr>
             <th width="1%">No</th>
             <th>Name</th>
-            <th>Action</th>
+            <th colspan="2">Action</th>
         </tr>
         @foreach ($artists as $key => $artist)
         <tr>
             <td>{{ $artist->id }}</td>
-            <td>{{ $artist->image }}</td>
-            <td>{{ $artist->cover }}</td>
             <td>{{ $artist->name }}</td>
-            {{-- <td>
-                <a class="btn btn-info btn-sm" href="{{ route('artist.show', $artist->id) }}">Show</a>
-            </td> --}}
-            <td>
+            <td width="1%">
                 <a class="btn btn-primary btn-sm" href="{{ route('artist.edit', $artist->id) }}">Edit</a>
             </td>
-            <td>
+            <td width="1%">
                 {!! Form::open(['method' => 'DELETE','route' => ['artist.destroy', $artist->id],'style'=>'display:inline']) !!}
                 {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
                 {!! Form::close() !!}
@@ -40,9 +36,11 @@
         </tr>
         @endforeach
     </table>
+    </div>
 
-    <div class="d-flex">
-        {!! $artists->links() !!}
+
+    <div class="d-flex mt-4">
+        @include('admin.common.pagination', ['paginator' => $artists])
     </div>
 
 </div>

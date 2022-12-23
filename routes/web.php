@@ -55,7 +55,6 @@ Route::group([
     Route::resource('roles', RolesController::class);
     Route::resource('users', UsersController::class);
     Route::resource('permissions', PermissionsController::class);
-    Route::resource('posts', PostsController::class);
     Route::resource('venue', VenueController::class);
     Route::resource('artist', ArtistController::class);
     Route::resource('gallery', GalleryController::class);
