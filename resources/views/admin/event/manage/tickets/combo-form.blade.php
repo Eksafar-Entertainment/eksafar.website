@@ -6,7 +6,7 @@
         </div>
         <div class="modal-body">
             <input type="hidden" value="{{ $event->id }}" name="event_id">
-            <input type="hidden" value="{{ $event_combo_ticket?->id || '' }}" name="event_combo_ticket_id">
+            <input type="hidden" value="{{ $event_combo_ticket->id || '' }}" name="event_combo_ticket_id">
             <div class="form-group">
                 <label for="name-input">Name</label>
                 <input type="text" class="form-control" id="name-input" placeholder="Enter Name" name="name"
