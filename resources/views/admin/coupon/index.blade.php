@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="card-header bg-primary text-light d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <i class="fas fa-ticket"></i> {{ $coupon->code }}
+                                <i class="fas fa-rug"></i> {{ $coupon->code }}
                             </div>
                             <span>
                                 @if($coupon->type == "FLAT")
