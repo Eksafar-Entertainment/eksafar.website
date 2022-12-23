@@ -6,6 +6,9 @@
 </div>
 <style>
     .rich-text-textarea::placeholder {color:transparent}
+    :root{
+        --ck-border-radius: 6px
+    }
 </style>
 
 <script>
