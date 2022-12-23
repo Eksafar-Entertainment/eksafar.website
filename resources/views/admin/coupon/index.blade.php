@@ -4,7 +4,7 @@
     <div>
         <h4>Coupons</h4>
         <div class="d-flex">
-            <div class="flex-grow-1">Manage your Artist here.</div>
+            <div class="flex-grow-1">Manage your Coupon here.</div>
             <a href="{{ route('coupon.create') }}" class="btn btn-primary btn-sm float-right">Add coupon</a>
         </div>
 
@@ -12,37 +12,48 @@
             @include('admin.layouts.partials.messages')
         </div>
 
-        <div class="overflow-auto card rounded mt-4">
-            <table class="table table-striped bg-white mb-0">
-                <tr>
-                    <th width="1%">No</th>
-                    <th>Code</th>
-                    <th>Discount</th>
-                    <th>Type</th>
-                    <th>Remaining</th>
-                    <th colspan="2">Actions</th>
-                </tr>
-                @foreach ($coupons as $key => $coupon)
-                    <tr>
-                        <td>{{ $coupon->id }}</td>
-                        <td>{{ $coupon->code }}</td>
-                        <td>{{ $coupon->discount }}</td>
-                        <td>{{ $coupon->type }}</td>
-                        <td>{{ $coupon->remaining_count }}</td>
-                        {{-- <td>
-                <a class="btn btn-info btn-sm" href="{{ route('coupon.show', $coupon->id) }}">Show</a>
-            </td> --}}
-                        <td width="1%">
-                            <a class="btn btn-primary btn-sm" href="{{ route('coupon.edit', $coupon->id) }}">Edit</a>
-                        </td>
-                        <td width="1%">
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['coupon.destroy', $coupon->id], 'style' => 'display:inline']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
+        <div class="row">
+            @foreach ($coupons as $key => $coupon)
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-light d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <i class="fas fa-ticket"></i> {{ $coupon->code }}
+                            </div>
+                            <span>
+                                @if($coupon->type == "FLAT")
+                                @money($coupon->discount)
+                                @else
+                                {{$coupon->discount}}%
+                                @endif
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <span class="fs-5">{{ $coupon->remaining_count }}</span><br />
+                                    <span class="text-primary">Remaining</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer p-0">
+                            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+                                <a class="btn btn-light flex-grow-1 text-primary"
+                                    href="{{ route('coupon.edit', $coupon->id) }}">
+                                    <i class="fas fa-pencil"></i>
+                                </a>
+                                <div class="flex-grow-1 d-flex align-items-center">
+                                    {!! Form::open(['method' => 'DELETE', 
+                                    'route' => ['coupon.destroy', $coupon->id], 'class'=>"d-block flex-grow-1"]) !!}
+                                    {!! Form::submit('Delete', ['class' => 'btn btn-default text-danger d-block w-100']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endforeach
         </div>
 
         <div class="d-flex mt-4">
