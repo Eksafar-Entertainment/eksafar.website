@@ -19,10 +19,6 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketMail;
-use App\Models\EventComboTicket;
-use App\Models\ShortLink;
-use Facade\FlareClient\Http\Client;
-use Illuminate\Support\Facades\Http;
 
 class EventController extends Controller
 {
@@ -373,8 +369,7 @@ class EventController extends Controller
         }
 
         $event_tickets = $event_tickets->latest()->get();
-        $event_combo_tickets = EventComboTicket::where("event_id", $event_id)->get();
-        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets', 'event_combo_tickets'));
+        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets'));
     }
 
     public function getTicketForm($event_id, Request $request)
@@ -406,40 +401,6 @@ class EventController extends Controller
         return response()->json([
             "status" => 200,
             'message' => 'Successfully updated ticket',
-        ]);
-    }
-
-    public function getComboTicketForm($event_id, Request $request)
-    {
-        $event = Event::where("id", $event_id)->first();
-        $event_combo_ticket = EventComboTicket::where("id", $request->event_combo_ticket_id)->first() ?? new EventComboTicket();
-        $event_tickets = EventTicket::where("event_id", $event_id)->get() ?? [];
-        return response()->json([
-            "status" => 200,
-            'message' => 'Successfully fetched data',
-            'html' => view("admin.event.manage.tickets.combo-form", [
-                'event_combo_ticket' => $event_combo_ticket,
-                'event_tickets' => $event_tickets,
-                'event' => $event,
-            ])->render()
-        ]);
-    }
-    public function saveComboTicket($event_id, Request $request)
-    {
-        $event_combo_ticket = EventComboTicket::where("id", $request->event_combo_ticket_id)->first() ?? new EventComboTicket();
-        $event_combo_ticket->event_id = $event_id;
-        $event_combo_ticket->name = $request->name;
-        $event_combo_ticket->price = $request->price;
-        $event_combo_ticket->event_tickets = $request->event_tickets;
-        $event_combo_ticket->status = $request->status ?? "CREATED";
-        $event_combo_ticket->save();
-        return response()->json([
-            "status" => 200,
-            'message' => 'Successfully updated combo ticket',
-        ]);
-        return response()->json([
-            "status" => 200,
-            'message' => 'Successfully updated combo ticket',
         ]);
     }
     //customize
@@ -594,52 +555,6 @@ class EventController extends Controller
         return response()->json([
             "status" => 200,
             'message' => 'Event updated successfully',
-        ]);
-    }
-
-
-    //links related thinks
-    public function links($event_id, Request $request)
-    {
-        $event = Event::where("id", $event_id)->first();
-        $where = [];
-        $event_links = ShortLink::where("event_tickets.event_id", $event_id);
-        if (isset($request->query()["keyword"]) && $request->query()["keyword"] != "") {
-            $event_links->where(function ($query) {
-                global $request;
-                $query->orWhere("short_links.name", "like", "%{$request->query()["keyword"]}%");
-            });
-        }
-
-        $event_tickets = $event_links->latest()->get();
-        return view("admin.event.manage.links.index", compact('event', 'event_links'));
-    }
-
-    public function link($event_id, $short_link_id, Request $request)
-    {
-        $event = Event::where("id", $event_id)->first();
-        $event_link = ShortLink::where("id", $short_link_id);
-    }
-
-    public function createLink($event_id, Request $request)
-    {
-        $event = Event::where("id", $event_id)->first();
-        $short_link = new ShortLink();
-        
-        $short_link->event_id = $event_id;
-        $short_link->promoter = $request->promoter_id;
-        $short_link->long_url = $request->long_url;
-        $short_link->provider = "BITLY";
-
-
-
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer '.env(""),
-            'Accept' => 'application/json',
-        ])->post('http://example.com/users', [
-            "long_url"=> "https://dev.bitly.com",
-            "domain"=> "bit.ly", 
-            "group_guid"=> "Bm9djXslbFX"
         ]);
     }
 }

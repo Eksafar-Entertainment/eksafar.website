@@ -14,7 +14,6 @@ use App\Http\Controllers\Controller;
 use App\Mail\TicketMail;
 use App\Models\Coupon;
 use App\Models\Event;
-use App\Models\EventComboTicketDetail;
 use App\Models\EventTicket;
 use App\Models\OrderDetailTicket;
 use App\Models\Promoter;

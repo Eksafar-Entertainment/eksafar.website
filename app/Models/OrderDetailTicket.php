@@ -10,7 +10,6 @@ class OrderDetailTicket extends Model
     use HasFactory;
     protected $fillable = [
         "order_detail_id",
-        "event_combo_ticket_id",
         "event_ticket_id",
         "uid"
     ];
