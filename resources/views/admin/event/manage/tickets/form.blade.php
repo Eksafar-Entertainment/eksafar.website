@@ -76,7 +76,7 @@
 
                             <input type="datetime" class="form-control" id="end_datetime-input"
                                 placeholder="Enter End Datetime" name="end_datetime"
-                                value="{{ $event_ticket->send_datetime }}">
+                                value="{{ $event_ticket->end_datetime }}">
                         </div>
                     </div>
                 </div>
