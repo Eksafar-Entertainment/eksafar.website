@@ -369,7 +369,13 @@ class EventController extends Controller
         }
 
         $event_tickets = $event_tickets->latest()->get();
-        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets'));
+
+        $status_colors = [
+            "ACTIVE" => "success",
+            "CREATED" => "warning",
+            "SOLD" => "danger",
+        ];
+        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets', "status_colors"));
     }
 
     public function getTicketForm($event_id, Request $request)
