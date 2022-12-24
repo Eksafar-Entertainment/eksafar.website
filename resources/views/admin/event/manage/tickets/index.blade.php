@@ -22,11 +22,10 @@
             <div class="row">
                 @foreach ($event_tickets as $key => $event_ticket)
                     <div class="col-md-4 mb-4">
-                        <div class="card" style="cursor: pointer">
+                        <div class="card position-relative overflow-hidden" style="cursor: pointer">
                             <div class="card-header bg-primary text-light d-flex align-items-center">
                                 <div class="flex-grow-1" onclick="openForm('{{ $event_ticket->id }}')">
-                                    <i class="fas fa-ticket"></i> {{ $event_ticket->name }}<br/>
-                                    <small>{{$event_ticket->status}}</small>
+                                    <i class="fas fa-ticket"></i> {{ $event_ticket->name }}<br />
                                 </div>
                                 <span>
                                     @money($event_ticket->price)
@@ -47,13 +46,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="position-absolute bottom-0 right-0 end-0 bg-warning px-2" style="border-top-left-radius: 8px">
+                                <small>{{ $event_ticket->status }}</small>
+                            </div>
                         </div>
 
                     </div>
                 @endforeach
             </div>
         </div>
-       
+
 
         <div class="modal fade" tabindex="-1" id="form-modal">
             <div class="modal-dialog">
