@@ -113,7 +113,8 @@ class EventController extends Controller
             DB::raw("GROUP_CONCAT(id) as ids"),
             DB::raw('DATE(created_at) as date'),
             DB::raw('count(*) as orders'),
-            DB::raw('sum(total_price) as amount')
+            DB::raw('sum(total_price) as amount'),
+            DB::raw('sum(discount) as discount')
         ])
             ->where("status", "SUCCESS")
             ->where("event_id", $event_id)
@@ -207,8 +208,7 @@ class EventController extends Controller
 
             $tickets_sold_chart["total"] += $order->orders;
             $tickets_sales_volume_chart["total"] += $order->amount;
-
-            $revenue += $order->amount;
+            $revenue += $order->amount - $order->discount;
             $total_orders += $order->orders;
         }
 
