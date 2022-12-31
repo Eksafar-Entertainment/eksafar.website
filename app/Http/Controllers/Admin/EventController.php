@@ -349,7 +349,7 @@ class EventController extends Controller
         $where = [];
         $event_tickets = EventTicket::select([
             "event_tickets.*",
-            DB::raw('SUM(IF(orders.status="SUCCESS",order_details.price,0)) as total_sale_amount'),
+            //DB::raw('SUM(IF(orders.status="SUCCESS",order_details.price,0)) as total_sale_amount'),
             DB::raw('SUM(IF(orders.status="SUCCESS",order_details.quantity,0)) as total_sale_count'),
         ])
             ->where("event_tickets.event_id", $event_id)
