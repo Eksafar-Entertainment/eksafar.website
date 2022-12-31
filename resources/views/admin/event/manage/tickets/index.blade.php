@@ -21,7 +21,7 @@
 
             <div class="row">
                 @foreach ($event_tickets as $key => $event_ticket)
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-3 mb-4">
                         <div class="card position-relative overflow-hidden" style="cursor: pointer" onclick="openForm('{{ $event_ticket->id }}')">
                             <div class="card-header bg-primary text-light d-flex align-items-center">
                                 <div class="flex-grow-1">
@@ -38,12 +38,12 @@
                                         <span class="text-primary">Tickets Sold</span>
                                     </div>
 
-                                    <div class="col text-center">
+                                    {{-- <div class="col text-center">
                                         <span class="fs-5">
                                             @money($event_ticket->total_sale_amount)
                                         </span><br />
                                         <span class="text-primary">Revenue</span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
 

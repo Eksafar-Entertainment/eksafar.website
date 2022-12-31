@@ -204,10 +204,10 @@ class EventController extends Controller
         foreach ($orders as $order) {
             $tickets_sold_chart["data"][$order->date] = $order->orders;
 
-            $tickets_sales_volume_chart["data"][$order->date] = $order->amount;
+            $tickets_sales_volume_chart["data"][$order->date] = ($order->amount - ($order->discount ?? 0));
 
             $tickets_sold_chart["total"] += $order->orders;
-            $tickets_sales_volume_chart["total"] += $order->amount;
+            $tickets_sales_volume_chart["total"] += ($order->amount - ($order->discount ?? 0));
             $revenue += $order->amount - $order->discount;
             $total_orders += $order->orders;
         }
@@ -349,7 +349,7 @@ class EventController extends Controller
         $where = [];
         $event_tickets = EventTicket::select([
             "event_tickets.*",
-            DB::raw('SUM(IF(orders.status="SUCCESS",order_details.price,0)) as total_sale_amount'),
+            //DB::raw('SUM(IF(orders.status="SUCCESS",order_details.price,0)) as total_sale_amount'),
             DB::raw('SUM(IF(orders.status="SUCCESS",order_details.quantity,0)) as total_sale_count'),
         ])
             ->where("event_tickets.event_id", $event_id)
