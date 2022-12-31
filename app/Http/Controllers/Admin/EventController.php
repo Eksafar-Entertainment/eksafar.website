@@ -207,7 +207,7 @@ class EventController extends Controller
             $tickets_sales_volume_chart["data"][$order->date] = $order->amount;
 
             $tickets_sold_chart["total"] += $order->orders;
-            $tickets_sales_volume_chart["total"] += $order->amount;
+            $tickets_sales_volume_chart["total"] += ($order->amount - ($order->discount ?? 0));
             $revenue += $order->amount - $order->discount;
             $total_orders += $order->orders;
         }
