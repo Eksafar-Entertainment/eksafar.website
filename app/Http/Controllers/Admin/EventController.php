@@ -204,7 +204,7 @@ class EventController extends Controller
         foreach ($orders as $order) {
             $tickets_sold_chart["data"][$order->date] = $order->orders;
 
-            $tickets_sales_volume_chart["data"][$order->date] = $order->amount;
+            $tickets_sales_volume_chart["data"][$order->date] = ($order->amount - ($order->discount ?? 0));
 
             $tickets_sold_chart["total"] += $order->orders;
             $tickets_sales_volume_chart["total"] += ($order->amount - ($order->discount ?? 0));
