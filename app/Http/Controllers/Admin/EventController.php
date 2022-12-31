@@ -41,7 +41,7 @@ class EventController extends Controller
             ->whereIn("orders.event_id", $event_ids)
             ->where("orders.status", "SUCCESS")
             ->get()->toArray();
-
+          
         $sales = array_reduce($sales, function ($all, $current) {
             $all[$current["id"]] = $current;
             return $all;
