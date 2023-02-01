@@ -12,14 +12,20 @@
             <source src="{{ url('/videos/banner.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="caption p-5 transparent-gradient-blur border rounded">
-            <p>People of Eksafar Club,</p>
+        <div class="caption p-5 text-center">
+            <h2 class="mb-4 display-5 fw-bold">People of Eksafar Club,</h2>
 
-            <p>In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great Library. Our
+            <p class="fs-5">In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great Library. Our
                 destination lies high on the horizon. Prepare yourself for a beautiful adventure.</p>
 
-            <p>Expore all the events below.</p>
+            <p class="fs-5">Expore all the events below.</p>
         </div>
+
+        <a class="text-light text-center mt-5 fs-5 d-inline-block scroll-down-button" href="#upcoming">
+            <i class="fa-solid fa-arrow-down-long"></i>
+        </a>
+
+
         <script>
             document.querySelector("#banner-video video")?.play();
         </script>
@@ -49,13 +55,37 @@
 
             #banner-video .caption {
                 position: absolute;
-                max-width: 600px;
+                max-width: 700px;
                 min-width: 380px;
-                bottom: 25px;
+                bottom: 150px;
                 left: 50%;
                 transform: translateX(-50%);
-                background-color: rgba(0, 0, 0, .3);
                 z-index: 3;
+                text-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.5);
+            }
+
+            #banner-video .scroll-down-button {
+                position: absolute;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                z-index: 3;
+                width: 40px;
+                border: 1px solid #fff;
+                padding: 15px 10px;
+                border-radius: 90px;
+                animation: scroll-anim 0.8s  ease-in  alternate infinite;
+            }
+
+            @keyframes scroll-anim {
+                from {
+                    bottom: 50px;
+                }
+
+                to {
+                    bottom: 30px;
+                }
+               
             }
         </style>
 
@@ -98,7 +128,7 @@
         </script>
     </section> --}}
 
-    <section class="py-5">
+    <section class="py-5" id="upcoming">
         <style>
             .owl-prev {
                 width: 15px;
@@ -122,7 +152,6 @@
 
             .owl-prev i,
             .owl-next i {
-                transform: scale(1, 6);
                 color: #ccc;
             }
         </style>
@@ -133,7 +162,7 @@
                 @foreach ($banners as $banner)
                     <div class="item">
                         <div class="item-container ">
-                            <a class="btn btn-light fw-lighter" href="{{$banner->url}}">
+                            <a class="btn btn-light fw-lighter" href="{{ $banner->url }}">
                                 <img class="rounded" src="{{ url($banner->image) }}" />
                             </a>
                         </div>
@@ -148,8 +177,8 @@
                     loop: true,
                     margin: 10,
                     nav: false,
-                    navText: ['<i class="fa fa-angle-left glow" aria-hidden="true"></i>',
-                        '<i class="fa fa-angle-right glow" aria-hidden="true"></i>'
+                    navText: ['<i class="fa fa-angle-left glow fs-4" aria-hidden="true"></i>',
+                        '<i class="fa fa-angle-right glow fs-4" aria-hidden="true"></i>'
                     ],
                     autoWidth: false,
                     center: true,
@@ -186,7 +215,7 @@
                     <div class="col-md-4">
                         <div class="card rounded over-flow-hidden">
                             <div class="w-100 position-relative overflow-hidden rounded"
-                                style="background-image:linear-gradient(0deg, rgba(149, 6, 90, 0.3), rgba(126, 4, 75, 0.3)), url('{{ $event->cover_image }}'); padding-top: 80%; background-size:cover; background-position:center;">
+                                style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('{{ $event->cover_image }}'); padding-top: 90%; background-size:cover; background-position:center;">
                                 @if ($event->status === 'CLOSED')
                                     <div class="position-absolute badge bg-danger"
                                         style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
@@ -194,22 +223,18 @@
                                 @endif
 
 
-                                <div class="card-img-overlay rounded text-center w-100 h-100">
+                                <div class="card-img-overlay rounded text-center w-100 h-100 pt-5">
                                     <h2 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h2>
                                     <p class="card-text">{!! Str::limit("$event->description", 90, ' ...') !!}</p>
 
-                                    <span class="date-glow">
-                                        @if ($event->status === 'CLOSED')
-                                            COMPLETED
-                                        @else
-                                            {{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}
-                                        @endif
-                                    </span><br />
+                                    @if ($event->status === 'CREATED')
+                                    <span>{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span>
                                     <span>@ {{ $event->venue_name }}</span>
+                                    @endif
                                 </div>
                                 <div style="position:absolute; text-align: center;  left: 0; bottom:25px; z-index:99999"
                                     class="w-100">
-                                    <a class="btn btn-light fw-lighter" href="{{ url('/event/' . $event->slug) }}">More Info
+                                    <a class="btn btn-light" href="{{ url('/event/' . $event->slug) }}">More Info
                                         <i class="fa-solid fa-arrow-right"></i> </a>
                                 </div>
                             </div>
@@ -284,8 +309,8 @@
                     autoplayHoverPause: true,
                     center: true,
                     navText: [
-                        "<i class='fa fa-angle-left date-glow'></i>",
-                        "<i class='fa fa-angle-right date-glow'></i>"
+                        "<i class='fa fa-angle-left date-glow fs-4'></i>",
+                        "<i class='fa fa-angle-right date-glow fs-4'></i>"
                     ],
                     responsive: {
                         0: {

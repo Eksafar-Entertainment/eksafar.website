@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/front/dark/app.css') }}" rel="stylesheet" id="main-css">
-    <link rel="icon" href="{{ url('/images/ek-logo.png') }}" type="image/icon type">
+    <link rel="icon" href="{{ url('/favicon.ico') }}" type="image/icon">
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -81,137 +81,76 @@
 
 <body>
     <div id="app">
-        <div class="navbar-div position-sticky" style="z-index: 3">
-            <!-- Navbar -->
-            <nav
-                class="navbar @if ((new \Jenssegers\Agent\Agent())->isDesktop()) navbar-desktop @else navbar-mobile @endif navbar-expand-lg shadow-sm navbar-dark">
-                <!-- Container wrapper -->
-                <div class="container-fluid">
-                    <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                        <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 25px;" />
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark">
+            <div class="container py-2">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ url('/images/logo.svg') }}" alt="Eksafar" style="height: 25px;" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="flex-grow-1"></div>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">{{ __('Home') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
+                        </li>
+                    </ul>
+                    <div class="px-2 d-sm-none d-md-inline-flex"> | </div>
+                    <ul class="navbar-nav ms-auto">
+                        <!--- default Links -->
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Navbar brand -->
-                        <!-- Left links -->
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">{{ __('Home') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/gallery">{{ __('Gallery') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
-                            </li>
-                            @if ((new \Jenssegers\Agent\Agent())->isDesktop())
-                                <li class="nav-item mt-2">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="https://www.facebook.com/eksafar.club"><i
-                                            class="fab fa-facebook-f gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                                    <a href="https://twitter.com/eksafarclub"><i
-                                            class="fab fa-twitter gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                                    <a href="https://www.instagram.com/eksafar.club/"><i
-                                            class="fab fa-instagram gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                                    <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i
-                                            class="fab fa-youtube gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                                    <a
-                                        href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i
-                                            class="fab fa-whatsapp gray-footer"></i></a>
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                        </ul>
-                        <!-- Left links -->
 
-                    </div>
-                    <!-- Collapsible wrapper -->
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
 
-                    <!-- Right elements -->
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ms-auto">
-                            <!--- default Links -->
-
-                            <!-- Authentication Links -->
-                            @guest
-                                @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </li>
-                                @endif
-
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
+                                    style="z-index: 9999">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
                                     </a>
 
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"
-                                        style="z-index: 9999">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
-                            @if ((new \Jenssegers\Agent\Agent())->isDesktop())
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            @endif
-                            @if ((new \Jenssegers\Agent\Agent())->isMobile())
-                                <div class="col-lg-12 col-md-12 f-icons">
-                                    <li class="nav-item mt-2">
-                                        <a href="https://www.facebook.com/eksafar.club"><i
-                                                class="fab fa-facebook-f gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                                        <a href="https://twitter.com/eksafarclub"><i
-                                                class="fab fa-twitter gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                                        <a href="https://www.instagram.com/eksafar.club/"><i
-                                                class="fab fa-instagram gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                                        <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i
-                                                class="fab fa-youtube gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
-                                        <a
-                                            href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i
-                                                class="fab fa-whatsapp gray-footer"></i></a>
-                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
-                            @endif
-                        </ul>
-                        {{-- <button class="btn btn-primary" id="btnSwitch">Switch</button> --}}
-                    </div>
-
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
-                <!-- Right elements -->
-        </div>
-        <!-- Container wrapper -->
+            </div>
         </nav>
         <!-- Navbar -->
     </div>
     <main>
         @yield('content')
     </main>
-
-
-
 
     <footer class="text-light pt-5 border-top bg-black">
 
@@ -266,7 +205,7 @@
         </div>
     </footer>
     @if ((new \Jenssegers\Agent\Agent())->isMobile())
-    <div style="height: 60px"></div>
+        <div style="height: 60px"></div>
     @endif
 </body>
 

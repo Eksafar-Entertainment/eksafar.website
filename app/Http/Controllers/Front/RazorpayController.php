@@ -30,7 +30,7 @@ class RazorpayController extends Controller
   function checkout(Request $request)
   {
 
-    $user = Auth::guard("web")->user();
+    //$user = Auth::guard("web")->user();
     $key = $_ENV["RAZORPAY_KEY_ID"];
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
     $event_id = $request->event_id;
@@ -38,11 +38,14 @@ class RazorpayController extends Controller
     $event = Event::where(["id" => $event_id])->first();
     $promoter = Promoter::where(["id" => $promoter_id])->first();
     $items = $request->items;
+    $name = $request->name;
+    $mobile = $request->mobile;
+    $email = $request->email;
 
     $order_details = [];
     $total_price = 0;
     foreach ($items as $item) {
-      if ($item["quantity"] > 0 == false) continue;
+      if (!isset($item["quantity"]) || $item["quantity"] > 0 == false) continue;
       $event_ticket = EventTicket::where(["id" => $item["event_ticket_id"]])->first();
       $amount = $event_ticket->price * $item["quantity"];
       $total_price += $amount;
@@ -77,9 +80,9 @@ class RazorpayController extends Controller
     $payment->rzp_order_id = "";
     $payment->payment_method = "Razorpay";
     $payment->order_id = 0;
-    $payment->user = $user->name;
-    $payment->phone = $user->mobile;
-    $payment->email = $user->email;
+    $payment->user = $name;
+    $payment->phone = $mobile;
+    $payment->email = $email;
     $payment->amount = $total_price;
     $payment->status = "CREATED";
     if($coupon){
@@ -92,13 +95,13 @@ class RazorpayController extends Controller
     $order = new Order();
     $order->event_id = $request->event_id;
     $order->promoter_id = $promoter ? $promoter->id : null;
-    $order->name = $user->name;
-    $order->email = $user->email;
-    $order->mobile = $user->mobile;
+    $order->name = $name;
+    $order->email = $email;
+    $order->mobile = $mobile;
     $order->status = "PENDING";
     $order->total_price = $total_price;
     $order->payment_id = $payment->id;
-    $order->user_id = $user->id;
+    //$order->user_id = $user->id;
     if($coupon){
       $order->discount = $discount;
     }
@@ -134,9 +137,9 @@ class RazorpayController extends Controller
       "order_details" => $razorpay_order,
       "key" => $key,
       "customer_details" => [
-        "name" => $user->name,
-        "email" => $user->email,
-        "mobile" => $user->mobile
+        "name" => $name,
+        "email" => $email,
+        "mobile" => $mobile
       ],
       "event" => $event
     ]);
