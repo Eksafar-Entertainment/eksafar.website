@@ -1,47 +1,7 @@
-@extends('front.layouts.default')
 
-@section('head')
-    <style>
-        .soldout {
-            opacity: 0.5;
-            color: BLACK;
-            position: absolute;
-            text-align: center;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-    <title>{{ $event->name }}</title>
-@endsection
-
-@section('content')
     <section class="py-4 pt-0">
 
-        <!-- Mobile Slider--->
-        <div class="">
-            @if ((new \Jenssegers\Agent\Agent())->isMobile())
-                <div id="main-carousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        @for ($n = 0; $n < 1; $n++)
-                            <div class="carousel-item active">
-                                <img src="{{ url($event->cover_image) }}" class="w-100" />
-                            </div>
-                        @endfor
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#main-carousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#main-carousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            @endif
-        </div>
-        <!--- END Corasel --->
+       
         <div class="container">
             <div class="row">
                 <!----- left panel--->
@@ -73,8 +33,6 @@
                         </div>
                         <!---- End Slider --->
 
-
-
                         <div class=" d-none">
                             @for ($n = 0; $n < 3; $n++)
                                 <span class="badge rounded-pill bg-info fs-6 fw-normal">Secondary</span>
@@ -84,7 +42,7 @@
                         <!-- Mobile Quick view -->
                         <div>
                             @if ((new \Jenssegers\Agent\Agent())->isMobile())
-                                <div class="">
+                                <div class="card">
                                     <div class="pb-4 pb-3">
                                         <div class="d-flex">
                                             <h4 class="flex-grow-1">{{ $event->name }}</h4>
@@ -348,7 +306,3 @@
             </div>
         </div>
     </div>
-
-    @include('front.event.upcomming')
-    
-@endsection
