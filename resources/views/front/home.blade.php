@@ -12,14 +12,20 @@
             <source src="{{ url('/videos/banner.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="caption p-5 transparent-gradient-blur border rounded">
-            <p>People of Eksafar Club,</p>
+        <div class="caption p-5 text-center">
+            <h2 class="mb-4 display-5 fw-bold">People of Eksafar Club,</h2>
 
-            <p>In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great Library. Our
+            <p class="fs-5">In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great Library. Our
                 destination lies high on the horizon. Prepare yourself for a beautiful adventure.</p>
 
-            <p>Expore all the events below.</p>
+            <p class="fs-5">Expore all the events below.</p>
         </div>
+
+        <a class="text-light text-center mt-5 fs-5 d-inline-block scroll-down-button">
+            <i class="fa-solid fa-arrow-down-long"></i>
+        </a>
+
+
         <script>
             document.querySelector("#banner-video video")?.play();
         </script>
@@ -49,13 +55,37 @@
 
             #banner-video .caption {
                 position: absolute;
-                max-width: 600px;
+                max-width: 700px;
                 min-width: 380px;
-                bottom: 25px;
+                bottom: 150px;
                 left: 50%;
                 transform: translateX(-50%);
-                background-color: rgba(0, 0, 0, .3);
                 z-index: 3;
+                text-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.5);
+            }
+
+            #banner-video .scroll-down-button {
+                position: absolute;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                z-index: 3;
+                width: 40px;
+                border: 1px solid #fff;
+                padding: 15px 10px;
+                border-radius: 90px;
+                animation: scroll-anim 0.8s  ease-in  alternate infinite;
+            }
+
+            @keyframes scroll-anim {
+                from {
+                    bottom: 50px;
+                }
+
+                to {
+                    bottom: 30px;
+                }
+               
             }
         </style>
 
@@ -133,7 +163,7 @@
                 @foreach ($banners as $banner)
                     <div class="item">
                         <div class="item-container ">
-                            <a class="btn btn-light fw-lighter" href="{{$banner->url}}">
+                            <a class="btn btn-light fw-lighter" href="{{ $banner->url }}">
                                 <img class="rounded" src="{{ url($banner->image) }}" />
                             </a>
                         </div>

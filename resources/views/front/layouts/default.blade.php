@@ -152,9 +152,6 @@
         @yield('content')
     </main>
 
-
-
-
     <footer class="text-light pt-5 border-top bg-black">
 
         <div class="container footer-margin">
