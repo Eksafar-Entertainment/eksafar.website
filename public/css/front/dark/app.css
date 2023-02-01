@@ -10912,6 +10912,7 @@ html {
   height: 100%;
   width: 100%;
   color: #ffffff;
+  scroll-behavior: smooth;
 }
 
 #main-carousel .owl-item {

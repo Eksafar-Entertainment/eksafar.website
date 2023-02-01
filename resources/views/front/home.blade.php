@@ -21,7 +21,7 @@
             <p class="fs-5">Expore all the events below.</p>
         </div>
 
-        <a class="text-light text-center mt-5 fs-5 d-inline-block scroll-down-button">
+        <a class="text-light text-center mt-5 fs-5 d-inline-block scroll-down-button" href="#upcoming">
             <i class="fa-solid fa-arrow-down-long"></i>
         </a>
 
@@ -128,7 +128,7 @@
         </script>
     </section> --}}
 
-    <section class="py-5">
+    <section class="py-5" id="upcoming">
         <style>
             .owl-prev {
                 width: 15px;
