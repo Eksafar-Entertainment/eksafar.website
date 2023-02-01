@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/front/dark/app.css') }}" rel="stylesheet" id="main-css">
-    <link rel="icon" href="{{ url('/images/ek-logo.png') }}" type="image/icon type">
+    <link rel="icon" href="{{ url('/favicon.ico') }}" type="image/icon">
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"

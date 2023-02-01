@@ -100,7 +100,7 @@
                                 class="form-control" />
                             <button class="btn btn-danger" type="button"> Redeem </button>
                         </div>
-                        @guest
+                        {{-- @guest
                             <div>
                                 <hr />
                                 <!-- Email Container -->
@@ -141,11 +141,23 @@
                                     <button class="btn btn-primary w-100" type="button">Register</button>
                                 </div>
                             </div>
+                        @endguest --}}
+                        <hr/>
+                        <div>
+                            <div class="mb-3">
+                                <input type="text" placeholder="Full name" class="form-control" name="name" />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text text-dark" id="basic-addon1">+91</span>
+                                <input type="number" placeholder="Phone" name="mobile" class="form-control" />
+                            </div>
 
+                            <div class="mb-3">
+                                <input type="email" placeholder="Email" name="email" class="form-control" />
+                            </div>
 
-                        @endguest
-                        <button class="btn btn-primary w-100" style="@guest display: none @endguest" id="checkout"
-                            type="submit">Checkout</button>
+                            <button class="btn btn-primary w-100" id="checkout" type="submit">Checkout</button>
+                        </div>
                     </div>
                 </div>
             </div>
