@@ -215,7 +215,7 @@
                     <div class="col-md-4">
                         <div class="card rounded over-flow-hidden">
                             <div class="w-100 position-relative overflow-hidden rounded"
-                                style="background-image:linear-gradient(0deg, rgba(149, 6, 90, 0.3), rgba(126, 4, 75, 0.3)), url('{{ $event->cover_image }}'); padding-top: 80%; background-size:cover; background-position:center;">
+                                style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('{{ $event->cover_image }}'); padding-top: 90%; background-size:cover; background-position:center;">
                                 @if ($event->status === 'CLOSED')
                                     <div class="position-absolute badge bg-danger"
                                         style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
@@ -223,22 +223,18 @@
                                 @endif
 
 
-                                <div class="card-img-overlay rounded text-center w-100 h-100">
+                                <div class="card-img-overlay rounded text-center w-100 h-100 pt-5">
                                     <h2 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h2>
                                     <p class="card-text">{!! Str::limit("$event->description", 90, ' ...') !!}</p>
 
-                                    <span class="date-glow">
-                                        @if ($event->status === 'CLOSED')
-                                            COMPLETED
-                                        @else
-                                            {{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}
-                                        @endif
-                                    </span><br />
+                                    @if ($event->status === 'CREATED')
+                                    <span>{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span>
                                     <span>@ {{ $event->venue_name }}</span>
+                                    @endif
                                 </div>
                                 <div style="position:absolute; text-align: center;  left: 0; bottom:25px; z-index:99999"
                                     class="w-100">
-                                    <a class="btn btn-light fw-lighter" href="{{ url('/event/' . $event->slug) }}">More Info
+                                    <a class="btn btn-light" href="{{ url('/event/' . $event->slug) }}">More Info
                                         <i class="fa-solid fa-arrow-right"></i> </a>
                                 </div>
                             </div>
