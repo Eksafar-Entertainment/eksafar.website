@@ -348,7 +348,10 @@
             </div>
         </div>
     </div>
+    
 
     @include('front.event.upcomming')
+
+    
     
 @endsection
