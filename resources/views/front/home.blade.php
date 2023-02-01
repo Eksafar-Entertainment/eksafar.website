@@ -152,7 +152,6 @@
 
             .owl-prev i,
             .owl-next i {
-                transform: scale(1, 6);
                 color: #ccc;
             }
         </style>
@@ -178,8 +177,8 @@
                     loop: true,
                     margin: 10,
                     nav: false,
-                    navText: ['<i class="fa fa-angle-left glow" aria-hidden="true"></i>',
-                        '<i class="fa fa-angle-right glow" aria-hidden="true"></i>'
+                    navText: ['<i class="fa fa-angle-left glow fs-4" aria-hidden="true"></i>',
+                        '<i class="fa fa-angle-right glow fs-4" aria-hidden="true"></i>'
                     ],
                     autoWidth: false,
                     center: true,
@@ -314,8 +313,8 @@
                     autoplayHoverPause: true,
                     center: true,
                     navText: [
-                        "<i class='fa fa-angle-left date-glow'></i>",
-                        "<i class='fa fa-angle-right date-glow'></i>"
+                        "<i class='fa fa-angle-left date-glow fs-4'></i>",
+                        "<i class='fa fa-angle-right date-glow fs-4'></i>"
                     ],
                     responsive: {
                         0: {
