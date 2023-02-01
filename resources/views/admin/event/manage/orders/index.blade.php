@@ -70,6 +70,7 @@
                         <th>Status</th>
                         <th>Order Date</th>
                         <th>In</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,6 +97,8 @@
                             <td>{{ $order->created_at ? date('d/m/Y h:m A', strtotime($order->created_at)) : '' }}</td>
                             <td class="checked-in">
                                 <span class="badge bg-{{ $order->is_checked_in ? 'success' : 'danger' }}">{{ $order->is_checked_in ? 'Yes' : 'No' }}</span>
+                            </td>
+                            <td width="1%">
                                 <span onclick="resendMail('{{ $order->id }}')"><i class="fa-solid fa-envelope"></i></span>
                             </td>
                         </tr>
