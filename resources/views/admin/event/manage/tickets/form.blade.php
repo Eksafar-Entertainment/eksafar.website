@@ -46,6 +46,7 @@
                                 <option {{ $event_ticket->status === 'CREATED' ? 'selected' : '' }}>CREATED</option>
                                 <option {{ $event_ticket->status === 'ACTIVE' ? 'selected' : '' }}>ACTIVE</option>
                                 <option {{ $event_ticket->status === 'SOLD' ? 'selected' : '' }}>SOLD</option>
+                                <option {{ $event_ticket->status === 'FREE' ? 'selected' : '' }}>FREE</option>
                             </select>
                         </div>
                     </div>

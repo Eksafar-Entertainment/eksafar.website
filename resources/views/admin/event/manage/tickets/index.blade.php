@@ -46,7 +46,6 @@
                                     </div> --}}
                                 </div>
                             </div>
-
                             <div class="position-absolute bottom-0 right-0 end-0 bg-{{$status_colors[$event_ticket->status]}} px-2 text-light" style="border-top-left-radius: 8px">
                                 <small>{{ $event_ticket->status }}</small>
                             </div>

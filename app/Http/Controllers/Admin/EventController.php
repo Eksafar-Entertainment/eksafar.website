@@ -374,6 +374,7 @@ class EventController extends Controller
             "ACTIVE" => "success",
             "CREATED" => "warning",
             "SOLD" => "danger",
+            "FREE" => "success",
         ];
         return view("admin.event.manage.tickets.index", compact('event', 'event_tickets', "status_colors"));
     }
