@@ -156,7 +156,7 @@
                                 <input type="email" placeholder="Email" name="email" class="form-control" />
                             </div>
 
-                            <button class="btn btn-primary w-100" id="checkout" type="submit">Checkout</button>
+                            <button class="btn btn-primary w-100" id="checkout" type="submit">Checkout in the free</button>
                         </div>
                     </div>
                 </div>
