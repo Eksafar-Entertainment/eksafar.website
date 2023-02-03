@@ -254,11 +254,6 @@
                                         @if ($event->status == 'CREATED')
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal">Book Now</button>
-                                        @elseif ($event->status == 'FREE')
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#freeModal">Free Entry</button>
-                                        @else
-                                            <button type="button" class="btn btn-danger btn-sm" disabled="true">Sold Out</button>
                                         @endif
                                     </div>
 
@@ -326,9 +321,6 @@
                         @if ($event->status == 'CREATED')
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">Book Now</button>
-                        @elseif ($event->status == 'FREE')
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#freeModal">Free Entry</button>
                         @else
                             <button type="button" class="btn btn-danger btn-sm" disabled="true">Sold Out</button>
                         @endif
@@ -343,7 +335,6 @@
         <!--- Bottom Ribbon End --->
     @endif
     <!------- Booking Modal ---->
-    
     <div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -352,17 +343,6 @@
                 <div class="modal-content position-relative ticket rounded" id="ticket">
                     <div class="ticket__box rounded">
                         <x-front.booking-form :event="$event" :venue="$venue" :tickets="$event_tickets" />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="freeModal" tabindex="-1" aria-labelledby="freeModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content position-relative ticket rounded" id="ticket">
-                    <div class="ticket__box rounded">
-                        <x-front.free-booking-form :event="$event" :venue="$venue" :tickets="$event_tickets" />
                     </div>
                 </div>
             </div>
