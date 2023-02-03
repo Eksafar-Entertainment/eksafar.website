@@ -59,6 +59,10 @@ class RazorpayController extends Controller
       $order_details[] = $order_detail;
     }
 
+    if($total_price === 0){
+      return $this->freeCheckout($request);
+    }
+
     //coupon
     $coupon_code = $request->coupon;
     $coupon = Coupon::where("code", $coupon_code)
@@ -143,6 +147,68 @@ class RazorpayController extends Controller
       ],
       "event" => $event
     ]);
+  }
+
+  function freeCheckout(Request $request){
+    $promoter_id = $request->promoter_id;
+    $promoter = Promoter::where(["id" => $promoter_id])->first();
+    $items = $request->items;
+    $name = $request->name;
+    $mobile = $request->mobile;
+    $email = $request->email;
+
+    $order_details = [];
+    $total_price = 0;
+    foreach ($items as $item) {
+      if (!isset($item["quantity"]) || $item["quantity"] > 0 == false) continue;
+      $event_ticket = EventTicket::where(["id" => $item["event_ticket_id"]])->first();
+      $amount = $event_ticket->price * $item["quantity"];
+      $total_price += $amount;
+
+      $order_detail = new OrderDetail();
+      $order_detail->event_ticket_id = $item["event_ticket_id"];
+      $order_detail->quantity = $item["quantity"];
+      $order_detail->price = $amount;
+      $order_detail->rate = $event_ticket->price;
+
+      $order_details[] = $order_detail;
+    }
+
+
+    //create order
+    $order = new Order();
+    $order->event_id = $request->event_id;
+    $order->promoter_id = $promoter ? $promoter->id : null;
+    $order->name = $name;
+    $order->email = $email;
+    $order->mobile = $mobile;
+    $order->status = "PENDING";
+    $order->total_price = $total_price;
+    //$order->user_id = $user->id;
+  
+    $order->save();
+
+    //update order
+    $order->save();
+
+    //save order details
+    foreach ($order_details as $order_detail) {
+      $order_detail->order_id = $order->id;
+      $order_detail->save();
+    }
+    $status = "SUCCESS";
+
+    try {
+      Mail::to($order->email)->send(new TicketMail($order->id));
+    } catch (Exception $err) {
+      dd($err);
+    }
+
+    return view("front.payment.complete",  [
+      "status" => $status,
+      "order" => $order
+    ]);
+
   }
 
   function complete(Request $request)
