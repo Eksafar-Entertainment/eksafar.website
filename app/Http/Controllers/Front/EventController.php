@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventTicket;
 use App\Models\Venue;
-use App\Models\Banner;
 use Jenssegers\Agent\Agent;
-use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -22,9 +20,8 @@ class EventController extends Controller
         $event_tickets= EventTicket::where(["event_id"=>$event->id])->where('status', '!=', "CREATED")->orderBy("start_datetime", "ASC")->orderBy("price", "ASC")->get();
         $venue= Venue::where(["id"=>$event->venue])->first();
         $artists= Artist::whereIn("id", $event->artists??[])->get();
+        
 
-        $upcommings = Event::whereDate('start_date', '>=', Carbon::now('Asia/Kolkata'))->get();
-
-        return view("front.event.details", compact('type','event_tickets','event', 'venue','artists', 'upcommings'));
+        return view("front.event.details", compact('type','event_tickets','event', 'venue','artists'));
     }
 }
