@@ -121,6 +121,24 @@
                     <span class="text-danger text-left">{{ $errors->first('tags') }}</span>
                 @endif
             </div>
+            <div class="mb-3">
+                <label for="map_url" class="form-label">Tags</label>
+                <input value="{{ $venue->map_url }}" type="text" class="form-control" name="map_url"
+                    placeholder="Please enter map_url with comma seperated" id="map_url" required>
+
+                @if ($errors->has('map_url'))
+                    <span class="text-danger text-left">{{ $errors->first('map_url') }}</span>
+                @endif
+            </div>
+            <div class="mb-3">
+                <label for="tags" class="form-label">Tags</label>
+                <input value="{{ $venue->tags }}" type="text" class="form-control" name="tags"
+                    placeholder="Please enter tags with comma seperated" id="tags" required>
+
+                @if ($errors->has('tags'))
+                    <span class="text-danger text-left">{{ $errors->first('tags') }}</span>
+                @endif
+            </div>
 
 
             <button type="submit" class="btn btn-primary">Save Venue</button>

@@ -20,5 +20,6 @@ class Venue extends Model
         'address', 
         'founded_at', 
         'tags', 
+        "map_url"
     ];
 }

@@ -64,7 +64,8 @@ class VenueController extends Controller
             'founded_at', 
             'tags', 
             'logo',
-            'cover'
+            'cover',
+            "map_url"
         )));
 
         return redirect()->route('venue.index')
@@ -117,7 +118,8 @@ class VenueController extends Controller
             'founded_at', 
             'tags', 
             'logo',
-            'cover'
+            'cover',
+            "map_url"
         ));
 
         return redirect()->route('venue.index')
