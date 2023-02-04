@@ -9,19 +9,19 @@
             <h3 class="text-center">Get in touch with us</h3>
             <div class="m-auto mt-3" style="max-width: 600px">
                 <div class="card card-body p-5">
-                    <form class="form-contact contact_form" id="contactForm" novalidate="novalidate">
-
+                    <form class="" id="contactForm" method="POST" action="/contact">
+                        @csrf
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-4">
                                     <label class="form-label">Name</label>
-                                    <input class="form-control valid" name="name" id="name" type="text" placeholder="Enter your name">
+                                    <input class="form-control valid" name="name" id="name" type="text" placeholder="Enter your name" required>
                                 </div>
                             </div>
                             <div class="col-sm-6 mb-4">
                                 <div class="form-group">
                                     <label class="form-label">Email</label>
-                                    <input class="form-control valid" name="email" id="email" type="email"  placeholder="Email">
+                                    <input class="form-control valid" name="email" id="email" type="email"  placeholder="Please enter you email" required>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                             <div class="col-sm-12">
                                 <div class="mb-4">
                                     <label class="form-label">Subject</label>
-                                    <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject">
+                                    <input class="form-control" name="subject" id="subject" type="text" placeholder="Enter Subject" required>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             <div class="col-sm-12">
                                 <div class="mb-4">
                                     <label class="form-label">Message</label>
-                                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="7" placeholder=" Enter Message"></textarea>
+                                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="7" placeholder=" Enter Message" required></textarea>
                                 </div>
                             </div>
                         </div>

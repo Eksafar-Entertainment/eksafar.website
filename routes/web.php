@@ -127,6 +127,7 @@ Route::group([
     "prefix" => "/"
 ], function () {
     Route::get('/', [FrontController::class, 'index']);
+    Route::post('/contact', [FrontController::class, 'contact']);
     Route::get("/event/{slug}", [FrontEventController::class, 'details']);
     Route::get('/{path}', [FrontController::class, 'route'])->where('path', '.*');
 });
