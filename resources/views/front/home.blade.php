@@ -335,8 +335,7 @@
 
                 <div class="text-center mb-5">
                     <h1><span class="glow">G</span>allery</h1>
-                    <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout the Gallery for the past events that have
-                        conducted in your city.</h5>
+                    <h5 style="max-width: 500px" class="m-auto fw-normal">Created memories with us.</h5>
                 </div>
 
                 <div class="row gx-5 gy-5">
