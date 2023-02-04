@@ -83,7 +83,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark">
             <div class="container py-2">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ url('/images/logo.svg') }}" alt="Eksafar" style="height: 25px;" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
