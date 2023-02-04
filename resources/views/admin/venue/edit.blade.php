@@ -122,7 +122,7 @@
                 @endif
             </div>
             <div class="mb-3">
-                <label for="map_url" class="form-label">Tags</label>
+                <label for="map_url" class="form-label">Map Url</label>
                 <input value="{{ $venue->map_url }}" type="text" class="form-control" name="map_url"
                     placeholder="Please enter map_url with comma seperated" id="map_url" required>
 

@@ -127,7 +127,7 @@
 
 
             <div class="mb-3">
-                <label for="map_url" class="form-label">Tags</label>
+                <label for="map_url" class="form-label">Map Url</label>
                 <input value="{{ old('map_url') }}" type="text" class="form-control" name="map_url"
                     placeholder="Please enter map url" id="map_url" required>
 
