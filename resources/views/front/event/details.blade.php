@@ -261,6 +261,7 @@
                                 </div>
                             </div>
 
+                            {{ $venue->map_ur }}
                             <div class="card overflow-hidden">
                                 <iframe class="w-100" style="filter: invert(90%) hue-rotate(180deg)"
                                 src="{{ $venue->map_ur }}"
