@@ -8,6 +8,11 @@
         <div class="container my-5">
             <h3 class="text-center">Get in touch with us</h3>
             <div class="m-auto mt-3" style="max-width: 600px">
+                @if($message)
+                <div class="alert alert-success" role="alert">
+                    {{$message}}
+                  </div>
+                @endif
                 <div class="card card-body p-5">
                     <form class="" id="contactForm" method="POST" action="/contact">
                         @csrf
