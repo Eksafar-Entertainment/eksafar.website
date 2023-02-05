@@ -1,7 +1,7 @@
 @extends('front.layouts.default')
 
 @section('head')
-    <title>Eksafar Club</title>
+    <title>Eksafar Entertainment</title>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
             Your browser does not support the video tag.
         </video>
         <div class="caption p-5 text-center">
-            <h2 class="mb-4 display-5 fw-bold">People of Eksafar Club,</h2>
+            <h2 class="mb-4 display-5 fw-bold">People of Eksafar Entertainment,</h2>
 
             <p class="fs-5">In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great Library. Our
                 destination lies high on the horizon. Prepare yourself for a beautiful adventure.</p>
@@ -260,7 +260,7 @@
                         <h5 class="mb-0 text-center"><b>Our Style</b></h5>
                         <p class="text-center p-4">
                             We celebrate our rich history in a contemporary style, and look forward to seeing this work
-                            continue in the future as we embark on a new journey as Eksafar Club..
+                            continue in the future as we embark on a new journey as Eksafar Entertainment..
                         </p>
                     </div>
                     <div class="slider-card">

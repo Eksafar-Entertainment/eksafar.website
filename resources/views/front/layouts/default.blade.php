@@ -198,7 +198,7 @@
             </div>
         </div>
         <div class="py-2 border-top text-center">
-            &copy; Copyright 2023 <strong class="date-glow---"> Eksafar Club</strong> All Rights reserved
+            &copy; Copyright 2023 <strong class="date-glow---"> Eksafar Entertainment</strong> All Rights reserved
         </div>
     </footer>
     @if ((new \Jenssegers\Agent\Agent())->isMobile())

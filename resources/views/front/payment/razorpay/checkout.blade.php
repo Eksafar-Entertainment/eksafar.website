@@ -4,7 +4,7 @@
         "key": "{{$key}}", // Enter the Key ID generated from the Dashboard
         "amount": "{{$order_details->amount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "{{$order_details->currency}}",
-        "name": "Eksafar Club",
+        "name": "Eksafar Entertainment",
         "description": "{{$event->name}}",
         "image": "{{url('images/ek-logo.png')}}",
         "order_id": "{{$order_details->id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
