@@ -158,11 +158,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 f-icons">
                     <a href="{{ url('/') }}">
-                        <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" />
+                        <img src="{{ url('/images/eksafar-bottom.png') }}" alt="eksafar-logo" style="height: 75px;" />
                     </a>
-                    <div class="mt-2">
-                        <small class="gray-f">Where words fail, music speaks</small>
-                    </div>
                 </div>
             </div>
             <div class="mt-4">
