@@ -226,7 +226,8 @@
             <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($past_events as $event)
                     <div class="col-md-3">
-                        <div class="card rounded overflow-hidden h-100 position-relative mb-0  d-flex flex-column" style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))">
+                        <div class="card rounded overflow-hidden h-100 position-relative mb-0  d-flex flex-column"
+                            style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))">
                             <img class="rounded" src="{{ $event->cover_image }}" />
                             @if ($event->status === 'CLOSED')
                                 <div class="position-absolute badge bg-danger"
@@ -238,10 +239,9 @@
                                 <h4 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h4>
                                 <p class="card-text">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
 
-                                @if ($event->status === 'CREATED')
-                                    <span>{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span>
-                                    <span>@ {{ $event->venue_name }}</span>
-                                @endif
+                                <span>{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span>
+                                <span>@ {{ $event->venue_name }}</span>
+
                             </div>
                             <div class="w-100 p-4">
                                 <a class="btn btn-light w-100" href="{{ url('/event/' . $event->slug) }}">More Info
