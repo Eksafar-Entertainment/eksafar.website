@@ -74,7 +74,8 @@ class EventController extends Controller
         $event->start_date = $request->start_date ?? "2020-01-01";
         $event->end_date = $request->end_date ?? "2020-01-01";
         $event->occurrence = $request->occurrence ?? "";
-        $event->description = $request->description;
+        $event->excerpt = $request->excerpt ??"";
+        $event->description = $request->description ??"";
         $event->video_link = $request->video_link ?? "";
         $event->event_type = $request->event_type ?? "";
         $event->artists = $request->artist ?? [];
@@ -447,6 +448,7 @@ class EventController extends Controller
         $event->start_date = $request->start_date;
         $event->end_date = $request->end_date;
         $event->occurrence = $request->occurrence;
+        $event->excerpt = $request->excerpt??"";
         $event->description = $request->description;
         $event->cover_image = $request->cover_image;
         $event->video_link = $request->video_link;
