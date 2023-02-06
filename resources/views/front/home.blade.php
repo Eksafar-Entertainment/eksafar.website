@@ -256,6 +256,30 @@
 
     </section>
 
+
+    <section
+        style="background-image: url(https://picsum.photos/1080/720?id=1);background-size: cover;background-position: center;background-attachment: fixed;">
+        <div class="transparent-gradient-blur py-5 border-top border-bottom">
+            <div class="container my-5">
+
+                <div class="text-center mb-5">
+                    <h1><span class="glow">G</span>allery</h1>
+                    <h5 style="max-width: 500px" class="m-auto fw-normal">Created memories with us.</h5>
+                </div>
+
+                <div class="row gx-5 gy-5">
+                    @foreach ($gallery as $image)
+                        <div class="col-md-4">
+                            <div class=" rounded"
+                                style="padding-top: 75%; background-size:cover; background-image: url(' {{ route('resources:images', ['src' => 'storage/uploads/' . $image->path, 'size' => 'md']) }}')">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="slider" class="pt-5">
         <div class="container" style="margin-top: 10%; margin-bottom: 10%;">
             <h1 class="text-center"><b><span class="glow">W</span>hat's next</b></h1>
@@ -336,26 +360,4 @@
         </script>
     </section>
 
-    <section
-        style="background-image: url(https://picsum.photos/1080/720?id=1);background-size: cover;background-position: center;background-attachment: fixed;">
-        <div class="transparent-gradient-blur py-5 border-top border-bottom">
-            <div class="container my-5">
-
-                <div class="text-center mb-5">
-                    <h1><span class="glow">G</span>allery</h1>
-                    <h5 style="max-width: 500px" class="m-auto fw-normal">Created memories with us.</h5>
-                </div>
-
-                <div class="row gx-5 gy-5">
-                    @foreach ($gallery as $image)
-                        <div class="col-md-4">
-                            <div class=" rounded"
-                                style="padding-top: 75%; background-size:cover; background-image: url(' {{ route('resources:images', ['src' => 'storage/uploads/' . $image->path, 'size' => 'md']) }}')">
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection
