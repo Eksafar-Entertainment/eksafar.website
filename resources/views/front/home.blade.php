@@ -234,7 +234,7 @@
                                     style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
                                     COMPLETED</div>
                             @endif
-                            <div class="w-100 overflow-hidden rounded flex-grow-1 text-center p-3">
+                            <div class="w-100 overflow-hidden rounded flex-grow-1 text-center p-4">
 
                                 <h4 class="card-title">{{ $event->name }}</h4>
                                 <p class="card-text">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
@@ -243,7 +243,7 @@
                                 <span>@ {{ $event->venue_name }}</span>
 
                             </div>
-                            <div class="w-100 p-4">
+                            <div class="w-100 p-4  pt-0">
                                 <a class="btn btn-light w-100" href="{{ url('/event/' . $event->slug) }}">More Info
                                     <i class="fa-solid fa-arrow-right"></i> </a>
                             </div>
