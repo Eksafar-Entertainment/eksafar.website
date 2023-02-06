@@ -244,7 +244,7 @@
                                     <span>@ {{ $event->venue_name }}</span>
                                     @endif
                                 </div>
-                                <div class="w-100 p-5">
+                                <div class="w-100 p-4">
                                     <a class="btn btn-light w-100" href="{{ url('/event/' . $event->slug) }}">More Info
                                         <i class="fa-solid fa-arrow-right"></i> </a>
                                 </div>
