@@ -175,7 +175,7 @@
                 @foreach ($upcoming_events as $event)
                     <div class="item">
                         <div class="item-container ">
-                            <a class="btn btn-light fw-lighter" href="{{ url('/event/' . $event->slug) }}">
+                            <a href="{{ url('/event/' . $event->slug) }}">
                                 <img class="rounded" src="{{ $event->cover_image }}" />
                             </a>
                         </div>
@@ -219,7 +219,7 @@
 
             <div class="text-center mb-5">
                 <h1><span class="glow">P</span>ast Events</h1>
-                <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
+                <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best past events in your city that
                     you missed...</h5>
             </div>
 
