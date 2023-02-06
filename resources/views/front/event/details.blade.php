@@ -14,6 +14,7 @@
     <title>{{ $event->name }}</title>
     <meta name="description" content="{{ $event->excerpt }}">
     <meta property="og:title" content="{{ $event->name }}" />
+    <meta property="og:description" content="{{ $event->excerpt }}" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{ url($event->cover_image) }}" />
     <meta property="og:url" content="{{ url('/event/' . $event->slug) }}" />
