@@ -237,7 +237,7 @@
                             <div class="w-100 overflow-hidden rounded flex-grow-1 text-center p-4">
 
                                 <h4 class="card-title">{{ $event->name }}</h4>
-                                <p class="card-text">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
+                                <p class="card-text glow">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
 
                                 <span>{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span>
                                 <span>@ {{ $event->venue_name }}</span>
