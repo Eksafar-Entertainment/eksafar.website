@@ -5,7 +5,8 @@
 
     <meta name="description" content="">
     <meta property="og:title" content="Eksafar Entertainment" />
-    <meta property="og:description" content="A party & traveler group for enthusiastic people who want to discover new places,cultures & Nightlife." />
+    <meta property="og:description"
+        content="A party & traveler group for enthusiastic people who want to discover new places,cultures & Nightlife." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{ url('/images/eksafar-bottom.png') }}" />
     <meta property="og:url" content="{{ url('/') }}" />
@@ -22,7 +23,8 @@
         <div class="caption p-5 text-center">
             <h2 class="mb-4 display-5 fw-bold">People of Eksafar Entertainment,</h2>
 
-            <p class="fs-5">In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great Library. Our
+            <p class="fs-5">In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great
+                Library. Our
                 destination lies high on the horizon. Prepare yourself for a beautiful adventure.</p>
 
             <p class="fs-5">Expore all the events below.</p>
@@ -81,7 +83,7 @@
                 border: 1px solid #fff;
                 padding: 15px 10px;
                 border-radius: 90px;
-                animation: scroll-anim 0.8s  ease-in  alternate infinite;
+                animation: scroll-anim 0.8s ease-in alternate infinite;
             }
 
             @keyframes scroll-anim {
@@ -92,7 +94,7 @@
                 to {
                     bottom: 30px;
                 }
-               
+
             }
         </style>
 
@@ -224,32 +226,27 @@
             <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($past_events as $event)
                     <div class="col-md-4">
-                        <div class="card rounded overflow-hidden h-100 position-relative mb-0">
+                        <div class="card rounded overflow-hidden h-100 position-relative mb-0  d-flex flex-column" style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))">
                             <img class="rounded" src="{{ $event->cover_image }}" />
-                            <div class="w-100 overflow-hidden rounded d-flex flex-column"
-                                style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))">
-                                @if ($event->status === 'CLOSED')
-                                    <div class="position-absolute badge bg-danger"
-                                        style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
-                                        COMPLETED</div>
-                                @endif
+                            @if ($event->status === 'CLOSED')
+                                <div class="position-absolute badge bg-danger"
+                                    style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
+                                    COMPLETED</div>
+                            @endif
+                            <div class="w-100 overflow-hidden rounded flex-grow-1 text-center">
 
+                                <h4 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h4>
+                                <p class="card-text">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
 
-                                <div class="rounded text-center flex-grow-1">
-                                    <h3 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h3>
-                                    <p class="card-text">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
-
-                                    @if ($event->status === 'CREATED')
+                                @if ($event->status === 'CREATED')
                                     <span>{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span>
                                     <span>@ {{ $event->venue_name }}</span>
-                                    @endif
-                                </div>
-                                <div class="w-100 p-4">
-                                    <a class="btn btn-light w-100" href="{{ url('/event/' . $event->slug) }}">More Info
-                                        <i class="fa-solid fa-arrow-right"></i> </a>
-                                </div>
+                                @endif
                             </div>
-
+                            <div class="w-100 p-4">
+                                <a class="btn btn-light w-100" href="{{ url('/event/' . $event->slug) }}">More Info
+                                    <i class="fa-solid fa-arrow-right"></i> </a>
+                            </div>
 
                         </div>
                     </div>
