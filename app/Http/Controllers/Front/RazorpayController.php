@@ -182,7 +182,7 @@ class RazorpayController extends Controller
     $order->name = $name;
     $order->email = $email;
     $order->mobile = $mobile;
-    $order->status = "PENDING";
+    $order->status = "SUCCESS";
     $order->total_price = $total_price;
     //$order->user_id = $user->id;
   
