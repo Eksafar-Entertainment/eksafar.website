@@ -27,9 +27,9 @@
                                 <div class="flex-grow-1">
                                     <i class="fas fa-ticket"></i> {{ $event_ticket->name }}<br />
                                     <small style="font-size: 12px">
-                                        {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format('d-m-y h:i A') }} 
+                                        {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format('d/m/Y h:i A') }} 
                                         to
-                                        {{ \Carbon\Carbon::parse($event_ticket->end_datetime)->format('d-m-y h:i A') }}
+                                        {{ \Carbon\Carbon::parse($event_ticket->end_datetime)->format('d/m/Y h:i A') }}
                                     </small>
                                 </div>
                                 <span>
