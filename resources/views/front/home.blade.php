@@ -224,9 +224,10 @@
             <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($past_events as $event)
                     <div class="col-md-4">
-                        <div class="card rounded over-flow-hidden">
-                            <div class="w-100 position-relative overflow-hidden rounded"
-                                style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('{{ $event->cover_image }}'); padding-top: 90%; background-size:cover; background-position:center;">
+                        <div class="card rounded overflow-hidden h-100 position-relative mb-0">
+                            <img class="rounded" src="{{ $event->cover_image }}" />
+                            <div class="w-100 overflow-hidden rounded"
+                                style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))">
                                 @if ($event->status === 'CLOSED')
                                     <div class="position-absolute badge bg-danger"
                                         style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
@@ -234,7 +235,7 @@
                                 @endif
 
 
-                                <div class="card-img-overlay rounded text-center w-100 h-100 pt-5">
+                                <div class="rounded text-center pt-5" style="height: 200px">
                                     <h2 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h2>
                                     <p class="card-text">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
 
@@ -243,9 +244,8 @@
                                     <span>@ {{ $event->venue_name }}</span>
                                     @endif
                                 </div>
-                                <div style="position:absolute; text-align: center;  left: 0; bottom:25px; z-index:99999"
-                                    class="w-100">
-                                    <a class="btn btn-light" href="{{ url('/event/' . $event->slug) }}">More Info
+                                <div class="w-100 p-5">
+                                    <a class="btn btn-light w-100" href="{{ url('/event/' . $event->slug) }}">More Info
                                         <i class="fa-solid fa-arrow-right"></i> </a>
                                 </div>
                             </div>
