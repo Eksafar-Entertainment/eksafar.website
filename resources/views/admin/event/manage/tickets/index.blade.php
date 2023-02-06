@@ -21,11 +21,16 @@
 
             <div class="row">
                 @foreach ($event_tickets as $key => $event_ticket)
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card position-relative overflow-hidden" style="cursor: pointer" onclick="openForm('{{ $event_ticket->id }}')">
                             <div class="card-header bg-primary text-light d-flex align-items-center">
                                 <div class="flex-grow-1">
                                     <i class="fas fa-ticket"></i> {{ $event_ticket->name }}<br />
+                                    <small style="font-size: 12px">
+                                        {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format('d-m-y h:i A') }} 
+                                        to
+                                        {{ \Carbon\Carbon::parse($event_ticket->end_datetime)->format('d-m-y h:i A') }}
+                                    </small>
                                 </div>
                                 <span>
                                     @money($event_ticket->price)

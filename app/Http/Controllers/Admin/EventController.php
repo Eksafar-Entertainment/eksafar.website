@@ -360,7 +360,7 @@ class EventController extends Controller
             ->leftJoin("orders", function ($join) {
                 $join->on('order_details.order_id', '=', 'orders.id');
             })
-            ->groupBy("event_tickets.id");
+            ->groupBy("event_tickets.id")->orderBy("created_at", "desc");
         if (isset($request->query()["keyword"]) && $request->query()["keyword"] != "") {
             $event_tickets->where(function ($query) {
                 global $request;
