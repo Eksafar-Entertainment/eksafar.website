@@ -215,7 +215,7 @@
 
     {{-- @include('front.index-page.event-list') --}}
     <section class="py-5">
-        <div class="container my-5">
+        <div class="container container-small my-5">
 
             <div class="text-center mb-5">
                 <h1><span class="glow">P</span>ast Events</h1>
