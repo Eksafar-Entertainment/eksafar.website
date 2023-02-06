@@ -226,7 +226,7 @@
                     <div class="col-md-4">
                         <div class="card rounded overflow-hidden h-100 position-relative mb-0">
                             <img class="rounded" src="{{ $event->cover_image }}" />
-                            <div class="w-100 overflow-hidden rounded"
+                            <div class="w-100 overflow-hidden rounded d-flex flex-column"
                                 style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))">
                                 @if ($event->status === 'CLOSED')
                                     <div class="position-absolute badge bg-danger"
@@ -235,8 +235,8 @@
                                 @endif
 
 
-                                <div class="rounded text-center pt-5" style="height: 200px">
-                                    <h2 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h2>
+                                <div class="rounded text-center flex-grow-1">
+                                    <h3 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h3>
                                     <p class="card-text">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
 
                                     @if ($event->status === 'CREATED')
