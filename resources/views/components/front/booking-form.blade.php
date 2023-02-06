@@ -95,7 +95,7 @@
                         <hr />
                         <!-- Discount Container -->
                         <input type="hidden" name="discount" value="0" />
-                        <div id="discount-container" class="input-group mb-3">
+                        <div id="discount-container" class="input-group mb-3 d-none">
                             <input type="text" id="coupon" name="coupon" placeholder="Discount Coupon"
                                 class="form-control" />
                             <button class="btn btn-danger" type="button"> Redeem </button>
@@ -142,14 +142,15 @@
                                 </div>
                             </div>
                         @endguest --}}
-                        <hr/>
+                        <hr />
                         <div>
                             <div class="mb-3">
                                 <input type="text" placeholder="Full name" class="form-control" name="name" />
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text text-dark" id="basic-addon1">+91</span>
-                                <input type="number" placeholder="Phone" name="mobile" class="form-control" />
+                                <input type="text" placeholder="Phone" name="mobile" class="form-control"
+                                    onkeyup="event.target.value = event.target.value.replace(/[^\d.-]+/g, '')" />
                             </div>
 
                             <div class="mb-3">
@@ -198,8 +199,15 @@
         net_total_el.innerHTML = money(_adjusted_amount);
 
         //toggle fields
-        let elements = document.querySelectorAll(".discount-field");
-        elements.forEach(element => {
+        let discount_container = document.querySelector("#discount-container");
+        if (total_amount > 0) {
+            discount_container.classList.remove("d-none");
+        } else {
+            discount_container.classList.add("d-none");
+        }
+
+        let discount_elements = document.querySelectorAll(".discount-field");
+        discount_elements.forEach(element => {
             if (_discount_amount > 0) {
                 element.classList.remove("d-none");
             } else {
