@@ -13,6 +13,7 @@
     </style>
     <title>{{ $event->name }}</title>
     <meta name="description" content="{{ $event->excerpt }}">
+    <meta name="keywords" content="{{ $event->tags }}">
     <meta property="og:title" content="{{ $event->name }}" />
     <meta property="og:description" content="{{ $event->excerpt }}" />
     <meta property="og:type" content="website" />
