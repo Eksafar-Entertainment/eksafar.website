@@ -166,11 +166,11 @@
         <div class="container">
             <h2 class="text-center mb-4"><span class="glow">U</span>pcoming</h2>
             <div class="owl-carousel owl-theme" id="gallery-carousel">
-                @foreach ($banners as $banner)
+                @foreach ($upcoming_events as $event)
                     <div class="item">
                         <div class="item-container ">
-                            <a class="btn btn-light fw-lighter" href="{{ $banner->url }}">
-                                <img class="rounded" src="{{ url($banner->image) }}" />
+                            <a class="btn btn-light fw-lighter" href="{{ url('/event/' . $event->slug) }}">
+                                <img class="rounded" src="{{ $event->cover_image }}" />
                             </a>
                         </div>
                     </div>
@@ -218,7 +218,7 @@
             </div>
 
             <div class="row gx-5 gy-5 justify-content-center">
-                @foreach ($events as $event)
+                @foreach ($past_events as $event)
                     <div class="col-md-4">
                         <div class="card rounded over-flow-hidden">
                             <div class="w-100 position-relative overflow-hidden rounded"
