@@ -164,7 +164,11 @@
         </style>
 
         <div class="container">
-            <h2 class="text-center mb-4"><span class="glow">U</span>pcoming</h2>
+            <div class="text-center mb-5">
+                <h1><span class="glow">U</span>pcoming Events</h1>
+                <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
+                    you won't want to miss...</h5>
+            </div>
             <div class="owl-carousel owl-theme" id="gallery-carousel">
                 @foreach ($upcoming_events as $event)
                     <div class="item">
@@ -214,7 +218,7 @@
             <div class="text-center mb-5">
                 <h1><span class="glow">A</span>ll Events</h1>
                 <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
-                    you won't want to miss...</h5>
+                    you missed...</h5>
             </div>
 
             <div class="row gx-5 gy-5 justify-content-center">
@@ -232,7 +236,7 @@
 
                                 <div class="card-img-overlay rounded text-center w-100 h-100 pt-5">
                                     <h2 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h2>
-                                    <p class="card-text">{!! Str::limit("$event->description", 90, ' ...') !!}</p>
+                                    <p class="card-text">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
 
                                     @if ($event->status === 'CREATED')
                                     <span>{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span>
