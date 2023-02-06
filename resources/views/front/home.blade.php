@@ -5,7 +5,7 @@
 
     <meta name="description" content="">
     <meta property="og:title" content="Eksafar Entertainment" />
-    <meta property="og:description" content="Our vision is to chart the roads of informative & entertaining events. We work on established systems and processes which ensure a seamless flow of work from beginning to end. We break barriers when we need to and go that extra mile." />
+    <meta property="og:description" content="A party & traveler group for enthusiastic people who want to discover new places,cultures & Nightlife." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{ url('/images/eksafar-bottom.png') }}" />
     <meta property="og:url" content="{{ url('/') }}" />
