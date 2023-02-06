@@ -225,7 +225,7 @@
 
             <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($past_events as $event)
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card rounded overflow-hidden h-100 position-relative mb-0  d-flex flex-column"
                             style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))">
                             <img class="rounded" src="{{ $event->cover_image }}" />
@@ -234,9 +234,9 @@
                                     style="right:-23px; top:20px; transform:rotate(45deg); padding-left:20px; padding-right:20px">
                                     COMPLETED</div>
                             @endif
-                            <div class="w-100 overflow-hidden rounded flex-grow-1 text-center">
+                            <div class="w-100 overflow-hidden rounded flex-grow-1 text-center p-3">
 
-                                <h4 class="card-title" style="margin-top: 10%;">{{ $event->name }}</h4>
+                                <h4 class="card-title">{{ $event->name }}</h4>
                                 <p class="card-text">{!! Str::limit("$event->excerpt", 90, ' ...') !!}</p>
 
                                 <span>{{ \Carbon\Carbon::parse($event->start_date)->format('D d M,Y') }}</span>
