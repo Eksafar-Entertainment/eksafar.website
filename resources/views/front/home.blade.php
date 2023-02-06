@@ -225,7 +225,7 @@
 
             <div class="row gx-5 gy-5 justify-content-center">
                 @foreach ($past_events as $event)
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card rounded overflow-hidden h-100 position-relative mb-0  d-flex flex-column" style="background-image:linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))">
                             <img class="rounded" src="{{ $event->cover_image }}" />
                             @if ($event->status === 'CLOSED')
