@@ -75,6 +75,7 @@ Route::group([
         Route::get('/event',  "index")->middleware("permission:event:list");
         Route::post('/event', "create")->middleware("permission:event:create");
 
+        Route::get('/event/all',  "all")->middleware("permission:event:list")->name("admin:event:all");
         Route::get('/event/{event_id}/dashboard', 'dashboard')->middleware("permission:event:dashboard")->name("admin:event:dashboard");
 
         Route::get('/event/{event_id}/orders', 'orders')->middleware("permission:event:orders")->name("admin:event:orders");

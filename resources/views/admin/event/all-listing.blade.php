@@ -5,7 +5,7 @@
         <div class="d-flex">
             <h4 class="flex-grow-1">{{ __('Events') }}</h4>
             <div class="">
-                    <a href="/admin/event/all" class="btn btn-sm btn-primary">Show All Events</a>
+                    <a href="/admin/event" class="btn btn-sm btn-primary">Show Current Events</a>
                 @if (Auth::user()->can('event:create'))
                     <a data-bs-toggle="modal" data-bs-target="#new-event-modal" class="btn btn-sm btn-primary">Create Event</a>
                 @endif
