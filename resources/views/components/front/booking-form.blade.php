@@ -11,7 +11,7 @@
                         <h4 class="mb-0">{{ $event->name }} @ {{ $venue->name }}</h4>
                         <small class="text-muted">
                             <i class="fas fa-calendar me-2"></i>
-                            {{ \Carbon\Carbon::parse($event->start_date)->format('d-M-Y') }} | 07:00 PM Onwards
+                            {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y | h:i A') }} Onwards
                         </small>
                     </div>
                     <div class="table-responsive-sm">
@@ -20,6 +20,7 @@
                                 <tr data-row="ticket">
                                     <td width="50%" class="ps-0">
                                         <h6 class="mb-0 text-light">{{ $event_ticket->name }}
+                                            <br/>
                                             <span class="badge bg-danger">
                                                 {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format('d-m-Y') }}
                                             </span>
