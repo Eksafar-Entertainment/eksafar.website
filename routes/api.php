@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HomeController;
 
 /*
@@ -17,11 +17,12 @@ use App\Http\Controllers\Api\HomeController;
 |
 */
 
-Route::post("auth/register", [UserController::class, "register"]);
-Route::post("auth/login", [UserController::class, "login"]);
-Route::group(["middleware" => ["auth:api"]], function () {
-    Route::get("me/profile", [UserController::class, "profile"]);
-    Route::get("auth/logout", [UserController::class, "logout"]);
+Route::post("auth/register", [AuthController::class, "register"]);
+Route::post("auth/login", [AuthController::class, "login"]);
 
-    Route::get("main-page", [HomeController::class, "mainPage"]);
+Route::get("main-page", [HomeController::class, "mainPage"]);
+
+Route::group(["middleware" => ["auth:api"]], function () {
+    Route::get("me/profile", [AuthController::class, "profile"]);
+    Route::get("auth/logout", [AuthController::class, "logout"]);
 });
