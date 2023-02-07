@@ -74,7 +74,8 @@ class EventController extends Controller
         $event->start_date = $request->start_date ?? "2020-01-01";
         $event->end_date = $request->end_date ?? "2020-01-01";
         $event->occurrence = $request->occurrence ?? "";
-        $event->description = $request->description;
+        $event->excerpt = $request->excerpt ??"";
+        $event->description = $request->description ??"";
         $event->video_link = $request->video_link ?? "";
         $event->event_type = $request->event_type ?? "";
         $event->artists = $request->artist ?? [];
@@ -386,7 +387,7 @@ class EventController extends Controller
             ->leftJoin("orders", function ($join) {
                 $join->on('order_details.order_id', '=', 'orders.id');
             })
-            ->groupBy("event_tickets.id");
+            ->groupBy("event_tickets.id")->orderBy("start_datetime", "desc")->orderBy("name", "asc");
         if (isset($request->query()["keyword"]) && $request->query()["keyword"] != "") {
             $event_tickets->where(function ($query) {
                 global $request;
@@ -401,7 +402,6 @@ class EventController extends Controller
             "ACTIVE" => "success",
             "CREATED" => "warning",
             "SOLD" => "danger",
-            "FREE" => "success",
         ];
         return view("admin.event.manage.tickets.index", compact('event', 'event_tickets', "status_colors"));
     }
@@ -475,6 +475,7 @@ class EventController extends Controller
         $event->start_date = $request->start_date;
         $event->end_date = $request->end_date;
         $event->occurrence = $request->occurrence;
+        $event->excerpt = $request->excerpt??"";
         $event->description = $request->description;
         $event->cover_image = $request->cover_image;
         $event->video_link = $request->video_link;

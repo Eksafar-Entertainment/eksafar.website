@@ -11,6 +11,8 @@ use App\Models\Event;
 use App\Models\User;
 use App\Models\GalleryImage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Carbon;
 
 class FrontController extends Controller
 {
@@ -20,15 +22,27 @@ class FrontController extends Controller
         $events = Event::limit(4)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])->orderBy('start_date', 'DESC')->get();
+
+        $upcoming_events = Event::where('start_date', '>=', Carbon::now())
+            ->join('venues', "events.venue", "=", "venues.id")
+            ->select(["events.*", "venues.name as venue_name"])
+            ->orderBy('start_date', 'DESC')->get();
+
+        $past_events = Event::limit(6)
+            ->where('start_date', '<', Carbon::now())
+            ->join('venues', "events.venue", "=", "venues.id")
+            ->select(["events.*", "venues.name as venue_name"])
+            ->orderBy('start_date', 'DESC')->get();
         $banners = Banner::limit(4)->get();
-        $faker = \Faker\Factory::create();
         $type = '/';
-
-        //generate pdf
-        //$image = new \mikehaertl\wkhtmlto\Image('<html>.This is the end</html>');
-        ///
-
-        return view('front.home', compact('gallery', 'faker', 'events', 'banners', 'type'));
+        return view('front.home', compact(
+            'gallery',
+            'events',
+            'upcoming_events',
+            'past_events',
+            'banners',
+            'type'
+        ));
     }
 
     public function route($path)
@@ -95,5 +109,22 @@ class FrontController extends Controller
             default:
                 return abort(404);
         }
+    }
+
+    function contact(Request $request)
+    {
+        $message = "Name :" . $request->name . PHP_EOL;
+        $message .= "Email :" . $request->email . PHP_EOL;
+        $message .= "Subject :" . $request->subject . PHP_EOL;
+        $message .= "Message :" . $request->message . PHP_EOL;
+        Mail::raw($message, function ($message) {
+            $message->to("support@eksafar.club")
+                ->subject("Enquiry from website");
+        });
+
+        $path = "contact";
+        $type = 'contact';
+        $message = "Successfully enquiry sent.";
+        return view('front.contact.index', compact('path', 'type', 'message'));
     }
 }

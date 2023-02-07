@@ -166,6 +166,14 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <label for="excerpt">Excerpt</label>
+
+                        <div>
+                            <textarea class="form-control" name="excerpt" required="required"
+                                placeholder="Enter event excerpt" required>{{$event->excerpt}}</textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3">
                         <label for="description">Description</label>
 
                         <div>

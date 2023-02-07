@@ -105,7 +105,6 @@ Route::group([
 //payment related routes
 Route::group(['prefix' => "/payment"], function () {
     Route::post('/razorpay/checkout', [RazorpayController::class, 'checkout'])->name("payment:razorpay:checkout");
-    Route::post('/razorpay/freeCheckout', [RazorpayController::class, 'freeCheckout'])->name("payment:razorpay:freeCheckout");
     Route::post('/razorpay/complete', [RazorpayController::class, 'complete'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])->name("payment:razorpay:complete");
     Route::post('/razorpay/webhook', [RazorpayController::class, 'webhook'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])->name("payment:razorpay:webhook");
 
@@ -129,6 +128,7 @@ Route::group([
     "prefix" => "/"
 ], function () {
     Route::get('/', [FrontController::class, 'index']);
+    Route::post('/contact', [FrontController::class, 'contact']);
     Route::get("/event/{slug}", [FrontEventController::class, 'details']);
     Route::get('/{path}', [FrontController::class, 'route'])->where('path', '.*');
 });

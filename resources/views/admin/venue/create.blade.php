@@ -126,6 +126,17 @@
             </div>
 
 
+            <div class="mb-3">
+                <label for="map_url" class="form-label">Map Url</label>
+                <input value="{{ old('map_url') }}" type="text" class="form-control" name="map_url"
+                    placeholder="Please enter map url" id="map_url" required>
+
+                @if ($errors->has('map_url'))
+                    <span class="text-danger text-left">{{ $errors->first('map_url') }}</span>
+                @endif
+            </div>
+
+
             <button type="submit" class="btn btn-primary">Save Venue</button>
             <a href="{{ route('venue.index') }}" class="btn btn-default">Back</a>
         </form>

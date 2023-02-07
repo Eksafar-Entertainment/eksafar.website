@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="container py-5">
-    <h1>Privacy Policy for Eksafar Club</h1>
+    <h1>Privacy Policy for Eksafar Entertainment</h1>
 
     <p>At Eksafar, accessible from eksafar.club, one of our main priorities is the privacy of our visitors. This Privacy
         Policy document contains types of information that is collected and recorded by Eksafar and how we use it.</p>

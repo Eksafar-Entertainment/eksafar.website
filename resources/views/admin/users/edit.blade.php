@@ -64,5 +64,5 @@
 {!! Form::close() !!}
 
 
-<p class="text-center text-primary"><small>Eksafar Club</small></p>
+<p class="text-center text-primary"><small>Eksafar Entertainment</small></p>
 @endsection

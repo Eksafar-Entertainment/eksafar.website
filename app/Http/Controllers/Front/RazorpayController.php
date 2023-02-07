@@ -29,6 +29,7 @@ class RazorpayController extends Controller
 {
   function checkout(Request $request)
   {
+
     //$user = Auth::guard("web")->user();
     $key = $_ENV["RAZORPAY_KEY_ID"];
     $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
@@ -56,6 +57,10 @@ class RazorpayController extends Controller
       $order_detail->rate = $event_ticket->price;
 
       $order_details[] = $order_detail;
+    }
+
+    if($total_price === 0){
+      return $this->freeCheckout($request);
     }
 
     //coupon
@@ -177,7 +182,7 @@ class RazorpayController extends Controller
     $order->name = $name;
     $order->email = $email;
     $order->mobile = $mobile;
-    $order->status = "PENDING";
+    $order->status = "SUCCESS";
     $order->total_price = $total_price;
     //$order->user_id = $user->id;
   
@@ -192,6 +197,13 @@ class RazorpayController extends Controller
       $order_detail->save();
     }
     $status = "SUCCESS";
+
+    try {
+      Mail::to($order->email)->send(new TicketMail($order->id));
+    } catch (Exception $err) {
+      dd($err);
+    }
+
     return view("front.payment.complete",  [
       "status" => $status,
       "order" => $order

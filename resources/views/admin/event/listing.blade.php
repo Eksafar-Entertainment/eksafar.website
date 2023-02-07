@@ -36,7 +36,6 @@
                                     <select class="form-select form-select-sm border-0" inline-edit-table="events" inline-edit-field="status" inline-edit-where="id='{{$event->id}}'">
                                         <option {{$event->status === "CREATED" ? "selected":""}}>CREATED</option>
                                         <option {{$event->status === "CLOSED" ? "selected":""}}>CLOSED</option>
-                                        <option {{$event->status === "FREE" ? "selected":""}}>FREE</option>
                                     </select>
                                 </div>
                             </div>

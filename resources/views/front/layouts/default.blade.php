@@ -83,7 +83,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark">
             <div class="container py-2">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ url('/images/logo.svg') }}" alt="Eksafar" style="height: 25px;" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -158,11 +158,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 f-icons">
                     <a href="{{ url('/') }}">
-                        <img src="{{ url('/images/logo.svg') }}" alt="eksafar-logo" style="height: 60px;" />
+                        <img src="{{ url('/images/eksafar-bottom.png') }}" alt="eksafar-logo" style="height: 75px;" />
                     </a>
-                    <div class="mt-2">
-                        <small class="gray-f">Where words fail, music speaks</small>
-                    </div>
                 </div>
             </div>
             <div class="mt-4">
@@ -177,7 +174,7 @@
                         <a href="https://www.youtube.com/channel/UCJZM7qVyoC4unVIuyYZEUcQ"><i
                                 class="fab fa-youtube fa-2x gray-footer"></i></a>&nbsp;&nbsp;&nbsp;
                         <a
-                            href="https://wa.me/916364594648?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i
+                            href="https://wa.me/919148158728?text=Welcome%20to%20Eksafar%20Club.%20How%20can%20we%20help%20you%20today."><i
                                 class="fab fa-whatsapp fa-2x gray-footer"></i></a>
                     </div>
                 </div>
@@ -201,7 +198,7 @@
             </div>
         </div>
         <div class="py-2 border-top text-center">
-            &copy; Copyright 2023 <strong class="date-glow---"> Eksafar Club</strong> All Rights reserved
+            &copy; Copyright 2023 <strong class="date-glow---"> Eksafar Entertainment</strong> All Rights reserved
         </div>
     </footer>
     @if ((new \Jenssegers\Agent\Agent())->isMobile())

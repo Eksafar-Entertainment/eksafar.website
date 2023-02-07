@@ -1,5 +1,4 @@
 @extends('front.layouts.default')
-
 @section('head')
     <style>
         .soldout {
@@ -12,6 +11,13 @@
         }
     </style>
     <title>{{ $event->name }}</title>
+    <meta name="description" content="{{ $event->excerpt }}">
+    <meta name="keywords" content="{{ $event->tags }}">
+    <meta property="og:title" content="{{ $event->name }}" />
+    <meta property="og:description" content="{{ $event->excerpt }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{ url($event->cover_image) }}" />
+    <meta property="og:url" content="{{ url('/event/' . $event->slug) }}" />
 @endsection
 
 @section('content')
@@ -152,8 +158,7 @@
                                 <div class="px-1 mt-5">
                                     <div class="card overflow-hidden">
                                         <iframe class="w-100" style="filter: invert(90%) hue-rotate(180deg)"
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.924370889854!2d77.63082841526439!3d12.912582290894669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae152ecf404d0f%3A0x57cc9839f5589dee!2sCatch%20Up%20Bangalore!5e0!3m2!1sen!2sin!4v1671526347987!5m2!1sen!2sin"
-                                            height="200"></iframe>
+                                            src="{{ $venue->map_url }}" {{-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.924370889854!2d77.63082841526439!3d12.912582290894669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae152ecf404d0f%3A0x57cc9839f5589dee!2sCatch%20Up%20Bangalore!5e0!3m2!1sen!2sin!4v1671526347987!5m2!1sen!2sin" --}} height="200"></iframe>
                                     </div>
                                 </div>
                             @endif
@@ -226,8 +231,8 @@
                                     <div class="pb-2 d-flex">
                                         <div><i class="fas fa-calendar"></i></div>
                                         <div class="flex-grow-1 ps-3">
-                                            {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y') }}
-                                            | 07:00 PM Onwards
+                                            {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y | h:i A') }}
+                                            Onwards
                                         </div>
                                     </div>
 
@@ -254,21 +259,16 @@
                                         @if ($event->status == 'CREATED')
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal">Book Now</button>
-                                        @elseif ($event->status == 'FREE')
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#freeModal">Free Entry</button>
-                                        @else
-                                            <button type="button" class="btn btn-danger btn-sm" disabled="true">Sold Out</button>
                                         @endif
                                     </div>
 
                                 </div>
                             </div>
 
+                            {{ $venue->map_ur }}
                             <div class="card overflow-hidden">
                                 <iframe class="w-100" style="filter: invert(90%) hue-rotate(180deg)"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.924370889854!2d77.63082841526439!3d12.912582290894669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae152ecf404d0f%3A0x57cc9839f5589dee!2sCatch%20Up%20Bangalore!5e0!3m2!1sen!2sin!4v1671526347987!5m2!1sen!2sin"
-                                    height="200"></iframe>
+                                    src="{{ $venue->map_url }}" {{-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.924370889854!2d77.63082841526439!3d12.912582290894669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae152ecf404d0f%3A0x57cc9839f5589dee!2sCatch%20Up%20Bangalore!5e0!3m2!1sen!2sin!4v1671526347987!5m2!1sen!2sin" --}} height="200"></iframe>
                             </div>
 
                             <div class="card mt-4 card-body">
@@ -326,9 +326,6 @@
                         @if ($event->status == 'CREATED')
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">Book Now</button>
-                        @elseif ($event->status == 'FREE')
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#freeModal">Free Entry</button>
                         @else
                             <button type="button" class="btn btn-danger btn-sm" disabled="true">Sold Out</button>
                         @endif
@@ -343,7 +340,6 @@
         <!--- Bottom Ribbon End --->
     @endif
     <!------- Booking Modal ---->
-    
     <div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -356,19 +352,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="freeModal" tabindex="-1" aria-labelledby="freeModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content position-relative ticket rounded" id="ticket">
-                    <div class="ticket__box rounded">
-                        <x-front.free-booking-form :event="$event" :venue="$venue" :tickets="$event_tickets" />
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
     @include('front.event.upcomming')
-    
+
 @endsection
