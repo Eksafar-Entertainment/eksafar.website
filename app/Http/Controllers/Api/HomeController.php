@@ -5,18 +5,29 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
     //
     public function mainPage(Request $request)
     {
-        $events = Event::join('venues', "events.venue", "=", "venues.id")
-        ->select(["events.*", "venues.name as venue_name"])->orderBy('start_date', 'DESC')->get();
+        $upcoming_events = Event::where('start_date', '>=', Carbon::now())
+            ->join('venues', "events.venue", "=", "venues.id")
+            ->select(["events.*", "venues.name as venue_name"])
+            ->orderBy('start_date', 'DESC')->get();
+
+        $past_events = Event::limit(6)
+            ->where('start_date', '<', Carbon::now())
+            ->join('venues', "events.venue", "=", "venues.id")
+            ->select(["events.*", "venues.name as venue_name"])
+            ->orderBy('start_date', 'DESC')->get();
+
 
         return response()->json([
             "message" => "Successful",
-            "events" => $events
+            "upcoming_events" => $upcoming_events,
+            "past_events" => $past_events
         ]);
     }
 }
