@@ -11,8 +11,7 @@ class HomeController extends Controller
     //
     public function mainPage(Request $request)
     {
-        $events = Event::limit(4)
-        ->join('venues', "events.venue", "=", "venues.id")
+        $events = Event::join('venues', "events.venue", "=", "venues.id")
         ->select(["events.*", "venues.name as venue_name"])->orderBy('start_date', 'DESC')->get();
 
         return response()->json([
