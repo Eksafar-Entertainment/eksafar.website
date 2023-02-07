@@ -21,7 +21,6 @@ Route::post("auth/register", [AuthController::class, "register"]);
 Route::post("auth/login", [AuthController::class, "login"]);
 
 Route::get("main-page", [HomeController::class, "mainPage"]);
-
 Route::group(["middleware" => ["auth:api"]], function () {
     Route::get("me/profile", [AuthController::class, "profile"]);
     Route::get("auth/logout", [AuthController::class, "logout"]);
