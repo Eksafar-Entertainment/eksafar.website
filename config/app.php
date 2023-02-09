@@ -175,7 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Monarobase\CountryList\CountryListServiceProvider::class,
     ],
 
     /*
@@ -234,6 +235,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Countries' => Monarobase\CountryList\CountryListFacade::class,
     ],
 
 ];

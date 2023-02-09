@@ -27,11 +27,17 @@
 
                 <div class="mb-3">
                     <label for="country" class="form-label">Country</label>
-                    <input value="{{ $location->country }}" 
+                    <select value="{{ $location->country }}" 
                         type="text" 
                         class="form-control" 
                         name="country" 
                         placeholder="Country" required>
+                        <option> </option>
+                        @foreach (Countries::getList('en') as $code => $name)
+                            <option value="{{$code}}" @if($location->country === $code) {{"selected"}} @endif>{{$name}}</option>
+                        @endforeach
+
+                    </select>
 
                     @if ($errors->has('country'))
                         <span class="text-danger text-left">{{ $errors->first('country') }}</span>

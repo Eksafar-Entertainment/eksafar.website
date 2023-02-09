@@ -13,11 +13,8 @@
                 @csrf
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input value="{{ old('name') }}" 
-                        type="text" 
-                        class="form-control" 
-                        name="name" 
-                        placeholder="Name" required>
+                    <input value="{{ old('name') }}" type="text" class="form-control" name="name" placeholder="Name"
+                        required>
 
                     @if ($errors->has('name'))
                         <span class="text-danger text-left">{{ $errors->first('name') }}</span>
@@ -26,15 +23,20 @@
 
                 <div class="mb-3">
                     <label for="country" class="form-label">Country</label>
-                    <input value="{{ old('country') }}" 
-                        class="form-control" 
-                        name="country" 
-                        placeholder="Country" required>
+                    <select value="{{ old('country') }}" class="form-control" name="country" placeholder="Country" required>
+                        <option> </option>
+                        @foreach (Countries::getList('en') as $code => $name)
+                            <option value="{{$code}}" @if(old('country')=== $code) {{"selected"}} @endif>{{$name}}</option>
+                        @endforeach
+
+
+                    </select>
 
                     @if ($errors->has('country'))
                         <span class="text-danger text-left">{{ $errors->first('country') }}</span>
                     @endif
                 </div>
+
 
                 <button type="submit" class="btn btn-primary">Save Location</button>
                 <a href="{{ route('locations.index') }}" class="btn btn-default">Back</a>
