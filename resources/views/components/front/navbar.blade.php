@@ -11,6 +11,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="flex-grow-1"></div>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fa-solid fa-location-dot"></i> {{ __('Bengaluru') }}
+                                <i class="fa-solid keyboard-allow-down"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link">|</a> </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="/">{{ __('Home') }}</a>
                         </li>
@@ -63,3 +70,15 @@
                 </div>
             </div>
         </nav>
+
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
