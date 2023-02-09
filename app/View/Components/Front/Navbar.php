@@ -14,7 +14,7 @@ class Navbar extends Component
      *
      * @return void
      */
-    public function __construct(String $type)
+    public function __construct()
     {
         //$this->type = $type;
     }
