@@ -118,18 +118,26 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="artist">Location</label>
+                                <x-selectize :options="$locations" :multiple="false" name="location" :selected="$event->location">
+                                </x-selectize>
+                            </div>
+                        </div>
 
+
+                        {{-- <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="city">City</label>
 
                                 <div>
-                                    <input id="city" type="text" class="form-control" placeholder='Enter City here'
-                                        name="city" value="{{ $event ? $event->city : '' }}" required="">
+                                    <input id="city" type="text" class="form-control"
+                                        placeholder='Enter City here' name="city"
+                                        value="{{ $event ? $event->city : '' }}" required="">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="address">Address</label>
@@ -169,8 +177,7 @@
                         <label for="excerpt">Excerpt</label>
 
                         <div>
-                            <textarea class="form-control" name="excerpt" required="required"
-                                placeholder="Enter event excerpt" required>{{$event->excerpt}}</textarea>
+                            <textarea class="form-control" name="excerpt" required="required" placeholder="Enter event excerpt" required>{{ $event->excerpt }}</textarea>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -187,7 +194,8 @@
 
                         <div>
                             <x-rich-text-editor name="terms" required="required"
-                            placeholder="Enter event terms and conditions" required>{!! $event ? html_entity_decode($event->terms) : '' !!}</x-rich-text-editor>
+                                placeholder="Enter event terms and conditions" required>{!! $event ? html_entity_decode($event->terms) : '' !!}
+                            </x-rich-text-editor>
                             {{-- <textarea id="terms" class="form-control rich-text" placeholder='Enter Terms and conditions here' name="terms"
                                 required="">{!! $event ? html_entity_decode($event->terms) : '' !!}</textarea> --}}
                         </div>

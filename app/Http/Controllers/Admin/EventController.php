@@ -19,6 +19,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketMail;
+use App\Models\Location;
 
 class EventController extends Controller
 {
@@ -85,6 +86,7 @@ class EventController extends Controller
         $event->min_age = $request->min_age ?? 18;
         $event->language = $request->language ?? "";
         $event->status = $request->status ?? "CREATED";
+        $event->location = $request->location ?? null;
 
 
         $event->save();
@@ -459,7 +461,16 @@ class EventController extends Controller
                 "avater" => url($artist["image"]),
             ];
         }, $artists);
-        return view("admin.event.manage.customize.index", compact('event', "event_album_images", "venues", "artists"));
+
+        $locations = Location::get()->toArray();
+        $locations = array_map(function ($location) {
+            return [
+                "label" => $location["name"],
+                "value" => $location["id"],
+            ];
+        }, $locations);
+
+        return view("admin.event.manage.customize.index", compact('event', "event_album_images", "venues", "artists", "locations"));
     }
 
     function saveEvent($eventId = 0, Request $request)
@@ -485,6 +496,7 @@ class EventController extends Controller
         $event->terms = $request->terms;
         $event->language = $request->language;
         $event->abilities = $request->abilities;
+        $event->location = $request->location;
 
         $event->save();
         return redirect('/admin/event/' . $event->id . '/customize/');
