@@ -36,7 +36,7 @@
                     @endif
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save role</button>
+                <button type="submit" class="btn btn-primary">Save Location</button>
                 <a href="{{ route('locations.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>

@@ -37,7 +37,7 @@
                     @endif
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save role</button>
+                <button type="submit" class="btn btn-primary">Save Promoter</button>
                 <a href="{{ route('promoters.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>

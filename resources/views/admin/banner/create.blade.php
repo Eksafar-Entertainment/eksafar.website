@@ -67,7 +67,7 @@
                         <span class="text-danger text-left">{{ $errors->first('description') }}</span>
                     @endif
                 </div>
-                <button type="submit" class="btn btn-primary">Save role</button>
+                <button type="submit" class="btn btn-primary">Save Banner</button>
                 <a href="{{ route('banner.index') }}" class="btn btn-default">Back</a>
             </form>
         </div>
