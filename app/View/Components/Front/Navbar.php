@@ -8,7 +8,7 @@ use Illuminate\View\Component;
 
 class Navbar extends Component
 {
-    public $type;
+    //public $type;
     /**
      * Create a new component instance.
      *
@@ -16,7 +16,7 @@ class Navbar extends Component
      */
     public function __construct(String $type)
     {
-        $this->type = $type;
+        //$this->type = $type;
     }
 
     /**

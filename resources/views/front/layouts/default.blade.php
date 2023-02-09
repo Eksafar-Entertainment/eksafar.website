@@ -81,7 +81,7 @@
 
 <body>
     <div id="app">
-        <x-front.navbar :type="$type"/>
+        <x-front.navbar/>
         <!-- Navbar -->
     </div>
     <main>
