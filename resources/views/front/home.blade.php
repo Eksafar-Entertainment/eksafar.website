@@ -21,7 +21,7 @@
             Your browser does not support the video tag.
         </video>
         <div class="caption p-5 text-center">
-            <h2 class="mb-4 display-5 fw-bold">People of Eksafar</h2>
+            <h1 class="mb-4 display-5 fw-bold">People of Eksafar</h1>
 
             <p class="fs-5">In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great
                 Library. Our
@@ -167,7 +167,7 @@
 
         <div class="container">
             <div class="text-center mb-5">
-                <h1><span class="glow">U</span>pcoming Events</h1>
+                <h2><span class="glow">U</span>pcoming Events</h2>
                 <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
                     you won't want to miss...</h5>
             </div>
@@ -218,7 +218,7 @@
         <div class="container container-small my-5">
 
             <div class="text-center mb-5">
-                <h1><span class="glow">P</span>ast Events</h1>
+                <h2><span class="glow">P</span>ast Events</h2>
                 <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best past events in your city that
                     you missed...</h5>
             </div>
@@ -263,7 +263,7 @@
             <div class="container my-5">
 
                 <div class="text-center mb-5">
-                    <h1><span class="glow">G</span>allery</h1>
+                    <h2><span class="glow">G</span>allery</h2>
                     <h5 style="max-width: 500px" class="m-auto fw-normal">Created memories with us.</h5>
                 </div>
 
@@ -282,7 +282,7 @@
 
     <section id="slider" class="pt-5">
         <div class="container" style="margin-top: 10%; margin-bottom: 10%;">
-            <h1 class="text-center"><b><span class="glow">W</span>hat's next</b></h1>
+            <h2 class="text-center"><b><span class="glow">W</span>hat's next</b></h2>
             <div class="slider">
                 <div class="owl-carousel">
                     <div class="slider-card">
