@@ -14,3 +14,7 @@ yarn-error.log
 /.idea
 /.vscode
 /public_html
+
+/public/css/admin/admin.css
+/public/css/front/dark/app.css
+/public/css/front/light/app.css

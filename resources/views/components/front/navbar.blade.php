@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark border-bottom">
     <div class="container py-2">
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ url('/images/logo.svg') }}" alt="Eksafar" style="height: 25px;" />
