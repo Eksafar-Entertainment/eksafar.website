@@ -19,35 +19,49 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">{{ __('Contact') }}</a>
                 </li>
-            </ul>
-            <div class="px-2 d-sm-none d-md-inline-flex"> | </div>
-            <ul class="navbar-nav ms-auto">
+
+                {{-- <li class="nav-item d-none d-lg-inline-flex"> <a class="nav-link">|</a> </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#location-modal">
+                        <i class="fa-solid fa-location-crosshairs me-1"></i>
+                        @if ($location)
+                            {{ $location->name }}
+                        @else
+                            {{ __('Location') }}
+                        @endif
+                        <i class="fa-solid keyboard-allow-down"></i>
+                    </a>
+                </li> --}}
+
+                <li class="nav-item d-none d-lg-inline-flex"> <a class="nav-link">|</a> </li>
+
                 <!--- default Links -->
 
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            
+                            <a class="nav-link" href="{{ route('login') }}"> <i class="fa-solid fa-lock me-1"></i> Login</a>
                         </li>
                     @endif
 
-                    @if (Route::has('register'))
+                    {{-- @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                    @endif
+                    @endif --}}
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <i class="fa-solid fa-user me-1"></i>
                             {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="z-index: 9999">
                             <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -58,25 +72,34 @@
                     </li>
                 @endguest
 
-                {{-- <li class="nav-item"> <a class="nav-link">|</a> </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fa-solid fa-location-dot"></i> {{ __('Bengaluru') }}
-                        <i class="fa-solid keyboard-allow-down"></i>
-                    </a>
-                </li> --}}
+             
 
             </ul>
         </div>
     </div>
 </nav>
 
+{{-- @if (!$location && Request::is('/'))
+    <script>
+        $(document).ready(() => {
+            const locationModal = new bootstrap.Modal(document.getElementById('location-modal'), {
+                backdrop: true
+            });
+            locationModal.show();
+        })
+    </script>
+@endif --}}
 
-
-<div class="modal fade" id="cool" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
+<div class="modal fade" id="location-modal" tabindex="-1" aria-labelledby="location-modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content bg-dark">
+            <div class="modal-body p-4 text-center">
+                <h4>Hi there!</h4>
+                <p>Please select the city to explore what happening in the city!</p>
+                @foreach ($locations as $location)
+                    <a class="btn btn-lg text-white d-block border-1 border-white"
+                        href="?location={{ $location->id }}">{{ $location->name }}</a>
+                @endforeach
 
             </div>
         </div>
