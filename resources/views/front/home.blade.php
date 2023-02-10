@@ -3,7 +3,7 @@
 @section('head')
     <title>Eksafar Entertainment</title>
 
-    <meta name="description" content="">
+    <meta name="description" content="A party & traveler group for enthusiastic people who want to discover new places,cultures & Nightlife.">
     <meta property="og:title" content="Eksafar Entertainment" />
     <meta property="og:description"
         content="A party & traveler group for enthusiastic people who want to discover new places,cultures & Nightlife." />
