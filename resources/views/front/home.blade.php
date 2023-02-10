@@ -21,7 +21,7 @@
             Your browser does not support the video tag.
         </video>
         <div class="caption p-5 text-center">
-            <h2 class="mb-4 display-5 fw-bold">People of Eksafar Entertainment,</h2>
+            <h2 class="mb-4 display-5 fw-bold">People of Eksafar</h2>
 
             <p class="fs-5">In 2023 you will witness the rise of a magnificent tale in the history of Eksafar's Great
                 Library. Our
