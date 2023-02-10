@@ -8,7 +8,7 @@
             <div class="flex-grow-1" style="max-width: 450px">
                 <div class="card">
 
-                    <div class="card-body p-5">
+                    <div class="card-body p-md-5 p-4">
                         <div class="mb-4 text-center">
                         <h4>{{ __('Login') }}</h4>
                         <p>Please login to manage your account</p>

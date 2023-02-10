@@ -3,7 +3,7 @@
     <title>Register</title>
 @endsection
 @section('content')
-    <div class="container py-5">
+    <div class="container py-md-5 p-4">
         <div class="d-flex justify-content-center">
             <div class="flex-grow-1" style="max-width: 450px">
                 <div class="card">
