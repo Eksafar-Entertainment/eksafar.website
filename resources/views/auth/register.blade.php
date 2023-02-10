@@ -78,8 +78,8 @@
                                     {{ __('Register') }}
                                 </button>
                                 <small>
-                                    I agree to the <a href="/terms-and-conditions" target="_blank" class="text-muted">Terms
-                                        &amp; Conditions</a> &amp; <a href="/privacy" target="_blank"
+                                    I agree to the <a href="{{ url('terms') }}" target="_blank" class="text-muted">Terms
+                                        &amp; Conditions</a> &amp; <a href="{{ url('privacy') }}" target="_blank"
                                         class="text-muted">Privacy Policy</a>
                                 </small>
 

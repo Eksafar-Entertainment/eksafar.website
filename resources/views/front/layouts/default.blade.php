@@ -122,7 +122,7 @@
                 <div class="col-lg-12 col-md-12 f-icons">
 
                     <span style="display: inline; padding-right: 20px"><a class="gray-footer"
-                            href="{{ url('privacy') }}">Terms & Condition</a></span>
+                            href="{{ url('terms') }}">Terms & Condition</a></span>
                     <span style="display: inline; padding-right: 20px"><a class="gray-footer"
                             href="{{ url('payment-policy') }}">Refund &
                             Cancellation Policy</a></span>
