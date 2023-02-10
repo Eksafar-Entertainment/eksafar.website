@@ -74,7 +74,7 @@
 
                             <div class="mb-0 text-center mt-4">
 
-                                <button type="submit" class="btn btn-primary w-100">
+                                <button type="submit" class="btn btn-secondary w-100">
                                     {{ __('Register') }}
                                 </button>
                                 <small>
