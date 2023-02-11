@@ -11,7 +11,8 @@ use App\Models\EventTicket;
 
 class EventController extends Controller
 {
-    function details($event_id, Request $request){
+    function details($event_id, Request $request)
+    {
         $event = Event::where(["id" => $event_id])->first();
 
         if (!$event) return abort(404);
@@ -19,12 +20,19 @@ class EventController extends Controller
         $venue = Venue::where(["id" => $event->venue])->first();
         $artists = Artist::whereIn("id", $event->artists ?? [])->get();
 
-        if($request->query->has("gen")){
-            $faker = \Faker\Factory::create();
-
+        if ($request->query->has("gen")) {
+            $ds = [
+                "Vh1 Supersonic",
+                "SteppinOut Music Festival (SMF) Arena presents FKJ India Tour | Mumbai",
+                "Vh1 Supersonic Arcade ft Camelphat - Bangalore",
+                "Vh1 Supersonic Main Stage Bangalore",
+                "Vh1 Supersonic Arcade ft Camelphat - Bangalore",
+                "Far Out Left"
+            ];
             $evs = Event::get();
-            foreach($evs as $ev){
-                $ev->name = $faker->realText($faker->numberBetween(10, 35));
+            foreach ($evs as $ev) {
+                $k = array_rand($ds);
+                $ev->name = $ds[$k];
                 $ev->save();
             }
         }
@@ -33,7 +41,8 @@ class EventController extends Controller
             "message" => "Successful",
             "event" => $event,
             "venue" => $venue,
-            "artists"=>$artists
+            "artists" => $artists,
+            "event_tickets" => $event_tickets
         ]);
     }
 }
