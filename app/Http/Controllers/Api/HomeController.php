@@ -24,14 +24,14 @@ class HomeController extends Controller
     {
         $location = $request->query("location");
         $upcoming_events = Event::where('start_date', '>=', Carbon::today())
-            ->where("events.location", "=", $location)
+            ->where("events.location", $location?"=":"!=", $location??null)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])
             ->orderBy('start_date', 'DESC')->get();
 
         $past_events = Event::limit(6)
             ->where('start_date', '<', Carbon::today())
-            ->where("events.location", "=", $location)
+            ->where("events.location", $location?"=":"!=", $location??null)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])
             ->orderBy('start_date', 'DESC')->get();
