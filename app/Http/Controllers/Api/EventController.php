@@ -24,7 +24,7 @@ class EventController extends Controller
 
             $evs = Event::get();
             foreach($evs as $ev){
-                $ev->name = $faker->realText($faker->numberBetween(10, 20));
+                $ev->name = $faker->realText($faker->numberBetween(10, 35));
                 $ev->save();
             }
         }
