@@ -3,11 +3,12 @@
     <title>Register</title>
 @endsection
 @section('content')
-    <div class="container py-md-5 p-4">
+    <div class="container py-5">
         <div class="d-flex justify-content-center">
             <div class="flex-grow-1" style="max-width: 450px">
                 <div class="card">
-                    <div class="card-body p-5">
+
+                    <div class="card-body p-md-5 p-4">
 
                         <div class="mb-4 text-center">
                             <h4>{{ __('Register') }}</h4>
