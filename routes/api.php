@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\HomeController;
 
 /*
@@ -22,6 +23,9 @@ Route::post("auth/login", [AuthController::class, "login"]);
 
 Route::get("main-page", [HomeController::class, "mainPage"]);
 Route::get("app-data", [HomeController::class, "appData"]);
+
+//events 
+Route::get("events/{event_id}", [EventController::class, "details"]);
 Route::group(["middleware" => ["auth:api"]], function () {
     Route::get("me/profile", [AuthController::class, "profile"]);
     Route::get("auth/logout", [AuthController::class, "logout"]);
