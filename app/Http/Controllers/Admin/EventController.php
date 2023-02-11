@@ -100,7 +100,7 @@ class EventController extends Controller
         $event->min_age = $request->min_age ?? 18;
         $event->language = $request->language ?? "";
         $event->status = $request->status ?? "CREATED";
-        $event->location = $request->location ?? null;
+        $event->location = $request->location ?? 0;
 
 
         $event->save();
