@@ -48,7 +48,7 @@
 
                             <div class="row mb-3">
                                 <div class="col-auto">
-                                    <div class="form-check">
+                                    <div class="form-check text-small">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                             {{ old('remember') ? 'checked' : '' }}>
 
@@ -57,7 +57,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col text-right d-flex justify-content-end">
+                                <div class="col text-right d-flex justify-content-end text-small">
                                     @if (Route::has('password.request'))
                                         <a class="btn-link text-muted" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
