@@ -23,13 +23,13 @@ class FrontController extends Controller
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])->orderBy('start_date', 'DESC')->get();
 
-        $upcoming_events = Event::where('start_date', '>=', Carbon::now())
+        $upcoming_events = Event::where('start_date', '>=', Carbon::today())
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])
             ->orderBy('start_date', 'DESC')->get();
 
         $past_events = Event::limit(6)
-            ->where('start_date', '<', Carbon::now())
+            ->where('start_date', '<', Carbon::today())
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])
             ->orderBy('start_date', 'DESC')->get();
