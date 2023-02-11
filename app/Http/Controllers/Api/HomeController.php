@@ -24,7 +24,7 @@ class HomeController extends Controller
     {
         $location = $request->query("location");
         $upcoming_events = Event::where('start_date', '>=', Carbon::today())
-            ->where("events.location", $location ? "=" : "!=", $location ? $location : 0)
+            ->where("events.location", "=", $location)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])
             ->orderBy('start_date', 'DESC')->get();
@@ -39,7 +39,8 @@ class HomeController extends Controller
         return response()->json([
             "message" => "Successful",
             "upcoming_events" => $upcoming_events,
-            "past_events" => $past_events
+            "past_events" => $past_events,
+            "location"=>$location
         ]);
     }
 }
