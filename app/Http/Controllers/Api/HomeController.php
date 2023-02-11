@@ -31,6 +31,7 @@ class HomeController extends Controller
 
         $past_events = Event::limit(6)
             ->where('start_date', '<', Carbon::today())
+            ->where("events.location", "=", $location)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])
             ->orderBy('start_date', 'DESC')->get();
