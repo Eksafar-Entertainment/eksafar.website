@@ -19,6 +19,16 @@ class EventController extends Controller
         $venue = Venue::where(["id" => $event->venue])->first();
         $artists = Artist::whereIn("id", $event->artists ?? [])->get();
 
+        if($request->query->has("gen")){
+            $faker = \Faker\Factory::create();
+
+            $evs = Event::get();
+            foreach($evs as $ev){
+                $ev->name = $faker->realText($faker->numberBetween(10, 20));
+                $ev->save();
+            }
+        }
+
         return response()->json([
             "message" => "Successful",
             "event" => $event,
