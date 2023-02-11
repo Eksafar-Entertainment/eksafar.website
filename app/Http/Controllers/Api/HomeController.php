@@ -5,10 +5,20 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Location;
 use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
+    public function appData(Request $request)
+    {
+        $locations = Location::get();
+
+        return response()->json([
+            "message" => "Successful",
+            "locations" => $locations
+        ]);
+    }
     //
     public function mainPage(Request $request)
     {
