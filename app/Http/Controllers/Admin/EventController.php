@@ -23,9 +23,23 @@ use App\Models\Location;
 
 class EventController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        $events = Event::where('start_date' , '>=' , Carbon::now()->toDateTimeString())->paginate(20);
+        $events = Event::select("*");
+        if( $request->query->has("fromDate")  && $request->query("fromDate") !=""){
+            $events->where("events.start_date", ">=", Carbon::parse($request->query("fromDate")));
+        }
+
+        if( $request->query->has("toDate") && $request->query("toDate") !=""){
+            $events->where("events.start_date", "<=", Carbon::parse($request->query("toDate")));
+        }
+        if( $request->query->has("status") && $request->query("status") !=""){
+            $events->where("events.status", "=", $request->query("status"));
+        }
+
+        $events = $events->paginate(20);
+
+        
         $event_ids = array_map(function ($event) {
             return $event["id"];
         }, $events->toArray()["data"]);
@@ -101,32 +115,6 @@ class EventController extends Controller
         return redirect('/admin/event');
     }
 
-    public function all()
-    {
-        $events =  Event::paginate(20);
-        $event_ids = array_map(function ($event) {
-            return $event["id"];
-        }, $events->toArray()["data"]);
-
-        $sales = OrderDetail::select([
-            "orders.event_id as id",
-            DB::raw("SUM(order_details.quantity) as quantity"),
-            DB::raw("SUM(order_details.price) as revenue"),
-        ])
-            ->join("orders", function ($join) {
-                $join->on("orders.id", "=", "order_details.order_id");
-            })
-            ->groupBy("orders.event_id")
-            ->whereIn("orders.event_id", $event_ids)
-            ->where("orders.status", "SUCCESS")
-            ->get()->toArray();
-          
-        $sales = array_reduce($sales, function ($all, $current) {
-            $all[$current["id"]] = $current;
-            return $all;
-        }, []);
-        return view("admin/event/all-listing", ["events" => $events, "sales" => $sales]);
-    }
 
     public function dashboard($event_id)
     {

@@ -16,20 +16,23 @@ use Illuminate\Support\Carbon;
 
 class FrontController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $location = $request->session()->get("location") ?? 1;
         $gallery = GalleryImage::latest()->limit(6)->get();
         $events = Event::limit(4)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])->orderBy('start_date', 'DESC')->get();
 
         $upcoming_events = Event::where('start_date', '>=', Carbon::today())
+            ->where("events.location", $location)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])
             ->orderBy('start_date', 'DESC')->get();
 
         $past_events = Event::limit(6)
             ->where('start_date', '<', Carbon::today())
+            ->where("events.location", $location)
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])
             ->orderBy('start_date', 'DESC')->get();
