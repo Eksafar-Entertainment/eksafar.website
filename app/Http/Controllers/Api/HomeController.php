@@ -22,7 +22,9 @@ class HomeController extends Controller
     //
     public function mainPage(Request $request)
     {
+        $location = $request->query("location");
         $upcoming_events = Event::where('start_date', '>=', Carbon::now())
+        ->where("events.location", $location?"=":"!=", $location??"0")
             ->join('venues', "events.venue", "=", "venues.id")
             ->select(["events.*", "venues.name as venue_name"])
             ->orderBy('start_date', 'DESC')->get();
