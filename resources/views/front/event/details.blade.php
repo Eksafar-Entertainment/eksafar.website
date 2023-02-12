@@ -353,6 +353,6 @@
             </div>
         </div>
     </div>
-    @include('front.event.upcomming')
+    @include('front.event.upcoming')
 
 @endsection

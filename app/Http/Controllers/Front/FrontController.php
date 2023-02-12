@@ -79,8 +79,8 @@ class FrontController extends Controller
                     return view('front.elements.index', compact('path', 'type'));
                 }
 
-            case "upcomming": {
-                    $type = 'upcomming';
+            case "upcoming": {
+                    $type = 'upcoming';
                     return view('front.events.index', compact('path', 'type'));
                 }
 

@@ -3,7 +3,7 @@
 
             <div class="text-center mb-5">
                 <h1>{{ __('Events') }}</h1>
-                <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
+                <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcoming events in your city that
                     you won't want to miss...</h5>
             </div>
 
@@ -60,7 +60,7 @@
             <div class="col-4">
                 <div class="row text-center mb-5">
                     <h1><span class="glow">E</span>vents</h1>
-                    <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city
+                    <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcoming events in your city
                         that
                         you won't want to miss...</h5>
                 </div>
@@ -135,7 +135,7 @@
             <div class="col-4">
                 <div class="row text-center mb-5">
                     <h1><span class="glow">E</span>vents</h1>
-                    <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city
+                    <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcoming events in your city
                         that
                         you won't want to miss...</h5>
                 </div>
