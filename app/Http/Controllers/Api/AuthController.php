@@ -96,7 +96,7 @@ class AuthController extends Controller
             ]);
             $token = auth('api')->login($newUser);
         }
-        return redirect()->to(url("/api/auth/login/success"))->withInput([
+        return redirect()->to(url("/api/auth/success"))->withInput([
             "token" => $token
         ]);
         // // send response
