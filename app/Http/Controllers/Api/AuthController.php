@@ -83,7 +83,7 @@ class AuthController extends Controller
     public function callback($provider, Request $request)
     {
         $user = Socialite::driver($provider)->stateless()->user();
-        $pUser = User::where('google_id', $user->email)->first();
+        $pUser = User::where('email', $user->email)->first();
         $token = null;
         if ($pUser) {
             $token = auth('api')->login($pUser);
