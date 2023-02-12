@@ -20,8 +20,12 @@ use App\Http\Controllers\Api\HomeController;
 
 Route::post("auth/register", [AuthController::class, "register"]);
 Route::post("auth/login", [AuthController::class, "login"]);
+
 Route::get("auth/login/{provider}", [AuthController::class, "social"]);
 Route::get("auth/callback/{provider}", [AuthController::class, "callback"]);
+
+Route::post("auth/login/send-otp", [AuthController::class, "sendOtp"]);
+Route::post("auth/login/verify-otp", [AuthController::class, "verifyOtp"]);
 
 Route::get("main-page", [HomeController::class, "mainPage"]);
 Route::get("app-data", [HomeController::class, "appData"]);
