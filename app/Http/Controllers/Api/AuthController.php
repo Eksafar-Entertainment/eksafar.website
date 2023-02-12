@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\OtpRecords;
 use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -137,14 +138,18 @@ class AuthController extends Controller
             $otp_record->save();
         }
 
-        $account_sid = getenv("TWILIO_SID");
-        $auth_token = getenv("TWILIO_AUTH_TOKEN");
-        $twilio_number = getenv("TWILIO_NUMBER");
-        $client = new Client($account_sid, $auth_token);
-        $client->messages->create("+91".$request->mobile_no, [
-            'from' => $twilio_number,
-            'body' => "Your Eksafar login OTP is $otp_record->otp. Please ignore if not requested"
-        ]);
+        try{
+            $account_sid = getenv("TWILIO_SID");
+            $auth_token = getenv("TWILIO_AUTH_TOKEN");
+            $twilio_number = getenv("TWILIO_NUMBER");
+            $client = new Client($account_sid, $auth_token);
+            $client->messages->create("+91".$request->mobile_no, [
+                'from' => $twilio_number,
+                'body' => "Your Eksafar login OTP is $otp_record->otp. Please ignore if not requested"
+            ]);
+        } catch(Exception $err){
+            
+        }
 
         // send response
         return response()->json([
