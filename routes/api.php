@@ -20,6 +20,8 @@ use App\Http\Controllers\Api\HomeController;
 
 Route::post("auth/register", [AuthController::class, "register"]);
 Route::post("auth/login", [AuthController::class, "login"]);
+Route::get("auth/login/{provider}", [AuthController::class, "social"]);
+Route::get("auth/callback/{provider}", [AuthController::class, "callback"]);
 
 Route::get("main-page", [HomeController::class, "mainPage"]);
 Route::get("app-data", [HomeController::class, "appData"]);

@@ -23,7 +23,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => url("api/auth/login/google/callback"),
+        'redirect' => "https://stage.eksafar.club/api/auth/callback/google",
     ],
 
 ];

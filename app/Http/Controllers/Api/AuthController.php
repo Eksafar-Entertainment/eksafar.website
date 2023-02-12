@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -67,6 +68,38 @@ class AuthController extends Controller
         auth('api')->logout();
         return response()->json([
             "message" => "User logged out"
+        ]);
+    }
+
+
+
+    //social login
+    public function social($provider, Request $request)
+    {
+        return Socialite::driver($provider)->stateless()->redirect();
+    }
+
+    //social login
+    public function callback($provider, Request $request)
+    {
+        $user = Socialite::driver($provider)->stateless()->user();
+        $pUser = User::where('google_id', $user->id)->first();
+        $token = null;
+        if ($pUser) {
+            $token = auth('api')->login($pUser);
+        } else {
+            $newUser = User::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'google_id' => $user->id,
+                'password' => encrypt('123456dummy')
+            ]);
+            $token = auth('api')->login($newUser);
+        }
+        // send response
+        return response()->json([
+            "message" => "Logged in successfully",
+            "access_token" => $token
         ]);
     }
 }
