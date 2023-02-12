@@ -168,7 +168,7 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2><span class="glow">U</span>pcoming Events</h2>
-                <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcomming events in your city that
+                <h5 style="max-width: 500px" class="m-auto fw-normal">Checkout The best upcoming events in your city that
                     you won't want to miss...</h5>
             </div>
             <div class="owl-carousel owl-theme" id="gallery-carousel">
