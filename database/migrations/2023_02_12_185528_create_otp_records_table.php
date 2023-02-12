@@ -21,6 +21,10 @@ class CreateOtpRecordsTable extends Migration
             $table->string("mobile_no");
             $table->timestamps();
         });
+
+        Schema::table("users",  function (Blueprint $table) {
+            $table->string("email")->unique()->nullable(true)->change();
+        });
     }
 
     /**
@@ -31,5 +35,8 @@ class CreateOtpRecordsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('otp_records');
+        Schema::table("users",  function (Blueprint $table) {
+            $table->string("email")->unique()->change();
+        });
     }
 }
