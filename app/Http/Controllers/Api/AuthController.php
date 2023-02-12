@@ -98,7 +98,7 @@ class AuthController extends Controller
         }
         //return redirect()->to(url("/api/auth/success?token=$token"));
 
-        echo "<script>window.load = () =>{
+        echo "<script>window.onload = () =>{
             flutterChannel.postMessage('$token');
         }</script>"; 
         // // send response
