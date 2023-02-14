@@ -172,7 +172,7 @@ class EventController extends Controller
         $order->status = "PENDING";
         $order->total_price = $total_price;
         $order->payment_id = $payment->id;
-        //$order->user_id = $user->id;
+        $order->user_id = $user->id;
         if ($coupon) {
             $order->discount = $discount;
         }
