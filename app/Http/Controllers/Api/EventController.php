@@ -208,40 +208,6 @@ class EventController extends Controller
             "order_details" => $razorpay_order,
             "key" => $key,
             "user" => $user,
-            "event" => $event
-
-        ]);
-        return response()->json([
-            "message" => "Successful",
-            "url" => url("/api/events/checkout/pay?payment_id=$payment->id&order_id=$order->id&event_id=$event->id")
-        ]);
-    }
-
-    public function checkoutPay(Request $request)
-    {
-        $payment_id = $request->query("payment_id");
-        $order_id = $request->query("order_id");
-        $event_id = $request->query("event_id");
-
-        $event = Event::where("id", $event_id)->first();
-        $order = Order::where("id", $order_id)->first();
-        $payment = Payment::where("id", $payment_id)->first();
-
-        $rzp_order_id = $payment->rzp_order_id;
-        $key = $_ENV["RAZORPAY_KEY_ID"];
-        $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
-
-        $razorpay_order = $api->order->fetch($rzp_order_id);
-
-        return view("front.payment.razorpay.checkout",  [
-            "order_details" => $razorpay_order,
-            "key" => $key,
-            "customer_details" => [
-                "name" => $order->name,
-                "email" => $order->email,
-                "mobile" => $order->mobile
-            ],
-            "event" => $event
         ]);
     }
 }
