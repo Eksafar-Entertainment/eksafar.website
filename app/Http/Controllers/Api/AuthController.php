@@ -192,7 +192,6 @@ class AuthController extends Controller
             $user = $user->save();
         }
 
-        dd($user);
 
         $token = auth('api')->login($user);
 
