@@ -207,11 +207,7 @@ class EventController extends Controller
             "message" => "Successful",
             "order_details" => $razorpay_order,
             "key" => $key,
-            "customer_details" => [
-                "name" => $name,
-                "email" => $email,
-                "mobile" => $mobile
-            ],
+            "user" => $user,
             "event" => $event
 
         ]);
