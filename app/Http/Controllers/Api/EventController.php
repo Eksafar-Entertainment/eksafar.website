@@ -25,7 +25,7 @@ class EventController extends Controller
 
 
         $event->has_tickets = false;
-        $event->is_past = Carbon::parse($event->start_date." 00:00:00")->greaterThanOrEqualTo(Carbon::today());
+        $event->is_past = Carbon::parse($event->start_date." 00:00:00")->lessThan(Carbon::today());
         $event->is_coming_soon = false;
         if ($tickets && sizeof($tickets)>0) {
             $event->has_tickets = true;
