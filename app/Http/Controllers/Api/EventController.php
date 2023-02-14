@@ -22,12 +22,22 @@ class EventController extends Controller
         $tickets = EventTicket::where(["event_id" => $event->id])
             ->where('status', '!=', "CREATED")->get()->toArray();
 
+        if ($request->query->has("gen")) {
+            $faker = \Faker\Factory::create();
+
+            $evs = Event::get();
+            foreach ($evs as $ev) {
+                $ev->name = $faker->realText($faker->numberBetween(10, 35));
+                $ev->save();
+            }
+        }
+
 
 
         $event->has_tickets = false;
-        $event->is_past = Carbon::parse($event->start_date." 00:00:00")->lessThan(Carbon::today());
+        $event->is_past = Carbon::parse($event->start_date . " 00:00:00")->lessThan(Carbon::today());
         $event->is_coming_soon = false;
-        if ($tickets && sizeof($tickets)>0) {
+        if ($tickets && sizeof($tickets) > 0) {
             $event->has_tickets = true;
             usort($tickets, function ($first, $second) {
                 $first_time = strtotime($first["start_datetime"]);
@@ -42,13 +52,13 @@ class EventController extends Controller
             $event->start_price = $tickets[0]["price"];
 
             $future_count = 0;
-            foreach($tickets as $ticket){
-                if(Carbon::parse($ticket["start_datetime"])->greaterThan(Carbon::now())){
-                   $future_count++;
+            foreach ($tickets as $ticket) {
+                if (Carbon::parse($ticket["start_datetime"])->greaterThan(Carbon::now())) {
+                    $future_count++;
                 }
             }
             $event->is_past = $future_count === 0;
-        } else if(!$event->is_past) {
+        } else if (!$event->is_past) {
             $event->is_coming_soon = true;
         } else {
             $event->is_coming_soon = false;
