@@ -25,6 +25,7 @@ class EventController extends Controller
 
 
         $event->has_tickets = false;
+        $event->is_past = true;
         if ($tickets) {
             $event->has_tickets = true;
             usort($tickets, function ($first, $second) {
@@ -34,6 +35,8 @@ class EventController extends Controller
                 return $first_time > $second_time;
             });
             $event->start_datetime = $tickets[0]["start_datetime"];
+
+            $event->is_past = Carbon::parse($tickets[0]["start_datetime"])->lessThan(Carbon::now());
 
             usort($tickets, function ($first, $second) {
                 return $first["price"] > $second["price"];
