@@ -27,7 +27,7 @@ class EventController extends Controller
         $event->has_tickets = false;
         $event->is_past = Carbon::parse($event->start_date." 00:00:00")->greaterThanOrEqualTo(Carbon::today());
         $event->is_coming_soon = false;
-        if ($tickets) {
+        if ($tickets && sizeof($tickets)>0) {
             $event->has_tickets = true;
             usort($tickets, function ($first, $second) {
                 $first_time = strtotime($first["start_datetime"]);
