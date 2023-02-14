@@ -14,14 +14,6 @@ class EventController extends Controller
 {
     function details($event_id, Request $request)
     {
-        $event = Event::where(["id" => $event_id])->first();
-        if (!$event) return abort(404);;
-        $venue = Venue::where(["id" => $event->venue])->first();
-        $artists = Artist::whereIn("id", $event->artists ?? [])->get();
-
-        $tickets = EventTicket::where(["event_id" => $event->id])
-            ->where('status', '!=', "CREATED")->get()->toArray();
-
         if ($request->query->has("gen")) {
             $faker = \Faker\Factory::create();
 
@@ -31,6 +23,16 @@ class EventController extends Controller
                 $ev->save();
             }
         }
+        
+        $event = Event::where(["id" => $event_id])->first();
+        if (!$event) return abort(404);;
+        $venue = Venue::where(["id" => $event->venue])->first();
+        $artists = Artist::whereIn("id", $event->artists ?? [])->get();
+
+        $tickets = EventTicket::where(["event_id" => $event->id])
+            ->where('status', '!=', "CREATED")->get()->toArray();
+
+        
 
 
 
