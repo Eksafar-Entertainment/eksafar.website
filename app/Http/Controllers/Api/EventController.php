@@ -23,7 +23,7 @@ class EventController extends Controller
                 $ev->save();
             }
         }
-        
+
         $event = Event::where(["id" => $event_id])->first();
         if (!$event) return abort(404);;
         $venue = Venue::where(["id" => $event->venue])->first();
@@ -91,7 +91,12 @@ class EventController extends Controller
 
         return response()->json([
             "message" => "Successful",
-            "tickets" => $date_tickets
+            "date_tickets" => $date_tickets,
+            "dates"=> array_keys($date_tickets)
         ]);
+    }
+
+    function checkout(Request $request){
+
     }
 }
