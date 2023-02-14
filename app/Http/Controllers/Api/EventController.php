@@ -24,6 +24,7 @@ class EventController extends Controller
 
 
 
+        $event->has_tickets = false;
         if ($tickets) {
             $event->has_tickets = true;
             usort($tickets, function ($first, $second) {
@@ -58,7 +59,7 @@ class EventController extends Controller
 
         $date_tickets = [];
 
-        foreach($tickets as $ticket){
+        foreach ($tickets as $ticket) {
             $date = Carbon::parse($ticket["start_datetime"])->format("Y-m-d");
             $date_tickets[$date][] = $ticket;
         }
