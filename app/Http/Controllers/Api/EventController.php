@@ -205,7 +205,7 @@ class EventController extends Controller
         }
         return response()->json([
             "message" => "Successful",
-            "order_details" => $razorpay_order,
+            "order_details" => $razorpay_order->toArray(),
             "key" => $key,
             "user" => $user,
         ]);
