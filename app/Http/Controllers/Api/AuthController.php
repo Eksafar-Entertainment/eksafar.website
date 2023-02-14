@@ -172,6 +172,7 @@ class AuthController extends Controller
                 ->where("mobile_no", $request->mobile_no)
                 ->where("is_valid", true)
                 ->where("expires_at", ">=", Carbon::now())
+                ->where("otp", $request->otp)
                 ->first();
 
             if (!$otp_record) {
@@ -188,8 +189,10 @@ class AuthController extends Controller
             $user = new User();
             $user->name = "";
             $user->mobile = $request->mobile_no;
-            $user->save();
+            $user = $user->save();
         }
+
+        dd($user);
 
         $token = auth('api')->login($user);
 
