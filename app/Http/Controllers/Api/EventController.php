@@ -205,6 +205,18 @@ class EventController extends Controller
         }
         return response()->json([
             "message" => "Successful",
+            "order_details" => $razorpay_order,
+            "key" => $key,
+            "customer_details" => [
+                "name" => $name,
+                "email" => $email,
+                "mobile" => $mobile
+            ],
+            "event" => $event
+
+        ]);
+        return response()->json([
+            "message" => "Successful",
             "url" => url("/api/events/checkout/pay?payment_id=$payment->id&order_id=$order->id&event_id=$event->id")
         ]);
     }
