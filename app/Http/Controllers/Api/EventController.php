@@ -9,6 +9,12 @@ use App\Models\Artist;
 use App\Models\Venue;
 use App\Models\EventTicket;
 use Carbon\Carbon;
+use Razorpay\Api\Api;
+use Razorpay\Api\Errors\SignatureVerificationError;
+use App\Models\Payment;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Coupon;
 
 class EventController extends Controller
 {
@@ -32,7 +38,7 @@ class EventController extends Controller
         $tickets = EventTicket::where(["event_id" => $event->id])
             ->where('status', '!=', "CREATED")->get()->toArray();
 
-        
+
 
 
 
@@ -92,11 +98,142 @@ class EventController extends Controller
         return response()->json([
             "message" => "Successful",
             "date_tickets" => $date_tickets,
-            "dates"=> array_keys($date_tickets)
+            "dates" => array_keys($date_tickets)
         ]);
     }
 
-    function checkout(Request $request){
+    function checkoutSession(Request $request)
+    {
+        $user = auth("api")->user();
+        $key = $_ENV["RAZORPAY_KEY_ID"];
+        $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
+        $event_id = $request->event_id;
+        $event = Event::where(["id" => $event_id])->first();
+        $items = $request->items;
+        $name = $user->name;
+        $mobile = $user->mobile;
+        $email = $user->email;
 
+        $order_details = [];
+        $total_price = 0;
+        foreach ($items as $item) {
+            if (!isset($item["quantity"]) || $item["quantity"] > 0 == false) continue;
+            $event_ticket = EventTicket::where(["id" => $item["event_ticket_id"]])->first();
+            $amount = $event_ticket->price * $item["quantity"];
+            $total_price += $amount;
+
+            $order_detail = new OrderDetail();
+            $order_detail->event_ticket_id = $item["event_ticket_id"];
+            $order_detail->quantity = $item["quantity"];
+            $order_detail->price = $amount;
+            $order_detail->rate = $event_ticket->price;
+
+            $order_details[] = $order_detail;
+        }
+
+        //coupon
+        $coupon_code = $request->coupon;
+        $coupon = Coupon::where("code", $coupon_code)
+            ->where("type", "%")
+            ->where("remaining_count", ">", 0)->first();
+        $discounted_amount = $total_price;
+        $discount = 0;
+        if ($coupon) {
+            $coupon->remaining_count = $coupon->remaining_count - 1;
+
+            $discount = ($coupon->discount / 100) * $total_price;
+            $discounted_amount = $total_price - $discount;
+
+            $coupon->save();
+        }
+
+        //create payment
+        $payment = new Payment();
+        $payment->rzp_order_id = "";
+        $payment->payment_method = "Razorpay";
+        $payment->order_id = 0;
+        $payment->user = $name;
+        $payment->phone = $mobile;
+        $payment->email = $email;
+        $payment->amount = $total_price;
+        $payment->status = "CREATED";
+        if ($coupon) {
+            $payment->discount = $discount;
+            $payment->coupon = $coupon->code;
+        }
+        $payment->save();
+
+        //create order
+        $order = new Order();
+        $order->event_id = $request->event_id;
+        $order->name = $name;
+        $order->email = $email;
+        $order->mobile = $mobile;
+        $order->status = "PENDING";
+        $order->total_price = $total_price;
+        $order->payment_id = $payment->id;
+        //$order->user_id = $user->id;
+        if ($coupon) {
+            $order->discount = $discount;
+        }
+        $order->save();
+
+        //update order
+        $order->payment_id = $payment->id;
+        $order->save();
+
+        //create razorpay payment
+        $orderData = [
+            'receipt'         => $order->id,
+            'amount'          => round($discounted_amount * 100),
+            'currency'        => 'INR',
+            'notes'           => [
+                "order_id" => $order->id
+            ]
+        ];
+        $razorpay_order = $api->order->create($orderData);
+
+        //update payment
+        $payment->order_id = $order->id;
+        $payment->rzp_order_id = $razorpay_order->id;
+        $payment->save();
+
+        //save order details
+        foreach ($order_details as $order_detail) {
+            $order_detail->order_id = $order->id;
+            $order_detail->save();
+        }
+        return response()->json([
+            "message" => "Successful",
+            "url" => url("/api/events/checkout/pay?payment_id=$payment->id&order_id=$order->id&event_id=$event->id")
+        ]);
+    }
+
+    public function checkoutPay(Request $request)
+    {
+        $payment_id = $request->query("payment_id");
+        $order_id = $request->query("order_id");
+        $event_id = $request->query("event_id");
+
+        $event = Event::where("id", $event_id)->first();
+        $order = Order::where("id", $order_id)->first();
+        $payment = Payment::where("id", $payment_id)->first();
+
+        $rzp_order_id = $payment->rzp_order_id;
+        $key = $_ENV["RAZORPAY_KEY_ID"];
+        $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
+
+        $razorpay_order = $api->order->fetch($rzp_order_id);
+
+        return view("front.payment.razorpay.checkout",  [
+            "order_details" => $razorpay_order,
+            "key" => $key,
+            "customer_details" => [
+                "name" => $order->name,
+                "email" => $order->email,
+                "mobile" => $order->mobile
+            ],
+            "event" => $event
+        ]);
     }
 }

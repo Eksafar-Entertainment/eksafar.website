@@ -34,8 +34,12 @@ Route::get("app-data", [HomeController::class, "appData"]);
 Route::get("events/{event_id}", [EventController::class, "details"]);
 Route::get("events/{event_id}/tickets", [EventController::class, "tickets"]);
 
-
+Route::get("events/checkout/pay", [EventController::class, "checkoutPay"]);
 Route::group(["middleware" => ["auth:api"]], function () {
     Route::get("me/profile", [AuthController::class, "profile"]);
     Route::get("auth/logout", [AuthController::class, "logout"]);
+
+
+    Route::post("events/checkout/session", [EventController::class, "checkoutSession"]);
+    
 });
