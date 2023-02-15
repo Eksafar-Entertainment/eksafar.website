@@ -112,7 +112,7 @@ class EventController extends Controller
         $items = $request->items;
         $name = $user->name;
         $mobile = $user->mobile;
-        $email = $user->email;
+        $email = $user->email ?? "";
 
         $order_details = [];
         $total_price = 0;
