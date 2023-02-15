@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $user = auth('api')->user();
         $orders = Order::where("user_id", $user->id)
             ->where("STATUS", "=", "SUCCESS")
-            ->where("create_at", ">=", Carbon::now())
+            //->where("create_at", ">=", Carbon::now())
             ->orderBy("created_at", "DESC")
             ->get();
 
