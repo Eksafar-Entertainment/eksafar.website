@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,11 @@ Route::get("events/{event_id}/tickets", [EventController::class, "tickets"]);
 
 Route::get("events/checkout/pay", [EventController::class, "checkoutPay"]);
 Route::group(["middleware" => ["auth:api"]], function () {
-    Route::get("me/profile", [AuthController::class, "profile"]);
+
+    Route::get("me/profile", [ProfileController::class, "index"]);
+    
+    Route::get("me/orders", [ProfileController::class, "orders"]);
+
     Route::get("auth/logout", [AuthController::class, "logout"]);
 
 

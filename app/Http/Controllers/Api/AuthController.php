@@ -57,15 +57,6 @@ class AuthController extends Controller
             "access_token" => $token
         ]);
     }
-    // USER PROFILE API - GET
-    public function profile()
-    {
-        $user_data = auth('api')->user();
-        return response()->json([
-            "message" => "User profile data",
-            "data" => $user_data
-        ]);
-    }
     // USER LOGOUT API - GET
     public function logout()
     {
