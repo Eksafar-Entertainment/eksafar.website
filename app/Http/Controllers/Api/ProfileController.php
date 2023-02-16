@@ -21,9 +21,14 @@ class ProfileController extends Controller
     public function orders(Request $request)
     {
         $user = auth('api')->user();
-        $orders = Order::where("user_id", $user->id)
-            ->where("STATUS", "=", "SUCCESS")
-            ->orderBy("created_at", "DESC")
+        $orders = Order::select([
+            "orders.*",
+            "events.name as event_name"
+        ])
+            ->where("orders.user_id", $user->id)
+            ->join('events', 'orders.event_id', '=', 'events.id')
+            ->where("orders.status", "=", "SUCCESS")
+            ->orderBy("orders.created_at", "DESC")
             ->paginate();
 
         return response()->json([
