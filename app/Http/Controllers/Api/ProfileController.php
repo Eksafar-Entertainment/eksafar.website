@@ -25,6 +25,7 @@ class ProfileController extends Controller
         $orders = Order::select([
             "orders.*",
             "events.name as event_name",
+            "events.cover_image",
         ])
             ->where("orders.user_id", $user->id)
             ->join('events', 'orders.event_id', '=', 'events.id')
