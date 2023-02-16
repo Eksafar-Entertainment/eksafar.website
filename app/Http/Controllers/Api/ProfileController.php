@@ -23,11 +23,14 @@ class ProfileController extends Controller
         $user = auth('api')->user();
         $orders = Order::select([
             "orders.*",
-            "events.name as event_name"
+            "events.name as event_name",
+            "event_tickets.start_datetime as event_datetime"
         ])
             ->where("orders.user_id", $user->id)
             ->join('events', 'orders.event_id', '=', 'events.id')
-            ->where("orders.status", "=", "SUCCESS")
+            ->join('order_details', 'orders.id', '=', 'order_details.order_id')
+            ->join('event_tickets', 'order_details.event_ticket_id', '=', 'event_tickets.id')
+            //->where("orders.status", "=", "SUCCESS")
             ->orderBy("orders.created_at", "DESC")
             ->paginate();
 
