@@ -30,7 +30,7 @@ class ProfileController extends Controller
             ->join('events', 'orders.event_id', '=', 'events.id')
             ->join('order_details', 'orders.id', '=', 'order_details.order_id')
             ->join('event_tickets', 'order_details.event_ticket_id', '=', 'event_tickets.id')
-            //->where("orders.status", "=", "SUCCESS")
+            ->where("orders.status", "=", "SUCCESS")
             ->orderBy("orders.created_at", "DESC")
             ->paginate();
 
