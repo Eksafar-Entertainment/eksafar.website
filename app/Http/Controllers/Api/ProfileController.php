@@ -24,7 +24,7 @@ class ProfileController extends Controller
         $orders = Order::where("user_id", $user->id)
             ->where("STATUS", "=", "SUCCESS")
             ->orderBy("created_at", "DESC")
-            ->paginate($request->query("page") ?? 1);
+            ->paginate();
 
         return response()->json([
             "message" => "User profile data",
