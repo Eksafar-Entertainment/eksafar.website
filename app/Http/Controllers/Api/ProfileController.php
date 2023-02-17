@@ -43,24 +43,24 @@ class ProfileController extends Controller
             "event_tickets.start_datetime",
             "event_tickets.end_datetime",
         ])
-        ->whereIn("order_id", array_map(function($order){
-            return $order["id"];
-        }, $orders["data"]))
-        ->join("event_tickets", "order_details.event_ticket_id", "=","event_tickets.id")
-        ->get()->toArray();
+            ->whereIn("order_id", array_map(function ($order) {
+                return $order["id"];
+            }, $orders["data"]))
+            ->join("event_tickets", "order_details.event_ticket_id", "=", "event_tickets.id")
+            ->get()->toArray();
 
-        $orders["data"] = array_map(function($order) use($order_details){
-            $_order_details = array_filter($order_details, function($order_detail) use($order){
+        $orders["data"] = array_map(function ($order) use ($order_details) {
+            $_order_details = array_filter($order_details, function ($order_detail) use ($order) {
                 return $order_detail["order_id"] == $order["id"];
             });
-            $order["quantity"] = array_reduce(array_values($_order_details), function($quantity, $order_detail){
-                $quantity+=$order_detail["quantity"];
+            $order["quantity"] = array_reduce(array_values($_order_details), function ($quantity, $order_detail) {
+                $quantity += $order_detail["quantity"];
                 return $quantity;
             }, 0);
             $order["event_datetime"] = array_values($_order_details)[0]["start_datetime"];
             $order["order_details"] = array_values($_order_details);
             return $order;
-        },$orders["data"]);
+        }, $orders["data"]);
 
 
 

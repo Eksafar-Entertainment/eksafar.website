@@ -131,83 +131,113 @@ class EventController extends Controller
             $order_details[] = $order_detail;
         }
 
-        //coupon
-        $coupon_code = $request->coupon;
-        $coupon = Coupon::where("code", $coupon_code)
-            ->where("type", "%")
-            ->where("remaining_count", ">", 0)->first();
-        $discounted_amount = $total_price;
-        $discount = 0;
-        if ($coupon) {
-            $coupon->remaining_count = $coupon->remaining_count - 1;
+        if ($total_price === 0) {
+            //create order
+            $order = new Order();
+            $order->event_id = $request->event_id;
+            $order->name = $name;
+            $order->email = $email;
+            $order->mobile = $mobile;
+            $order->status = "PENDING";
+            $order->total_price = $total_price;
+            $order->payment_id = "";
+            $order->user_id = $user->id;
+            $order->save();
 
-            $discount = ($coupon->discount / 100) * $total_price;
-            $discounted_amount = $total_price - $discount;
+            //save order details
+            foreach ($order_details as $order_detail) {
+                $order_detail->order_id = $order->id;
+                $order_detail->save();
+            }
+            return response()->json([
+                "message" => "Successful",
+                "order"=>$order,
+                "key" => $key,
+                "user" => $user,
+                "is_free" => true
+            ]);
+        } else {
 
-            $coupon->save();
+            //coupon
+            $coupon_code = $request->coupon;
+            $coupon = Coupon::where("code", $coupon_code)
+                ->where("type", "%")
+                ->where("remaining_count", ">", 0)->first();
+            $discounted_amount = $total_price;
+            $discount = 0;
+            if ($coupon) {
+                $coupon->remaining_count = $coupon->remaining_count - 1;
+
+                $discount = ($coupon->discount / 100) * $total_price;
+                $discounted_amount = $total_price - $discount;
+
+                $coupon->save();
+            }
+
+            //create payment
+            $payment = new Payment();
+            $payment->rzp_order_id = "";
+            $payment->payment_method = "Razorpay";
+            $payment->order_id = 0;
+            $payment->user = $name;
+            $payment->phone = $mobile;
+            $payment->email = $email;
+            $payment->amount = $total_price;
+            $payment->status = "CREATED";
+            if ($coupon) {
+                $payment->discount = $discount;
+                $payment->coupon = $coupon->code;
+            }
+            $payment->save();
+
+            //create order
+            $order = new Order();
+            $order->event_id = $request->event_id;
+            $order->name = $name;
+            $order->email = $email;
+            $order->mobile = $mobile;
+            $order->status = "PENDING";
+            $order->total_price = $total_price;
+            $order->payment_id = $payment->id;
+            $order->user_id = $user->id;
+            if ($coupon) {
+                $order->discount = $discount;
+            }
+            $order->save();
+
+            //update order
+            $order->payment_id = $payment->id;
+            $order->save();
+
+            //create razorpay payment
+            $orderData = [
+                'receipt'         => $order->id,
+                'amount'          => round($discounted_amount * 100),
+                'currency'        => 'INR',
+                'notes'           => [
+                    "order_id" => $order->id
+                ]
+            ];
+            $razorpay_order = $api->order->create($orderData);
+
+            //update payment
+            $payment->order_id = $order->id;
+            $payment->rzp_order_id = $razorpay_order->id;
+            $payment->save();
+
+            //save order details
+            foreach ($order_details as $order_detail) {
+                $order_detail->order_id = $order->id;
+                $order_detail->save();
+            }
+            return response()->json([
+                "message" => "Successful",
+                "order_details" => $razorpay_order->toArray(),
+                "order"=>$order,
+                "key" => $key,
+                "user" => $user,
+                "is_free" => false
+            ]);
         }
-
-        //create payment
-        $payment = new Payment();
-        $payment->rzp_order_id = "";
-        $payment->payment_method = "Razorpay";
-        $payment->order_id = 0;
-        $payment->user = $name;
-        $payment->phone = $mobile;
-        $payment->email = $email;
-        $payment->amount = $total_price;
-        $payment->status = "CREATED";
-        if ($coupon) {
-            $payment->discount = $discount;
-            $payment->coupon = $coupon->code;
-        }
-        $payment->save();
-
-        //create order
-        $order = new Order();
-        $order->event_id = $request->event_id;
-        $order->name = $name;
-        $order->email = $email;
-        $order->mobile = $mobile;
-        $order->status = "PENDING";
-        $order->total_price = $total_price;
-        $order->payment_id = $payment->id;
-        $order->user_id = $user->id;
-        if ($coupon) {
-            $order->discount = $discount;
-        }
-        $order->save();
-
-        //update order
-        $order->payment_id = $payment->id;
-        $order->save();
-
-        //create razorpay payment
-        $orderData = [
-            'receipt'         => $order->id,
-            'amount'          => round($discounted_amount * 100),
-            'currency'        => 'INR',
-            'notes'           => [
-                "order_id" => $order->id
-            ]
-        ];
-        $razorpay_order = $api->order->create($orderData);
-
-        //update payment
-        $payment->order_id = $order->id;
-        $payment->rzp_order_id = $razorpay_order->id;
-        $payment->save();
-
-        //save order details
-        foreach ($order_details as $order_detail) {
-            $order_detail->order_id = $order->id;
-            $order_detail->save();
-        }
-        return response()->json([
-            "message" => "Successful",
-            "order_details" => $razorpay_order->toArray(),
-            "key" => $key,
-            "user" => $user,
-        ]);
     }
 }
