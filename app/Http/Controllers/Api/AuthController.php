@@ -180,7 +180,7 @@ class AuthController extends Controller
             $user = new User();
             $user->name = "";
             $user->mobile = $request->mobile_no;
-            $user = $user->save();
+            $user->save();
         }
 
 
