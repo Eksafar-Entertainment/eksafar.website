@@ -169,49 +169,4 @@
         },
     });
 </script>
-
-
-
-{{-- <section>
-    <div class="modal" tabindex="-1" id="featured-modal" data-bs-backdrop="static">
-        <div class="modal-dialog  modal-dialog-centered modal-lg">
-            <div class="modal-content bg-black ">
-
-                <div class="modal-body p-0 position-relative">
-
-                    <button class="position-absolute btn btn-link text-white btn-sm"
-                        style="top:5px; right:5px; background-color: rgba(0,0,0,0.5)" 
-                        data-bs-dismiss="modal" id="featured-banner-close-button">
-                        <i class="fas fa-close"></i>
-                    </button>
-                    <a onclick="openFeaturedBannerEvent('{{url('/about')}}')">
-                        <img src="http://eksafar.lo/storage/uploads/202302120019.jpeg" class="w-100 rounded" />
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <script>
-        window.addEventListener("load", () => {
-            const featuredModal = new bootstrap.Modal(document.getElementById('featured-modal'), {
-                keyboard: false
-            });
-            if (localStorage.getItem("show_featured_banner") != "NO") {
-                featuredModal.show();
-                document.getElementById("featured-banner-close-button").addEventListener("click",()=>{
-                    localStorage.setItem("show_featured_banner", "NO");
-                })
-            }
-        });
-    
-        function openFeaturedBannerEvent(url){
-            localStorage.setItem("show_featured_banner", "NO");
-            window.location.href = url;
-        }
-    </script>
-    
-</section> --}}
-
-
 </html>
