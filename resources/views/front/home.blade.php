@@ -286,9 +286,7 @@
             <div class="slider">
                 <div class="owl-carousel">
                     <div class="slider-card">
-                        <div class="d-flex justify-content-center align-items-center mb-4">
-                            <img src="images/slide-2.jpg" alt="">
-                        </div>
+                        
                         <h5 class="mb-0 text-center"><b>Our Style</b></h5>
                         <p class="text-center p-4">
                             We celebrate our rich history in a contemporary style, and look forward to seeing this work
@@ -296,9 +294,7 @@
                         </p>
                     </div>
                     <div class="slider-card">
-                        <div class="d-flex justify-content-center align-items-center mb-4">
-                            <img src="images/slide-3.jpg" alt="">
-                        </div>
+                    
                         <h5 class="mb-0 text-center"><b>Get Ready for Winter</b></h5>
                         <p class="text-center p-4">
                             Winter is coming closer by the day and magical memories await, so dress the part, stay warm, and
@@ -306,9 +302,7 @@
                         </p>
                     </div>
                     <div class="slider-card">
-                        <div class="d-flex justify-content-center align-items-center mb-4">
-                            <img src="images/slide-4.jpg" alt="">
-                        </div>
+                     
                         <h5 class="mb-0 text-center"><b>New Year Blast</b></h5>
                         <p class="text-center p-4">
                             Tune in and secure your passes for your favourite time of the year, Packages are nearly sold
@@ -316,9 +310,7 @@
                         </p>
                     </div>
                     <div class="slider-card">
-                        <div class="d-flex justify-content-center align-items-center mb-4">
-                            <img src="images/slide-5.jpg" alt="">
-                        </div>
+                   
                         <h5 class="mb-0 text-center"><b>Getting Ready For New Year</b></h5>
                         <p class="text-center p-4">
                             Discover a new and wonderful Year ahead of 2023 live to the rhythm of the sun, guided by the
