@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="pb-2 pt-2 d-flex">
                                             <div><i class="fas fa-bookmark"></i></div>
-                                            <div class="flex-grow-1 ps-3">Music</div>
+                                            <div class="flex-grow-1 ps-3">{{$event->event_type}}</div>
                                         </div>
 
                                         <div class="pb-2 d-flex">
@@ -225,7 +225,7 @@
                                     </div>
                                     <div class="pb-2 pt-2 d-flex">
                                         <div><i class="fas fa-bookmark"></i></div>
-                                        <div class="flex-grow-1 ps-3">Music</div>
+                                        <div class="flex-grow-1 ps-3">{{$event->event_type}}</div>
                                     </div>
 
                                     <div class="pb-2 d-flex">
