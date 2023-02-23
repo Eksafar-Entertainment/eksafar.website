@@ -53,11 +53,7 @@ class FrontController extends Controller
         $type = '/';
 
         switch ($path) {
-            case "performer": {
-                    $type = 'performer';
-                    return view('front.performer.index', compact('path', 'type'));
-                }
-
+         
             case "about": {
                     $type = 'about';
                     return view('front.about.index', compact('path', 'type'));
@@ -67,26 +63,6 @@ class FrontController extends Controller
                     $type = 'gallery';
                     $gallery = GalleryImage::latest()->paginate();
                     return view('front.gallery.index', compact('gallery', 'type'));
-                }
-
-            case "guest": {
-                    $type = 'guest';
-                    return view('front.guest.index', compact('path', 'type'));
-                }
-
-            case "elements": {
-                    $type = 'elements';
-                    return view('front.elements.index', compact('path', 'type'));
-                }
-
-            case "upcoming": {
-                    $type = 'upcoming';
-                    return view('front.events.index', compact('path', 'type'));
-                }
-
-            case "current": {
-                    $type = 'current';
-                    return view('front.events.event.index', compact('path', 'type'));
                 }
 
             case "contact": {

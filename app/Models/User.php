@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable, HasRoles, HasPermissions;
+    use HasFactory, Notifiable, HasRoles, HasPermissions, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +25,8 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'mobile',
         'password',
+        'google_id',
+        'facebook_id',
     ];
 
     /**
