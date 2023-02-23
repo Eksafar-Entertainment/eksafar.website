@@ -508,7 +508,10 @@ class EventController extends Controller
     {
         $order_id = $request->order_id;
         $date = $request->date;
-        $order = Order::where("id", $order_id)->where("status", "SUCCESS")->first();
+        $order = Order::where(function ($query) use($order_id){
+            $query->where('id', '=', $order_id)
+                  ->orWhere('uid', '=', $order_id);
+        })->where("status", "SUCCESS")->first();
         if (!$order) {
             return response()->json([
                 "status" => 404,
