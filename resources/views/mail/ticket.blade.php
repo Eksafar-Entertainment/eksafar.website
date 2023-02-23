@@ -60,10 +60,10 @@
 
             </header>
 
-            <p>
+            {{-- <p>
                 Hey {{ $order->name }},<br />
                 This is just a confirmation email regarding you order
-            </p>
+            </p> --}}
 
             <div class="container">
                 <table style="width: 100%; border-collapse: collapse;">
@@ -85,7 +85,7 @@
             </div>
 
             <div class="container p-3">
-                <h3>Summery</h3>
+                <h3>Order Details</h3>
                 <div class="table">
                     <table class="order-details-table">
                         <tr>
