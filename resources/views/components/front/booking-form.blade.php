@@ -383,7 +383,7 @@
     #dates-tab .nav-link {
         font-size: 12px;
         color: white;
-        padding: 2px 8px
+        padding: 2px 10px
     }
 
     #dates-tab .nav-link.active {
