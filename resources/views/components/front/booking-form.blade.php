@@ -28,7 +28,7 @@
                                 role="tabpanel" aria-labelledby="nav-{{ $i }}-tab">
                                 <div class="table-responsive-sm">
                                     <table class="table table-ms mt-3">
-                                        @foreach ($event_tickets as $n => $event_ticket)
+                                        @foreach ($tickets[$date] as $n => $event_ticket)
                                             <tr data-row="ticket">
                                                 <td width="50%" class="ps-0">
                                                     <h6 class="mb-0 text-light">{{ $event_ticket->name }}</h6>
