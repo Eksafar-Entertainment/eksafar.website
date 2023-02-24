@@ -119,16 +119,16 @@
                         <hr />
                         <div>
                             <div class="mb-3">
-                                <input type="text" placeholder="Full name" class="form-control" name="name" />
+                                <input type="text" placeholder="Full name" class="form-control" name="name" required/>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text text-dark" id="basic-addon1">+91</span>
                                 <input type="text" placeholder="Phone" name="mobile" class="form-control"
-                                    onkeyup="event.target.value = event.target.value.replace(/[^\d.-]+/g, '')" />
+                                    onkeyup="event.target.value = event.target.value.replace(/[^\d.-]+/g, '')" required />
                             </div>
 
                             <div class="mb-3">
-                                <input type="email" placeholder="Email" name="email" class="form-control" />
+                                <input type="email" placeholder="Email" name="email" class="form-control" required />
                             </div>
 
                             <button class="btn btn-primary w-100" id="checkout" type="submit">Checkout</button>
