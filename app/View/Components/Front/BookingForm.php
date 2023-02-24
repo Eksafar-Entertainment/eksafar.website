@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 
 class BookingForm extends Component
 {
-    public $event, $venue, $event_tickets, $tickets, $dates;
+    public $event, $venue, $event_tickets, $tickets, $dates, $date;
     /**
      * Create a new component instance.
      *
@@ -17,6 +17,7 @@ class BookingForm extends Component
      */
     public function __construct(Event $event, Venue $venue, $tickets=[])
     {
+        $request  = request();
         $this->event = $event;
         $this->venue = $venue;
         $this->event_tickets = $tickets;
@@ -28,6 +29,14 @@ class BookingForm extends Component
         }
         $this->dates = array_unique($dates);
         $this->tickets = $ticketss;
+
+        if(sizeof($this->dates) == 1){
+            $this->date = $dates[0];
+        } else if($request->query->has("date")){
+            $this->date = $request->query("date");
+        }
+
+       
     }
 
     /**

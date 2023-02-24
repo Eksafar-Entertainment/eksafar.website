@@ -101,20 +101,21 @@
                                         </div>
                                         <div class="pb-2 pt-2 d-flex">
                                             <div><i class="fas fa-bookmark"></i></div>
-                                            <div class="flex-grow-1 ps-3">{{$event->event_type}}</div>
+                                            <div class="flex-grow-1 ps-3">{{ $event->event_type }}</div>
                                         </div>
 
                                         <div class="pb-2 d-flex">
                                             <div><i class="fas fa-calendar"></i></div>
                                             <div class="flex-grow-1 ps-3">
-                                            {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y | h:i A') }}
-                                                 Onwards
+                                                {{ \Carbon\Carbon::parse($event_tickets[0]->start_datetime)->format('d-M-Y | h:i A') }}
+                                                Onwards
                                             </div>
                                         </div>
 
                                         <div class="d-flex">
                                             <div><i class="fa-solid fa-location-dot"></i></div>
-                                            <div class="flex-grow-1 ps-3">{{ $venue->name }}, {{ $venue->location }}</div>
+                                            <div class="flex-grow-1 ps-3">{{ $venue->name }}, {{ $venue->location }}
+                                            </div>
                                         </div>
                                     </div>
 
@@ -225,7 +226,7 @@
                                     </div>
                                     <div class="pb-2 pt-2 d-flex">
                                         <div><i class="fas fa-bookmark"></i></div>
-                                        <div class="flex-grow-1 ps-3">{{$event->event_type}}</div>
+                                        <div class="flex-grow-1 ps-3">{{ $event->event_type }}</div>
                                     </div>
 
                                     <div class="pb-2 d-flex">
@@ -258,7 +259,7 @@
                                     <div>
                                         @if ($event->status == 'CREATED')
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">Book Now</button>
+                                                id="__book_now_button" data-bs-target="#ticket-modal">Book Now</button>
                                         @endif
                                     </div>
 
@@ -325,7 +326,7 @@
                     <div class="initial">
                         @if ($event->status == 'CREATED')
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">Book Now</button>
+                                data-bs-target="#ticket-modal" id="__book_now_button">Book Now</button>
                         @else
                             <button type="button" class="btn btn-danger btn-sm" disabled="true">Sold Out</button>
                         @endif
@@ -342,7 +343,7 @@
     <!------- Booking Modal ---->
     <div>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="ticket-modal" tabindex="-1" aria-labelledby="ticket-modalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content position-relative ticket rounded" id="ticket">
@@ -354,5 +355,12 @@
         </div>
     </div>
     @include('front.event.upcoming')
-
+    @if (request()->query->has('open-form'))
+        <script>
+            $(document).ready(() => {
+                const __book_now_button = document.querySelector("#__book_now_button");
+                __book_now_button.dispatchEvent(new Event("click"));
+            });
+        </script>
+    @endif
 @endsection
