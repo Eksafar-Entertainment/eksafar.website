@@ -122,7 +122,6 @@ class ContactController extends Controller
     public function import(Request $request)
     {
         try {
-            \Maatwebsite\Excel\Facades\Excel::import(new ContactImport, request()->file('file'));
             return response()->json([
                 "status" => 200,
                 'message' => 'Successfully imported file',
@@ -141,7 +140,7 @@ class ContactController extends Controller
         try {
             $message = $request->message;
 
-            $wRes = Http::withToken('EAAMjVOLPyiYBAKzLFAZCAFo3GUN0h1bjHI7S54j29GzpTqaLEogZAkgvtP4ZAhJ2AcZBjyct5KmQSD5GOhlQLdyL1d3UxcCJBetMfnNRwLfvkwQzDJZCiVoABuxZC3UUQnXoptjzSKRdUA7e6ZAE3yE43xlfCmvGFQYYwdpkaLwITZCi9VfppPHn3sIvXZAVqxX51AZAvoWl9vcGeBZCoYGh38oOGtpXFlCCuUZD')
+            $wRes = Http::withToken('EAAMjVOLPyiYBACUe0un1TCgNKwaz65a3IfZBkx0yC97UdLalnxAPNcHbgn06K6cpYdDfgpZBKUimF4s8DXHZBUKyC3lQ6ZBKSL7KXDNOeNLOg2kQ4JEqDEhBRjmZBPCXJU9L4OMZAd8m02Y0BZBT0wwTUMCmnaU9ZCyZBVZAsL5mfjZCBriA3DPNN8thmhwbc1AZAixoOqYa9JNyPgZDZD')
                 ->post('https://graph.facebook.com/v15.0/110821481827920/messages',  [
                     "messaging_product" => "whatsapp",
                     "to" => "919123881186",
