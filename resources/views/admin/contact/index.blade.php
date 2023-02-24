@@ -100,9 +100,13 @@
                 <div class="modal-body">
                     <form onsubmit="whatsappCampaign(event)" id="whatsapp-campaign-form">
                         @csrf
-                        <div class="mb-3">
+                        <div class="mb-1">
                             <label class="form-label">Message</label>
-                            <textarea class="form-control" name="message"></textarea>
+                            <textarea class="form-control" name="message" style="height: 150px" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <kbd>@php echo "{{name}}" @endphp</kbd>
+                            <kbd>@php echo "{{email}}" @endphp</kbd>
                         </div>
 
                         <div class="form-check">

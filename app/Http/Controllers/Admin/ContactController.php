@@ -150,7 +150,7 @@ class ContactController extends Controller
                 $contacts = Contact::get()->unique("phone");
                 foreach ($contacts as $contact) {
                     if($contact->phone==null || $contact->phone == "") continue;
-                    $receipts[] = [
+                    $receipts[$contact->phone] = [
                         "name" => $contact->name,
                         "email" => $contact->email,
                         "phone" => $contact->phone,
@@ -187,6 +187,7 @@ class ContactController extends Controller
             $responses = [];
             foreach ($receipts as $phone=>$receipt) {
                 $text = Str::replace("{{name}}", $receipt["name"], $message);
+                $text = Str::replace("{{email}}", $receipt["email"], $text);
                 $responses[$phone] = Http::withToken('EAAC5X0tCE2ABAKswdx8gCP7vtCxIfiqGfT200u0dtoH0skWrMQtiMN9ZAxiAEcnZCUoGDLgapLTEIB1y4e8xoOtaG0297ttarXyhdqy7KjYZAUvdtZCRVhJxwpWTUq6hUpV7vMZACNHjxJXkDJ125iawzRcxbzFRlMrSGCGFAMO5r69SClrhiTeW2uBjarjvA3ISKTsHwLfRYRC1pxZBn8XgNKEjAJeaUZD')
                     ->post('https://graph.facebook.com/v15.0/110821481827920/messages',  [
                         "messaging_product" => "whatsapp",
