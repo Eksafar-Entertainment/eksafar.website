@@ -384,9 +384,9 @@
                 });
                 if (localStorage.getItem("show_featured_banner") != "NO") {
                     featuredModal.show();
-                    document.getElementById("featured-banner-close-button").addEventListener("click", () => {
-                        localStorage.setItem("show_featured_banner", "NO");
-                    })
+                    // document.getElementById("featured-banner-close-button").addEventListener("click", () => {
+                    //     localStorage.setItem("show_featured_banner", "NO");
+                    // })
                 }
             });
 
