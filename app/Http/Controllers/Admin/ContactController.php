@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Imports\ContactsImport;
 use App\Models\Contact;
+use App\Models\Order;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -140,6 +142,28 @@ class ContactController extends Controller
     public function whatsappCampaign(Request $request)
     {
         try {
+            $orders = Order::select("name", "email", "mobile")->distinct()->get();
+            $users = User::select("name", "email", "mobile")->distinct()->get();
+            foreach ($orders as $order) {
+                try {
+                    $contact = new Contact();
+                    $contact->name = $order->name;
+                    $contact->email = $order->email;
+                    $contact->phone = $order->mobile;
+                    $contact->save();
+                } catch (Exception $err) {
+                }
+            }
+            foreach ($users as $user) {
+                try {
+                    $contact = new Contact();
+                    $contact->name = $user->name;
+                    $contact->email = $user->email;
+                    $contact->phone = $user->mobile;
+                    $contact->save();
+                } catch (Exception $err) {
+                }
+            }
             $message = $request->message;
 
             $wRes = Http::withToken('EAAMjVOLPyiYBACUe0un1TCgNKwaz65a3IfZBkx0yC97UdLalnxAPNcHbgn06K6cpYdDfgpZBKUimF4s8DXHZBUKyC3lQ6ZBKSL7KXDNOeNLOg2kQ4JEqDEhBRjmZBPCXJU9L4OMZAd8m02Y0BZBT0wwTUMCmnaU9ZCyZBVZAsL5mfjZCBriA3DPNN8thmhwbc1AZAixoOqYa9JNyPgZDZD')
