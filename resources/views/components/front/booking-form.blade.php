@@ -1,4 +1,4 @@
-@if ((!$date || $date == null || $date == '') && sizeof($dates) > 1)
+@if (!$date)
     <div class="p-4 text-center">
         <h4>Select Date</h4>
         <p>Select date to book ticket</p>
