@@ -176,8 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        Monarobase\CountryList\CountryListServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Monarobase\CountryList\CountryListServiceProvider::class
     ],
 
     /*
@@ -237,8 +236,6 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Countries' => Monarobase\CountryList\CountryListFacade::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        
     ],
 
 ];
