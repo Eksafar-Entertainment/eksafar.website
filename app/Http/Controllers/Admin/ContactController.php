@@ -182,8 +182,6 @@ class ContactController extends Controller
                     ];
                 }
             }
-            dd($receipts);
-
             $responses = [];
             foreach ($receipts as $phone=>$receipt) {
                 $text = Str::replace("{{name}}", $receipt["name"], $message);
