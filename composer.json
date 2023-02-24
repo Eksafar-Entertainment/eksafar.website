@@ -19,7 +19,6 @@
         "laravelcollective/html": "^6.3",
         "mikehaertl/phpwkhtmltopdf": "^2.5",
         "monarobase/country-list": "^3.3",
-        "rap2hpoutre/fast-excel": "*",
         "razorpay/razorpay": "^2.8",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^5.5",

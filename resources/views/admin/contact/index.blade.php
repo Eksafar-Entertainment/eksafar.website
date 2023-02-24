@@ -127,8 +127,8 @@
                 data: new FormData(_evt.target),
                 success: function(result) {
                     alert(result.message);
-                    window.location.reload();
-                    importModal.hide();
+                    //window.location.reload();
+                    //importModal.hide();
                 }
             });
         }

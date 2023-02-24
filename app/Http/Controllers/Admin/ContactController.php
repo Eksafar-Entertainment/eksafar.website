@@ -122,6 +122,7 @@ class ContactController extends Controller
     public function import(Request $request)
     {
         try {
+         
             return response()->json([
                 "status" => 200,
                 'message' => 'Successfully imported file',
