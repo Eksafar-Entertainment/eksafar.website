@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\VenueController;
 use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\LocationsController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -63,6 +64,11 @@ Route::group([
     Route::resource('promoters', PromotersController::class);
     Route::resource('locations', LocationsController::class);
     Route::resource('coupon', CouponController::class);
+
+    //contacts
+    Route::resource('contact', ContactController::class);
+    Route::post('contact/import', [ContactController::class, "import"]);
+    Route::post('contact/whatsapp-campaign', [ContactController::class, "whatsappCampaign"]);
     //files
     Route::controller(FileManagerController::class)->group(function () {
         Route::get('files',  "index")->name("admin.files");
