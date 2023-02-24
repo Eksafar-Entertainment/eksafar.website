@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Imports\ContactImport;
+use App\Imports\ContactsImport;
 use App\Models\Contact;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+
 
 class ContactController extends Controller
 {
@@ -122,7 +123,7 @@ class ContactController extends Controller
     public function import(Request $request)
     {
         try {
-         
+            \Maatwebsite\Excel\Facades\Excel::import(new ContactsImport, request()->file('file'));
             return response()->json([
                 "status" => 200,
                 'message' => 'Successfully imported file',
