@@ -366,7 +366,11 @@
                             <i class="fas fa-close"></i>
                         </button>
                         <a onclick="openFeaturedBannerEvent('{{ url('/event/colorland-the-festival-of-color-holi-festival') }}')">
-                            <img src="https://www.eksafar.club/storage/uploads/202302241121.jpeg" class="w-100 rounded" />
+                            @if ((new \Jenssegers\Agent\Agent())->isMobile())
+                            <img src="{{url('/images/banner/popup-portrait.jpg')}}" class="w-100 rounded" />
+                            @else 
+                            <img src="{{url('/images/banner/popup-landscape.jpg')}}" class="w-100 rounded" />
+                            @endif
                         </a>
                     </div>
 

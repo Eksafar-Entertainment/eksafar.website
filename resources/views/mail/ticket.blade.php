@@ -57,13 +57,12 @@
         <div class="main">
             <header>
                 <h3 class="logo">EKSAFAR</h3>
-
             </header>
 
-            {{-- <p>
+            <p>
                 Hey {{ $order->name }},<br />
-                This is just a confirmation email regarding you order
-            </p> --}}
+                Please find below the details of your order.
+            </p>
 
             <div class="container">
                 <table style="width: 100%; border-collapse: collapse;">

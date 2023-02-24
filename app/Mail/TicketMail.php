@@ -51,7 +51,7 @@ class TicketMail extends Mailable
     {
         return $this->view('mail.ticket')
             //->text('mail.ticket.plain')
-            ->subject("Please collect your ticket.")
+            ->subject("Tickets booked. (".$this->event->name.")")
             ->with([
                 "order" => $this->order,
                 "event" => $this->event,
