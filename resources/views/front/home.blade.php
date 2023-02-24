@@ -3,7 +3,8 @@
 @section('head')
     <title>Eksafar Entertainment</title>
 
-    <meta name="description" content="A party & traveler group for enthusiastic people who want to discover new places,cultures & Nightlife.">
+    <meta name="description"
+        content="A party & traveler group for enthusiastic people who want to discover new places,cultures & Nightlife.">
     <meta property="og:title" content="Eksafar Entertainment" />
     <meta property="og:description"
         content="A party & traveler group for enthusiastic people who want to discover new places,cultures & Nightlife." />
@@ -286,7 +287,7 @@
             <div class="slider">
                 <div class="owl-carousel">
                     <div class="slider-card">
-                        
+
                         <h5 class="mb-0 text-center"><b>Our Style</b></h5>
                         <p class="text-center p-4">
                             We celebrate our rich history in a contemporary style, and look forward to seeing this work
@@ -294,7 +295,7 @@
                         </p>
                     </div>
                     <div class="slider-card">
-                    
+
                         <h5 class="mb-0 text-center"><b>Get Ready for Winter</b></h5>
                         <p class="text-center p-4">
                             Winter is coming closer by the day and magical memories await, so dress the part, stay warm, and
@@ -302,7 +303,7 @@
                         </p>
                     </div>
                     <div class="slider-card">
-                     
+
                         <h5 class="mb-0 text-center"><b>New Year Blast</b></h5>
                         <p class="text-center p-4">
                             Tune in and secure your passes for your favourite time of the year, Packages are nearly sold
@@ -310,7 +311,7 @@
                         </p>
                     </div>
                     <div class="slider-card">
-                   
+
                         <h5 class="mb-0 text-center"><b>Getting Ready For New Year</b></h5>
                         <p class="text-center p-4">
                             Discover a new and wonderful Year ahead of 2023 live to the rhythm of the sun, guided by the
@@ -352,47 +353,44 @@
         </script>
     </section>
 
-    {{-- <section>
-    <div class="modal" tabindex="-1" id="featured-modal" data-bs-backdrop="static">
-        <div class="modal-dialog  modal-dialog-centered modal-lg">
-            <div class="modal-content bg-black ">
+    <section>
+        <div class="modal" tabindex="-1" id="featured-modal" data-bs-backdrop="static">
+            <div class="modal-dialog  modal-dialog-centered modal-xl">
+                <div class="modal-content bg-black ">
 
-                <div class="modal-body p-0 position-relative">
+                    <div class="modal-body p-0 position-relative">
 
-                    <button class="position-absolute btn btn-link text-white btn-sm"
-                        style="top:5px; right:5px; background-color: rgba(0,0,0,0.5)" 
-                        data-bs-dismiss="modal" id="featured-banner-close-button">
-                        <i class="fas fa-close"></i>
-                    </button>
-                    <a onclick="openFeaturedBannerEvent('{{url('/about')}}')">
-                        <img src="http://eksafar.lo/storage/uploads/202302120019.jpeg" class="w-100 rounded" />
-                    </a>
+                        <button class="position-absolute btn btn-link text-white btn-sm"
+                            style="top:5px; right:5px; background-color: rgba(0,0,0,0.5)" data-bs-dismiss="modal"
+                            id="featured-banner-close-button">
+                            <i class="fas fa-close"></i>
+                        </button>
+                        <a onclick="openFeaturedBannerEvent('{{ url('/event/colorland-the-festival-of-color-holi-festival') }}')">
+                            <img src="https://www.eksafar.club/storage/uploads/202302241121.jpeg" class="w-100 rounded" />
+                        </a>
+                    </div>
+
                 </div>
-
             </div>
         </div>
-    </div>
-    <script>
-        window.addEventListener("load", () => {
-            const featuredModal = new bootstrap.Modal(document.getElementById('featured-modal'), {
-                keyboard: false
+        <script>
+            window.addEventListener("load", () => {
+                const featuredModal = new bootstrap.Modal(document.getElementById('featured-modal'), {
+                    keyboard: false
+                });
+                if (localStorage.getItem("show_featured_banner") != "NO") {
+                    featuredModal.show();
+                    document.getElementById("featured-banner-close-button").addEventListener("click", () => {
+                        localStorage.setItem("show_featured_banner", "NO");
+                    })
+                }
             });
-            if (localStorage.getItem("show_featured_banner") != "NO") {
-                featuredModal.show();
-                document.getElementById("featured-banner-close-button").addEventListener("click",()=>{
-                    localStorage.setItem("show_featured_banner", "NO");
-                })
+
+            function openFeaturedBannerEvent(url) {
+                localStorage.setItem("show_featured_banner", "NO");
+                window.location.href = url;
             }
-        });
-    
-        function openFeaturedBannerEvent(url){
-            localStorage.setItem("show_featured_banner", "NO");
-            window.location.href = url;
-        }
-    </script>
-    
-</section> --}}
+        </script>
 
-
-
+    </section>
 @endsection
