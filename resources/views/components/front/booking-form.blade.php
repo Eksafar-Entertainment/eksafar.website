@@ -3,7 +3,7 @@
         <h4>Select Date</h4>
         <p>Select ticket to book ticket</p>
         @foreach ($dates as $i => $d)
-            <a class="btn btn-large btn-danger mb-2"
+            <a class="btn btn-large btn-danger mb-1"
                 href="?date={{ $d }}&open-form=true">{{ \Carbon\Carbon::parse($d)->format('dS M, Y') }}</a>
         @endforeach
     </div>
