@@ -3,8 +3,8 @@
         <h4>Select Date</h4>
         <p>Select date to book ticket</p>
         @foreach ($dates as $i => $d)
-            <a class="btn btn-large btn-danger mb-1"
-                href="?date={{ $d }}&open-form=true">{{ \Carbon\Carbon::parse($d)->format('dS M, Y') }}</a>
+            <a class="btn btn-large btn-danger mb-1" 
+            onclick="window.location.replace('?date={{ $d }}&open-form=true')">{{ \Carbon\Carbon::parse($d)->format('dS M, Y') }}</a>
         @endforeach
     </div>
 @else
@@ -26,7 +26,9 @@
                                     <a class="nav-link {{ $d == $date ? 'active' : '' }} text-white"
                                         type="button" 
                                         role="tab"
-                                        href="?date={{ $d }}&open-form=true"
+                                        {{-- href="?date={{ $d }}&open-form=true" --}}
+                                        onclick="window.location.replace('?date={{ $d }}&open-form=true')"
+                                        
                                     >{{ \Carbon\Carbon::parse($d)->format('dS M, Y') }}</a>
                                 @endforeach
                             </div>
