@@ -142,28 +142,28 @@ class ContactController extends Controller
     public function whatsappCampaign(Request $request)
     {
         try {
-            $orders = Order::select("name", "email", "mobile")->distinct()->get();
-            $users = User::select("name", "email", "mobile")->distinct()->get();
-            foreach ($orders as $order) {
-                try {
-                    $contact = new Contact();
-                    $contact->name = $order->name;
-                    $contact->email = $order->email;
-                    $contact->phone = $order->mobile;
-                    $contact->save();
-                } catch (Exception $err) {
-                }
-            }
-            foreach ($users as $user) {
-                try {
-                    $contact = new Contact();
-                    $contact->name = $user->name;
-                    $contact->email = $user->email;
-                    $contact->phone = $user->mobile;
-                    $contact->save();
-                } catch (Exception $err) {
-                }
-            }
+            // $orders = Order::select("name", "email", "mobile")->distinct()->get();
+            // $users = User::select("name", "email", "mobile")->distinct()->get();
+            // foreach ($orders as $order) {
+            //     try {
+            //         $contact = new Contact();
+            //         $contact->name = $order->name;
+            //         $contact->email = $order->email;
+            //         $contact->phone = $order->mobile;
+            //         $contact->save();
+            //     } catch (Exception $err) {
+            //     }
+            // }
+            // foreach ($users as $user) {
+            //     try {
+            //         $contact = new Contact();
+            //         $contact->name = $user->name;
+            //         $contact->email = $user->email;
+            //         $contact->phone = $user->mobile;
+            //         $contact->save();
+            //     } catch (Exception $err) {
+            //     }
+            // }
             $message = $request->message;
 
             $wRes = Http::withToken(':	EAAMjVOLPyiYBADZAO6tmp4hxl1sf8FRGtQuOsosCr1X6iwzy94gocSW8QtCT7ufFcgOZCdZCb7HcQxQc5X0bXXc7ZBuKJ7XEbnmx5RQGfZCcDumv8KbRkN0nZCZCqR3lry9m1DEwGcuJ7VuZBBO0lcvzc5EHulPaJwLPktmZA8nHJnWwARHG7htb5yZAkXj6f3cXCeaVlWad5McQZDZD')
