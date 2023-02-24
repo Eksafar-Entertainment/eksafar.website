@@ -10,6 +10,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 
 class ContactController extends Controller
@@ -142,66 +143,69 @@ class ContactController extends Controller
     public function whatsappCampaign(Request $request)
     {
         try {
-            // $orders = Order::select("name", "email", "mobile")->distinct()->get();
-            // $users = User::select("name", "email", "mobile")->distinct()->get();
-            // foreach ($orders as $order) {
-            //     try {
-            //         $contact = new Contact();
-            //         $contact->name = $order->name;
-            //         $contact->email = $order->email;
-            //         $contact->phone = $order->mobile;
-            //         $contact->save();
-            //     } catch (Exception $err) {
-            //     }
-            // }
-            // foreach ($users as $user) {
-            //     try {
-            //         $contact = new Contact();
-            //         $contact->name = $user->name;
-            //         $contact->email = $user->email;
-            //         $contact->phone = $user->mobile;
-            //         $contact->save();
-            //     } catch (Exception $err) {
-            //     }
-            // }
             $message = $request->message;
+            $receipts = [];
+            //if contacts
+            if ($request->has("to_contacts")) {
+                $contacts = Contact::get()->unique("phone");
+                foreach ($contacts as $contact) {
+                    $receipts[] = [
+                        "name" => $contact->name,
+                        "email" => $contact->email,
+                        "phone" => $contact->phone,
+                    ];
+                }
+            }
 
-            $wRes = Http::withToken('EAAC5X0tCE2ABAKswdx8gCP7vtCxIfiqGfT200u0dtoH0skWrMQtiMN9ZAxiAEcnZCUoGDLgapLTEIB1y4e8xoOtaG0297ttarXyhdqy7KjYZAUvdtZCRVhJxwpWTUq6hUpV7vMZACNHjxJXkDJ125iawzRcxbzFRlMrSGCGFAMO5r69SClrhiTeW2uBjarjvA3ISKTsHwLfRYRC1pxZBn8XgNKEjAJeaUZD')
-                ->post('https://graph.facebook.com/v15.0/110821481827920/messages',  [
-                    "messaging_product" => "whatsapp",
-                    "to" => "919123881186",
-                    "recipient_type" => "individual",
-                    // "type" => "text",
-                    // "text" => [
-                    //     "preview_url" => true,
-                    //     "body" => $message
-                    // ]
-                    "type" => "template",
-                    "template" => [
-                        "name" => "hello_world", "language" => ["code" => "en_US"]
-                    ]
-                ]);
+            if ($request->has("to_registered_users")) {
+                $users = User::get()->unique("mobile");
+                foreach ($users as $user) {
+                    $receipts[$user->mobile] = [
+                        "name" => $user->name,
+                        "email" => $user->email,
+                        "phone" => $user->mobile,
+                    ];
+                }
+            }
 
+            //to_ordered_users
+            if ($request->has("to_ordered_users")) {
+                $orders = Order::get()->unique("mobile");
+                foreach ($orders as $order) {
+                    $receipts[$order->email] = [
+                        "name" => $order->name,
+                        "email" => $order->email,
+                        "phone" => $order->mobile,
+                    ];
+                }
+            }
 
-            // $ch = curl_init();
-            // curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/v15.0/110821481827920/messages');
-            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-            // curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            //     'Authorization: Bearer EAAMjVOLPyiYBAKzLFAZCAFo3GUN0h1bjHI7S54j29GzpTqaLEogZAkgvtP4ZAhJ2AcZBjyct5KmQSD5GOhlQLdyL1d3UxcCJBetMfnNRwLfvkwQzDJZCiVoABuxZC3UUQnXoptjzSKRdUA7e6ZAE3yE43xlfCmvGFQYYwdpkaLwITZCi9VfppPHn3sIvXZAVqxX51AZAvoWl9vcGeBZCoYGh38oOGtpXFlCCuUZD',
-            //     'Content-Type: application/json',
-            // ]);
-            // curl_setopt($ch, CURLOPT_POSTFIELDS, '{ "messaging_product": "whatsapp", "to": "919123881186", "type": "template", "template": { "name": "hello_world", "language": { "code": "en_US" } } }');
-
-            // $response = curl_exec($ch);
-
-            //curl_close($ch);
+            $responses = [];
+            foreach ($receipts as $phone=>$receipt) {
+                $text = Str::replace("{{name}}", $receipt["name"], $message);
+                $responses[$phone] = Http::withToken('EAAC5X0tCE2ABAKswdx8gCP7vtCxIfiqGfT200u0dtoH0skWrMQtiMN9ZAxiAEcnZCUoGDLgapLTEIB1y4e8xoOtaG0297ttarXyhdqy7KjYZAUvdtZCRVhJxwpWTUq6hUpV7vMZACNHjxJXkDJ125iawzRcxbzFRlMrSGCGFAMO5r69SClrhiTeW2uBjarjvA3ISKTsHwLfRYRC1pxZBn8XgNKEjAJeaUZD')
+                    ->post('https://graph.facebook.com/v15.0/110821481827920/messages',  [
+                        "messaging_product" => "whatsapp",
+                        "to" => "91".$receipt["phone"],
+                        "recipient_type" => "individual",
+                        "type" => "text",
+                        "text" => [
+                            "preview_url" => true,
+                            "body" => $text
+                        ]
+                        // "type" => "template",
+                        // "template" => [
+                        //     "name" => "hello_world", "language" => ["code" => "en_US"]
+                        // ]
+                    ])->json();
+                    break;
+            }
 
             return response()->json([
                 "status" => 200,
                 'message' => 'Successfully sent message file',
                 "content" => $message,
-                "response" => $wRes->json()
+                "responses" => $responses
             ]);
         } catch (Exception $err) {
             return response()->json([

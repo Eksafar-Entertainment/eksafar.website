@@ -5,9 +5,10 @@
         <h4>Contacts</h4>
         <div class="d-flex">
             <div class="flex-grow-1">Manage your Contact here.</div>
-            <a href="{{ route('contact.create') }}" class="btn btn-primary btn-sm float-right">Add contact</a>
-            <a class="btn btn-primary btn-sm float-right ms-2" data-bs-toggle="modal" data-bs-target="#import-modal">Import</a>
-            <a class="btn btn-primary btn-sm float-right ms-2" data-bs-toggle="modal" data-bs-target="#whatsapp-campaign-modal">Whatsapp campaign</a>
+            <a href="{{ route('contact.create') }}" class="btn btn-secondary btn-sm float-right">Add contact</a>
+            <a class="btn btn-secondary btn-sm float-right ms-2" data-bs-toggle="modal" data-bs-target="#import-modal">Import</a>
+            <a class="btn btn-success btn-sm float-right ms-2" data-bs-toggle="modal"
+                data-bs-target="#whatsapp-campaign-modal">Whatsapp Message</a>
         </div>
 
         <div class="mt-2">
@@ -61,7 +62,8 @@
 
 
     <!-- Modal -->
-    <div class="modal fade modal-sm" id="import-modal" tabindex="-1" aria-labelledby="import-modalLabel" aria-hidden="true">
+    <div class="modal fade modal-sm" id="import-modal" tabindex="-1" aria-labelledby="import-modalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -73,7 +75,7 @@
                         @csrf
                         <div>
                             <label>Excel File</label>
-                            <input class="form-control" type="file" name="file" accept=".xls,.xlsx"/>
+                            <input class="form-control" type="file" name="file" accept=".xls,.xlsx" />
                         </div>
                     </form>
                 </div>
@@ -86,36 +88,54 @@
     </div>
 
 
-       <!-- Modal -->
-       <div class="modal fade modal-sm" id="whatsapp-campaign-modal" tabindex="-1" aria-labelledby="whatsapp-campaign-modalLabel" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade modal-sm" id="whatsapp-campaign-modal" tabindex="-1"
+        aria-labelledby="whatsapp-campaign-modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="whatsapp-campaign-modalLabel">Whatsapp message</h5>
+                    <h5 class="modal-title" id="whatsapp-campaign-modalLabel">Send whatsapp message</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form onsubmit="whatsappCampaign(event)" id="whatsapp-campaign-form">
                         @csrf
-                        <div>
-                            <label>Message</label>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
                             <textarea class="form-control" name="message"></textarea>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" 
+                                name="to_contacts">
+                            <label class="form-check-label">To Contacts</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" name="to_registered_users">
+                            <label class="form-check-label">To Registered users</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" name="to_ordered_users">
+                            <label class="form-check-label">To Ordered Users</label>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" form="whatsapp-campaign-form">Save changes</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-sm" form="whatsapp-campaign-form">Send Whatsapp Message</button>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        $(document).ready(()=>{
+        $(document).ready(() => {
             window.importModal = new bootstrap.Modal(document.getElementById('import-modal'), {});
-            window.whatsappCampaignModal = new bootstrap.Modal(document.getElementById('whatsapp-campaign-modal'), {});
+            window.whatsappCampaignModal = new bootstrap.Modal(document.getElementById(
+                'whatsapp-campaign-modal'), {});
         })
-       
+
         function importExcel(_evt) {
             _evt.preventDefault();
             jQuery.ajax({
