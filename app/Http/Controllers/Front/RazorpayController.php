@@ -97,7 +97,6 @@ class RazorpayController extends Controller
 
     //create order
     $order = new Order();
-    $order->uid = Str::upper(base_convert(microtime(false), 10, 36));
     $order->event_id = $request->event_id;
     $order->promoter_id = $promoter ? $promoter->id : null;
     $order->name = $name;
