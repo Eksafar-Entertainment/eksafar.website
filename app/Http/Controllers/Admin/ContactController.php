@@ -149,6 +149,7 @@ class ContactController extends Controller
             if ($request->has("to_contacts")) {
                 $contacts = Contact::get()->unique("phone");
                 foreach ($contacts as $contact) {
+                    if($contact->phone==null || $contact->phone == "") continue;
                     $receipts[] = [
                         "name" => $contact->name,
                         "email" => $contact->email,
@@ -160,6 +161,7 @@ class ContactController extends Controller
             if ($request->has("to_registered_users")) {
                 $users = User::get()->unique("mobile");
                 foreach ($users as $user) {
+                    if($user->mobile==null || $user->mobile == "") continue;
                     $receipts[$user->mobile] = [
                         "name" => $user->name,
                         "email" => $user->email,
@@ -172,13 +174,15 @@ class ContactController extends Controller
             if ($request->has("to_ordered_users")) {
                 $orders = Order::get()->unique("mobile");
                 foreach ($orders as $order) {
-                    $receipts[$order->email] = [
+                    if($order->mobile==null || $order->mobile == "") continue;
+                    $receipts[$order->mobile] = [
                         "name" => $order->name,
                         "email" => $order->email,
                         "phone" => $order->mobile,
                     ];
                 }
             }
+            dd($receipts);
 
             $responses = [];
             foreach ($receipts as $phone=>$receipt) {
