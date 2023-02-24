@@ -34,9 +34,12 @@ class BookingForm extends Component
             $this->date = $dates[0];
         } else if($request->query->has("date")){
             $this->date = $request->query("date");
+        } else if($request->session()->has("selected_event_date".$event->id)){
+            $this->date = $request->session()->get("selected_event_date".$event->id);
         }
-
-       
+        if($this->date !="" && $this->date !=null){
+            $request->session()->put("selected_event_date".$event->id, $this->date);
+        }
     }
 
     /**
