@@ -39,7 +39,7 @@
                                         <td width="50%" class="ps-0">
                                             <h6 class="mb-0 text-light">{{ $event_ticket->name }}</h6>
                                             <small class="text-muted"
-                                                style="font-size:10px; line-height:0.5 !important">{{ $event_ticket->description }}</small><br />
+                                                style="font-size:11px; line-height:0.5 !important">{{ $event_ticket->description }}</small><br />
                                             <span class="text-light"> @money($event_ticket->price)</span>
                                         </td>
                                         <td class="align-middle pe-0 pr-0" width="1%">
