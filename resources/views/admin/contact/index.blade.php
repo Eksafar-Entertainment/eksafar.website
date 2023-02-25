@@ -6,7 +6,8 @@
         <div class="d-flex">
             <div class="flex-grow-1">Manage your Contact here.</div>
             <a href="{{ route('contact.create') }}" class="btn btn-secondary btn-sm float-right">Add contact</a>
-            <a class="btn btn-secondary btn-sm float-right ms-2" data-bs-toggle="modal" data-bs-target="#import-modal">Import</a>
+            <a class="btn btn-secondary btn-sm float-right ms-2" data-bs-toggle="modal"
+                data-bs-target="#import-modal">Import</a>
             <a class="btn btn-success btn-sm float-right ms-2" data-bs-toggle="modal"
                 data-bs-target="#whatsapp-campaign-modal">Whatsapp Message</a>
         </div>
@@ -105,20 +106,22 @@
                             <textarea class="form-control" name="message" style="height: 150px" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <kbd>@php echo "{{name}}" @endphp</kbd>
-                            <kbd>@php echo "{{email}}" @endphp</kbd>
+                            <kbd>@php echo "{{ name }}" @endphp</kbd>
+                            <kbd>@php echo "{{ email }}" @endphp</kbd>
                         </div>
 
-                        <div class="mb-1">
-                            <label class="form-label">Message</label>
-                            <input class="form-control" name="receipt" type="number"></textarea>
+                        <div>
+                            <label class="form-label">Receipt</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">+91</span>
+                                <input class="form-control" name="receipt" type="number" />
+                            </div>
                         </div>
 
-                        <p class="text-center">---------- OR ----------</p>
+                        <div class="text-center my-3">---------- OR ----------</div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="true" 
-                                name="to_contacts">
+                            <input class="form-check-input" type="checkbox" value="true" name="to_contacts">
                             <label class="form-check-label">To Contacts</label>
                         </div>
 
@@ -135,7 +138,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-sm" form="whatsapp-campaign-form">Send Whatsapp Message</button>
+                    <button type="submit" class="btn btn-primary btn-sm" form="whatsapp-campaign-form">Send Whatsapp
+                        Message</button>
                 </div>
             </div>
         </div>
