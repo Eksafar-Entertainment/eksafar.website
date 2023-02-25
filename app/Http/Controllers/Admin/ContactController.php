@@ -144,52 +144,61 @@ class ContactController extends Controller
     {
         try {
             $message = $request->message;
+            $receipt = $request->receipt;
             $receipts = [];
-            //if contacts
-            if ($request->has("to_contacts")) {
-                $contacts = Contact::get()->unique("phone");
-                foreach ($contacts as $contact) {
-                    if($contact->phone==null || $contact->phone == "") continue;
-                    $receipts[$contact->phone] = [
-                        "name" => $contact->name,
-                        "email" => $contact->email,
-                        "phone" => $contact->phone,
-                    ];
+            if (!$receipt || $receipt == "") {
+                //if contacts
+                if ($request->has("to_contacts")) {
+                    $contacts = Contact::get()->unique("phone");
+                    foreach ($contacts as $contact) {
+                        if ($contact->phone == null || $contact->phone == "") continue;
+                        $receipts[$contact->phone] = [
+                            "name" => $contact->name,
+                            "email" => $contact->email,
+                            "phone" => $contact->phone,
+                        ];
+                    }
                 }
-            }
 
-            if ($request->has("to_registered_users")) {
-                $users = User::get()->unique("mobile");
-                foreach ($users as $user) {
-                    if($user->mobile==null || $user->mobile == "") continue;
-                    $receipts[$user->mobile] = [
-                        "name" => $user->name,
-                        "email" => $user->email,
-                        "phone" => $user->mobile,
-                    ];
+                if ($request->has("to_registered_users")) {
+                    $users = User::get()->unique("mobile");
+                    foreach ($users as $user) {
+                        if ($user->mobile == null || $user->mobile == "") continue;
+                        $receipts[$user->mobile] = [
+                            "name" => $user->name,
+                            "email" => $user->email,
+                            "phone" => $user->mobile,
+                        ];
+                    }
                 }
-            }
 
-            //to_ordered_users
-            if ($request->has("to_ordered_users")) {
-                $orders = Order::get()->unique("mobile");
-                foreach ($orders as $order) {
-                    if($order->mobile==null || $order->mobile == "") continue;
-                    $receipts[$order->mobile] = [
-                        "name" => $order->name,
-                        "email" => $order->email,
-                        "phone" => $order->mobile,
-                    ];
+                //to_ordered_users
+                if ($request->has("to_ordered_users")) {
+                    $orders = Order::get()->unique("mobile");
+                    foreach ($orders as $order) {
+                        if ($order->mobile == null || $order->mobile == "") continue;
+                        $receipts[$order->mobile] = [
+                            "name" => $order->name,
+                            "email" => $order->email,
+                            "phone" => $order->mobile,
+                        ];
+                    }
                 }
+            } else {
+                $receipts[$receipt] = [
+                    "phone" => $receipt,
+                    "name" => "",
+                    "email" => ""
+                ];
             }
             $responses = [];
-            foreach ($receipts as $phone=>$receipt) {
+            foreach ($receipts as $phone => $receipt) {
                 $text = Str::replace("{{name}}", $receipt["name"], $message);
                 $text = Str::replace("{{email}}", $receipt["email"], $text);
-                $responses[$phone] = Http::withToken('EAAC5X0tCE2ABALq0qaN8W7lY3y0hLMZC9hrsZA9Om4Xk9hdZAQyor2prCfZBVmpOyeA1txjHHhlLtchdOrIT3zHzmZBcfWV2Y4gOdABumKE0UFvnqFSeiCrH9Xt7dsGiDLX4StMiSLbkLKuoYuYAwM0qbZAMSp1uJgvZBZA8TCWE2oLZCfilLBIAzenxmx3kOiS7x2tu1ZBzq6CwZDZD')
+                $responses[$phone] = Http::withToken(env('WHATSAPP_CLIENT_SECRET'))
                     ->post('https://graph.facebook.com/v15.0/110821481827920/messages',  [
                         "messaging_product" => "whatsapp",
-                        "to" => "91".$receipt["phone"],
+                        "to" => "91" . $receipt["phone"],
                         "recipient_type" => "individual",
                         "type" => "text",
                         "text" => [
@@ -201,7 +210,7 @@ class ContactController extends Controller
                         //     "name" => "hello_world", "language" => ["code" => "en_US"]
                         // ]
                     ])->json();
-                    break;
+                break;
             }
 
             return response()->json([

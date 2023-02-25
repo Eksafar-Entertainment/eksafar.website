@@ -109,6 +109,13 @@
                             <kbd>@php echo "{{email}}" @endphp</kbd>
                         </div>
 
+                        <div class="mb-1">
+                            <label class="form-label">Message</label>
+                            <input class="form-control" name="receipt" type="number"></textarea>
+                        </div>
+
+                        <p class="text-center">---------- OR ----------</p>
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="true" 
                                 name="to_contacts">
