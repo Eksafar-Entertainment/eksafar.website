@@ -195,8 +195,8 @@ class ContactController extends Controller
             foreach ($receipts as $phone => $receipt) {
                 $text = Str::replace("{{name}}", $receipt["name"], $message);
                 $text = Str::replace("{{email}}", $receipt["email"], $text);
-                $responses[$phone] = Http::withToken(env('WHATSAPP_CLIENT_SECRET'))
-                    ->post('https://graph.facebook.com/v15.0/110821481827920/messages',  [
+                $responses[$phone] = Http::withToken(env('WHATSAPP_ACCESS_TOKEN'))
+                    ->post('https://graph.facebook.com/v15.0/'.env('WHATSAPP_PHONE_NUMBER_ID').'/messages',  [
                         "messaging_product" => "whatsapp",
                         "to" => "91" . $receipt["phone"],
                         "recipient_type" => "individual",
