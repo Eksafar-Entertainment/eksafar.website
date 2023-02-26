@@ -20,8 +20,8 @@ class CreateMailSchedulesTable extends Migration
             $table->string("to");
             $table->string("name");
             $table->string("subject");
-            $table->string("html");
-            $table->string("text");
+            $table->longText("html");
+            $table->longText("text");
             $table->string("status")->default("CREATED");
             $table->integer("priority")->default(0);
             $table->dateTime("send_at");
