@@ -48,7 +48,7 @@
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input value="{{ $contact->email }}" type="number" class="form-control" name="email" placeholder="email"
+                <input value="{{ $contact->email }}" class="form-control" name="email" placeholder="email"
                     id="email" required>
 
                 @if ($errors->has('email'))
