@@ -55,11 +55,15 @@ class TriggerMails extends Command
                     $message->to($to)->subject($subject);
                 });
                 $mail->status = "SENT";
+                print "Successfully mail sent to ".$to;
             } catch (Exception $err) {
                 $mail->status = "FAILED";
+                print "Error mail sent to ".$to;
             }
             $mail->save();
         }
+        sleep(2);
+        return $this->handle();
         return 0;
     }
 }
