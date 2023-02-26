@@ -202,7 +202,11 @@ class EventController extends Controller
         }
 
 
-        $period = CarbonPeriod::create(Carbon::parse($event->created_at)->format("Y-m-d"), date("Y-m-d"));
+        $end_date = date("Y-m-d");
+        if(Carbon::now()->greaterThan(Carbon::parse($event->end_date))){
+            $end_date = Carbon::parse($event->end_date)->format("Y-m-d");
+        }
+        $period = CarbonPeriod::create(Carbon::parse($event->created_at)->format("Y-m-d"), $end_date);
         foreach ($period as $date) {
             $key = $date->format("Y-m-d");
             $tickets_sold_chart["data"][$key] = 0;

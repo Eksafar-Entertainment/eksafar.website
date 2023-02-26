@@ -49,7 +49,7 @@ class EventController extends Controller
             $join->on("orders.event_id", "=", "events.id");
         });
 
-     
+
         $events->whereIN("orders.promoter_id",  $promoter_ids);
         $events->where("orders.id", "!=",  $promoter_ids);
         $events->where("orders.status", "=",  "SUCCESS");
@@ -69,7 +69,7 @@ class EventController extends Controller
         $events->groupBy("events.id");
 
 
-      
+
 
 
         $events = $events->paginate(20);
@@ -99,29 +99,20 @@ class EventController extends Controller
         $event = Event::where("id", $event_id)->first();
         $event_tickets = EventTicket::where("event_id", $event_id)->get();
         $event_views = AccessLog::select([
-            DB::raw('created_at'),
-            //DB::raw('count(*) as count'),
-            "request"
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('count(*) as count')
         ])->where("uri", "/event/" . $event->slug)
             ->where(function ($query) use ($promoter_ids) {
-
                 foreach ($promoter_ids as $promoters_id) {
                     $query->orWhere("request", "REGEXP", '(.*)"promoter";s:' . strlen($promoters_id) . ':"' . $promoters_id . '"(.*)');
                 }
                 return $query;
             })
-            ->get()->toArray();
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->get();
 
 
 
-
-        $event_views = array_reduce($event_views, function ($all, $view) {
-            $date = Carbon::parse($view["created_at"])->format("Y-m-d");
-            $all[$date] =   isset($views[$date]) ? $views[$date] : new stdClass();
-            $all[$date]->date = $date;
-            $all[$date]->count = isset($all[$date]->count) ? $all[$date]->count + 1 : 1;
-            return $all;
-        }, []);
 
         $orders = Order::select([
             DB::raw("GROUP_CONCAT(id) as ids"),
@@ -198,8 +189,13 @@ class EventController extends Controller
             ];
         }
 
+        $end_date = date("Y-m-d");
+        if(Carbon::now()->greaterThan(Carbon::parse($event->end_date))){
+            $end_date = Carbon::parse($event->end_date)->format("Y-m-d");
+        }
 
-        $period = CarbonPeriod::create(Carbon::parse($event->created_at)->format("Y-m-d"), date("Y-m-d"));
+
+        $period = CarbonPeriod::create(Carbon::parse($event->created_at)->format("Y-m-d"), $end_date);
         foreach ($period as $date) {
             $key = $date->format("Y-m-d");
             $tickets_sold_chart["data"][$key] = 0;
