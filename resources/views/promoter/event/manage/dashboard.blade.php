@@ -6,7 +6,7 @@
     <div>
         <div class="row">
             <div class="col">
-                <h4>Event Dashboard</h4>
+                <h4>Event Dashboard ({{$event->name}})</h4>
             </div>
             <div class="col-auto">
                 <select class="form-control form-select form-select-sm" onchange="window.location.href='?promoter='+event.target.value;">
