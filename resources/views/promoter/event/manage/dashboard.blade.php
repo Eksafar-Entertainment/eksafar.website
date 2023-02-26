@@ -110,22 +110,22 @@
                     </div>
                     <div class="card-body">
                         <a class="btn btn-sm btn-primary" style="display: inline-block !important;" target="blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u={{ url('/event-' . $event->slug) }}?utm_source=fb">
+                            href="https://www.facebook.com/sharer/sharer.php?u={{ url('/event-' . $event->slug. '?promoter=' . auth('promoter')->user()->id) }}?utm_source=fb">
                             <i class="fab fa-facebook"></i>
                         </a>
 
                         <a class="btn btn-sm btn-primary" style="display: inline-block !important;" target="blank"
-                            href="http://www.linkedin.com/shareArticle?mini=true&url={{ url('/event-' . $event->slug) }}?utm_source=linkedin&title=Disco+Dandia+Night&summary=Description">
+                            href="http://www.linkedin.com/shareArticle?mini=true&url={{ url('/event-' . $event->slug. '?promoter=' . auth('promoter')->user()->id) }}?utm_source=linkedin&title=Disco+Dandia+Night&summary=Description">
                             <i class="fab fa-linkedin"></i>
                         </a>
 
                         <a class="btn btn-sm btn-primary" style="display: inline-block !important;" target="blank"
-                            href="http://twitter.com/intent/tweet?text=Check%20out:%20{{ url('/event-' . $event->slug) }}?utm_source=twitter%20Description">
+                            href="http://twitter.com/intent/tweet?text=Check%20out:%20{{ url('/event-' . $event->slug. '?promoter=' . auth('promoter')->user()->id) }}?utm_source=twitter%20Description">
                             <i class="fab fa-twitter"></i>
                         </a>
 
                         <a class="btn btn-sm btn-primary" style="display: inline-block !important;" target="blank"
-                            href="mailto:?subject=Check This Out&body={{ url('/event-' . $event->slug) }}?utm_source=email">
+                            href="mailto:?subject=Check This Out&body={{ url('/event-' . $event->slug. '?promoter=' . auth('promoter')->user()->id) }}?utm_source=email">
                             <i class="fa-solid fa-envelope"></i>
                         </a>
                     </div>
