@@ -59,7 +59,7 @@
 
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input value="{{ $contact->address }}" type="number" class="form-control" name="address"
+                <input value="{{ $contact->address }}" class="form-control" name="address"
                     placeholder="address" id="address" required>
 
                 @if ($errors->has('address'))
