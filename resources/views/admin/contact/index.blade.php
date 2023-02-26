@@ -10,6 +10,9 @@
                 data-bs-target="#import-modal">Import</a>
             <a class="btn btn-success btn-sm float-right ms-2" data-bs-toggle="modal"
                 data-bs-target="#whatsapp-campaign-modal">Whatsapp Message</a>
+
+            <a class="btn btn-success btn-sm float-right ms-2" data-bs-toggle="modal"
+                data-bs-target="#email-campaign-modal">Email</a>
         </div>
 
         <div class="mt-2">
@@ -144,11 +147,70 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade modal-sm" id="email-campaign-modal" tabindex="-1"
+        aria-labelledby="email-campaign-modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emal-campaign-modalLabel">Send email</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="emailCampaign(event)" id="email-campaign-form">
+                        @csrf
+
+                        <div class="mb-1">
+                            <label class="form-label">Subject</label>
+                            <input class="form-control" name="subject" required />
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label">Message</label>
+                            <x-rich-text-editor name="message" required="required" placeholder="Enter description" required></x-rich-text-editor>
+                        </div>
+
+
+                        <div>
+                            <label class="form-label">Receipt</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">+91</span>
+                                <input class="form-control" name="receipt" type="number" />
+                            </div>
+                        </div>
+
+                        <div class="text-center my-3">---------- OR ----------</div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" name="to_contacts">
+                            <label class="form-check-label">To Contacts</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" name="to_registered_users">
+                            <label class="form-check-label">To Registered users</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" name="to_ordered_users">
+                            <label class="form-check-label">To Ordered Users</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-sm" form="whatsapp-campaign-form">Send Whatsapp
+                        Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $(document).ready(() => {
             window.importModal = new bootstrap.Modal(document.getElementById('import-modal'), {});
             window.whatsappCampaignModal = new bootstrap.Modal(document.getElementById(
                 'whatsapp-campaign-modal'), {});
+            window.emailCampaignModal = new bootstrap.Modal(document.getElementById('email-campaign-modal'), {});
         })
 
         function importExcel(_evt) {
@@ -162,8 +224,8 @@
                 data: new FormData(_evt.target),
                 success: function(result) {
                     alert(result.message);
-                    //window.location.reload();
-                    //importModal.hide();
+                    window.location.reload();
+                    importModal.hide();
                 }
             });
         }
@@ -179,7 +241,23 @@
                 data: new FormData(_evt.target),
                 success: function(result) {
                     alert(result.message);
-                    importModal.hide();
+                    whatsappCampaignModal.hide();
+                }
+            });
+        }
+
+        function emailCampaign(_evt) {
+            _evt.preventDefault();
+            jQuery.ajax({
+                url: "{{ url('/admin/contact/email-campaign') }}",
+                method: 'post',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: new FormData(_evt.target),
+                success: function(result) {
+                    alert(result.message);
+                    emailCampaignModal.hide();
                 }
             });
         }

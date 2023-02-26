@@ -69,6 +69,7 @@ Route::group([
     Route::resource('contact', ContactController::class);
     Route::post('contact/import', [ContactController::class, "import"]);
     Route::post('contact/whatsapp-campaign', [ContactController::class, "whatsappCampaign"]);
+    Route::post('contact/email-campaign', [ContactController::class, "emailCampaign"]);
     //files
     Route::controller(FileManagerController::class)->group(function () {
         Route::get('files',  "index")->name("admin.files");

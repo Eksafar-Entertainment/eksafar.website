@@ -21,14 +21,14 @@
 
             <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <select value="{{ $location->country }}" 
+                <select value="{{ $contact->country }}" 
                     type="text" 
                     class="form-control" 
                     name="country" 
                     placeholder="Country" required>
                     <option> </option>
                     @foreach (Countries::getList('en') as $code => $name)
-                        <option value="{{$code}}" @if($location->country === $code) {{"selected"}} @endif>{{$name}}</option>
+                        <option value="{{$code}}" @if($contact->country === $code) {{"selected"}} @endif>{{$name}}</option>
                     @endforeach
 
                 </select>

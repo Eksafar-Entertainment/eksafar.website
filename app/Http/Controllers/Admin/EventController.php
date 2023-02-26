@@ -353,7 +353,7 @@ class EventController extends Controller
                 'message' => 'Invalid order',
             ], 500);
         }
-        Mail::to($order->email)->send(new TicketMail($order->id));
+        Mail::to([$order->email])->send(new TicketMail($order->id));
         return response()->json([
             "status" => 200,
             'message' => 'Email send successful',

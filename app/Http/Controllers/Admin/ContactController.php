@@ -10,6 +10,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 
@@ -196,7 +197,7 @@ class ContactController extends Controller
                 $text = Str::replace("{{name}}", $receipt["name"], $message);
                 $text = Str::replace("{{email}}", $receipt["email"], $text);
                 $responses[$phone] = Http::withToken(env('WHATSAPP_ACCESS_TOKEN'))
-                    ->post('https://graph.facebook.com/v15.0/'.env('WHATSAPP_PHONE_NUMBER_ID').'/messages',  [
+                    ->post('https://graph.facebook.com/v15.0/' . env('WHATSAPP_PHONE_NUMBER_ID') . '/messages',  [
                         "messaging_product" => "whatsapp",
                         "to" => "91" . $receipt["phone"],
                         "recipient_type" => "individual",
@@ -218,6 +219,79 @@ class ContactController extends Controller
                 'message' => 'Successfully sent message file',
                 "content" => $message,
                 "responses" => $responses
+            ]);
+        } catch (Exception $err) {
+            return response()->json([
+                "status" => 400,
+                'message' => 'Please upload correct file',
+                'exception' => $err->getMessage()
+            ], 400);
+        }
+    }
+
+    public function emailCampaign(Request $request)
+    {
+        try {
+            $message = $request->message;
+            $subject = $request->subject;
+            $receipt = $request->receipt;
+            $receipts = [];
+            if (!$receipt || $receipt == "") {
+                //if contacts
+                if ($request->has("to_contacts")) {
+                    $contacts = Contact::get()->unique("phone");
+                    foreach ($contacts as $contact) {
+                        if ($contact->email == null || $contact->email == "") continue;
+                        $receipts[$contact->email] = [
+                            "name" => $contact->name,
+                            "email" => $contact->email,
+                            "phone" => $contact->phone,
+                        ];
+                    }
+                }
+
+                if ($request->has("to_registered_users")) {
+                    $users = User::get()->unique("mobile");
+                    foreach ($users as $user) {
+                        if ($user->email == null || $user->email == "") continue;
+                        $receipts[$user->email] = [
+                            "name" => $user->name,
+                            "email" => $user->email,
+                            "phone" => $user->mobile,
+                        ];
+                    }
+                }
+
+                //to_ordered_users
+                if ($request->has("to_ordered_users")) {
+                    $orders = Order::get()->unique("mobile");
+                    foreach ($orders as $order) {
+                        if ($order->email == null || $order->email == "") continue;
+                        $receipts[$order->email] = [
+                            "name" => $order->name,
+                            "email" => $order->email,
+                            "phone" => $order->mobile,
+                        ];
+                    }
+                }
+            } else {
+                $receipts[$receipt] = [
+                    "phone" => "",
+                    "name" => "",
+                    "email" => $receipt
+                ];
+            }
+            $emails = array_map(function ($receipt) {
+                return $receipt["email"];
+            }, $receipts);
+
+            Mail::html($message, function ($message) use ($emails, $subject) {
+                $message->to($emails)->subject($subject);
+            });
+
+            return response()->json([
+                "status" => 200,
+                'message' => 'Successfully sent email',
             ]);
         } catch (Exception $err) {
             return response()->json([

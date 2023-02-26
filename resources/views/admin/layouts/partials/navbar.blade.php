@@ -50,6 +50,7 @@
                         <li class="nav-item"><a href="/admin/gallery" class="nav-link">{{ __('Gallery')}}</a></li>
                         <li class="nav-item"><a href="/admin/coupon" class="nav-link">{{ __('Coupons')}}</a></li>
                         <li class="nav-item"><a href="/admin/locations" class="nav-link">{{ __('Locations')}}</a></li>
+                        <li class="nav-item"><a href="/admin/contact" class="nav-link">{{ __('Contacts')}}</a></li>
                     @endauth
                 </ul>
 
