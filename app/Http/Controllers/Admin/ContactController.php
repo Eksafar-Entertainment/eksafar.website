@@ -203,15 +203,29 @@ class ContactController extends Controller
                         "messaging_product" => "whatsapp",
                         "to" => "91" . $receipt["phone"],
                         "recipient_type" => "individual",
-                        "type" => "text",
-                        "text" => [
-                            "preview_url" => true,
-                            "body" => $text
-                        ]
-                        // "type" => "template",
-                        // "template" => [
-                        //     "name" => "hello_world", "language" => ["code" => "en_US"]
+                        // "type" => "text",
+                        // "text" => [
+                        //     "preview_url" => true,
+                        //     "body" => $text
                         // ]
+                        "type" => "template",
+                        "template" => [
+                            "name" => "colorland_1_0_earlybird",
+                            "language" => ["code" => "en"],
+                            "components" => [
+                                [
+                                    "type" => "header",
+                                    "parameters" => [
+                                        [
+                                            "type" => "image",
+                                            "image" => [
+                                                "link" => "https://www.eksafar.club/images/banner/popup-landscape.jpg",
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
                     ])->json();
                 break;
             }
@@ -283,7 +297,7 @@ class ContactController extends Controller
                     "email" => $receipt
                 ];
             }
-            foreach($receipts as $receipt){
+            foreach ($receipts as $receipt) {
                 $mailSchedule = new MailSchedule();
                 $mailSchedule->name = $receipt["name"];
                 $mailSchedule->to = $receipt["email"];
