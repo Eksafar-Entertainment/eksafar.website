@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Imports\ContactsImport;
 use App\Models\Contact;
+use App\Models\MailSchedule;
 use App\Models\Order;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -281,17 +283,21 @@ class ContactController extends Controller
                     "email" => $receipt
                 ];
             }
-            $emails = array_map(function ($receipt) {
-                return $receipt["email"];
-            }, $receipts);
-
-            Mail::html($message, function ($message) use ($emails, $subject) {
-                $message->to($emails)->subject($subject);
-            });
-
+            foreach($receipts as $receipt){
+                $mailSchedule = new MailSchedule();
+                $mailSchedule->name = $receipt["name"];
+                $mailSchedule->to = $receipt["email"];
+                $mailSchedule->subject = $subject;
+                $mailSchedule->html = $message;
+                $mailSchedule->text = "";
+                $mailSchedule->status = "CREATED";
+                $mailSchedule->priority = 0;
+                $mailSchedule->send_at = Carbon::now();
+                $mailSchedule->save();
+            }
             return response()->json([
                 "status" => 200,
-                'message' => 'Successfully sent email',
+                'message' => 'Successfully added to schedular',
             ]);
         } catch (Exception $err) {
             return response()->json([

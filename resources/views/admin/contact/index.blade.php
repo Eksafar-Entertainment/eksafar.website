@@ -149,7 +149,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade modal-sm" id="email-campaign-modal" tabindex="-1"
+    <div class="modal fade modal-lg" id="email-campaign-modal" tabindex="-1"
         aria-labelledby="email-campaign-modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -167,16 +167,15 @@
                         </div>
                         <div class="mb-1">
                             <label class="form-label">Message</label>
-                            <x-rich-text-editor name="message" required="required" placeholder="Enter description" required></x-rich-text-editor>
+                            <x-rich-text-editor name="message" required="required" placeholder="Enter description"
+                                required></x-rich-text-editor>
                         </div>
 
 
                         <div>
                             <label class="form-label">Receipt</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">+91</span>
-                                <input class="form-control" name="receipt" type="number" />
-                            </div>
+                            <input class="form-control" name="receipt" />
+
                         </div>
 
                         <div class="text-center my-3">---------- OR ----------</div>
@@ -199,8 +198,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-sm" form="whatsapp-campaign-form">Send Whatsapp
-                        Message</button>
+                    <button type="submit" class="btn btn-primary btn-sm" form="email-campaign-form">Send Emails</button>
                 </div>
             </div>
         </div>
