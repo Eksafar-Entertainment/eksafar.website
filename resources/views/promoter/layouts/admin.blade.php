@@ -51,8 +51,8 @@
         Please wait while loading...
     </div>
     <div class="d-flex flex-column" style="height: 100vh;">
-        @if (Auth::guard('admin')->check())
-            @include('admin.layouts.partials.navbar')
+        @if (Auth::guard('promoter')->check())
+            @include('promoter.layouts.partials.navbar')
         @endif
         <div>
             @yield('subnav')

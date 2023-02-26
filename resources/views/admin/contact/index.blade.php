@@ -93,8 +93,8 @@
 
 
     <!-- Modal -->
-    <div class="modal fade modal-sm" id="whatsapp-campaign-modal" tabindex="-1"
-        aria-labelledby="whatsapp-campaign-modalLabel" aria-hidden="true">
+    <div class="modal fade" id="whatsapp-campaign-modal" tabindex="-1" aria-labelledby="whatsapp-campaign-modalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,15 +103,114 @@
                 </div>
                 <div class="modal-body">
                     <form onsubmit="whatsappCampaign(event)" id="whatsapp-campaign-form">
+                        <input type="hidden" name="type" value="text" id="wp-type" />
                         @csrf
-                        <div class="mb-1">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control" name="message" style="height: 150px" required></textarea>
+                        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active btn-sm" id="home-tab" data-bs-toggle="tab"
+                                    data-bs-target="#home" type="button" role="tab" aria-controls="home"
+                                    aria-selected="true"
+                                    onclick="document.querySelector('#wp-type').value='text';">Message</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link btn-sm" id="profile-tab" data-bs-toggle="tab"
+                                    data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                    aria-selected="false"
+                                    onclick="document.querySelector('#wp-type').value='template';">Template</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-3" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                aria-labelledby="home-tab">
+                                <div class="mb-1">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control" name="message" style="height: 150px" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <kbd>@php echo "{{ name }}" @endphp</kbd>
+                                    <kbd>@php echo "{{ email }}" @endphp</kbd>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Template ID</label>
+                                    <input class="form-control" name="template" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Variables</label>
+                                    <input class="form-control" name="variables" id="template-vars" type="hidden"/>
+                                    <div class="form-control" name="variables" id="template-vars-con"></div>
+                                </div>
+
+                                <script>
+                                    $(document).ready(() => {
+                                        let {
+                                            EditorState,
+                                            EditorView,
+                                            keymap,
+                                            history,
+                                            redo,
+                                            redoSelection,
+                                            undo,
+                                            undoSelection,
+                                            lineNumbers,
+                                            baseKeymap,
+                                            indentSelection,
+                                            legacyMode,
+                                            legacyModes: {
+                                                javascript
+                                            },
+                                            matchBrackets,
+                                            specialChars,
+                                            multipleSelections
+                                        } = CodeMirror;
+
+                                        let mode = legacyMode({
+                                            mode: javascript({
+                                                indentUnit: 2
+                                            }, {})
+                                        })
+
+                                        let isMac = /Mac/.test(navigator.platform)
+                                        let state = EditorState.create({
+                                            doc: `"use strict";
+const {readFile} = require("fs");
+readFile("package.json", "utf8", (err, data) => {
+  console.log(data);           
+});`,
+                                            extensions: [
+                                                lineNumbers(),
+                                                history(),
+                                                specialChars(),
+                                                multipleSelections(),
+                                                mode,
+                                                matchBrackets(),
+                                                keymap({
+                                                    "Mod-z": undo,
+                                                    "Mod-Shift-z": redo,
+                                                    "Mod-u": view => undoSelection(view) || true,
+                                                    [isMac ? "Mod-Shift-u" : "Alt-u"]: redoSelection,
+                                                    "Ctrl-y": isMac ? undefined : redo,
+                                                    "Shift-Tab": indentSelection
+                                                }),
+                                                keymap(baseKeymap),
+                                            ]
+                                        })
+
+                                        let view = new EditorView({
+                                            state
+                                        })
+                                        document.querySelector("#template-vars-con").appendChild(view.dom)
+
+                                    })
+                                </script>
+                            </div>
+
                         </div>
-                        <div class="mb-3">
-                            <kbd>@php echo "{{ name }}" @endphp</kbd>
-                            <kbd>@php echo "{{ email }}" @endphp</kbd>
-                        </div>
+
+                        <hr>
 
                         <div>
                             <label class="form-label">Receipt</label>

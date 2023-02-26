@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'promoter' => [
+            'driver' => 'session',
+            'provider' => 'promoters',
+        ],
         'api' => [ // update here
             'driver' => 'jwt',
             'provider' => 'users',
@@ -76,6 +80,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+
+        'promoters' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Promoter::class,
         ]
 
         // 'users' => [
@@ -108,6 +117,12 @@ return [
         ],
         'admins' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'promoters',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
