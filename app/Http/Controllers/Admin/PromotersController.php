@@ -17,7 +17,7 @@ class PromotersController extends Controller
     public function index(Request $request)
     {
         $where = [];
-        $promoters = Promoter::select(["*"]);
+        $promoters = Promoter::select(["promoters.*", "parent.name as parent_name"])->leftJoin("promoters as parent", "parent.id", "=", "promoters.parent_id");
         if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
             $promoters->where(function ($query) {
                 global $request;

@@ -40,6 +40,9 @@
                     <tr>
                         <th scope="col" width="1%">#</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Parent</th>
                         <th scope="col">Commission</th>
                         <th scope="col" width="3%"></th>
                     </tr>
@@ -48,6 +51,9 @@
                     <tr>
                         <td>{{ $promoter->id }}</td>
                         <td>{{ $promoter->name }}</td>
+                        <td>{{ $promoter->email }}</td>
+                        <td>{{ $promoter->phone }}</td>
+                        <td>{{ $promoter->parent_name }}</td>
                         <td>{{ $promoter->commission }}%</td>
                         <td class="text-nowrap">
                             {{-- <a class="btn btn-sm btn-link py-0" href="{{ route('promoters.show', $promoter->id) }}"><i class="fas fa-eye"></i></a> --}}
