@@ -88,7 +88,7 @@ class EventController extends Controller
 
 
         $promoter = $request->query("promoter");
-        $promoters = Promoter::select(["id"])->where("parent_id", auth("promoter")->user()->id)->orWhere("id", auth("promoter")->user()->id)->get();
+        $promoters = Promoter::select(["id", "name"])->where("parent_id", auth("promoter")->user()->id)->orWhere("id", auth("promoter")->user()->id)->get();
         $promoter_ids = array_map(function ($promoter) {
             return $promoter["id"];
         }, $promoters->toArray());
