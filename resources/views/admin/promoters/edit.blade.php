@@ -25,6 +25,46 @@
                     @endif
                 </div>
 
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input value="{{ $promoter->email  }}" 
+                        type="text" 
+                        class="form-control" 
+                        name="email" 
+                        placeholder="Email" required>
+
+                    @if ($errors->has('email'))
+                        <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+                    @endif
+                </div>
+
+                <div class="mb-3">
+                    <label for="mobile" class="form-label">Mobile</label>
+                    <input value="{{ $promoter->mobile  }}" 
+                        type="text" 
+                        class="form-control" 
+                        name="mobile" 
+                        placeholder="Mobile" required>
+
+                    @if ($errors->has('mobile'))
+                        <span class="text-danger text-left">{{ $errors->first('mobile') }}</span>
+                    @endif
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        name="password" 
+                        placeholder="Password">
+
+                    @if ($errors->has('password'))
+                        <span class="text-danger text-left">{{ $errors->first('password') }}</span>
+                    @endif
+                </div>
+
                 <div class="mb-3">
                     <label for="commission" class="form-label">Commission</label>
                     <input value="{{ $promoter->commission }}" 

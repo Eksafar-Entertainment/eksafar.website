@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Promoter;
+use Mockery\Undefined;
 
 class PromotersController extends Controller
 {
@@ -46,9 +47,17 @@ class PromotersController extends Controller
      */
     public function store(Request $request)
     {
-        Promoter::create(array_merge($request->only('name', 'commission'),[
-            'user_id' => auth()->id()
-        ]));
+        $promoter = new Promoter();
+        $promoter->name = $request->name;
+        $promoter->commission=$request->commission;
+        $promoter->email=$request->email;
+        $promoter->mobile=$request->mobile;
+        $promoter->password=$request->password;
+        $promoter->parent_id=$request->parent_id;
+        if($request->password || $request->password !=null){
+            $promoter->password = bcrypt($request->password);
+        }
+        $promoter->save();
 
         return redirect()->route('promoters.index')
             ->withSuccess(__('Promoter created successfully.'));
@@ -89,7 +98,17 @@ class PromotersController extends Controller
      */
     public function update(Request $request, Promoter $promoter)
     {
-        $promoter->update($request->only('name', 'commission'));
+
+        $promoter->name = $request->name;
+        $promoter->commission=$request->commission;
+        $promoter->email=$request->email;
+        $promoter->mobile=$request->mobile;
+        $promoter->password=$request->password;
+        $promoter->parent_id=$request->parent_id;
+        if($request->password || $request->password !=null){
+            $promoter->password = bcrypt($request->password);
+        }
+        $promoter->save();
 
         return redirect()->route('promoters.index')
             ->withSuccess(__('Promoter updated successfully.'));

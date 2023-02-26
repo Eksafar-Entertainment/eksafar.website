@@ -12,5 +12,9 @@ class Promoter extends Authenticatable
     protected $fillable = [
         'name',
         'commission',
+        'email',
+        'mobile',
+        'password',
+        'parent_id',
     ];
 }
