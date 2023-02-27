@@ -136,7 +136,6 @@
         <div class="mt-2 text-end">
             @include('admin.common.pagination', ['paginator' => $events])
         </div>
-    </div>
     @if (Auth::user()->can('event:create'))
         <div class="modal fade" id="new-event-modal" tabindex="-1">
             <form enctype="multipart/form-data" method="post" action="/admin/event">
