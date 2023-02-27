@@ -50,19 +50,19 @@
                 @endphp
                 <div class="col-md-6 mb-4">
                     <div class="card">
-                        <div class="card-header bg-primary text-light d-flex align-items-center">
-                            <div class="bg-white text-primary text-center p-1 border-primary border"
+                        <div class="card-header d-flex align-items-center">
+                            <div class="bg-primary text-white text-center p-1 border-primary border"
                                 style="width: 50px; height: 60px; margin-top: -20px">
                                 <small>{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</small>
                                 <span class="fs-5">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</span>
                             </div>
                             <div class="flex-grow-1 ps-3">
                                 <h5 class="mb-0">{{ $event->name }}</h5>
-                                <p class="mb-0">At {{ $event->venue }}</p>
+                                <p class="mb-0 text-muted">At {{ $event->venue }}</p>
                             </div>
                             <div>
                                 <div class="">
-                                    <select class="form-select form-select-sm border-0" inline-edit-table="events"
+                                    <select class="form-select form-select-sm " inline-edit-table="events"
                                         inline-edit-field="status" inline-edit-where="id='{{ $event->id }}'">
                                         <option {{ $event->status === 'CREATED' ? 'selected' : '' }}>CREATED</option>
                                         <option {{ $event->status === 'CLOSED' ? 'selected' : '' }}>CLOSED</option>
