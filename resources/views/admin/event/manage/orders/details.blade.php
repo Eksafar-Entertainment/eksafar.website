@@ -44,13 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $total_price = 0;
-                    @endphp
                     @foreach ($order_details as $key => $order_detail)
-                        @php
-                            $total_price += $order_detail->price;
-                        @endphp
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $order_detail->event_ticket_name }}</td>
@@ -65,7 +59,7 @@
                         <td colspan="3">
                             </th>
                         <th class="text-end">Total</th>
-                        <td class="text-end">@money($total_price)</td>
+                        <td class="text-end">@money($order->total_price)</td>
                     </tr>
                     <tr>
                         <td colspan="3"></td>
@@ -75,7 +69,7 @@
                     <tr>
                         <th colspan="3"></th>
                         <th class="text-end" nowrap></th>
-                        <th class="text-end">@money($order->total_price)</th>
+                        <th class="text-end">@money($order->total_price - $order->discount)</th>
                     </tr>
 
 
