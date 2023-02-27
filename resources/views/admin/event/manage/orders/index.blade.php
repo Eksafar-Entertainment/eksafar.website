@@ -92,7 +92,7 @@
                                 @money($order->discount)
                             </td>
                             <td>{{ $order->promoter ?? '----' }}</td>
-                            <td class="text-end">
+                            <td class="text-end text-nowrap">
                                 @money($order->promoter_commission ? $order->promoter_commission : 0) @ {{ $order->promoter_commission_percentage ?? 0 }}%
                             </td>
                             <td><span class="badge bg-{{ $colors[$order->status] }}">{{ $order->status }}</span></td>
