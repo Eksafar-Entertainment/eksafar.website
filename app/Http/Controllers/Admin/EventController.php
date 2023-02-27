@@ -37,7 +37,7 @@ class EventController extends Controller
             $events->where("events.status", "=", $request->query("status"));
         }
 
-        $events = $events->paginate(20);
+        $events = $events->orderBy("start_date", "DESC")->paginate(20);
 
         
         $event_ids = array_map(function ($event) {
