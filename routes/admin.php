@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\LocationsController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
 
 
@@ -99,4 +100,7 @@ Route::group([
     });
 
     Route::post('settings/inline-edit', [SettingsController::class, "inlineEdit"]);
+    Route::get('profile', [ProfileController::class, "index"]);
+    Route::post('profile', [ProfileController::class, "update"]);
+    Route::post('profile/change-password', [ProfileController::class, "changePassword"]);
 });
