@@ -52,9 +52,9 @@
                 <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
-                            <div class="bg-primary text-white text-center p-1 border-primary border"
-                                style="width: 50px; height: 60px; margin-top: -20px">
-                                <small>{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</small>
+                            <div class="bg-primary text-white text-center p-1 rounded"
+                                style="width: 50px; height: 60px; margin-top: -20px;">
+                                <small>{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</small><br/>
                                 <span class="fs-5">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</span>
                             </div>
                             <div class="flex-grow-1 ps-3">
