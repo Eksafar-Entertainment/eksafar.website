@@ -1,5 +1,6 @@
 @extends('admin.layouts.admin')
 @section('content')
+<div>
     <div>
         <div>
             <h4 class="flex-grow-1">{{ __('Events') }}</h4>
@@ -188,4 +189,5 @@
         </div>
     @endif
     </div>
+</div>
 @endsection
