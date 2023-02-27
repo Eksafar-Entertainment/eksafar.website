@@ -1,67 +1,84 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title">Order Details</h5>
+        <h5 class="modal-title">Order ({{ $order->uid }})</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
         <div class="rounded">
             <div class="mt-4">
-                <div>
-                    ID: #{{ $order->id }}
-                </div>
-                <div>
-                    Name: {{ $order->name }}
-                </div>
-                <div>
-                    Email: {{ $order->email }}
-                </div>
-                <div>
-                    Mobile: {{ $order->mobile }}
-                </div>
+                <table class="table table-bordered table-striped table-sm">
+                    <tr>
+                        <td>ID</td>
+                        <td>#{{ $order->id }}</td>
+                    </tr>
+                    <tr>
+                        <td>Ref. ID</td>
+                        <td>{{ $order->uid }}</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ $order->name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ $order->email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile</td>
+                        <td>{{ $order->mobile }}</td>
+                    </tr>
+                </table>
+
             </div>
         </div>
         <div class="mt-4">
-            <h4>Tickets</h4>
-            <table class="table table-bordered table-striped">
+            <h5>Order details</h5>
+            <table class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
                         <th width="1%">#</th>
                         <th>Item</th>
-                        <th width="1%">Quantity</th>
-                        <th width="1%">Persons</th>
+                        <th width="1%">Qty.</th>
                         <th class="text-end" width="1%">Rate</th>
                         <th class="text-end" width="1%">Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
-                    $total_persons = 0
+                        $total_price = 0;
                     @endphp
-                    @foreach($order_details as $key=>$order_detail)
-                    @php
-                    $total_persons += $order_detail->event_ticket_persons * $order_detail->quantity
-                    @endphp
-                    <tr>
-                        <td>{{$key+1}}</td>
-                        <td>{{$order_detail->event_ticket_name}}</td>
-                        <td>{{$order_detail->quantity}}</td>
-                        <td>{{$order_detail->event_ticket_persons * $order_detail->quantity}}</td>
-                        <td class="text-end">₹{{$order_detail->price}}</td>
-                        <td class="text-end">₹{{$order_detail->price}}</td>
-                    </tr>
+                    @foreach ($order_details as $key => $order_detail)
+                        @php
+                            $total_price += $order_detail->price;
+                        @endphp
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $order_detail->event_ticket_name }}</td>
+                            <td>{{ $order_detail->quantity }}</td>
+                            <td class="text-end">₹{{ $order_detail->price }}</td>
+                            <td class="text-end">₹{{ $order_detail->price }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="3">Total</th>
-                        <th>
-                            {{$total_persons}}
-                        </th>
-                        <th></th>
-                        <th class="text-end">
-                            ₹{{$order->total_price}}
-                        </th>
+                        <td colspan="3">
+                            </th>
+                        <th class="text-end">Total</th>
+                        <td class="text-end">@money($total_price)</td>
                     </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <th class="text-end">Discount</th>
+                        <td class="text-end">@money($order->discount)</td>
+                    </tr>
+                    <tr>
+                        <th colspan="3"></th>
+                        <th class="text-end" nowrap></th>
+                        <th class="text-end">@money($order->total_price)</th>
+                    </tr>
+
+
 
                 </tfoot>
 
