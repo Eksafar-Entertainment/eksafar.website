@@ -23,7 +23,7 @@ class LocationsController extends Controller
                 $query->orWhere("locations.name","like", "%{$request->query()["keyword"]}%");
             });
         }
-        $locations = $locations->latest()->paginate(10)->appends($request->query());
+        $locations = $locations->latest()->paginate(20)->appends($request->query());
 
         return view('admin.locations.index', compact('locations'));
     }

@@ -24,7 +24,7 @@ class PromotersController extends Controller
                 $query->orWhere("promoters.name","like", "%{$request->query()["keyword"]}%");
             });
         }
-        $promoters = $promoters->latest()->paginate(10)->appends($request->query());
+        $promoters = $promoters->latest()->paginate(20)->appends($request->query());
 
         return view('admin.promoters.index', compact('promoters'));
     }

@@ -17,7 +17,7 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $artists = Artist::latest()->paginate(10);
+        $artists = Artist::latest()->paginate(20);
         return view('admin.artist.index', compact('artists'));
     }
 
