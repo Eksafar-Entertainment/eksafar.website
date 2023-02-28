@@ -2,12 +2,17 @@
     <div id="{{ $id }}-container"></div>
     <textarea name="{{ $attributes['name'] ?? '' }}" id="{{ $id }}-textarea" {{ $attributes }}
         class="position-absolute rich-text-textarea form-control w-100 h-100 top-0 start-0 bg-transparent"
-        style="resize: none; z-index:10; pointer-events: none; color: transparent" required>{{ $slot }}</textarea>
+        style="resize: none; z-index:2; pointer-events: none; color: transparent" required>{{ $slot }}</textarea>
 </div>
 <style>
-    .rich-text-textarea::placeholder {color:transparent}
-    :root{
+    .rich-text-textarea::placeholder {
+        color: transparent
+    }
+    :root {
         --ck-border-radius: 6px
+    }
+    .ck.ck-balloon-panel {
+        z-index: 999999999999999999999999!important
     }
 </style>
 
@@ -23,14 +28,16 @@
                     items: [
                         'findAndReplace', 'selectAll', '|',
                         'heading', '|',
-                        'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                        'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript',
+                        'superscript', 'removeFormat', '|',
                         'bulletedList', 'numberedList', 'todoList', '|',
                         'outdent', 'indent', '|',
                         'undo', 'redo',
                         '-',
                         'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
                         'alignment', '|',
-                        'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                        'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock',
+                        'htmlEmbed', '|',
                         'specialCharacters', 'horizontalLine', 'pageBreak', '|',
                         'sourceEditing'
                     ],
