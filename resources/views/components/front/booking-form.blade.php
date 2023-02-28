@@ -18,7 +18,7 @@
                                     data-bs-target="#nav-{{ $i }}" type="button" role="tab"
                                     aria-controls="nav-{{ $i }}"
                                     aria-selected="{{ $i == 0 ? 'true' : 'false' }}"
-                                    onclick="resetForm()">{{ \Carbon\Carbon::parse($date)->format("dS M, Y") }}</button>
+                                    onclick="resetForm()">{{ \Carbon\Carbon::parse($date)->format('dS M, Y') }}</button>
                             @endforeach
                         </div>
                     </nav>
@@ -36,36 +36,44 @@
                                                         style="font-size:10px; line-height:0.5 !important">{{ $event_ticket->description }}</small><br />
                                                     <span class="text-light"> @money($event_ticket->price)</span>
                                                 </td>
-                                                <td class="align-middle pe-0 pr-0" width="1%">
-                                                    <input type="hidden"
-                                                        name="items[{{ $n }}][event_ticket_id]"
-                                                        value="{{ $event_ticket->id }}" class="" />
-                                                    <input type="hidden" value="{{ $event_ticket->price }}"
-                                                        data-field="price" />
-                                                    <div class="input-group" style="width: 100px;transform: scale(0.8)">
-                                                        <button type="button" class="btn btn-danger btn-number btn-sm"
-                                                            data-field="minus">
-                                                            <span class="fa fa-minus"></span>
-                                                        </button>
-                                                        <input type="number"
-                                                            class="form-control form-control-sm bare text-center"
-                                                            data-field='quantity'
-                                                            name="items[{{ $n }}][quantity]" value="0"
-                                                            @if ($event_ticket->status == 'SOLD') disabled @endif />
-                                                        <button type="button" class=" btn btn-danger btn-number btn-sm"
-                                                            data-field="plus">
-                                                            <span class="fa fa-plus"></span>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                                <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light d-sm-table-cell d-none"
-                                                    width="1%" style="min-width: 60px" data-field="total-price">
-                                                    @if ($event_ticket->status == 'SOLD')
-                                                        <span class="badge bg-danger"> Sold Out</span>
-                                                    @else
-                                                        <span class="text-light">@money(0)</span>
-                                                    @endif
-                                                </td>
+                                                @if ($event_ticket->status == 'SOLD')
+
+                                                    <td class="align-middle pe-0 pr-0" width="1%">
+                                                        <input type="hidden"
+                                                            name="items[{{ $n }}][event_ticket_id]"
+                                                            value="{{ $event_ticket->id }}" class="" />
+                                                        <input type="hidden" value="{{ $event_ticket->price }}"
+                                                            data-field="price" />
+                                                        <div class="input-group"
+                                                            style="width: 100px;transform: scale(0.8)">
+                                                            <button type="button"
+                                                                class="btn btn-danger btn-number btn-sm"
+                                                                @if ($event_ticket->status == 'SOLD') disabled @endif
+                                                                data-field="minus">
+                                                                <span class="fa fa-minus"></span>
+                                                            </button>
+                                                            <input type="number"
+                                                                class="form-control form-control-sm bare text-center"
+                                                                data-field='quantity'
+                                                                name="items[{{ $n }}][quantity]"
+                                                                value="0"
+                                                                @if ($event_ticket->status == 'SOLD') disabled @endif />
+                                                            <button type="button"
+                                                                class=" btn btn-danger btn-number btn-sm"
+                                                                @if ($event_ticket->status == 'SOLD') disabled @endif
+                                                                data-field="plus">
+                                                                <span class="fa fa-plus"></span>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light d-sm-table-cell d-none"
+                                                        width="1%" style="min-width: 60px" data-field="total-price">
+                                                        @if ($event_ticket->status == 'SOLD')
+                                                            <span class="badge bg-danger"> Sold Out</span>
+                                                        @else
+                                                            <span class="text-light">@money(0)</span>
+                                                        @endif
+                                                    </td>
                                             </tr>
                                         @endforeach
                                     </table>
@@ -119,16 +127,19 @@
                         <hr />
                         <div>
                             <div class="mb-3">
-                                <input type="text" placeholder="Full name" class="form-control" name="name" required/>
+                                <input type="text" placeholder="Full name" class="form-control" name="name"
+                                    required />
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text text-dark" id="basic-addon1">+91</span>
                                 <input type="text" placeholder="Phone" name="mobile" class="form-control"
-                                    onkeyup="event.target.value = event.target.value.replace(/[^\d.-]+/g, '')" required />
+                                    onkeyup="event.target.value = event.target.value.replace(/[^\d.-]+/g, '')"
+                                    required />
                             </div>
 
                             <div class="mb-3">
-                                <input type="email" placeholder="Email" name="email" class="form-control" required />
+                                <input type="email" placeholder="Email" name="email" class="form-control"
+                                    required />
                             </div>
 
                             <button class="btn btn-primary w-100" id="checkout" type="submit">Checkout</button>
