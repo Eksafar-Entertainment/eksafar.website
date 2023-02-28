@@ -43,7 +43,7 @@
                                                         value="{{ $event_ticket->id }}" class="" />
                                                     <input type="hidden" value="{{ $event_ticket->price }}"
                                                         data-field="price" />
-                                                    <div class="input-group" style="width: 100px;transform: scale(0.8)">
+                                                    <div class="input-group @if ($event_ticket->status == 'SOLD') d-none @endif" style="width: 100px;transform: scale(0.8)">
                                                         <button type="button" class="btn btn-danger btn-number btn-sm"
                                                             @if ($event_ticket->status == 'SOLD') disabled @endif
                                                             data-field="minus">
