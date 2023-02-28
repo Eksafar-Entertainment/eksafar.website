@@ -2,7 +2,7 @@
     <div id="{{ $id }}-container"></div>
     <textarea name="{{ $attributes['name'] ?? '' }}" id="{{ $id }}-textarea" {{ $attributes }}
         class="position-absolute rich-text-textarea form-control w-100 h-100 top-0 start-0 bg-transparent"
-        style="resize: none; z-index:999999; pointer-events: none; color: transparent" required>{{ $slot }}</textarea>
+        style="resize: none; z-index:10; pointer-events: none; color: transparent" required>{{ $slot }}</textarea>
 </div>
 <style>
     .rich-text-textarea::placeholder {color:transparent}
