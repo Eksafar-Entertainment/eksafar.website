@@ -299,7 +299,7 @@ class ContactController extends Controller
             }
             foreach ($receipts as $receipt) {
                 $mailSchedule = new MailSchedule();
-                $mailSchedule->name = $receipt["name"];
+                $mailSchedule->name = $receipt["name"] ?? "";
                 $mailSchedule->to = $receipt["email"];
                 $mailSchedule->subject = $subject;
                 $mailSchedule->html = $message;
