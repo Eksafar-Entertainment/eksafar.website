@@ -143,7 +143,7 @@ class EventController extends Controller
             ->whereIn("order_id", $order_ids)
             ->get();
 
-        $revenue = 0;
+        $sale = 0;
         $views = 0;
         $total_orders = 0;
         $total_ticket_sold = 0;
@@ -219,7 +219,7 @@ class EventController extends Controller
 
             $tickets_sold_chart["total"] += $order->orders;
             $tickets_sales_volume_chart["total"] += ($order->amount - ($order->discount ?? 0));
-            $revenue += $order->amount - $order->discount;
+            $sale += $order->amount - $order->discount;
             $total_orders += $order->orders;
         }
 
@@ -256,7 +256,7 @@ class EventController extends Controller
         return view("promoter.event.manage.dashboard", compact(
             "event",
             "orders",
-            'revenue',
+            'sale',
             'total_orders',
             'total_ticket_sold',
             "tickets_sales_volume_chart",

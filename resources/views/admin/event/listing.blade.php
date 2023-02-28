@@ -46,7 +46,7 @@
         <div class="row mt-4">
             @foreach ($events as $index => $event)
                 @php
-                    $revenue = isset($sales[$event->id]) ? $sales[$event->id]['revenue'] : 0;
+                    $sale = isset($sales[$event->id]) ? $sales[$event->id]['sale'] : 0;
                     $quantity = isset($sales[$event->id]) ? $sales[$event->id]['quantity'] : 0;
                 @endphp
                 <div class="col-md-6 mb-4">
@@ -80,7 +80,7 @@
 
                                 <div class="col text-center">
                                     <span class="fs-5">
-                                        @money($revenue)
+                                        @money($sale)
                                     </span><br />
                                     <span class="text-primary">Revenue</span>
                                 </div>
