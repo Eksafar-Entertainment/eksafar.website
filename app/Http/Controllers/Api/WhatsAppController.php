@@ -20,6 +20,8 @@ class WhatsAppController extends Controller
         //     return response("Unauthorized", 400);
         // }
         $data = json_decode($request->getContent());
+        
+        //$entry = $data->entry;
 
         Log::channel('whatsapp-notification')->info(json_encode($data, JSON_PRETTY_PRINT));
         Mail::raw("<pre>".json_encode($data, JSON_PRETTY_PRINT)."</pre>", function ($message) {
