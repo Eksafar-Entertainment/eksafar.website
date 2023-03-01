@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\VenueController;
 use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\CampaignController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\LocationsController;
@@ -51,6 +52,7 @@ Route::group([
     Route::resource('permissions', PermissionsController::class);
     Route::resource('venue', VenueController::class);
     Route::resource('artist', ArtistController::class);
+    Route::resource('campaign', CampaignController::class);
     Route::resource('gallery', GalleryController::class);
     Route::resource('banner', BannerController::class);
     Route::resource('promoters', PromotersController::class);
