@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\WhatsAppController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,10 @@ Route::get("events/{event_id}", [EventController::class, "details"]);
 Route::get("events/{event_id}/tickets", [EventController::class, "tickets"]);
 
 Route::get("events/checkout/pay", [EventController::class, "checkoutPay"]);
+
+
+Route::get("whatsapp/webhook", [WhatsAppController::class, "webhook"]);
+
 Route::group(["middleware" => ["auth:api"]], function () {
 
     Route::get("me/profile", [ProfileController::class, "index"]);
