@@ -19,12 +19,13 @@ class WhatsAppController extends Controller
         // if ($token != "COOL") {
         //     return response("Unauthorized", 400);
         // }
-        $data = $request->getContent();
-        Log::channel('whatsapp-notification')->info( $data);
-        Mail::raw($data, function ($message) {
-            $message->to("webmaster@eksafar.club")
-                ->subject("Message from whatsapp");
-        });
+        $data = json_decode($request->getContent());
+
+        Log::channel('whatsapp-notification')->info(json_encode($data, JSON_PRETTY_PRINT));
+        // Mail::raw($data, function ($message) {
+        //     $message->to("webmaster@eksafar.club")
+        //         ->subject("Message from whatsapp");
+        // });
 
 
         return response($challenge);
