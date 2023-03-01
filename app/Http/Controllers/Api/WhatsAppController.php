@@ -21,36 +21,39 @@ class WhatsAppController extends Controller
         //     return response("Unauthorized", 400);
         // }
         $data = json_decode($request->getContent());
-        
-  
+
+
         Log::channel('whatsapp-notification')->info(json_encode($data, JSON_PRETTY_PRINT));
-        try{
+        try {
             $entries = $data->entry;
-            $text = "Message from whatsapp".PHP_EOL;
-            foreach($entries as $entry){
+            $text = "Message from whatsapp" . PHP_EOL;
+            $has_message = false;
+            foreach ($entries as $entry) {
                 $changes = $entry->changes;
-                foreach($changes as $change){
+                foreach ($changes as $change) {
                     $messages = $change->messages;
-                    foreach($messages as $message){
-                        $entity = "From : ".$message->from.PHP_EOL; 
-                        if($message->type == "text"){
-                            $entity .= "".$message->text->body.PHP_EOL; 
+                    foreach ($messages as $message) {
+                        $entity = "From : " . $message->from . PHP_EOL;
+                        if ($message->type == "text") {
+                            $entity .= "" . $message->text->body . PHP_EOL;
                         } else {
-                            $entity .= $message->type." message".PHP_EOL; 
+                            $entity .= $message->type . " message" . PHP_EOL;
                         }
-                        $text .= $text.PHP_EOL;
+                        $text .= $text . PHP_EOL;
+                        $has_message = true;
                     }
                 }
             }
-            Mail::raw($text.PHP_EOL.PHP_EOL.PHP_EOL."<pre>".json_encode($data, JSON_PRETTY_PRINT)."</pre>", function ($message) {
-                $message->to("webmaster@eksafar.club")
-                    ->subject("Message from whatsapp");
-            });
-        }catch(Exception $err){
-
+            if ($has_message) {
+                Mail::raw($text . PHP_EOL . PHP_EOL . PHP_EOL . "<pre>" . json_encode($data, JSON_PRETTY_PRINT) . "</pre>", function ($message) {
+                    $message->to("webmaster@eksafar.club")
+                        ->subject("Message from whatsapp");
+                });
+            }
+        } catch (Exception $err) {
         }
 
-      
+
 
 
         return response($challenge);
