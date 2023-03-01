@@ -39,7 +39,7 @@ class WhatsAppController extends Controller
                         } else {
                             $entity .= $message->type . " message" . PHP_EOL;
                         }
-                        $text .= $text . PHP_EOL;
+                        $text .= $entity . PHP_EOL;
                         $has_message = true;
                     }
                 }
