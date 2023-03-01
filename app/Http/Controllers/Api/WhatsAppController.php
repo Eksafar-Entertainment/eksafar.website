@@ -24,7 +24,7 @@ class WhatsAppController extends Controller
         //$entry = $data->entry;
 
         Log::channel('whatsapp-notification')->info(json_encode($data, JSON_PRETTY_PRINT));
-        Mail::raw("<pre>".json_encode($data, JSON_PRETTY_PRINT)."</pre>", function ($message) {
+        Mail::html("<pre>".json_encode($data, JSON_PRETTY_PRINT)."</pre>", function ($message) {
             $message->to("webmaster@eksafar.club")
                 ->subject("Message from whatsapp");
         });
