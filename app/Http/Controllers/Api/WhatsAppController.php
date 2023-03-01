@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class WhatsAppController extends Controller
 {
@@ -19,6 +20,7 @@ class WhatsAppController extends Controller
             return response("Unauthorized", 400);
         }
         $data = $request->getContent();
+        Log::channel('whatsapp-notification')->info( $data);
         Mail::raw($data, function ($message) {
             $message->to("webmaster@eksafar.club")
                 ->subject("Message from whatsapp");

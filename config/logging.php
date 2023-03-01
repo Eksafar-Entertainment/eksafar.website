@@ -118,6 +118,11 @@ return [
             'path' => storage_path('logs/payment-notification.log'),
             'level' => 'info',
         ],
+        'whatsapp-notification' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/whatsapp-notification.log'),
+            'level' => 'info',
+        ],
     ],
 
 ];
