@@ -39,7 +39,7 @@ Route::get("events/{event_id}/tickets", [EventController::class, "tickets"]);
 Route::get("events/checkout/pay", [EventController::class, "checkoutPay"]);
 
 
-Route::get("whatsapp/webhook", [WhatsAppController::class, "webhook"]);
+Route::any("whatsapp/webhook", [WhatsAppController::class, "webhook"]);
 
 Route::group(["middleware" => ["auth:api"]], function () {
 
