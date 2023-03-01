@@ -31,7 +31,7 @@ class WhatsAppController extends Controller
             foreach ($entries as $entry) {
                 $changes = $entry->changes;
                 foreach ($changes as $change) {
-                    $messages = $change->messages;
+                    $messages = $change->value->messages;
                     foreach ($messages as $message) {
                         $entity = "From : " . $message->from . PHP_EOL;
                         if ($message->type == "text") {
@@ -51,6 +51,7 @@ class WhatsAppController extends Controller
                 });
             }
         } catch (Exception $err) {
+            print "Error". $err->getMessage();
         }
 
 
