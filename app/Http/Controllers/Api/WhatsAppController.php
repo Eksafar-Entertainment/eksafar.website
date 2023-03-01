@@ -46,7 +46,7 @@ class WhatsAppController extends Controller
             }
             if ($has_message) {
                 Mail::raw($text . PHP_EOL . PHP_EOL . PHP_EOL . "<pre>" . json_encode($data, JSON_PRETTY_PRINT) . "</pre>", function ($message) {
-                    $message->to("webmaster@eksafar.club")
+                    $message->to("support@eksafar.club")
                         ->subject("Message from whatsapp");
                 });
             }
