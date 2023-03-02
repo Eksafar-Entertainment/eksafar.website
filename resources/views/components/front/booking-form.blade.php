@@ -39,7 +39,7 @@
 
                                                 <td class="align-middle pe-0 pr-0" width="1%">
                                                     <input type="hidden"
-                                                        name="items[{{ $n }}][event_ticket_id]"
+                                                        name="items[{{ $event_ticket->id }}][event_ticket_id]"
                                                         value="{{ $event_ticket->id }}" class="" />
                                                     <input type="hidden" value="{{ $event_ticket->price }}"
                                                         data-field="price" />
@@ -52,7 +52,7 @@
                                                         <input type="number"
                                                             class="form-control form-control-sm bare text-center"
                                                             data-field='quantity'
-                                                            name="items[{{ $n }}][quantity]" value="0"
+                                                            name="items[{{ $event_ticket->id }}][quantity]" value="0"
                                                             @if ($event_ticket->status == 'SOLD') disabled @endif />
                                                         <button type="button" class=" btn btn-danger btn-number btn-sm"
                                                             @if ($event_ticket->status == 'SOLD') disabled @endif

@@ -44,11 +44,13 @@ class RazorpayController extends Controller
 
     $order_details = [];
     $total_price = 0;
+    $total_quantity = 0;
     foreach ($items as $item) {
       if (!isset($item["quantity"]) || $item["quantity"] > 0 == false) continue;
       $event_ticket = EventTicket::where(["id" => $item["event_ticket_id"]])->first();
       $amount = $event_ticket->price * $item["quantity"];
       $total_price += $amount;
+      $total_quantity+= $item["quantity"];
 
       $order_detail = new OrderDetail();
       $order_detail->event_ticket_id = $item["event_ticket_id"];
@@ -59,6 +61,9 @@ class RazorpayController extends Controller
       $order_details[] = $order_detail;
     }
 
+    if($total_quantity === 0){
+      return abort(400, "Please select ticket");
+    }
     if($total_price === 0){
       return $this->freeCheckout($request);
     }
