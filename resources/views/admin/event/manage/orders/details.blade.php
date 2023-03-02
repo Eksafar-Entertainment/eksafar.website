@@ -45,12 +45,14 @@
                 </thead>
                 <tbody>
                     @foreach ($order_details as $key => $order_detail)
+                    <pre>
+                    </pre>
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $order_detail->event_ticket_name }}</td>
                             <td>{{ $order_detail->quantity }}</td>
-                            <td class="text-end">₹{{ $order_detail->price }}</td>
-                            <td class="text-end">₹{{ $order_detail->price }}</td>
+                            <td class="text-end">@money($order_detail->rate)</td>
+                            <td class="text-end">@money($order_detail->rate * $order_detail->quantity)</td>
                         </tr>
                     @endforeach
                 </tbody>
