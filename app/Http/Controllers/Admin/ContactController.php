@@ -210,7 +210,7 @@ class ContactController extends Controller
                         // ]
                         "type" => "template",
                         "template" => [
-                            "name" => "colorland_1_0_earlybird",
+                            "name" => "colorland_1_0_2023_promo",
                             "language" => ["code" => "en"],
                             "components" => [
                                 [
@@ -219,7 +219,7 @@ class ContactController extends Controller
                                         [
                                             "type" => "image",
                                             "image" => [
-                                                "link" => "https://www.eksafar.club/images/banner/popup-landscape.jpg",
+                                                "link" => "https://www.eksafar.club/storage/uploads/202302270113.jpeg",
                                             ]
                                         ]
                                     ]
