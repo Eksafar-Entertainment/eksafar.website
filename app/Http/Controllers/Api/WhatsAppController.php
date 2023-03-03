@@ -18,9 +18,6 @@ class WhatsAppController extends Controller
         $mode = $request->hub_mode;
         $challenge = $request->hub_challenge;
         $token = $request->hub_verify_token;
-        // if ($token != "COOL") {
-        //     return response("Unauthorized", 400);
-        // }
         $data = json_decode($request->getContent());
 
 
@@ -58,9 +55,6 @@ class WhatsAppController extends Controller
         } catch (Exception $err) {
             print "Error" . $err->getMessage();
         }
-
-
-
 
         return response($challenge);
     }
