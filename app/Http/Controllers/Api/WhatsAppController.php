@@ -34,11 +34,12 @@ class WhatsAppController extends Controller
                 foreach ($changes as $change) {
                     $messages = $change->value->messages;
                     foreach ($messages as $message) {
-                        $entity = "From : <a href='https://wa.me/".$message->from."'>".$message->from."</a>\n";
+                        $entity = "From : <a href='https://wa.me/".$message->from."'>".$message->from."</a>\n\n";
+                        $entity .= "id : ".$message->id."\n\n";
                         if ($message->type == "text") {
-                            $entity .= "<strong>Text : " .$message->text->body."</strong>\n";
+                            $entity .= "<strong>Text : " .$message->text->body."</strong>";
                         } else {
-                            $entity .= "<i>" .$message->type . " message" ."</i>\n";
+                            $entity .= "<i>" .$message->type . " message" ."</i>";
                         }
                         $text .= $entity;
                         $has_message = true;
