@@ -52,7 +52,7 @@ class WhatsAppController extends Controller
                 ]);
             }
         } catch (Exception $err) {
-            print "Error" . $err->getMessage();
+            ///print "Error" . $err->getMessage();
         }
 
         return response($challenge);
