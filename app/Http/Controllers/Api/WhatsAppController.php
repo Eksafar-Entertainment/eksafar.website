@@ -51,7 +51,6 @@ class WhatsAppController extends Controller
                     "parse_mode" => "HTML"
                 ]);
             }
-            dd($text);
         } catch (Exception $err) {
             print "Error" . $err->getMessage();
         }
