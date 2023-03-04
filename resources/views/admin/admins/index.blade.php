@@ -5,11 +5,11 @@
 
         <div class="d-flex">
             <div class="flex-grow-1">
-                <h4>{{ __('User Management') }}</h4>
-                <p class="text-muted">Manage your users here.</p>
+                <h4>{{ __('Admin Management') }}</h4>
+                <p class="text-muted">Manage your promoters here.</p>
             </div>
             <div class="">
-                <a class="btn btn-sm btn-success" href="{{ route('users.create') }}">New User</a>
+                <a class="btn btn-sm btn-success" href="{{ route('admins.create') }}">New Admin</a>
             </div>
         </div>
 
@@ -27,23 +27,31 @@
                     <th>No</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>Roles</th>
                     <th colspan="3">Action</th>
                 </tr>
-                @foreach ($data as $key => $user)
+                @foreach ($data as $key => $admin)
                     <tr>
                         <td width="1%">{{ ++$i }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <td>{{ $admin->name }}</td>
+                        <td>{{ $admin->email }}</td>
                         <td>
-                            {{ $user->mobile }}
+                            @if (!empty($admin->getRoleNames()))
+                                @foreach ($admin->getRoleNames() as $v)
+                                    <label class="badge bg-success">{{ $v }}</label>
+                                @endforeach
+                            @endif
                         </td>
                         <td width="1%">
-                            <a class="btn btn-sm btn-primary" href="{{ route('users.edit', $user->id) }}"><i
+                            <a class="btn btn-sm btn-info" href="{{ route('admins.show', $admin->id) }}"><i
+                                    class="fas fa-eye"></i></a>
+                        </td>
+                        <td width="1%">
+                            <a class="btn btn-sm btn-primary" href="{{ route('admins.edit', $admin->id) }}"><i
                                     class="fas fa-pencil"></i></a>
                         </td>
                         <td width="1%">
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) !!}
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['admins.destroy', $admin->id], 'style' => 'display:inline']) !!}
                             {!! Form::button('<i class="fas fa-trash"></i>', ['class' => 'btn btn-sm btn-danger', 'type' => 'submit']) !!}
                             {!! Form::close() !!}
                         </td>

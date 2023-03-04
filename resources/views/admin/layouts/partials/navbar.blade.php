@@ -22,9 +22,14 @@
                                     aria-haspopup="true" aria-expanded="false" v-pre>{{ __('Users') }}</a>
                                 <ul class="dropdown-menu" aria-labelledby="usersDropdown">
                                     <li><a href="{{ route('users.index') }}" class="dropdown-item">{{ __('Users') }}</a></li>
-                                    <li><a href="{{ route('roles.index') }}" class="dropdown-item">{{ __('Roles') }}</a></li>
-                                    <li><a href="{{ route('permissions.index') }}"
-                                            class="dropdown-item">{{ __('Permissions') }} </a></li>
+                                    <li><a href="{{ route('admins.index') }}" class="dropdown-item">{{ __('Admins') }}</a></li>
+                                    <li><a href="/admin/promoters" class="dropdown-item">{{ __('Promoters') }}</a>
+                                    </li>
+                                    <li><a href="/admin/contact" class="dropdown-item">{{ __('Contacts') }}</a></li>
+                                    <li><a href="{{ route('roles.index') }}" class="dropdown-item">{{ __('Roles') }}</a>
+                                    </li>
+                                    <li><a href="{{ route('permissions.index') }}" class="dropdown-item">{{ __('Permissions') }}
+                                        </a></li>
                                 </ul>
                             </li>
 
@@ -46,17 +51,18 @@
                                 @if (Auth::user()->can('event:list'))
                                     <li><a href="/admin/event" class="dropdown-item">{{ __('Events') }}</a></li>
                                 @endif
-                                <li><a href="{{ route('venue.index') }}" class="dropdown-item">{{ __('Venues') }}</a>
-                                </li>
-                                <li><a href="{{ route('artist.index') }}" class="dropdown-item">{{ __('Artists') }}</a>
-                                </li>
+                                @role('Admin')
+                                    <li><a href="{{ route('venue.index') }}" class="dropdown-item">{{ __('Venues') }}</a>
+                                    </li>
+                                    <li><a href="{{ route('artist.index') }}" class="dropdown-item">{{ __('Artists') }}</a>
+                                    </li>
+                                    <li><a href="/admin/locations" class="dropdown-item">{{ __('Locations') }}</a></li>
+                                @endrole
                             </ul>
                         </li>
-                        <li class="nav-item"><a href="/admin/promoters" class="nav-link">{{ __('Promoters') }}</a></li>
-                        <li class="nav-item"><a href="/admin/gallery" class="nav-link">{{ __('Gallery') }}</a></li>
-                        <li class="nav-item"><a href="/admin/coupon" class="nav-link">{{ __('Coupons') }}</a></li>
-                        <li class="nav-item"><a href="/admin/locations" class="nav-link">{{ __('Locations') }}</a></li>
-                        <li class="nav-item"><a href="/admin/contact" class="nav-link">{{ __('Contacts') }}</a></li>
+                        @role('Admin')
+                            <li class="nav-item"><a href="/admin/coupon" class="nav-link">{{ __('Coupons') }}</a></li>
+                        @endrole
                     @endauth
                 </ul>
 

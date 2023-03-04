@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\AdminsController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\PromotersController;
 use App\Http\Controllers\Admin\FileManagerController;
@@ -49,6 +50,7 @@ Route::group([
     Route::get('/', [AdminHomeController::class, "index"]);
     Route::resource('roles', RolesController::class);
     Route::resource('users', UsersController::class);
+    Route::resource('admins', AdminsController::class);
     Route::resource('permissions', PermissionsController::class);
     Route::resource('venue', VenueController::class);
     Route::resource('artist', ArtistController::class);

@@ -61,6 +61,7 @@
                                 <h5 class="mb-0">{{ $event->name }}</h5>
                                 <p class="mb-0 text-muted">At {{ $event->venue }}</p>
                             </div>
+                            @role('Admin')
                             <div>
                                 <div class="">
                                     <select class="form-select form-select-sm " inline-edit-table="events"
@@ -70,8 +71,10 @@
                                     </select>
                                 </div>
                             </div>
+                            @endrole
                         </div>
                         <div class="card-body">
+                            @role('Admin')
                             <div class="row">
                                 <div class="col text-center">
                                     <span class="fs-5">{{ $quantity }}</span><br />
@@ -85,6 +88,7 @@
                                     <span class="text-primary">Revenue</span>
                                 </div>
                             </div>
+                            @endrole
                         </div>
                         <div class="card-footer p-0">
                             <div class="btn-group d-flex" role="group" aria-label="Basic example">
