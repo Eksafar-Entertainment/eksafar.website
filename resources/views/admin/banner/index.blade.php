@@ -2,10 +2,9 @@
 
 @section('content')
 
-    <h1 class="mb-3">Eksafar Entertainment</h1>
 
-    <div class="bg-light p-4 rounded">
-        <h2>banners</h2>
+    <div>
+        <h2>Banners</h2>
         <div class="lead">
             Manage your banners here.
             <a href="{{ route('banner.create') }}" class="btn btn-primary btn-sm float-right">Add banner</a>
