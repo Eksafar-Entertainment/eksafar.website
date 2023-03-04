@@ -5,11 +5,10 @@
 
         <div class="d-flex">
             <div class="flex-grow-1">
-                <h4>{{ __('Admin Management') }}</h4>
-                <p class="text-muted">Manage your promoters here.</p>
+                <h4>{{ __('Admins') }}</h4>
             </div>
             <div class="">
-                <a class="btn btn-sm btn-success" href="{{ route('admins.create') }}">New Admin</a>
+                <a class="btn btn-sm btn-secondary" href="{{ route('admins.create') }}">New Admin</a>
             </div>
         </div>
 
