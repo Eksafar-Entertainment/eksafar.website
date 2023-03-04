@@ -335,7 +335,8 @@ class EventController extends Controller
             ->select(
                 "order_details.*",
                 "event_tickets.name as event_ticket_name",
-                "event_tickets.persons as event_ticket_persons"
+                "event_tickets.persons as event_ticket_persons",
+                "event_tickets.start_datetime as event_ticket_start_datetime",
             )
             ->get();
         return response()->json([

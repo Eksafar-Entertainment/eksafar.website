@@ -31,9 +31,9 @@
 
             </div>
         </div>
-        <div class="mt-4">
-            <h5>Order details</h5>
-            <table class="table table-bordered table-striped table-sm">
+        <div class="mt-3">
+            <h5 class="mb-2">Order details</h5>
+            <table class="table table-bordered table-striped table-sm mt-0">
                 <thead>
                     <tr>
                         <th width="1%">#</th>
@@ -45,11 +45,14 @@
                 </thead>
                 <tbody>
                     @foreach ($order_details as $key => $order_detail)
-                    <pre>
-                    </pre>
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $order_detail->event_ticket_name }}</td>
+                            <td>
+                                {{ $order_detail->event_ticket_name }}
+                                <small class="d-block" style="font-size: 10px">
+                                    {{ \Carbon\Carbon::parse($order_detail->event_ticket_start_datetime)->format('d/m/Y h:i A') }}
+                                </small>
+                            </td>
                             <td>{{ $order_detail->quantity }}</td>
                             <td class="text-end">@money($order_detail->rate)</td>
                             <td class="text-end">@money($order_detail->rate * $order_detail->quantity)</td>
