@@ -26,8 +26,8 @@
                                     <a class="nav-link {{ $d == $date ? 'active' : '' }} text-white"
                                         type="button" 
                                         role="tab"
-                                        {{-- href="?date={{ $d }}&open-form=true" --}}
-                                        onclick="window.location.replace('?date={{ $d }}&open-form=true')"
+                                        href="?date={{ $d }}&open-form=true"
+                                        {{-- onclick="window.location.replace('?date={{ $d }}&open-form=true')" --}}
                                         
                                     >{{ \Carbon\Carbon::parse($d)->format('dS M, Y') }}</a>
                                 @endforeach
@@ -112,16 +112,15 @@
 
                         </table>
                         <div>
-                            <div class="mb-3">
-                                <input type="text" placeholder="Full name" class="form-control" name="name"
-                                    required />
+                            <hr />
+                            <!-- Discount Container -->
+                            <input type="hidden" name="discount" value="0" />
+                            <div id="discount-container" class="input-group mb-3 d-none">
+                                <input type="text" id="coupon" name="coupon" placeholder="Discount Coupon"
+                                    class="form-control" />
+                                <button class="btn btn-danger" type="button"> Redeem </button>
                             </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-dark" id="basic-addon1">+91</span>
-                                <input type="text" placeholder="Phone" name="mobile" class="form-control"
-                                    onkeyup="event.target.value = event.target.value.replace(/[^\d.-]+/g, '')"
-                                    required />
-                            </div>
+                  
                             <hr />
                             <div>
                                 <div class="mb-3">
