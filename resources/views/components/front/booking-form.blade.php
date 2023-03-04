@@ -18,18 +18,21 @@
                 <div class="col-md">
                     <div class="h-100 p-4 ">
                         <div>
-                            <h4 class="mb-0">{{ $event->name }} @ {{ $venue->name }}</h4>
+                            <h4 class="mb-0">{{ $event->name }} on {{ \Carbon\Carbon::parse($date)->format('dS M, Y h:i:s A') }}</h4>
                         </div>
-                        <nav>
+                        <nav class="@if(sizeof($dates)==1) d-none @endif">
                             <div class="nav nav-tabs" id="dates-tab" role="tablist">
                                 @foreach ($dates as $i => $d)
-                                    <a class="nav-link {{ $d == $date ? 'active' : '' }} text-white"
+                                    <a class="nav-link {{ $d == $date ? 'active' : '' }} text-white text-center"
                                         type="button" 
                                         role="tab"
                                         href="?date={{ $d }}&open-form=true"
                                         {{-- onclick="window.location.replace('?date={{ $d }}&open-form=true')" --}}
                                         
-                                    >{{ \Carbon\Carbon::parse($d)->format('dS M, Y') }}</a>
+                                    >
+                                    <strong>{{ \Carbon\Carbon::parse($d)->format('dS M') }}</strong><br/>
+                                    <span style="font-size: 10px">{{ \Carbon\Carbon::parse($d)->format('h:i A') }}</span>
+                                </a>
                                 @endforeach
                             </div>
                         </nav>
