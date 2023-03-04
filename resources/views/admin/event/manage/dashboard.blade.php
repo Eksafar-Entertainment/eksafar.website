@@ -9,9 +9,9 @@
         <div class="col-md-3 col-sm-6 col-6 mb-4">
             <div class="card card-body text-center">
                 <h3 class="fw-light text-primary">
-                    @money($revenue)
+                    @money($sale)
                 </h3>
-                <small>REVENUE</small>
+                <small>SALE</small>
             </div>
         </div>
         <div class="col-md-3 col-sm-6 col-6 mb-4">

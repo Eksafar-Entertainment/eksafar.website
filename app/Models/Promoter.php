@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Promoter extends Model
+class Promoter extends Authenticatable
 {
     use HasFactory;
     protected $fillable = [
         'name',
         'commission',
+        'email',
+        'mobile',
+        'password',
+        'parent_id',
     ];
 }

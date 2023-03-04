@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'failover'),
+    'default' => env('MAIL_MAILER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,15 +44,11 @@ return [
             'timeout' => null,
             'auth_mode' => null,
         ],
-        'sendgrid' =>[
-            'transport' => 'smtp',
-            'host' => env('SENDGRID_MAIL_HOST'),
-            'port' => env('SENDGRID_MAIL_PORT', 587),
-            'encryption' => env('SENDGRID_MAIL_ENCRYPTION', 'tls'),
-            'username' => env('SENDGRID_MAIL_USERNAME'),
-            'password' => env('SENDGRID_MAIL_PASSWORD'),
-            'timeout' => null,
-            'auth_mode' => null,
+        'ses' => [
+            'transport' => 'ses',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
         ],
         'log' => [
             'transport' => 'log',
@@ -61,14 +57,6 @@ return [
 
         'array' => [
             'transport' => 'array',
-        ],
-
-        'failover' => [
-            'transport' => 'failover',
-            'mailers' => [
-                'sendgrid',
-                'log',
-            ],
         ],
     ],
 

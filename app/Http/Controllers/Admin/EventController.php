@@ -37,7 +37,7 @@ class EventController extends Controller
             $events->where("events.status", "=", $request->query("status"));
         }
 
-        $events = $events->paginate(20);
+        $events = $events->orderBy("start_date", "DESC")->paginate(20);
 
         
         $event_ids = array_map(function ($event) {
@@ -47,7 +47,7 @@ class EventController extends Controller
         $sales = OrderDetail::select([
             "orders.event_id as id",
             DB::raw("SUM(order_details.quantity) as quantity"),
-            DB::raw("SUM(order_details.price) as revenue"),
+            DB::raw("SUM(order_details.price) as sale"),
         ])
             ->join("orders", function ($join) {
                 $join->on("orders.id", "=", "order_details.order_id");
@@ -155,7 +155,7 @@ class EventController extends Controller
             ->whereIn("order_id", $order_ids)
             ->get();
 
-        $revenue = 0;
+        $sale = 0;
         $views = 0;
         $total_orders = 0;
         $total_ticket_sold = 0;
@@ -202,7 +202,11 @@ class EventController extends Controller
         }
 
 
-        $period = CarbonPeriod::create(Carbon::parse($event->created_at)->format("Y-m-d"), date("Y-m-d"));
+        $end_date = date("Y-m-d");
+        if(Carbon::now()->greaterThan(Carbon::parse($event->end_date))){
+            $end_date = Carbon::parse($event->end_date)->format("Y-m-d");
+        }
+        $period = CarbonPeriod::create(Carbon::parse($event->created_at)->format("Y-m-d"), $end_date);
         foreach ($period as $date) {
             $key = $date->format("Y-m-d");
             $tickets_sold_chart["data"][$key] = 0;
@@ -226,7 +230,7 @@ class EventController extends Controller
 
             $tickets_sold_chart["total"] += $order->orders;
             $tickets_sales_volume_chart["total"] += ($order->amount - ($order->discount ?? 0));
-            $revenue += $order->amount - $order->discount;
+            $sale += $order->amount - $order->discount;
             $total_orders += $order->orders;
         }
 
@@ -263,7 +267,7 @@ class EventController extends Controller
         return view("admin.event.manage.dashboard", compact(
             "event",
             "orders",
-            'revenue',
+            'sale',
             'total_orders',
             'total_ticket_sold',
             "tickets_sales_volume_chart",
@@ -353,7 +357,7 @@ class EventController extends Controller
                 'message' => 'Invalid order',
             ], 500);
         }
-        Mail::to($order->email)->send(new TicketMail($order->id));
+        Mail::to([$order->email])->send(new TicketMail($order->id));
         return response()->json([
             "status" => 200,
             'message' => 'Email send successful',

@@ -40,6 +40,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/@datavis-tech/codemirror-6-prerelease@5.0.0/codemirror.next/legacy-modes/style/codemirror.css">
+    <script src="https://unpkg.com/@datavis-tech/codemirror-6-prerelease@5.0.0/dist/codemirror.js"></script>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
 </head>
 
 <body class="">
@@ -170,9 +176,7 @@
                 // at least the "default" URL, pointing to the image on the server.
                 // This URL will be used to display the image in the content. Learn more in the
                 // UploadAdapter#upload documentation.
-                resolve({
-                    default: response.url
-                });
+                resolve(response);
             });
 
             // Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded

@@ -5,8 +5,9 @@
                 {{-- {{ config('app.name', 'Laravel') }} --}}
                 <img height="20px" src="{{ url('images/logo.svg') }}" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -18,38 +19,44 @@
                         @role('Admin')
                             <li class="nav-item dropdown">
                                 <a id="usersDropdown" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false" v-pre>{{ __('Users')}}</a>
+                                    aria-haspopup="true" aria-expanded="false" v-pre>{{ __('Users') }}</a>
                                 <ul class="dropdown-menu" aria-labelledby="usersDropdown">
-                                    <li><a href="{{ route('users.index') }}" class="dropdown-item">{{ __('Users')}}</a></li>
-                                    <li><a href="{{ route('roles.index') }}" class="dropdown-item">{{ __('Roles')}}</a></li>
-                                    <li><a href="{{ route('permissions.index') }}" class="dropdown-item">{{ __('Permissions')}} </a></li>
+                                    <li><a href="{{ route('users.index') }}" class="dropdown-item">{{ __('Users') }}</a></li>
+                                    <li><a href="{{ route('roles.index') }}" class="dropdown-item">{{ __('Roles') }}</a></li>
+                                    <li><a href="{{ route('permissions.index') }}"
+                                            class="dropdown-item">{{ __('Permissions') }} </a></li>
                                 </ul>
                             </li>
 
                             <li class="nav-item dropdown">
                                 <a id="usersDropdown" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false" v-pre>{{ __('Website')}}</a>
+                                    aria-haspopup="true" aria-expanded="false" v-pre>{{ __('Website') }}</a>
                                 <ul class="dropdown-menu" aria-labelledby="usersDropdown">
-                                    <li><a href="{{ route('banner.index') }}" class="dropdown-item">{{ __('Banners')}}</a></li>
-                                    <li><a href="{{ route('gallery.index') }}" class="dropdown-item">{{ __('Gallery')}}</a></li>
+                                    <li><a href="{{ route('banner.index') }}" class="dropdown-item">{{ __('Banners') }}</a>
+                                    </li>
+                                    <li><a href="{{ route('gallery.index') }}" class="dropdown-item">{{ __('Gallery') }}</a>
+                                    </li>
                                 </ul>
                             </li>
-                        @endrole           
+                        @endrole
                         <li class="nav-item dropdown">
                             <a id="usersDropdown" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" v-pre>{{ __('Catelog')}}</a>
+                                aria-haspopup="true" aria-expanded="false" v-pre>{{ __('Catelog') }}</a>
                             <ul class="dropdown-menu" aria-labelledby="usersDropdown">
                                 @if (Auth::user()->can('event:list'))
-                                    <li><a href="/admin/event" class="dropdown-item">{{ __('Events')}}</a></li>
+                                    <li><a href="/admin/event" class="dropdown-item">{{ __('Events') }}</a></li>
                                 @endif
-                                <li><a href="{{ route('venue.index') }}" class="dropdown-item">{{ __('Venues')}}</a></li>
-                                <li><a href="{{ route('artist.index') }}" class="dropdown-item">{{ __('Artists')}}</a></li>
+                                <li><a href="{{ route('venue.index') }}" class="dropdown-item">{{ __('Venues') }}</a>
+                                </li>
+                                <li><a href="{{ route('artist.index') }}" class="dropdown-item">{{ __('Artists') }}</a>
+                                </li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a href="/admin/promoters" class="nav-link">{{ __('Promoters')}}</a></li>
-                        <li class="nav-item"><a href="/admin/gallery" class="nav-link">{{ __('Gallery')}}</a></li>
-                        <li class="nav-item"><a href="/admin/coupon" class="nav-link">{{ __('Coupons')}}</a></li>
-                        <li class="nav-item"><a href="/admin/locations" class="nav-link">{{ __('Locations')}}</a></li>
+                        <li class="nav-item"><a href="/admin/promoters" class="nav-link">{{ __('Promoters') }}</a></li>
+                        <li class="nav-item"><a href="/admin/gallery" class="nav-link">{{ __('Gallery') }}</a></li>
+                        <li class="nav-item"><a href="/admin/coupon" class="nav-link">{{ __('Coupons') }}</a></li>
+                        <li class="nav-item"><a href="/admin/locations" class="nav-link">{{ __('Locations') }}</a></li>
+                        <li class="nav-item"><a href="/admin/contact" class="nav-link">{{ __('Contacts') }}</a></li>
                     @endauth
                 </ul>
 
@@ -76,6 +83,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{ url('admin/profile') }}">
+                                    {{ __('Profile') }}
+                                </a>
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

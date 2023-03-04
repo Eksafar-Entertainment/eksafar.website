@@ -45,7 +45,7 @@
                                             <span class="text-light"> @money($event_ticket->price)</span>
                                         </td>
                                         <td class="align-middle pe-0 pr-0" width="1%">
-                                            <input type="hidden" name="items[{{ $n }}][event_ticket_id]"
+                                            <input type="hidden" name="items[{{ $event_ticket->id }}][event_ticket_id]"
                                                 value="{{ $event_ticket->id }}" class="" />
                                             <input type="hidden" value="{{ $event_ticket->price }}"
                                                 data-field="price" />
@@ -56,7 +56,7 @@
                                                 </button>
                                                 <input type="number"
                                                     class="form-control form-control-sm bare text-center"
-                                                    data-field='quantity' name="items[{{ $n }}][quantity]"
+                                                    data-field='quantity' name="items[{{ $event_ticket->id }}][quantity]"
                                                     value="0" @if ($event_ticket->status == 'SOLD') disabled @endif />
                                                 <button type="button" class=" btn btn-danger btn-number btn-sm"
                                                     data-field="plus">
@@ -112,13 +112,15 @@
 
                         </table>
                         <div>
-                            <hr />
-                            <!-- Discount Container -->
-                            <input type="hidden" name="discount" value="0" />
-                            <div id="discount-container" class="input-group mb-3 d-none">
-                                <input type="text" id="coupon" name="coupon" placeholder="Discount Coupon"
-                                    class="form-control" />
-                                <button class="btn btn-danger" type="button"> Redeem </button>
+                            <div class="mb-3">
+                                <input type="text" placeholder="Full name" class="form-control" name="name"
+                                    required />
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text text-dark" id="basic-addon1">+91</span>
+                                <input type="text" placeholder="Phone" name="mobile" class="form-control"
+                                    onkeyup="event.target.value = event.target.value.replace(/[^\d.-]+/g, '')"
+                                    required />
                             </div>
                             <hr />
                             <div>
@@ -132,9 +134,10 @@
                                         onkeyup="event.target.value = event.target.value.replace(/[^\d.-]+/g, '')" />
                                 </div>
 
-                                <div class="mb-3">
-                                    <input type="email" placeholder="Email" name="email" class="form-control" />
-                                </div>
+                            <div class="mb-3">
+                                <input type="email" placeholder="Email" name="email" class="form-control"
+                                    required />
+                            </div>
 
                                 <button class="btn btn-primary w-100" id="checkout" type="submit">Checkout</button>
                             </div>

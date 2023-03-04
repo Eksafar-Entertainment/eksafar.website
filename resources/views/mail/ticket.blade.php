@@ -57,13 +57,12 @@
         <div class="main">
             <header>
                 <h3 class="logo">EKSAFAR</h3>
-
             </header>
 
-            {{-- <p>
+            <p>
                 Hey {{ $order->name }},<br />
-                This is just a confirmation email regarding you order
-            </p> --}}
+                Please find below the details of your order.
+            </p>
 
             <div class="container">
                 <table style="width: 100%; border-collapse: collapse;">
@@ -71,7 +70,7 @@
                         <td style="text-align: center; letter-spacing: 1.5; padding: 20px">
                             <img src="{{ route('resources:images:qr', ['content' => $order->uid]) }}"
                                 style="width: 120px"><br>
-                            #{{ $order->uid }}
+                            {{ $order->uid }}
                         </td>
                     </tr>
                     <tr>
@@ -90,7 +89,7 @@
                     <table class="order-details-table">
                         <tr>
                             <th style="padding-left: 0">Item</th>
-                            <th>Qtde.</th>
+                            <th>Qty</th>
                             <th style="padding-right: 0; text-align: right">Price</th>
                         </tr>
                         @foreach ($order_details as $order_detail)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Promoter;
+use Mockery\Undefined;
 
 class PromotersController extends Controller
 {
@@ -16,14 +17,14 @@ class PromotersController extends Controller
     public function index(Request $request)
     {
         $where = [];
-        $promoters = Promoter::select(["*"]);
+        $promoters = Promoter::select(["promoters.*", "parent.name as parent_name"])->leftJoin("promoters as parent", "parent.id", "=", "promoters.parent_id");
         if(isset($request->query()["keyword"]) && $request->query()["keyword"]!=""){
             $promoters->where(function ($query) {
                 global $request;
                 $query->orWhere("promoters.name","like", "%{$request->query()["keyword"]}%");
             });
         }
-        $promoters = $promoters->latest()->paginate(10)->appends($request->query());
+        $promoters = $promoters->latest()->paginate(20)->appends($request->query());
 
         return view('admin.promoters.index', compact('promoters'));
     }
@@ -46,9 +47,17 @@ class PromotersController extends Controller
      */
     public function store(Request $request)
     {
-        Promoter::create(array_merge($request->only('name', 'commission'),[
-            'user_id' => auth()->id()
-        ]));
+        $promoter = new Promoter();
+        $promoter->name = $request->name;
+        $promoter->commission=$request->commission;
+        $promoter->email=$request->email;
+        $promoter->mobile=$request->mobile;
+        $promoter->password=$request->password;
+        $promoter->parent_id=$request->parent_id;
+        if($request->password || $request->password !=null){
+            $promoter->password = bcrypt($request->password);
+        }
+        $promoter->save();
 
         return redirect()->route('promoters.index')
             ->withSuccess(__('Promoter created successfully.'));
@@ -89,7 +98,17 @@ class PromotersController extends Controller
      */
     public function update(Request $request, Promoter $promoter)
     {
-        $promoter->update($request->only('name', 'commission'));
+
+        $promoter->name = $request->name;
+        $promoter->commission=$request->commission;
+        $promoter->email=$request->email;
+        $promoter->mobile=$request->mobile;
+        $promoter->password=$request->password;
+        $promoter->parent_id=$request->parent_id;
+        if($request->password || $request->password !=null){
+            $promoter->password = bcrypt($request->password);
+        }
+        $promoter->save();
 
         return redirect()->route('promoters.index')
             ->withSuccess(__('Promoter updated successfully.'));
