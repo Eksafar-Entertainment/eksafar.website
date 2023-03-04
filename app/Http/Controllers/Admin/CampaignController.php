@@ -20,16 +20,6 @@ class CampaignController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.campaign.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreCampaignRequest  $request
@@ -37,30 +27,17 @@ class CampaignController extends Controller
      */
     public function store(Request $request)
     {
-        Campaign::create(array_merge($request->only(
+        //dd($request->all());
+        $campaign = Campaign::create(array_merge($request->only(
             'name',
             'type',
-            'send_at',
-            'content_type',
-            'content',
-            'text',
+            'content_type'
         )));
 
-        return redirect()->route('campaign.index')
-            ->withSuccess(__('Campaign created successfully.'));
-    }
+    
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Campaign  $campaign
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Campaign $campaign)
-    {
-        return view('admin.campaign.show', [
-            'campaign' => $campaign
-        ]);
+        return redirect()->route('campaign.edit', $campaign->id)
+            ->withSuccess(__('Campaign created successfully.'));
     }
 
     /**
@@ -87,9 +64,9 @@ class CampaignController extends Controller
     {
         $campaign->update($request->only(
             'name',
-            'type',
-            'send_at',
+            //'type',
             'content_type',
+            'template',
             'content',
             'text',
             'status',

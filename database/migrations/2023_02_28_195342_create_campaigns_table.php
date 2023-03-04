@@ -17,9 +17,10 @@ class CreateCampaignsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string("name");
-            $table->enum("type", ["SMS", "MAIL", "WHATSAPP"]);
+            $table->string("type");//enum("type", ["SMS", "MAIL", "WHATSAPP"]);
         
-            $table->enum("content_type", ["TEMPLATE", "HTML", "TEXT"]);
+            $table->string("content_type");//enum("content_type", ["TEMPLATE", "HTML", "TEXT"]);
+            $table->text("template")->nullable();
 
             $table->string("content");
             $table->string("status")->default("CREATED"); // CREATED | PENDING | ACTIVE | COMPLETED

@@ -43,6 +43,9 @@
     <link rel="stylesheet" href="https://unpkg.com/@datavis-tech/codemirror-6-prerelease@5.0.0/codemirror.next/legacy-modes/style/codemirror.css">
     <script src="https://unpkg.com/@datavis-tech/codemirror-6-prerelease@5.0.0/dist/codemirror.js"></script>
 
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+
 </head>
 
 <body class="">
