@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Str;
 
 class ImageChooser extends Component
 {
@@ -14,7 +15,7 @@ class ImageChooser extends Component
      */
     public function __construct($options=[], $selected="", $multiple=false)
     {
-        $this->id = "selectize-".rand(111111,999999);
+        $this->id = "picker-".Str::random(6);
     }
 
     /**

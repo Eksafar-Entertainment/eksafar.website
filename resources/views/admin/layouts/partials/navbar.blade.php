@@ -62,6 +62,7 @@
                         </li>
                         @role('Admin')
                             <li class="nav-item"><a href="/admin/coupon" class="nav-link">{{ __('Coupons') }}</a></li>
+                            <li class="nav-item"><a href="/admin/settings/general" class="nav-link">{{ __('Settings') }}</a></li>
                         @endrole
                     @endauth
                 </ul>

@@ -19,7 +19,7 @@
         style="height: 4px; transition: width 0.25s"></div>
 </div>
 <style>
-    .edit-btn{
+    .edit-btn {
         padding: 2px 6px;
         height: 29px;
         width: 29px;
@@ -27,26 +27,29 @@
         overflow: hidden;
         white-space: nowrap;
     }
-    .edit-btn:hover{
+
+    .edit-btn:hover {
         width: 120px;
     }
-    .edit-btn span{ 
+
+    .edit-btn span {
         color: transparent;
         transition: 0.25s ease-in;
     }
-    .edit-btn:hover span{
+
+    .edit-btn:hover span {
         color: inherit
     }
 </style>
 <script>
     $(function() {
-        const _id = "{{ $id }}";
+        //const _elm = document.querySelector("#{{ $id }}-input");
 
-        const _elm = document.querySelector("#{{ $id }}-input");
-        const _preview = document.querySelector("#{{ $id }}-preview");
-        const _field = document.querySelector("#{{ $id }}-field");
-        const _progress_div = document.querySelector("#{{ $id }}-progress");
-        _elm.onchange = (_event) => {
+        document.querySelector("#{{ $id }}-input").onchange = (_event) => {
+            const _preview = document.querySelector("#{{ $id }}-preview");
+            const _field = document.querySelector("#{{ $id }}-field");
+            const _progress_div = document.querySelector("#{{ $id }}-progress");
+
             const files = _event.target.files;
             const url = URL.createObjectURL(files[0]);
 

@@ -104,6 +104,8 @@ Route::group([
     });
 
     Route::post('settings/inline-edit', [SettingsController::class, "inlineEdit"]);
+    Route::get('settings/general', [SettingsController::class, "generalSettings"]);
+    Route::post('settings/general', [SettingsController::class, "saveGeneralSettings"]);
     Route::get('profile', [ProfileController::class, "index"]);
     Route::post('profile', [ProfileController::class, "update"]);
     Route::post('profile/change-password', [ProfileController::class, "changePassword"]);
