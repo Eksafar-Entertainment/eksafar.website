@@ -82,7 +82,6 @@
 <body>
     <div id="app">
         <x-front.navbar />
-        <!-- Navbar -->
     </div>
     <main>
         @yield('content')
