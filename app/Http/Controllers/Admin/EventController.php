@@ -387,6 +387,9 @@ class EventController extends Controller
                     "receipt" => "R_".$order->id
                 )
             );
+
+            $payment->status = "REFUNDED";
+            $payment->save();
         }
         $order->status("CANCELLED");
         $order->save();
