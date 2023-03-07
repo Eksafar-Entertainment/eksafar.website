@@ -86,7 +86,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $order->uid }}</td>
-                                <td class="nowrap">{{ $order->name }}</td>
+                                <td class="text-nowrap">{{ $order->name }}</td>
                                 <td>{{ $order->mobile }}</td>
                                 <td>{{ $order->email }}</td>
                                 <td class="text-end">
