@@ -27,12 +27,7 @@
                                 onclick="openForm('{{ $event_ticket->id }}')">
                                 <div class="card-header bg-primary text-light d-flex align-items-center">
                                     <div class="flex-grow-1">
-                                        <i class="fas fa-ticket"></i> {{ $event_ticket->name }}<br />
-                                        <small style="font-size: 12px">
-                                            {{ \Carbon\Carbon::parse($event_ticket->start_datetime)->format('d/m/Y h:i A') }}
-                                            to
-                                            {{ \Carbon\Carbon::parse($event_ticket->end_datetime)->format('d/m/Y h:i A') }}
-                                        </small>
+                                        <i class="fas fa-ticket"></i> {{ $event_ticket->name }}
                                     </div>
                                     <span>
                                         @money($event_ticket->price)
