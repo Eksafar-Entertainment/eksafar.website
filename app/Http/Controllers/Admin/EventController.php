@@ -391,7 +391,7 @@ class EventController extends Controller
             $payment->status = "REFUNDED";
             $payment->save();
         }
-        $order->status("CANCELLED");
+        $order->status = "CANCELLED";
         $order->save();
         return response()->json([
             "status" => 200,
