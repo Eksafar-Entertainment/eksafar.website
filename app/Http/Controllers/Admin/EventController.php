@@ -377,6 +377,9 @@ class EventController extends Controller
             $rzp_payment_id = $payment->rzp_payment_id;
             $rzp_payment = $api->payment->fetch($rzp_payment_id);
 
+            $refundable = $rzp_payment->amount - ($rzp_payment->fee + $rzp_payment->tax);
+
+            dd( $refundable);
             dd($rzp_payment);
             
         }
