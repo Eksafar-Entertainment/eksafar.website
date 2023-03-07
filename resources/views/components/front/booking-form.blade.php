@@ -48,7 +48,7 @@
                                             <span class="text-light"> @money($event_ticket->price)</span>
                                         </td>
                                         <td class="align-middle pe-0 pr-0" width="1%">
-                                            @if ($event_ticket->status != 'SOLD')
+                                            @if ($event_ticket->status == 'ACTIVE')
                                             <input type="hidden" name="items[{{ $event_ticket->id }}][event_ticket_id]"
                                                 value="{{ $event_ticket->id }}" class="" />
                                             <input type="hidden" value="{{ $event_ticket->price }}"
