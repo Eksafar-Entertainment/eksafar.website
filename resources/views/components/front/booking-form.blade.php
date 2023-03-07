@@ -48,12 +48,12 @@
                                             <span class="text-light"> @money($event_ticket->price)</span>
                                         </td>
                                         <td class="align-middle pe-0 pr-0" width="1%">
-                                            @if ($event_ticket->status == 'ACTIVE')
+                                            
                                             <input type="hidden" name="items[{{ $event_ticket->id }}][event_ticket_id]"
                                                 value="{{ $event_ticket->id }}" class="" />
                                             <input type="hidden" value="{{ $event_ticket->price }}"
                                                 data-field="price" />
-                                            <div class="input-group" style="width: 100px;transform: scale(0.8)">
+                                            <div class="input-group @if ($event_ticket->status == 'SOLD') d-none @endif" style="width: 100px;transform: scale(0.8)">
                                                 <button type="button" class="btn btn-danger btn-number btn-sm"
                                                     data-field="minus">
                                                     <span class="fa fa-minus"></span>
@@ -67,7 +67,7 @@
                                                     <span class="fa fa-plus"></span>
                                                 </button>
                                             </div>
-                                            @endif
+                                        
                                         </td>
                                         <td class="fs-6 align-middle pe-0 text-nowrap text-end text-light d-sm-table-cell d-none"
                                             width="1%" style="min-width: 60px" data-field="total-price">
