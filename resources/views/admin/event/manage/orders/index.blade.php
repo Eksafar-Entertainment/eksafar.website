@@ -78,14 +78,15 @@
                                 </td>
                                 <td width="1%" nowrap>
                                     @if ($order->status == 'SUCCESS')
-                                        <a href="javascript:void()" onclick="resendMail('{{ $order->id }}')"><i
-                                                class="fa-solid fa-envelope"></i></a>
+                                        <a href="javascript:void()" onclick="resendMail('{{ $order->id }}')" class="btn btn-primary btn-sm d-inline-block px-2 py-0  text-sm ms-2">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </a>
 
-                                        <a href="javascript:void()" onclick="cancelOrder('{{ $order->id }}')" class="text-danger ms-2"> Cancel </a>
+                                        <a href="javascript:void()" onclick="cancelOrder('{{ $order->id }}')" class="btn btn-danger btn-sm d-inline-block px-2 py-0  text-sm ms-2">Cancel</a>
                                     @endif
                                 </td>
                                 <td>{{ $order->uid }}</td>
-                                <td>{{ $order->name }}</td>
+                                <td class="nowrap">{{ $order->name }}</td>
                                 <td>{{ $order->mobile }}</td>
                                 <td>{{ $order->email }}</td>
                                 <td class="text-end">
