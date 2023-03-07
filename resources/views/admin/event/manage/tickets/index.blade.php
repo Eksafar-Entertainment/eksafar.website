@@ -18,51 +18,47 @@
                 @include('admin.layouts.partials.messages')
             </div>
 
-            <div class="row">
-                @foreach ($dates as $date => $tickets)
-                    <div class="col-sm-4">
-                        <h5>{{ \Carbon\Carbon::parse($date)->format('d/m/Y h:i A') }}</h5>
-                        <div>
-                            @foreach ($tickets as $key => $event_ticket)
-                                <div class="mt-3">
-                                    <div class="card position-relative overflow-hidden" style="cursor: pointer"
-                                        onclick="openForm('{{ $event_ticket->id }}')">
-                                        <div class="card-header bg-primary text-light d-flex align-items-center">
-                                            <div class="flex-grow-1">
-                                                <i class="fas fa-ticket"></i> {{ $event_ticket->name }}
-                                            </div>
-                                            <span>
-                                                @money($event_ticket->price)
-                                            </span>
+            @foreach ($dates as $date => $tickets)
+                <h5>{{ \Carbon\Carbon::parse($date)->format('d/m/Y h:i A') }}</h5>
+                <div class="row">
+                    @foreach ($tickets as $key => $event_ticket)
+                        <div class="col-md-4 mb-4">
+                            <div class="card position-relative overflow-hidden" style="cursor: pointer"
+                                onclick="openForm('{{ $event_ticket->id }}')">
+                                <div class="card-header bg-primary text-light d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <i class="fas fa-ticket"></i> {{ $event_ticket->name }}
+                                    </div>
+                                    <span>
+                                        @money($event_ticket->price)
+                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <span class="fs-5">{{ $event_ticket->total_sale_count }}</span><br />
+                                            <span class="text-primary">Tickets Sold</span>
                                         </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col text-center">
-                                                    <span class="fs-5">{{ $event_ticket->total_sale_count }}</span><br />
-                                                    <span class="text-primary">Tickets Sold</span>
-                                                </div>
 
-                                                {{-- <div class="col text-center">
+                                        {{-- <div class="col text-center">
                                         <span class="fs-5">
                                             @money($event_ticket->total_sale_amount)
                                         </span><br />
                                         <span class="text-primary">Revenue</span>
                                     </div> --}}
-                                            </div>
-                                        </div>
-
-                                        <div class="position-absolute bottom-0 right-0 end-0 bg-{{ $status_colors[$event_ticket->status] }} px-2 text-light"
-                                            style="border-top-left-radius: 8px">
-                                            <small>{{ $event_ticket->status }}</small>
-                                        </div>
                                     </div>
-
                                 </div>
-                            @endforeach
+
+                                <div class="position-absolute bottom-0 right-0 end-0 bg-{{ $status_colors[$event_ticket->status] }} px-2 text-light"
+                                    style="border-top-left-radius: 8px">
+                                    <small>{{ $event_ticket->status }}</small>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
+            @endforeach
         </div>
 
 
