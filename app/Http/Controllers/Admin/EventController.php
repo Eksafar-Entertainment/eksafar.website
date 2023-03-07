@@ -370,7 +370,7 @@ class EventController extends Controller
     public function cancelOrder($event_id, Request $request){
         $order_id = $request->order_id;
         $order = Order::where("id", $order_id)->first();
-        $payment = Payment::where("id", $order->payment_id);
+        $payment = Payment::where("id", $order->payment_id)->first();
         if($payment){
             $key = $_ENV["RAZORPAY_KEY_ID"];
             $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
