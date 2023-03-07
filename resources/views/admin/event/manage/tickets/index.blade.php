@@ -39,13 +39,6 @@
                                             <span class="fs-5">{{ $event_ticket->total_sale_count }}</span><br />
                                             <span class="text-primary">Tickets Sold</span>
                                         </div>
-
-                                        {{-- <div class="col text-center">
-                                        <span class="fs-5">
-                                            @money($event_ticket->total_sale_amount)
-                                        </span><br />
-                                        <span class="text-primary">Revenue</span>
-                                    </div> --}}
                                     </div>
                                 </div>
 
