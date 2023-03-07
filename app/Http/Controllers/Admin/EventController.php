@@ -28,20 +28,20 @@ class EventController extends Controller
     function index(Request $request)
     {
         $events = Event::select("*");
-        if( $request->query->has("fromDate")  && $request->query("fromDate") !=""){
+        if ($request->query->has("fromDate")  && $request->query("fromDate") != "") {
             $events->where("events.start_date", ">=", Carbon::parse($request->query("fromDate")));
         }
 
-        if( $request->query->has("toDate") && $request->query("toDate") !=""){
+        if ($request->query->has("toDate") && $request->query("toDate") != "") {
             $events->where("events.start_date", "<=", Carbon::parse($request->query("toDate")));
         }
-        if( $request->query->has("status") && $request->query("status") !=""){
+        if ($request->query->has("status") && $request->query("status") != "") {
             $events->where("events.status", "=", $request->query("status"));
         }
 
         $events = $events->orderBy("start_date", "DESC")->paginate(20);
 
-        
+
         $event_ids = array_map(function ($event) {
             return $event["id"];
         }, $events->toArray()["data"]);
@@ -58,7 +58,7 @@ class EventController extends Controller
             ->whereIn("orders.event_id", $event_ids)
             ->where("orders.status", "SUCCESS")
             ->get()->toArray();
-          
+
         $sales = array_reduce($sales, function ($all, $current) {
             $all[$current["id"]] = $current;
             return $all;
@@ -91,8 +91,8 @@ class EventController extends Controller
         $event->start_date = $request->start_date ?? "2020-01-01";
         $event->end_date = $request->end_date ?? "2020-01-01";
         $event->occurrence = $request->occurrence ?? "";
-        $event->excerpt = $request->excerpt ??"";
-        $event->description = $request->description ??"";
+        $event->excerpt = $request->excerpt ?? "";
+        $event->description = $request->description ?? "";
         $event->video_link = $request->video_link ?? "";
         $event->event_type = $request->event_type ?? "";
         $event->artists = $request->artist ?? [];
@@ -189,7 +189,7 @@ class EventController extends Controller
         }
         $colors = ["#FF4081", "#00C853", "#00BCD4", "#ff5722", "#6200ea", "#aa00ff", "#3e2723"];
         foreach ($event_tickets as $i => $event_ticket) {
-            $color = "#".str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+            $color = "#" . str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
             $tickets_sold_details_chart["datasets"][$event_ticket->id] = [
                 "data" => [],
                 "label" => $event_ticket->name,
@@ -205,7 +205,7 @@ class EventController extends Controller
 
 
         $end_date = date("Y-m-d");
-        if(Carbon::now()->greaterThan(Carbon::parse($event->end_date))){
+        if (Carbon::now()->greaterThan(Carbon::parse($event->end_date))) {
             $end_date = Carbon::parse($event->end_date)->format("Y-m-d");
         }
         $period = CarbonPeriod::create(Carbon::parse($event->created_at)->format("Y-m-d"), $end_date);
@@ -351,10 +351,11 @@ class EventController extends Controller
         ]);
     }
 
-    public function resendMail($event_id, Request $request){
+    public function resendMail($event_id, Request $request)
+    {
         $order_id = $request->order_id;
         $order = Order::where("id", $order_id)->first();
-        if(!$order ||  $order->status != "SUCCESS"){
+        if (!$order ||  $order->status != "SUCCESS") {
             return response()->json([
                 "status" => 500,
                 'message' => 'Invalid order',
@@ -367,21 +368,25 @@ class EventController extends Controller
         ]);
     }
 
-    public function cancelOrder($event_id, Request $request){
+    public function cancelOrder($event_id, Request $request)
+    {
         $order_id = $request->order_id;
         $order = Order::where("id", $order_id)->first();
         $payment = Payment::where("id", $order->payment_id)->first();
-        if($payment){
+        if ($payment) {
             $key = $_ENV["RAZORPAY_KEY_ID"];
             $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
             $rzp_payment_id = $payment->rzp_payment_id;
             $rzp_payment = $api->payment->fetch($rzp_payment_id);
 
-            $refundable = $rzp_payment->amount - ($rzp_payment->fee + $rzp_payment->tax);
 
-            dd( $refundable);
-            dd($rzp_payment);
-            
+            $rzp_payment->refund(
+                array(
+                    "speed" => "normal",
+                    "notes" => array(),
+                    "receipt" => "R_".$order->id
+                )
+            );
         }
         $order->status("CANCELLED");
         $order->save();
@@ -505,7 +510,7 @@ class EventController extends Controller
         $event->start_date = $request->start_date;
         $event->end_date = $request->end_date;
         $event->occurrence = $request->occurrence;
-        $event->excerpt = $request->excerpt??"";
+        $event->excerpt = $request->excerpt ?? "";
         $event->description = $request->description;
         $event->cover_image = $request->cover_image;
         $event->video_link = $request->video_link;
@@ -539,9 +544,9 @@ class EventController extends Controller
     {
         $order_id = $request->order_id;
         $date = $request->date;
-        $order = Order::where(function ($query) use($order_id){
+        $order = Order::where(function ($query) use ($order_id) {
             $query->where('id', '=', $order_id)
-                  ->orWhere('uid', '=', $order_id);
+                ->orWhere('uid', '=', $order_id);
         })->where("status", "SUCCESS")->first();
         if (!$order) {
             return response()->json([
@@ -565,7 +570,7 @@ class EventController extends Controller
                 'message' => 'Tickets not found',
             ], 404);
         }
-        
+
         return response()->json([
             "status" => 200,
             'message' => 'Successfully fetched data',
