@@ -282,13 +282,14 @@ class ContactController extends Controller
 
                 //to_ordered_users
                 if ($request->has("to_ordered_users")) {
-                    $orders = Order::get()->unique("mobile");
+                    $orders = Order::where("event_id", 11)->where("STATUS", "SUCCESS")->get()->unique("mobile");
                     foreach ($orders as $order) {
                         if ($order->email == null || $order->email == "") continue;
                         $receipts[$order->email] = [
                             "name" => $order->name,
                             "email" => $order->email,
                             "phone" => $order->mobile,
+                            "event_id"=>$order->event_id
                         ];
                     }
                 }
