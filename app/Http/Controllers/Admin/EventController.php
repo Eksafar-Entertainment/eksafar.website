@@ -20,6 +20,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketMail;
 use App\Models\Location;
+use App\Models\Payment;
+use Razorpay\Api\Api;
 
 class EventController extends Controller
 {
@@ -359,6 +361,27 @@ class EventController extends Controller
             ], 500);
         }
         Mail::to([$order->email])->send(new TicketMail($order->id));
+        return response()->json([
+            "status" => 200,
+            'message' => 'Email send successful',
+        ]);
+    }
+
+    public function cancelOrder($event_id, Request $request){
+        $order_id = $request->order_id;
+        $order = Order::where("id", $order_id)->first();
+        $payment = Payment::where("id", $order->payment_id);
+        if($payment){
+            $key = $_ENV["RAZORPAY_KEY_ID"];
+            $api = new Api($_ENV["RAZORPAY_KEY_ID"], $_ENV["RAZORPAY_KEY_SECRET"]);
+            $rzp_payment_id = $payment->rzp_payment_id;
+            $rzp_payment = $api->payment->fetch($rzp_payment_id);
+
+            dd($rzp_payment);
+            
+        }
+        $order->status("CANCELLED");
+        $order->save();
         return response()->json([
             "status" => 200,
             'message' => 'Email send successful',
