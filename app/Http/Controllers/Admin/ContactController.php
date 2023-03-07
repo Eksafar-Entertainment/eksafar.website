@@ -300,7 +300,6 @@ class ContactController extends Controller
                     "email" => $receipt
                 ];
             }
-            dd($receipts);
             foreach ($receipts as $receipt) {
                 $mailSchedule = new MailSchedule();
                 $mailSchedule->name = $receipt["name"] ?? "";
