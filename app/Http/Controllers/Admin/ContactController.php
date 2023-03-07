@@ -300,12 +300,13 @@ class ContactController extends Controller
                     "email" => $receipt
                 ];
             }
+            dd($receipts);
             foreach ($receipts as $receipt) {
                 $mailSchedule = new MailSchedule();
                 $mailSchedule->name = $receipt["name"] ?? "";
                 $mailSchedule->to = $receipt["email"];
                 $mailSchedule->subject = $subject;
-                $mailSchedule->html = $message;
+                $mailSchedule->html = str_replace("{{name}}", $receipt["name"], $message);
                 $mailSchedule->text = "";
                 $mailSchedule->status = "CREATED";
                 $mailSchedule->priority = 0;
