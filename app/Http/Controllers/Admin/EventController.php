@@ -395,7 +395,7 @@ class EventController extends Controller
         $order->save();
         return response()->json([
             "status" => 200,
-            'message' => 'Email send successful',
+            'message' => 'Ticket cancelled successfully',
         ]);
     }
 
