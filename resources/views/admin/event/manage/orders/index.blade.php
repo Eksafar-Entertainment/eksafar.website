@@ -96,7 +96,7 @@
                                 <td class="text-end">
                                     @money($order->discount)
                                 </td>
-                                <td>{{ $order->promoter ?? '----' }}</td>
+                                <td class="text-nowrap">{{ $order->promoter ?? '----' }}</td>
                                 <td class="text-end text-nowrap">
                                     @money($order->promoter_commission ? $order->promoter_commission : 0) @ {{ $order->promoter_commission_percentage ?? 0 }}%
                                 </td>
