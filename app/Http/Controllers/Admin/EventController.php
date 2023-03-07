@@ -432,7 +432,12 @@ class EventController extends Controller
             "CREATED" => "warning",
             "SOLD" => "danger",
         ];
-        return view("admin.event.manage.tickets.index", compact('event', 'event_tickets', "status_colors"));
+
+        $dates = [];
+        foreach($event_tickets as $ticket){
+            $dates[$ticket->start_datetime][] = $ticket;
+        }
+        return view("admin.event.manage.tickets.index", compact('event', 'dates', "status_colors"));
     }
 
     public function getTicketForm($event_id, Request $request)
